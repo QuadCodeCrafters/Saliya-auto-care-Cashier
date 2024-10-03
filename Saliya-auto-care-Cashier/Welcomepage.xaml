@@ -23,6 +23,13 @@
              <TextBlock Text="Welcome!" Foreground="White" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,0,0"/>
                 <UniformGrid Rows="2" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="10">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -80,11 +87,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
+                            <Image Source="/Images/apple.png" Width="100" Height="100"/>
                             <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -142,11 +156,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image Source="/Images/tv.png" Width="100" Height="100"/>
+                            <TextBlock Text="Store Status" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -204,11 +225,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image Source="/Images/photos.png" Width="100" Height="100" />
+                            <TextBlock Text="Venders" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -266,11 +294,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image Source="/Images/music.png" Width="100" Height="100"/>
+                            <TextBlock Text="Users" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,00">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -328,11 +363,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image  Source="/Images/pay.png" Width="100" Height="100"/>
+                            <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -390,11 +432,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                            <Image Source="/Images/store.png" Width="100" Height="100"/>
+                            <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -452,11 +501,18 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image Source="/Images/icloud.png" Width="100" Height="100"/>
+                            <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
@@ -514,14 +570,20 @@
                         </Button.Template>
 
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Width="60" Height="60"/>
-                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <Image Source="/Images/disney.png" Width="100" Height="100"/>
+                            <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Button>
                 </UniformGrid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,20">
-                <Image Source="/Images/logout.png"  Width="30" Height="30" Margin="0,0,10,0" ToolTip="Logout" Cursor="Hand"/>
-                <TextBlock Text="Hi UserName" Foreground="White" FontSize="16" VerticalAlignment="Center"/>
+                    <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand" ContextMenuClosing="btnlogout">
+                        <Image.ToolTip>
+                            <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1">
+                                <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                            </ToolTip>
+                        </Image.ToolTip>
+                    </Image>
+                    <TextBlock Text="Hi! No UserName" Foreground="White" FontSize="21" VerticalAlignment="Center"/>
             </StackPanel>
 
         </Grid>

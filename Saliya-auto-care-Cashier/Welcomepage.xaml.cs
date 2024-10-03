@@ -23,5 +23,12 @@ namespace Saliya_auto_care_Cashier
         {
             InitializeComponent();
         }
+
+        private void btnlogout(object sender, ContextMenuEventArgs e)
+        {
+            Loginpage lp=new Loginpage();
+            lp.Show();
+            this.Close();
+      }
     }
 }

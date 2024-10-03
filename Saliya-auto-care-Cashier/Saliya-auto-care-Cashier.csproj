@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MVVM\Model\Model.cs" />
+    <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
+    <Compile Include="MVVM\View\View.cs" />
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
@@ -120,16 +123,28 @@
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\POS.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MVVM\Model\" />
-    <Folder Include="MVVM\ViewModel\" />
-    <Folder Include="MVVM\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Saliya.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\disney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\music.png" />
+    <Resource Include="Images\pay.png" />
+    <Resource Include="Images\photos.png" />
+    <Resource Include="Images\store.png" />
+    <Resource Include="Images\tv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icloud.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
