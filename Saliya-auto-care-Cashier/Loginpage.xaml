@@ -1,17 +1,1 @@
-﻿<Window x:Class="Saliya_auto_care_Cashier.Loginpage"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Saliya_auto_care_Cashier"
-        mc:Ignorable="d"
-        WindowState="Maximized"
-        WindowStyle="None"
-        ResizeMode="NoResize">
-    <Grid>
-        <Button Height="50" Width="350" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click" >Click me</Button>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,200,0,0" FontSize="40" FontWeight="Bold" Foreground="red">This Page Currently Unavailable :(</TextBlock>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,300,0,0" FontSize="30" FontWeight="Black" Foreground="Green">Press Alt+F4 for exit from the application in next Window</TextBlock>
-    </Grid>
-</Window>
-    
+
