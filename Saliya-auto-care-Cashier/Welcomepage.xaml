@@ -22,7 +22,7 @@
         <Grid>
              <TextBlock Text="Welcome!" Foreground="White" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,0,0"/>
                 <UniformGrid Rows="2" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="10">
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="10" Click="btn_registor">
                         <Button.ToolTip>
                             <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                 <StackPanel>

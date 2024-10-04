@@ -66,6 +66,10 @@
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Assets\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +96,10 @@
     <Page Include="MVVM\View\registorview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MainStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Welcomepage.xaml">
       <SubType>Designer</SubType>

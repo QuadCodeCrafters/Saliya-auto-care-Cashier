@@ -37,11 +37,11 @@ namespace Saliya_auto_care_Cashier
         void bk_DoWork(object sender, EventArgs e)
         {
             //A Thread for Run the Loading
-            for (int i = 0; i <= 80; i++)
+            for (int i = 0; i <= 50; i++)
             {
 
                 (sender as BackgroundWorker).ReportProgress(i);
-                Thread.Sleep(80);
+                Thread.Sleep(50);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Saliya_auto_care_Cashier
         {
 
             ProgressBar.Value = e.ProgressPercentage;
-            if (ProgressBar.Value == 80)
+            if (ProgressBar.Value == 50)
             {
                 Loginpage lP = new Loginpage();
                 lP.Show();
