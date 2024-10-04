@@ -26,7 +26,7 @@ namespace Saliya_auto_care_Cashier
 
         private void btn_home(object sender, RoutedEventArgs e)
         {
-
+            fContainer.Navigate(new System.Uri("Pages/Home.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
