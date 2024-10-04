@@ -25,15 +25,14 @@
         </Border>
         <StackPanel Grid.Row="2">
             <Button Height="40" Width="120" Margin="20" FontSize="25" Click="btn_home">
-                Click 
+                Click
             </Button>
         </StackPanel>
-
         <Frame Grid.Row="1"
-                       Name="fContainer"
-                       Margin="10,10,10,10"
-                       NavigationUIVisibility="Hidden" Grid.RowSpan="4">
-
+               Name="fContainer"
+               Margin="10,10,10,10"
+               NavigationUIVisibility="Hidden">
         </Frame>
+
     </Grid>
 </Window>
