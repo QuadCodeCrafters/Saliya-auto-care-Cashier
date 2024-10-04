@@ -23,5 +23,10 @@ namespace Saliya_auto_care_Cashier
         {
             InitializeComponent();
         }
+
+        private void btn_home(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
