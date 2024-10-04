@@ -57,7 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="MVVM\Model\Model.cs" />
     <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
-    <Compile Include="MVVM\View\View.cs" />
+    <Compile Include="MVVM\View\registorview.xaml.cs">
+      <DependentUpon>registorview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
@@ -80,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\registorview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Welcomepage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
