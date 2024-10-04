@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\Model.cs" />
     <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
     <Compile Include="MVVM\View\registorview.xaml.cs">
@@ -63,6 +66,10 @@
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Loginpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
