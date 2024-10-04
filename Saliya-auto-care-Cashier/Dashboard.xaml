@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saliya_auto_care_Cashier"
         mc:Ignorable="d"
-        Title="Dashboard" Height="450" Width="800">
+        mc:Ignorable="d"
+        Height="1080" Width="1920"
+        WindowStyle="None"
+        ResizeMode="NoResize">
     <Grid>
         
     </Grid>
