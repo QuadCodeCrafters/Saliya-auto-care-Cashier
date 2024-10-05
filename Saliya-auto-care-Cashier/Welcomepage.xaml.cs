@@ -31,11 +31,18 @@ namespace Saliya_auto_care_Cashier
             this.Close();
         }
 
-        private void btn_logout(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Loginpage lg=new Loginpage();
-            lg.Show();
-            this.Close();
+            try
+            {
+                Loginpage lg = new Loginpage();
+                lg.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
