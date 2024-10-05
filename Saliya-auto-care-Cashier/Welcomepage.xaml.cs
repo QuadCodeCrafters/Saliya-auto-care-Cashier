@@ -24,20 +24,25 @@ namespace Saliya_auto_care_Cashier
             InitializeComponent();
         }
 
-        private void btnlogout(object sender, ContextMenuEventArgs e)
-        {
-            Loginpage lp=new Loginpage();
-            lp.Show();
-            this.Close();
-      }
-
-    
-
-        private void btn_registor(object sender, RoutedEventArgs e)
+       private void btn_registor(object sender, RoutedEventArgs e)
         {
             Dashboard d1=new Dashboard();
             d1.Show();
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Loginpage lg = new Loginpage();
+                lg.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
