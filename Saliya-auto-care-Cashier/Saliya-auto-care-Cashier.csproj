@@ -133,6 +133,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignColors">
       <Version>2.0.3</Version>
     </PackageReference>
@@ -144,7 +147,9 @@
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\POS.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\truck.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Saliya.jpg" />
   </ItemGroup>
@@ -166,6 +171,39 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-repair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-lifter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-painting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\supplier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\customer-data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-service.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\maintenance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\register.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

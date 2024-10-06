@@ -1,5 +1,6 @@
 ﻿<Window x:Class="Saliya_auto_care_Cashier.Welcomepage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -43,7 +44,7 @@
                     </Grid>
                 </materialDesign:DialogHost.DialogContent>
                 <Grid>
-                    <TextBlock Text="Welcome!" Foreground="White" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
+                    <TextBlock Text="Welcome!" Foreground="White" FontSize="59" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
                     <UniformGrid Rows="2" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="10" Click="btn_registor">
                             <Button.ToolTip>
@@ -110,7 +111,7 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/apple.png" Width="100" Height="100"/>
+                                <Image Source="/Images/register.png" Width="100" Height="100"/>
                                 <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
@@ -179,8 +180,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/tv.png" Width="100" Height="100"/>
-                                <TextBlock Text="Store Status" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image Source="/Images/customer-data.png" Width="100" Height="100"/>
+                                <TextBlock Text="Customers" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -248,8 +249,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/photos.png" Width="100" Height="100" />
-                                <TextBlock Text="Venders" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image Source="/Images/supplier.png" Width="100" Height="100" />
+                                <TextBlock Text="Inventory" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -317,8 +318,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/music.png" Width="100" Height="100"/>
-                                <TextBlock Text="Users" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image Source="/Images/car-painting.png" Width="100" Height="100"/>
+                                <TextBlock Text="Paint Jobs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -386,8 +387,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image  Source="/Images/pay.png" Width="100" Height="100"/>
-                                <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image  Source="/Images/car-service.png" Width="100" Height="100"/>
+                                <TextBlock Text="Vehicle Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -455,8 +456,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/store.png" Width="100" Height="100"/>
-                                <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                                <Image Source="/Images/car-repair.png" Width="100" Height="100"/>
+                                <TextBlock Text="Vehicle Repairs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -524,8 +525,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/icloud.png" Width="100" Height="100"/>
-                                <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image Source="/Images/maintenance.png" Width="100" Height="100"/>
+                                <TextBlock Text="Spare Parts" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                         <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
@@ -593,8 +594,8 @@
                             </Button.Template>
 
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/disney.png" Width="100" Height="100"/>
-                                <TextBlock Text="No Name" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                <Image Source="/Images/truck.png" Width="100" Height="100"/>
+                                <TextBlock Text="Delivary Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
                     </UniformGrid>
