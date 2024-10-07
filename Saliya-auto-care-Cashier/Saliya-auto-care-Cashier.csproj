@@ -205,5 +205,8 @@
   <ItemGroup>
     <Resource Include="Images\register.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\macbook_pro_m3_design_background-t2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
