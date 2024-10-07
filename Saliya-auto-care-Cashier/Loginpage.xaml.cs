@@ -31,6 +31,13 @@ namespace Saliya_auto_care_Cashier
             w.Show();
             this.Close();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Welcomepage w = new Welcomepage();
+            w.Show();
+            this.Close();
+        }
     }
 }
 

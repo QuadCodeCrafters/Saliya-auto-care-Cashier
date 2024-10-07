@@ -208,5 +208,35 @@
   <ItemGroup>
     <Resource Include="Images\macbook_pro_m3_design_background-t2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\POSbackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\jeff-smith-Wg-2kBVND3c-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\torsten-dederichs-MC4vKEsIKVY-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\check %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checkmark-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\360_F_330178536_8uqY3syFVr302dA2ELR54j7CnObeL2uK.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\istockphoto-1387759698-612x612.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\9396ef7f378df8dbfa5d3ed5ca8787b9_t.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
