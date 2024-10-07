@@ -14,8 +14,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="MaterialDesignToolTipBackgroundBrush" Color="Blue"/>
+            <SolidColorBrush x:Key="MaterialDesignToolTipBackgroundBrush_GreenYellow" Color="GreenYellow"/>
+            <SolidColorBrush x:Key="MaterialDesignToolTipBackgroundBrush_Blue" Color="Blue"/>
             <SolidColorBrush x:Key="MaterialDesignToolTipForegroundBrush" Color="White"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
