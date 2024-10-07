@@ -46,7 +46,7 @@
                              Background="Transparent" 
                              FontSize="60" 
                              VerticalContentAlignment="Center" 
-                             HorizontalContentAlignment="Center" Margin="9,3,9,-1" Password="12345" PasswordChar="*" Cursor="None" MaxLength="5" FontWeight="ExtraBold" />
+                             HorizontalContentAlignment="Center" Margin="9,3,9,-1" Password="12345" PasswordChar="*" Cursor="IBeam" MaxLength="5" FontWeight="ExtraBold" />
                 </Border>
 
                 <!-- Keypad -->
