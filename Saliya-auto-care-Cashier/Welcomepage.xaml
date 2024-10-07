@@ -26,10 +26,10 @@
 
                 <materialDesign:DialogHost.DialogContent>
 
-                    <Grid Width="300" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" Margin="15">
-                            <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50" />
-                            <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="200" Margin="15 5" TextWrapping="Wrap" >
+                            <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
+                            <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="200" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
                                 Do you want to Logout?
                             </TextBlock>
                         </StackPanel>
