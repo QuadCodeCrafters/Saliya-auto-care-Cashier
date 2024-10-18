@@ -50,7 +50,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Register" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -119,7 +119,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Customers" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -188,7 +188,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Inventory" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -257,7 +257,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Paint Jobs" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -326,7 +326,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,00">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Vehicle Service" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -395,7 +395,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Vehicle Repairs" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -464,7 +464,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Spare Parts" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
@@ -533,7 +533,7 @@
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Test" FontSize="15"/>
+                                        <TextBlock FontWeight="Bold" Text="Delivary Service" FontSize="15"/>
                                     </StackPanel>
                                 </ToolTip>
                             </Button.ToolTip>
