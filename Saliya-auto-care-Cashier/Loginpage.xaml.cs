@@ -13,22 +13,18 @@ namespace Saliya_auto_care_Cashier
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // Fade-out animation for the current window
             DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
-            fadeOutAnimation.Completed += FadeOutAnimation_Completed; // Event for when the animation completes
+            fadeOutAnimation.Completed += FadeOutAnimation_Completed;  
             this.BeginAnimation(OpacityProperty, fadeOutAnimation);
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
         {
-            // After fade-out, show the welcome page
+      
             Welcomepage welcomePage = new Welcomepage();
             welcomePage.Show();
-
-            // Close the current window
             this.Close();
         }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

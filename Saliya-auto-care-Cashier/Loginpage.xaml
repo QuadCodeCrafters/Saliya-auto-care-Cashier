@@ -142,7 +142,7 @@
                     <Button Grid.Row="2" Grid.Column="2" Content="9" Margin="5"/>
                     <Button Grid.Row="3" Grid.Column="1" Content="0" Margin="5"/>
                     <Button Grid.Row="3" Grid.Column="2" Content="C" Margin="5"/>
-                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5" Click="Button_Click"/>
+                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5"/>
                 </Grid>
                 <Button x:Name="btnLogin" Background="#7CFC00" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="132" Click="btnLogin_Click" RenderTransformOrigin="0.5,0.5" Width="138">
                     <Button.RenderTransform>
