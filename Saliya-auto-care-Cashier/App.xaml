@@ -17,7 +17,6 @@
             <SolidColorBrush x:Key="MaterialDesignToolTipBackgroundBrush_GreenYellow" Color="GreenYellow"/>
             <SolidColorBrush x:Key="MaterialDesignToolTipBackgroundBrush_Blue" Color="Blue"/>
             <SolidColorBrush x:Key="MaterialDesignToolTipForegroundBrush" Color="White"/>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
