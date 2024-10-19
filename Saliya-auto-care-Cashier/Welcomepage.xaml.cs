@@ -136,6 +136,14 @@ namespace Saliya_auto_care_Cashier
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
+            fadeOutAnimation.Completed += FadeOutAnimation_Completed;
+            this.BeginAnimation(OpacityProperty, fadeOutAnimation);
+        }
+
+        private void FadeOutAnimation_Completed(object sender, EventArgs e)
+        {
+
             try
             {
                 Loginpage lg = new Loginpage();
