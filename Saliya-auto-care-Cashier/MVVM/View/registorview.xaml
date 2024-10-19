@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
     <Grid>
-        <Border Background="Wheat" Grid.Row="0">
-            <TextBlock Text="Welcome to the Register View!" FontSize="24" />
+        <Border Background="Wheat" Grid.Row="0" CornerRadius="10" >
+            <TextBlock Text="Welcome to the Register View!" FontSize="24"  Margin="20" />
         </Border>
     </Grid>
 </UserControl>
