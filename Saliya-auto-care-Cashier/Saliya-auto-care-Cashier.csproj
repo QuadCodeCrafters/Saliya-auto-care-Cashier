@@ -60,6 +60,30 @@
     </Compile>
     <Compile Include="MVVM\Model\Model.cs" />
     <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
+    <Compile Include="MVVM\View\Customers_View.xaml.cs">
+      <DependentUpon>Customers_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DelivaryService_View.xaml.cs">
+      <DependentUpon>DelivaryService_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Inventory_View.xaml.cs">
+      <DependentUpon>Inventory_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\PaintJobs_View.xaml.cs">
+      <DependentUpon>PaintJobs_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Register_View.xaml.cs">
+      <DependentUpon>Register_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\SpareParts_View.xaml.cs">
+      <DependentUpon>SpareParts_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\VehicleRepairs_View.xaml.cs">
+      <DependentUpon>VehicleRepairs_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\VehicleService_View.xaml.cs">
+      <DependentUpon>VehicleService_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +114,38 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\Customers_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DelivaryService_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Inventory_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\PaintJobs_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Register_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\SpareParts_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\VehicleRepairs_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\VehicleService_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\MainStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -231,8 +287,6 @@
   <ItemGroup>
     <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MVVM\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,7 +17,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/registorview.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVVM/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -32,12 +32,12 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/customersview.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVVM/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error displaying the register view: {ex.Message}");
+                MessageBox.Show($"Error displaying the Customers view: {ex.Message}");
             }
         }
 

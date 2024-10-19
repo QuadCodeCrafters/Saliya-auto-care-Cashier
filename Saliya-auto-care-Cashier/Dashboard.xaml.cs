@@ -14,7 +14,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/registorview.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVVM/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -26,7 +26,79 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/customersview.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVVM/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Inventory(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Vehicle_Services(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Vehicle_Repairs(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Spare_Parts(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_Delivary_Service(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVVM/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
