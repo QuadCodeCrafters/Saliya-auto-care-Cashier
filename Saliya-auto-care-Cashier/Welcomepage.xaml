@@ -184,7 +184,7 @@
                                 <TextBlock Text="Customers" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_inventory">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
@@ -253,7 +253,7 @@
                                 <TextBlock Text="Inventory" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_paintjobs">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
                                     <StackPanel>
@@ -322,7 +322,7 @@
                                 <TextBlock Text="Paint Jobs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehicleservice">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,00">
                                     <StackPanel>
@@ -391,7 +391,7 @@
                                 <TextBlock Text="Vehicle Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehiclerepairs">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
@@ -460,7 +460,7 @@
                                 <TextBlock Text="Vehicle Repairs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_spareparts">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
@@ -529,7 +529,7 @@
                                 <TextBlock Text="Spare Parts" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18">
+                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_delivaryservice">
                             <Button.ToolTip>
                                 <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
                                     <StackPanel>
