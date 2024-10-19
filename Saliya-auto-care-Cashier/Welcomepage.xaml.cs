@@ -41,6 +41,97 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
+        private void btn_inventory(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Inventory view: {ex.Message}");
+            }
+        }
+
+        private void btn_paintjobs(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Paint Jobs view: {ex.Message}");
+            }
+        }
+
+        private void btn_vehicleservice(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Vehicle Service view: {ex.Message}");
+            }
+        }
+
+        private void btn_vehiclerepairs(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Vehicle Repairs view: {ex.Message}");
+            }
+        }
+
+        private void btn_spareparts(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Spare Parts view: {ex.Message}");
+            }
+        }
+
+
+        private void btn_delivaryservice(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dashboard d1 = new Dashboard();
+                d1.Show();
+                d1.fContainer.Navigate(new Uri("MVVM/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error displaying the Delivary Service view: {ex.Message}");
+            }
+        }
+
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
