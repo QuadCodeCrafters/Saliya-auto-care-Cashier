@@ -60,12 +60,6 @@
     </Compile>
     <Compile Include="MVVM\Model\Model.cs" />
     <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
-    <Compile Include="MVVM\View\customersview.xaml.cs">
-      <DependentUpon>customersview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\registorview.xaml.cs">
-      <DependentUpon>registorview.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
@@ -96,14 +90,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MVVM\View\customersview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\registorview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\MainStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -244,6 +230,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MVVM\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
