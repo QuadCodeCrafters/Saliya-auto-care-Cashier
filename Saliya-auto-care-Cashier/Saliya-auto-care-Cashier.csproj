@@ -58,30 +58,30 @@
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\Model.cs" />
-    <Compile Include="MVVM\ViewModel\Viewmodel.cs" />
-    <Compile Include="MVVM\View\Customers_View.xaml.cs">
+    <Compile Include="MVC\Model\Model.cs" />
+    <Compile Include="MVC\Controller\Viewmodel.cs" />
+    <Compile Include="MVC\View\Customers_View.xaml.cs">
       <DependentUpon>Customers_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\DelivaryService_View.xaml.cs">
+    <Compile Include="MVC\View\DelivaryService_View.xaml.cs">
       <DependentUpon>DelivaryService_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\Inventory_View.xaml.cs">
+    <Compile Include="MVC\View\Inventory_View.xaml.cs">
       <DependentUpon>Inventory_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\PaintJobs_View.xaml.cs">
+    <Compile Include="MVC\View\PaintJobs_View.xaml.cs">
       <DependentUpon>PaintJobs_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\Register_View.xaml.cs">
+    <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\SpareParts_View.xaml.cs">
+    <Compile Include="MVC\View\SpareParts_View.xaml.cs">
       <DependentUpon>SpareParts_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\VehicleRepairs_View.xaml.cs">
+    <Compile Include="MVC\View\VehicleRepairs_View.xaml.cs">
       <DependentUpon>VehicleRepairs_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\VehicleService_View.xaml.cs">
+    <Compile Include="MVC\View\VehicleService_View.xaml.cs">
       <DependentUpon>VehicleService_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Welcomepage.xaml.cs">
@@ -114,35 +114,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MVVM\View\Customers_View.xaml">
+    <Page Include="MVC\View\Customers_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\DelivaryService_View.xaml">
+    <Page Include="MVC\View\DelivaryService_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\Inventory_View.xaml">
+    <Page Include="MVC\View\Inventory_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\PaintJobs_View.xaml">
+    <Page Include="MVC\View\PaintJobs_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\Register_View.xaml">
+    <Page Include="MVC\View\Register_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\SpareParts_View.xaml">
+    <Page Include="MVC\View\SpareParts_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\VehicleRepairs_View.xaml">
+    <Page Include="MVC\View\VehicleRepairs_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\VehicleService_View.xaml">
+    <Page Include="MVC\View\VehicleService_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
