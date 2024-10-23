@@ -14,7 +14,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -26,7 +26,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -86,7 +86,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVVM/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {

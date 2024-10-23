@@ -17,7 +17,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -62,7 +62,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace Saliya_auto_care_Cashier
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVVM/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)

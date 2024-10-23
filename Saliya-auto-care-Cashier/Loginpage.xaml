@@ -42,11 +42,11 @@
 
                 <!-- Password Box -->
                 <Border CornerRadius="10" Background="White" BorderBrush="LightGray"  BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
-                    <PasswordBox x:Name="PasswordInput" 
+                    <PasswordBox x:Name="txtPasswordInput" 
                              Background="Transparent" 
                              FontSize="60" 
                              VerticalContentAlignment="Center" 
-                             HorizontalContentAlignment="Center" Margin="9,3,9,-1" Password="12345" PasswordChar="*" Cursor="IBeam" MaxLength="5" FontWeight="ExtraBold" />
+                             HorizontalContentAlignment="Center" Margin="9,-18,9,-2"  PasswordChar="●" Cursor="IBeam"  FontWeight="ExtraBold" />
                 </Border>
 
                 <!-- Keypad -->
@@ -131,18 +131,18 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Keypad buttons -->
-                    <Button Grid.Row="0" Grid.Column="0" Content="1" Margin="5"/>
-                    <Button Grid.Row="0" Grid.Column="1" Content="2" Margin="5"/>
-                    <Button Grid.Row="0" Grid.Column="2" Content="3" Margin="5"/>
-                    <Button Grid.Row="1" Grid.Column="0" Content="4" Margin="5"/>
-                    <Button Grid.Row="1" Grid.Column="1" Content="5" Margin="5"/>
-                    <Button Grid.Row="1" Grid.Column="2" Content="6" Margin="5"/>
-                    <Button Grid.Row="2" Grid.Column="0" Content="7" Margin="5"/>
-                    <Button Grid.Row="2" Grid.Column="1" Content="8" Margin="5"/>
-                    <Button Grid.Row="2" Grid.Column="2" Content="9" Margin="5"/>
-                    <Button Grid.Row="3" Grid.Column="1" Content="0" Margin="5"/>
-                    <Button Grid.Row="3" Grid.Column="2" Content="C" Margin="5"/>
-                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5"/>
+                    <Button Grid.Row="0" Grid.Column="0" Content="1" Margin="5" Name="btn1" Click="btn1_Click"/>
+                    <Button Grid.Row="0" Grid.Column="1" Content="2" Margin="5" Name="btn2" Click="btn2_Click"/>
+                    <Button Grid.Row="0" Grid.Column="2" Content="3" Margin="5" Name="btn3" Click="btn3_Click"/>
+                    <Button Grid.Row="1" Grid.Column="0" Content="4" Margin="5" Name="btn4" Click="btn4_Click"/>
+                    <Button Grid.Row="1" Grid.Column="1" Content="5" Margin="5" Name="btn5" Click="btn5_Click"/>
+                    <Button Grid.Row="1" Grid.Column="2" Content="6" Margin="5" Name="btn6" Click="btn6_Click"/>
+                    <Button Grid.Row="2" Content="7" Margin="0,0,0,5" Name="btn7" VerticalAlignment="Bottom" Click="btn7_Click"/>
+                    <Button Grid.Row="2" Grid.Column="1" Content="8" Margin="5" Name="btn8" Click="btn8_Click"/>
+                    <Button Grid.Row="2" Grid.Column="2" Content="9" Margin="5" Name="btn9" Click="btn9_Click"/>
+                    <Button Grid.Row="3" Grid.Column="1" Content="0" Margin="5" Name="btn0" Click="btn0_Click"/>
+                    <Button Grid.Row="3" Grid.Column="2" Content="C" Margin="5" Name="btnPwdClear" Click="btnPwdClear_Click"/>
+                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5" Name="btn12"/>
                 </Grid>
                 <Button x:Name="btnLogin" Background="#7CFC00" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="132" Click="btnLogin_Click" RenderTransformOrigin="0.5,0.5" Width="138">
                     <Button.RenderTransform>
