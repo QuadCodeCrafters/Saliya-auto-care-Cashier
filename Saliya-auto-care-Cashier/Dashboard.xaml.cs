@@ -10,6 +10,18 @@ namespace Saliya_auto_care_Cashier
             InitializeComponent();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Login Out: {ex.Message}");
+            }
+        }
+
         private void btn_registor(object sender, RoutedEventArgs e)
         {
             try
