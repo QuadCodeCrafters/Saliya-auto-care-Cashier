@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -10,11 +11,20 @@ namespace Saliya_auto_care_Cashier
             InitializeComponent();
         }
 
+        private void FadeOutAnimation_Completed(object sender, EventArgs e)
+        {
+
+            Loginpage l2 = new Loginpage();
+            l2.Show();
+            this.Close();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-               
+                DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
+                fadeOutAnimation.Completed += FadeOutAnimation_Completed;
+                this.BeginAnimation(OpacityProperty, fadeOutAnimation);
             }
             catch (Exception ex)
             {
