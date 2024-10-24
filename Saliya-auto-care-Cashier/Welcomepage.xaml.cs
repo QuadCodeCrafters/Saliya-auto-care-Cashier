@@ -11,139 +11,78 @@ namespace Saliya_auto_care_Cashier
         {
             InitializeComponent();
         }
-        private void btn_registor(object sender, RoutedEventArgs e)
+
+        private void StartFadeOutAnimation(string view)
+        {
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
+            fadeOutAnimation.Completed += (s, e) => FadeOutAnimation_Completed(view);
+            this.BeginAnimation(OpacityProperty, fadeOutAnimation);
+        }
+
+        private void FadeOutAnimation_Completed(string view)
         {
             try
             {
                 Dashboard d1 = new Dashboard();
                 d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+                d1.fContainer.Navigate(new Uri(view, UriKind.RelativeOrAbsolute));
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error displaying the register view: {ex.Message}");
+                MessageBox.Show($"Error displaying the view: {ex.Message}");
             }
+        }
+
+        private void btn_registor(object sender, RoutedEventArgs e)
+        {
+            StartFadeOutAnimation("MVC/View/Register_View.xaml");
         }
 
         private void btn_customer(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Customers view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/Customers_View.xaml");
         }
 
         private void btn_inventory(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Inventory view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/Inventory_View.xaml");
         }
 
         private void btn_paintjobs(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Paint Jobs view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/PaintJobs_View.xaml");
         }
 
         private void btn_vehicleservice(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Vehicle Service view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/VehicleService_View.xaml");
         }
 
         private void btn_vehiclerepairs(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Vehicle Repairs view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/VehicleRepairs_View.xaml");
         }
 
         private void btn_spareparts(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Spare Parts view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/SpareParts_View.xaml");
         }
-
 
         private void btn_delivaryservice(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Dashboard d1 = new Dashboard();
-                d1.Show();
-                d1.fContainer.Navigate(new Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error displaying the Delivary Service view: {ex.Message}");
-            }
+            StartFadeOutAnimation("MVC/View/DelivaryService_View.xaml");
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
-            fadeOutAnimation.Completed += FadeOutAnimation_Completed;
+            fadeOutAnimation.Completed += FadeOutAnimation_Completed_Logout;
             this.BeginAnimation(OpacityProperty, fadeOutAnimation);
         }
 
-        private void FadeOutAnimation_Completed(object sender, EventArgs e)
+        private void FadeOutAnimation_Completed_Logout(object sender, EventArgs e)
         {
-
             try
             {
                 Loginpage lg = new Loginpage();
