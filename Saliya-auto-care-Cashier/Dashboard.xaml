@@ -3,14 +3,78 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Saliya_auto_care_Cashier"
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
     <Grid>
-    
+        <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
 
+                <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="15">
+                        <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
+                        <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="200" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
+                                Do you want to Logout?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Button_Click">
+                            Yes
+                        </Button>
+                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                            No
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="630"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
+                <Border Background="Blue" Grid.Row="0">
+                </Border>
+
+                <Border Background="LightBlue" Grid.Row="1">
+                </Border>
+
+                <Border Background="White" Grid.Row="2">
+                </Border>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+                    <Button Background="Transparent" BorderBrush="Transparent" Height="50" Width="90"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
+                        <StackPanel>
+                            <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
+                                <Image.ToolTip >
+                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                    </ToolTip>
+                                </Image.ToolTip>
+                            </Image>
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Text="Hi! No UserName" Foreground="White" FontSize="21" VerticalAlignment="Center"/>
+
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
+                    <Button Content="Customers" Width="100" Margin="10" Height="40" Click="btn_customer"/>
+                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
+                    <Button Content="Paint Jobs"  Margin="10"  Width="100" Height="40" Click="btn_Paint_Jobs"/>
+                    <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
+                    <Button Content="Vehicle Repairs"  Margin="10"  Width="135" Height="40" Click="btn_Vehicle_Repairs"/>
+                    <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
+                    <Button Content="Delivary Service"  Margin="10"  Width="135" Height="40" Click="btn_Delivary_Service" />
+                </StackPanel>
+
+                <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">
+                    <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
+                </Border>
+            </Grid>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>
