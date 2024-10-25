@@ -47,18 +47,14 @@
                 </Border>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
                     <Button Background="Transparent" BorderBrush="Transparent" Height="50" Width="90"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
-                        <StackPanel>
-                            <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
-                                <Image.ToolTip >
-                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                    </ToolTip>
-                                </Image.ToolTip>
-                            </Image>
-                        </StackPanel>
+                        <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
+                            <Image.ToolTip >
+                                <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                    <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                </ToolTip>
+                            </Image.ToolTip>
+                        </Image>
                     </Button>
-                    <TextBlock Text="Hi! No UserName" Foreground="White" FontSize="21" VerticalAlignment="Center"/>
-
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
