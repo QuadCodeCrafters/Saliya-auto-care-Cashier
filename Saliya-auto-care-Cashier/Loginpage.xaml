@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saliya_auto_care_Cashier"
         mc:Ignorable="d"
-            WindowState="Maximized"
-            WindowStyle="None"
-            ResizeMode="NoResize" Height="751" Width="1223">
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize" Height="751" Width="1223">
 
     <Grid Background="WhiteSmoke" >
 
@@ -82,6 +82,10 @@
                                                         <ColorAnimation Storyboard.TargetName="border"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                                     To="LightBlue" Duration="0:0:0.2" AutoReverse="True"/>
+                                                        
+                                                        <ColorAnimation Storyboard.TargetName="border"
+                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                        To="White" BeginTime="0:0:0.4" Duration="0:0:0.1"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </EventTrigger>
