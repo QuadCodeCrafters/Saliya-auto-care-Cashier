@@ -41,13 +41,20 @@
                 <TextBlock FontWeight="Bold" Foreground="White" TextAlignment="Center" Text="Enter your Pin Code" FontSize="30" FontFamily="Arial" Height="61" Margin="0,0,0,20" />
 
                 <!-- Password Box -->
-                <Border CornerRadius="10" Background="White" BorderBrush="LightGray"  BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Border CornerRadius="10" Background="White" BorderBrush="LightGray" BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
                     <PasswordBox x:Name="txtPasswordInput" 
-                             Background="Transparent" 
-                             FontSize="60" 
-                             VerticalContentAlignment="Center" 
-                             HorizontalContentAlignment="Center" Margin="9,-18,9,-2"  PasswordChar="●" Cursor="IBeam"  FontWeight="ExtraBold" />
+                 Background="Transparent" 
+                 FontSize="50" 
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center" 
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Center" 
+                 PasswordChar="●" 
+                 Cursor="IBeam" 
+                
+                  Height="66" Margin="0,2,0,0"/>
                 </Border>
+
 
                 <!-- Keypad -->
                 <Grid HorizontalAlignment="Center" Height="307">
@@ -82,7 +89,7 @@
                                                         <ColorAnimation Storyboard.TargetName="border"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                                     To="LightBlue" Duration="0:0:0.2" AutoReverse="True"/>
-                                                        
+
                                                         <ColorAnimation Storyboard.TargetName="border"
                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                                         To="White" BeginTime="0:0:0.4" Duration="0:0:0.1"/>
