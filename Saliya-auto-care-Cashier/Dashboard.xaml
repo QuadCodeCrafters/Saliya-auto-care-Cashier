@@ -32,8 +32,8 @@
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="630"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="655"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
