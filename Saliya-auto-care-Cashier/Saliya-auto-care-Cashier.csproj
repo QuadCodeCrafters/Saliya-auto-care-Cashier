@@ -58,7 +58,7 @@
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\Model\Model.cs" />
+    <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\View\Customers_View.xaml.cs">
       <DependentUpon>Customers_View.xaml</DependentUpon>

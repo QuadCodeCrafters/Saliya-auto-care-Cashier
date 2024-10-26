@@ -1,8 +1,11 @@
+using Saliya_auto_care_Cashier.MVVM.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Saliya_auto_care_Cashier.MVVM.Model;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -25,7 +28,19 @@ namespace Saliya_auto_care_Cashier
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
         {
-      
+
+            // Create an instance of the Viewmodel class
+            PassClass pclass = new PassClass();
+
+            // Assuming txtPasswordInput is a TextBox or similar control
+            // and has a property called Password (or Text) that you want to set
+            pclass.setPassword(txtPasswordInput.Password); // Use .Text if it's a TextBox
+
+            string pass = pclass.getPassword();
+
+
+            MessageBox.Show("Password sent "+pass);
+
             Welcomepage welcomePage = new Welcomepage();
             welcomePage.Show();
             this.Close();
