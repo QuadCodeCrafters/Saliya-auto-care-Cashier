@@ -17,6 +17,9 @@ namespace Saliya_auto_care_Cashier.MVVM.ViewModel
 
             obj.setPassword(obj.getPassword());
             return obj;
+
         }
+
+
     }
 }
