@@ -127,5 +127,10 @@ namespace Saliya_auto_care_Cashier
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
         }
+
+        private void fContainer_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
     }
 }

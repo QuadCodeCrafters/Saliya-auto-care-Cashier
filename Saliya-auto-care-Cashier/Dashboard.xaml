@@ -9,6 +9,75 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <RadialGradientBrush x:Key="DarkBlueGradient" GradientOrigin="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
+            <GradientStop Color="#4c7df6" Offset="0.0" />
+            <GradientStop Color="#7FFFD4" Offset="1.0" />
+        </RadialGradientBrush>
+
+        <!-- Define a Gradient Brush for a 3D look -->
+        <LinearGradientBrush x:Key="DarkBlueGradient3D" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#0000FF" Offset="0.0" />
+            <!-- Dark Blue Top -->
+            <GradientStop Color="#52a7f8" Offset="1.0" />
+            <!-- Lighter Blue Bottom -->
+        </LinearGradientBrush>
+        <Style x:Key="RoundedRaisedButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Setter Property="Background" Value="{StaticResource DarkBlueGradient3D}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="20" 
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                            </Border.RenderTransform>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Add hover animation triggers -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                            To="1.1" Duration="0:0:0.2" />
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                            To="1.1" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                            To="1.0" Duration="0:0:0.2" />
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                            To="1.0" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+    </Window.Resources>
+
     <Grid>
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>
@@ -21,7 +90,7 @@
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Button_Click">
+                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Button_Click" >
                             Yes
                         </Button>
                         <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
@@ -30,11 +99,11 @@
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
-            <Grid>
+            <Grid Margin="0,2,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="655"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="610"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Border Background="Blue" Grid.Row="0">
@@ -43,34 +112,95 @@
                 <Border Background="LightBlue" Grid.Row="1">
                 </Border>
 
-                <Border Background="White" Grid.Row="2">
-                </Border>
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-                    <Button Background="Transparent" BorderBrush="Transparent" Height="50" Width="90"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
-                        <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
-                            <Image.ToolTip >
-                                <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                    <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                </ToolTip>
-                            </Image.ToolTip>
-                        </Image>
-                    </Button>
-                </StackPanel>
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                    <Button Content="Customers" Width="100" Margin="10" Height="40" Click="btn_customer"/>
-                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
-                    <Button Content="Paint Jobs"  Margin="10"  Width="100" Height="40" Click="btn_Paint_Jobs"/>
-                    <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
-                    <Button Content="Vehicle Repairs"  Margin="10"  Width="135" Height="40" Click="btn_Vehicle_Repairs"/>
-                    <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
-                    <Button Content="Delivary Service"  Margin="10"  Width="135" Height="40" Click="btn_Delivary_Service" />
-                </StackPanel>
+                <Border Background="White" Grid.Row="2" Margin="0,2,0,0"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,-22" >
 
-                <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">
-                    <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" Margin="17,16,0,0" Height="70" Width="85" >
+                        <Button Background="Transparent" BorderBrush="Transparent" Height="68" Width="98"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
+                            <Image Source="/Images/home-button.png" Width="60" Height="66" Cursor="Hand">
+                                <Image.ToolTip >
+                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                    </ToolTip>
+                                </Image.ToolTip>
+                            </Image>
+                        </Button>
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" Height="118" Width="1040" Margin="180,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="20" Height="78">
+                            <Button Width="60" Height="60" Click="btn_registor" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="AccountPlus" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Register" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+
+                        <!-- Customers Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_customer" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="AccountGroup" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Customers" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Inventory Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Inventory" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="Warehouse" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Inventory" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Paint Jobs Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Paint_Jobs" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="Brush" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Paint Jobs" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Vehicle Services Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Vehicle_Services" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="Car" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Vehicle Services" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Vehicle Repairs Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Vehicle_Repairs" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="Toolbox" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Vehicle Repairs" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Spare Parts Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Spare_Parts" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="CogOutline" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Spare Parts" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Delivery Service Button with Label Below -->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="20">
+                            <Button Width="60" Height="60" Click="btn_Delivary_Service" Style="{StaticResource RoundedRaisedButton}">
+                                <materialDesign:PackIcon Kind="TruckDelivery" Width="30" Height="30" Foreground="White" />
+                            </Button>
+                            <TextBlock Text="Delivery Service" HorizontalAlignment="Center" FontSize="12" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+                <Border Grid.Row="1" Margin="8,8,8,0" CornerRadius="10" BorderThickness="1">
+                    <Frame Name="fContainer" NavigationUIVisibility="Hidden" Margin="-1,-10,-1,-1"/>
                 </Border>
             </Grid>
         </materialDesign:DialogHost>
     </Grid>
+
 </Window>

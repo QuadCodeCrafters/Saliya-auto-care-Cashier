@@ -322,5 +322,42 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\verify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\airbrush.png" />
+    <Resource Include="Images\check-list.png" />
+    <Resource Include="Images\checklist.png" />
+    <Resource Include="Images\inventory %281%29.png" />
+    <Resource Include="Images\memo_8500133.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\job-opportunities_10223576.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wrench_10343553.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\car-parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tow-truck_13437023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\square_14034317.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\home_4548184.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
