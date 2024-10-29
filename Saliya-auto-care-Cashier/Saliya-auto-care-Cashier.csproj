@@ -77,9 +77,6 @@
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
-    <Compile Include="MVC\View\Customers_View.xaml.cs">
-      <DependentUpon>Customers_View.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MVC\View\DelivaryService_View.xaml.cs">
       <DependentUpon>DelivaryService_View.xaml</DependentUpon>
     </Compile>
@@ -94,6 +91,9 @@
     </Compile>
     <Compile Include="MVC\View\SpareParts_View.xaml.cs">
       <DependentUpon>SpareParts_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\VehicleHistory_View.xaml.cs">
+      <DependentUpon>VehicleHistory_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\VehicleRepairs_View.xaml.cs">
       <DependentUpon>VehicleRepairs_View.xaml</DependentUpon>
@@ -131,10 +131,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MVC\View\Customers_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVC\View\DelivaryService_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVC\View\SpareParts_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\VehicleHistory_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

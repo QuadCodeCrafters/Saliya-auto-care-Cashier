@@ -58,7 +58,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                    <Button Content="Customers" Width="100" Margin="10" Height="40" Click="btn_customer"/>
+                    <Button Content="Vehicle History" Width="130" Margin="10" Height="40" Click="btn_VehicleHistory"/>
                     <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
                     <Button Content="Paint Jobs"  Margin="10"  Width="100" Height="40" Click="btn_Paint_Jobs"/>
                     <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>

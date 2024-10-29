@@ -39,9 +39,9 @@ namespace Saliya_auto_care_Cashier
             StartFadeOutAnimation("MVC/View/Register_View.xaml");
         }
 
-        private void btn_customer(object sender, RoutedEventArgs e)
+        private void btn_VehicleHistory(object sender, RoutedEventArgs e)
         {
-            StartFadeOutAnimation("MVC/View/Customers_View.xaml");
+            StartFadeOutAnimation("MVC/View/VehicleHistory_View.xaml");
         }
 
         private void btn_inventory(object sender, RoutedEventArgs e)

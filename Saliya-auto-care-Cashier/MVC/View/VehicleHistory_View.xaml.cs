@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Saliya_auto_care_Cashier.MVVM.View
+namespace Saliya_auto_care_Cashier.MVC.View
 {
     /// <summary>
-    /// Interaction logic for Customers_View.xaml
+    /// Interaction logic for VehicleHistory_View.xaml
     /// </summary>
-    public partial class Customers_View : UserControl
+    public partial class VehicleHistory_View : UserControl
     {
-        public Customers_View()
+        public VehicleHistory_View()
         {
             InitializeComponent();
         }
