@@ -11,12 +11,21 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 {
     public class DatabaseConnection
     {
-        private string connectionString;
+        //private string connectionString;
+
+        //public DatabaseConnection()
+        //{
+        //    // Define the connection string (adjust the server, user ID, and password as needed)
+        //    connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=QWE12as@;";
+        //}
+
+        private readonly string connectionString;
 
         public DatabaseConnection()
         {
-            // Define the connection string (adjust the server, user ID, and password as needed)
-            connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+            // Instantiate DatabaseStringModel to retrieve the connection string
+            DatabaseStringModel dbconnect = new DatabaseStringModel();
+            connectionString = dbconnect.ConnectionString;
         }
 
 
