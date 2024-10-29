@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
@@ -24,5 +26,52 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             InitializeComponent();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtvehiclenum.Text == "")
+            {
+                ErrorAnimation();
+            }
+
+            else 
+            { 
+              
+            }
+        }
+
+
+
+        private void ErrorAnimation()
+        {
+            txtvehiclenum.BorderBrush = Brushes.Red;
+            txtvehiclenum.Foreground = new SolidColorBrush(Colors.Red);
+
+            TranslateTransform translateTransform = new TranslateTransform();
+            txtvehiclenum.RenderTransform = translateTransform;
+
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                From = 0,
+                To = 10,
+                Duration = TimeSpan.FromMilliseconds(50),
+                AutoReverse = true,
+                RepeatBehavior = new RepeatBehavior(5) // Shake 5 times
+            };
+
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += (s, e) =>
+            {
+                txtvehiclenum.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD"); // Reset to default border color
+                txtvehiclenum.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6e6e6e"));
+                timer.Stop();
+            };
+            timer.Start();
+        }
     }
+
+ 
 }
