@@ -87,10 +87,12 @@
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\Controller\LoginPageController.cs" />
+    <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
     <Compile Include="MVC\Model\DatabaseStringModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
+    <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
     <Compile Include="MVC\View\DelivaryService_View.xaml.cs">
       <DependentUpon>DelivaryService_View.xaml</DependentUpon>
     </Compile>

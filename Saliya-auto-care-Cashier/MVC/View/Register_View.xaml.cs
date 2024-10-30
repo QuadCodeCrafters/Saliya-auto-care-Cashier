@@ -5,12 +5,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using MySql.Data.MySqlClient;
+using Saliya_auto_care_Cashier.MVC.Model; // Import the namespace for DatabaseStringModel
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for Register_View.xaml
-    /// </summary>
     public partial class Register_View : UserControl
     {
         private List<Control> requiredFields;
@@ -26,7 +25,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             requiredFields = new List<Control>
             {
                 txtvehiclenum, txtvehicletype, txtvehiclemodel, txtcusname,
-                txtcusaddress, txtcusNIC, txtcusmail, txtcusnumber, txtcusspec
+                txtcusaddress, txtcusNIC, txtcusmail, txtcusnumber, txtcusspec, txtemergencycontact
             };
         }
 
@@ -38,7 +37,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
             else
             {
-                
+                RegisterVehicle(); // Call the function to register vehicle data
             }
         }
 
@@ -71,7 +70,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
             DispatcherTimer timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(3)//timer
+                Interval = TimeSpan.FromSeconds(3)
             };
             timer.Tick += (s, e) =>
             {
@@ -111,6 +110,56 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             control.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD");
             control.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6e6e6e"));
+        }
+
+        public void RegisterVehicle()
+        {
+            // Create an instance of DatabaseStringModel to access the connection string
+            DatabaseStringModel dbModel = new DatabaseStringModel();
+            using (MySqlConnection con = new MySqlConnection(dbModel.ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    // Collect data from form fields
+                    string vehicleNumber = txtvehiclenum.Text;
+                    string vehicleType = txtvehicletype.Text;
+                    string vehicleModel = txtvehiclemodel.Text;
+                    string customerName = txtcusname.Text;
+                    string customerAddress = txtcusaddress.Text;
+                    string customerNIC = txtcusNIC.Text;
+                    string customerEmail = txtcusmail.Text;
+                    string customerPhone = txtcusnumber.Text;
+                    string emergencyContact = txtemergencycontact.Text;
+                    string specialNotes = txtcusspec.Text;
+
+                    // SQL Insert query
+                    string query = "INSERT INTO vehicleregister (VehicleNumber, VehicleType, VehicleModel, CustomerName, CustomerAddress, CustomerNIC, CustomerEmail, CustomerPhone, EmergencyContact, SpecialNotes) " +
+                                   "VALUES (@VehicleNumber, @VehicleType, @VehicleModel, @CustomerName, @CustomerAddress, @CustomerNIC, @CustomerEmail, @CustomerPhone, @EmergencyContact, @SpecialNotes)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@VehicleNumber", vehicleNumber);
+                        cmd.Parameters.AddWithValue("@VehicleType", vehicleType);
+                        cmd.Parameters.AddWithValue("@VehicleModel", vehicleModel);
+                        cmd.Parameters.AddWithValue("@CustomerName", customerName);
+                        cmd.Parameters.AddWithValue("@CustomerAddress", customerAddress);
+                        cmd.Parameters.AddWithValue("@CustomerNIC", customerNIC);
+                        cmd.Parameters.AddWithValue("@CustomerEmail", customerEmail);
+                        cmd.Parameters.AddWithValue("@CustomerPhone", customerPhone);
+                        cmd.Parameters.AddWithValue("@EmergencyContact", emergencyContact);
+                        cmd.Parameters.AddWithValue("@SpecialNotes", specialNotes);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Vehicle registered successfully!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
     }
 }

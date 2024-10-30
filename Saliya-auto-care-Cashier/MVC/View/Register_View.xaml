@@ -175,23 +175,35 @@
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
+                        <TextBlock Text="Emergency Contact:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox Width="300" 
+                                 Margin="48,0,0,0"
+                                 x:Name="txtemergencycontact" 
+                                 Height="57" 
+                                 FontSize="16" 
+                                 materialDesign:HintAssist.Hint="Enter Emergency Contact" 
+                                 BorderThickness="2" 
+                                 BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    </StackPanel>
+
                     <!-- Special -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
                         <TextBlock Text="Special:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,10,0"/>
                         <TextBox Width="300" 
                                  Margin="145,0,0,0"
                                  x:Name="txtcusspec" 
-                                 Height="57" 
+                                 Height="175" 
                                  FontSize="16" 
                                  materialDesign:HintAssist.Hint="Enter Special Notes" 
                                  BorderThickness="2" 
                                  BorderBrush="{DynamicResource MaterialDesignDivider}" 
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     </StackPanel>
-
                 </StackPanel>
 
-                <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="40" Click="btn_registor" Margin="500,10,1,100"/>
+                <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="40" Click="btn_registor" Margin="750,0,0,60"/>
             </Grid>
         </materialDesign:Card>
     </Grid>

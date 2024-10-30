@@ -1,0 +1,59 @@
+﻿using System;
+using MySql.Data.MySqlClient;
+
+namespace Saliya_auto_care_Cashier.MVC.Model
+{
+    public class VehicleRegistrationModel
+    {
+        public string VehicleNumber { get; set; }
+        public string VehicleType { get; set; }
+        public string VehicleModel { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerAddress { get; set; }
+        public string CustomerNIC { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerPhone { get; set; }
+        public string EmergencyContact { get; set; }
+        public string SpecialNotes { get; set; }
+
+        private readonly DatabaseStringModel _dbModel;
+
+        public VehicleRegistrationModel()
+        {
+            _dbModel = new DatabaseStringModel();
+        }
+
+        public void RegisterVehicle()
+        {
+            using (MySqlConnection con = new MySqlConnection(_dbModel.ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "INSERT INTO vehicleregister (VehicleNumber, VehicleType, VehicleModel, CustomerName, CustomerAddress, CustomerNIC, CustomerEmail, CustomerPhone, EmergencyContact, SpecialNotes) " +
+                                   "VALUES (@VehicleNumber, @VehicleType, @VehicleModel, @CustomerName, @CustomerAddress, @CustomerNIC, @CustomerEmail, @CustomerPhone, @EmergencyContact, @SpecialNotes)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@VehicleNumber", VehicleNumber);
+                        cmd.Parameters.AddWithValue("@VehicleType", VehicleType);
+                        cmd.Parameters.AddWithValue("@VehicleModel", VehicleModel);
+                        cmd.Parameters.AddWithValue("@CustomerName", CustomerName);
+                        cmd.Parameters.AddWithValue("@CustomerAddress", CustomerAddress);
+                        cmd.Parameters.AddWithValue("@CustomerNIC", CustomerNIC);
+                        cmd.Parameters.AddWithValue("@CustomerEmail", CustomerEmail);
+                        cmd.Parameters.AddWithValue("@CustomerPhone", CustomerPhone);
+                        cmd.Parameters.AddWithValue("@EmergencyContact", EmergencyContact);
+                        cmd.Parameters.AddWithValue("@SpecialNotes", SpecialNotes);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An error occurred while registering the vehicle: " + ex.Message);
+                }
+            }
+        }
+    }
+}

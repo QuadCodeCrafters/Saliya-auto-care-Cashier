@@ -20,7 +20,7 @@
                              Margin="-1" materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="300"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -62,33 +62,32 @@
                 <StackPanel Grid.Row="0" Grid.Column="1" Margin="-80,75,50,0">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="590" IsReadOnly="True" FontSize="16" Margin="20,0,0,0"/>
+                        <TextBox Width="590" IsReadOnly="True" FontSize="16" Margin="20,0,0,0"  x:Name="txtownername" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                         <TextBlock Text="Service Mileage :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"/>
+                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtservicemileage" />
                         <TextBlock Text="Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"/>
+                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttype" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                         <TextBlock Text="Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0"/>
+                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0"  x:Name="txtmodel" />
                         <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="10,0,0,0"/>
+                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="10,0,0,0" x:Name="txtphone"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                         <TextBlock Text="E-Mail :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0"/>
+                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0" x:Name="txtmail"/>
                         <TextBlock Text="Emergency Contact :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0"/>
+                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0" x:Name="txtemergecontact"/>
                     </StackPanel>
                 </StackPanel>
 
          
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Width="1000">
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-                              >
+                                  materialDesign:ColorZoneAssist.Mode="PrimaryDark">
                         <DataGrid x:Name="ServiceHistoryDataGrid" AutoGenerateColumns="False" 
                                   HorizontalAlignment="Stretch" Margin="0,20,0,0"
                                   Height="200" VerticalAlignment="Bottom">
