@@ -32,14 +32,12 @@
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="630"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="655"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
                 <Border Background="Blue" Grid.Row="0">
                 </Border>
-
                 <Border Background="LightBlue" Grid.Row="1">
                 </Border>
 
@@ -58,13 +56,13 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                    <Button Content="Customers" Width="100" Margin="10" Height="40" Click="btn_customer"/>
+                    <Button Content="Vehicle History" Width="130" Margin="10" Height="40" Click="btn_VehicleHistory"/>
                     <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
                     <Button Content="Paint Jobs"  Margin="10"  Width="100" Height="40" Click="btn_Paint_Jobs"/>
                     <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
                     <Button Content="Vehicle Repairs"  Margin="10"  Width="135" Height="40" Click="btn_Vehicle_Repairs"/>
                     <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
-                    <Button Content="Delivary Service"  Margin="10"  Width="135" Height="40" Click="btn_Delivary_Service" />
+                    <Button Content="Carrier Service"  Margin="10"  Width="135" Height="40" Click="btn_Delivary_Service" />
                 </StackPanel>
 
                 <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">

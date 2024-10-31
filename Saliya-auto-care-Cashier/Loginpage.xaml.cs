@@ -1,23 +1,79 @@
+using Saliya_auto_care_Cashier.MVVM.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Saliya_auto_care_Cashier.MVVM.Model;
+using System.Security.Cryptography.X509Certificates;
+using Saliya_auto_care_Cashier.MVC.Model;
+using Saliya_auto_care_Cashier.MVC.Controller;
+using System.Data;
+using System.Collections.Generic;
 
 namespace Saliya_auto_care_Cashier
 {
     public partial class Loginpage : Window
     {
+        private LoginPageController controller;
+        private string selectedUsername;
+
         public Loginpage()
         {
             InitializeComponent();
-            
+            controller = new LoginPageController(this);
+            LoadUsernames();
         }
+
+
+        private void LoadUsernames()
+        {
+            List<string> usernames = controller.GetUsernames();
+            UserDisplay.ItemsSource = usernames; // Ensure this is a List<string>
+        }
+
+
+        private void UsernamesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (UserDisplay.SelectedItem != null)
+            {
+                selectedUsername = UserDisplay.SelectedItem.ToString();
+                // You can perform actions with the selected username here.
+                controller.SelectedUsername = UserDisplay.SelectedItem.ToString();
+            }
+        }
+
+        
+
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        public void ShowSuccessMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        public void ShowErrorMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        //public void DisplayData(DataTable dataTable)
+        //{
+        //    UserDisplay.ItemsSource = dataTable.DefaultView;
+        //}
+
 
         private const int MaxPasswordLength = 5; // Set your maximum length
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            string password = txtPasswordInput.Password;
+            controller.Login(password); // Pass the password to the controller's Login method
+
             DoubleAnimation fadeOutAnimation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
             fadeOutAnimation.Completed += FadeOutAnimation_Completed;  
             this.BeginAnimation(OpacityProperty, fadeOutAnimation);
@@ -25,7 +81,19 @@ namespace Saliya_auto_care_Cashier
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
         {
-      
+
+            // Create an instance of the Viewmodel class
+            PassClass pclass = new PassClass();
+
+            // Assuming txtPasswordInput is a TextBox or similar control
+            // and has a property called Password (or Text) that you want to set
+            pclass.setPassword(txtPasswordInput.Password); // Use .Text if it's a TextBox
+
+            string pass = pclass.getPassword();
+
+
+            MessageBox.Show("Password sent "+pass);
+
             Welcomepage welcomePage = new Welcomepage();
             welcomePage.Show();
             this.Close();
@@ -127,5 +195,14 @@ namespace Saliya_auto_care_Cashier
         {
             txtPasswordInput.Password = "";
         }
+
+        private void btn12_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseConnection dbcon = new DatabaseConnection();
+
+            dbcon.Connect();
+        }
+
+        
     }
 }

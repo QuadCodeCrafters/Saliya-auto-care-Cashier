@@ -44,11 +44,11 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void btn_customer(object sender, RoutedEventArgs e)
+        private void btn_VehicleHistory(object sender, RoutedEventArgs e)
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/Customers_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Navigate(new System.Uri("MVC/View/VehicleHistory_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {

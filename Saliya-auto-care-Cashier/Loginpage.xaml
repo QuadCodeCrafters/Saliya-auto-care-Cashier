@@ -41,13 +41,20 @@
                 <TextBlock FontWeight="Bold" Foreground="White" TextAlignment="Center" Text="Enter your Pin Code" FontSize="30" FontFamily="Arial" Height="61" Margin="0,0,0,20" />
 
                 <!-- Password Box -->
-                <Border CornerRadius="10" Background="White" BorderBrush="LightGray"  BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Border CornerRadius="10" Background="White" BorderBrush="LightGray" BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
                     <PasswordBox x:Name="txtPasswordInput" 
-                             Background="Transparent" 
-                             FontSize="60" 
-                             VerticalContentAlignment="Center" 
-                             HorizontalContentAlignment="Center" Margin="9,-18,9,-2"  PasswordChar="●" Cursor="IBeam"  FontWeight="ExtraBold" />
+                 Background="Transparent" 
+                 FontSize="50" 
+                 VerticalContentAlignment="Center" 
+                 HorizontalContentAlignment="Center" 
+                 VerticalAlignment="Top" 
+                 HorizontalAlignment="Center" 
+                 PasswordChar="●" 
+                 Cursor="IBeam" 
+                
+                  Height="66" Margin="0,2,0,0"/>
                 </Border>
+
 
                 <!-- Keypad -->
                 <Grid HorizontalAlignment="Center" Height="307">
@@ -82,7 +89,7 @@
                                                         <ColorAnimation Storyboard.TargetName="border"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                                     To="LightBlue" Duration="0:0:0.2" AutoReverse="True"/>
-                                                        
+
                                                         <ColorAnimation Storyboard.TargetName="border"
                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                                         To="White" BeginTime="0:0:0.4" Duration="0:0:0.1"/>
@@ -146,7 +153,7 @@
                     <Button Grid.Row="2" Grid.Column="2" Content="9" Margin="5" Name="btn9" Click="btn9_Click"/>
                     <Button Grid.Row="3" Grid.Column="1" Content="0" Margin="5" Name="btn0" Click="btn0_Click"/>
                     <Button Grid.Row="3" Grid.Column="2" Content="C" Margin="5" Name="btnPwdClear" Click="btnPwdClear_Click"/>
-                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5" Name="btn12"/>
+                    <Button Grid.Row="3" Grid.Column="0" Content="&lt;&lt;" Margin="5" Name="btn12" Click="btn12_Click"/>
                 </Grid>
                 <Button x:Name="btnLogin" Background="#7CFC00" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="132" Click="btnLogin_Click" RenderTransformOrigin="0.5,0.5" Width="138">
                     <Button.RenderTransform>
@@ -222,9 +229,19 @@
             </StackPanel>
         </Grid>
         <TextBlock Text="Select user" FontSize="30" FontWeight="DemiBold" Foreground="White" Margin="50,132,554,557"/>
-        <DataGrid Margin="50,220,179,457" Opacity="0.5" />
-        <DataGrid Margin="50,339,179,338" Opacity="0.5" />
-        <DataGrid Margin="50,461,179,216" Opacity="0.5" />
+        <DataGrid x:Name="UserDisplay" 
+          AutoGenerateColumns="False" 
+          Margin="50,220,179,200" 
+          Opacity="0.9" 
+          SelectionMode="Single" 
+          SelectionChanged="UsernamesDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Username" Binding="{Binding Mode=OneWay }" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
 
 
 
