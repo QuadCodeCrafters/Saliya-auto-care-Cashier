@@ -6,11 +6,11 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
 {
     public class VehicleRegistrationController
     {
-        private readonly VehicleRegistrationModel _model;
+        private readonly VehicleRegistrationModel model;
 
         public VehicleRegistrationController()
         {
-            _model = new VehicleRegistrationModel();
+            model = new VehicleRegistrationModel();
         }
 
         public void RegisterVehicle(string vehicleNumber, string vehicleType, string vehicleModel, string customerName, string customerAddress, string customerNIC, string customerEmail, string customerPhone, string emergencyContact, string specialNotes)
@@ -18,18 +18,18 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
             try
             {
                 // Set model properties
-                _model.VehicleNumber = vehicleNumber;
-                _model.VehicleType = vehicleType;
-                _model.VehicleModel = vehicleModel;
-                _model.CustomerName = customerName;
-                _model.CustomerAddress = customerAddress;
-                _model.CustomerNIC = customerNIC;
-                _model.CustomerEmail = customerEmail;
-                _model.CustomerPhone = customerPhone;
-                _model.EmergencyContact = emergencyContact;
-                _model.SpecialNotes = specialNotes;
+                model.VehicleNumber = vehicleNumber;
+                model.VehicleType = vehicleType;
+                model.VehicleModel = vehicleModel;
+                model.CustomerName = customerName;
+                model.CustomerAddress = customerAddress;
+                model.CustomerNIC = customerNIC;
+                model.CustomerEmail = customerEmail;
+                model.CustomerPhone = customerPhone;
+                model.EmergencyContact = emergencyContact;
+                model.SpecialNotes = specialNotes;
 
-                _model.RegisterVehicle();
+                model.RegisterVehicle();
                 MessageBox.Show("Vehicle registered successfully!");
             }
             catch (Exception ex)

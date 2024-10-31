@@ -16,16 +16,16 @@ namespace Saliya_auto_care_Cashier.MVC.Model
         public string EmergencyContact { get; set; }
         public string SpecialNotes { get; set; }
 
-        private readonly DatabaseStringModel _dbModel;
+        private readonly DatabaseStringModel Model;
 
         public VehicleRegistrationModel()
         {
-            _dbModel = new DatabaseStringModel();
+            Model = new DatabaseStringModel();
         }
 
         public void RegisterVehicle()
         {
-            using (MySqlConnection con = new MySqlConnection(_dbModel.ConnectionString))
+            using (MySqlConnection con = new MySqlConnection(Model.ConnectionString))
             {
                 try
                 {

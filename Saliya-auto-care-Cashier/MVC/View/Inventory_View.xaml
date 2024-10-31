@@ -5,10 +5,98 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <Grid>
-        <Border Background="#b7ebc5" Grid.Row="0" CornerRadius="10" >
-            <TextBlock Text="Welcome to the Inventory View!" FontSize="24"  Margin="20" />
-        </Border>
+        <materialDesign:Card UniformCornerRadius="15" 
+                             Background="{DynamicResource MaterialDesignPaper}"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1050"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Background="LightGray">
+                </Border>
+
+                <TextBlock Text="Inventory" FontSize="27" FontWeight="SemiBold" 
+                           Margin="25,14,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+                    <ItemsControl ItemsSource="{Binding InventoryItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card Width="150" Height="200" Margin="10" UniformCornerRadius="10"
+                                                     Background="{DynamicResource MaterialDesignPaper}"
+                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                                    <materialDesign:Card.Style>
+                                        <Style TargetType="materialDesign:Card">
+                                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+                                            <Setter Property="RenderTransform">
+                                                <Setter.Value>
+                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.1" Duration="0:0:0.2" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.1" Duration="0:0:0.2" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                    <Trigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.2" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.2" />
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.ExitActions>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:Card.Style>
+                                    <Border BorderBrush="#92a1a8" BorderThickness="6,6,6,0" CornerRadius="10" Margin="-3">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="169" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0">
+                                                <StackPanel Grid.Row="0" Margin="0,0,0,5">
+                                                    <Image Source="{Binding ImageSource}" Width="100" Height="100" />
+                                                    <TextBlock Text="{Binding ItemName}" FontSize="14" FontWeight="Bold" 
+                                                               HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center" />
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Grid.Row="1" Background="#92a1a8">
+                                                <TextBlock Foreground="White" Text="{Binding Price, StringFormat=Rs. {0:F2}}" FontSize="15" 
+                                                           HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+
+        </materialDesign:Card>
     </Grid>
 </UserControl>
