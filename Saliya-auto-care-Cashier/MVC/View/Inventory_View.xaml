@@ -13,21 +13,65 @@
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1050"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Background="LightGray">
-                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="550,25,0,0" Width="500" Height="38">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Inventory" FontSize="27" FontWeight="SemiBold" 
-                           Margin="25,14,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                        <Border Grid.Column="0" CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
+                            <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
+                                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                     Tag="🔎 Search Here" Padding="10,0,0,0">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <Grid>
+                                                        <TextBlock Text="{TemplateBinding Tag}"
+                                                                   Foreground="Gray"
+                                                                   VerticalAlignment="Center"
+                                                                   IsHitTestVisible="False"
+                                                                   Margin="5,-1,0,0">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+                        <Button Content="Clear" Width="70" Height="40" Margin="10,0,0,0" 
+                                VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"  />
+                    </Grid>
+                </StackPanel>
+                <TextBlock Text="Inventory" FontSize="29" FontWeight="SemiBold" 
+                           Margin="30,14,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-                    <ItemsControl ItemsSource="{Binding InventoryItems}">
+                    <ItemsControl ItemsSource="{Binding FilteredInventoryItems}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" />
@@ -98,5 +142,9 @@
             </Grid>
 
         </materialDesign:Card>
+
+        <StackPanel >
+            
+        </StackPanel>
     </Grid>
 </UserControl>
