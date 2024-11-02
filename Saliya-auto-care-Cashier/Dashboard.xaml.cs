@@ -14,8 +14,8 @@ namespace Saliya_auto_care_Cashier
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
         {
 
-            Loginpage l2 = new Loginpage();
-            l2.Show();
+            Welcomepage w2 = new Welcomepage();
+            w2.Show();
             this.Close();
         }
         private void Button_Click(object sender, RoutedEventArgs e)

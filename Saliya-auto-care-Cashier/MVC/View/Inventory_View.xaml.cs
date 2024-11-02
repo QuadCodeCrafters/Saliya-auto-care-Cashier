@@ -14,6 +14,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
     public partial class Inventory_View : UserControl, INotifyPropertyChanged
     {
         private string searchText;
+        private InventoryItem selectedItemDetails;
         private ObservableCollection<InventoryItem> allInventoryItems;
 
         public ObservableCollection<InventoryItem> FilteredInventoryItems { get; set; }
@@ -27,6 +28,15 @@ namespace Saliya_auto_care_Cashier.MVVM.View
                 searchText = value;
                 OnPropertyChanged(nameof(SearchText));
                 FilterItems();
+            }
+        }
+        public InventoryItem SelectedItemDetails
+        {
+            get => selectedItemDetails;
+            set
+            {
+                selectedItemDetails = value;
+                OnPropertyChanged(nameof(SelectedItemDetails));
             }
         }
 
@@ -82,6 +92,40 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading inventory items: " + ex.Message);
+            }
+        }
+
+        private void Card_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is InventoryItem clickedItem)
+            {
+                string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+                string query = "SELECT * FROM Inventory WHERE ItemName = @ItemName";
+
+                try
+                {
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        MySqlCommand command = new MySqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@ItemName", clickedItem.ItemName);
+                        connection.Open();
+                        MySqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            SelectedItemDetails = new InventoryItem
+                            {
+                                ItemName = reader["ItemName"].ToString(),
+                                Price = Convert.ToDouble(reader["Price"]),
+                                ImageSource = new BitmapImage(new Uri(reader["ImagePath"].ToString(), UriKind.RelativeOrAbsolute))
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error retrieving item details: " + ex.Message);
+                }
             }
         }
 
