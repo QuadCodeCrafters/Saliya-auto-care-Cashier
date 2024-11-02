@@ -16,8 +16,8 @@
                 <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" Margin="15">
                         <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
-                        <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="200" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
-                                Do you want to Logout?
+                        <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="220" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
+                                Do you want to go home?
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
@@ -32,7 +32,7 @@
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="655"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
