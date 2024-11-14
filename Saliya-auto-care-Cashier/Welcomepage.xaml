@@ -10,615 +10,610 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
+
     <Grid>
-     
-         <Grid>
-            <Image Source="Images/Saliya.jpg" Stretch="UniformToFill" Opacity="0.8">
-                <Image.Effect>
-                    <BlurEffect Radius="20"/>
-                </Image.Effect>
-            </Image>
-        </Grid>
-     
-        <Grid>
-            
-          <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+        <Image Source="Images/Saliya.jpg" Stretch="UniformToFill" Opacity="0.8">
+            <Image.Effect>
+                <BlurEffect Radius="20"/>
+            </Image.Effect>
+        </Image>
 
-                <materialDesign:DialogHost.DialogContent>
+        <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
 
-                    <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" Margin="15">
-                            <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
-                            <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="200" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
-                                Do you want to Logout?
-                            </TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-                            <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Button_Click">
-                                Yes
-                            </Button>
-                            <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
-                                No
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </materialDesign:DialogHost.DialogContent>
-                <Grid>
-                    <TextBlock Text="Welcome!" Foreground="White" FontSize="59" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0"/>
-                    <UniformGrid Rows="2" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="10" Click="btn_registor">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Register" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/register.png" Width="100" Height="100"/>
-                                <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
+                <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="15">
+                        <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
+                        <TextBlock  Foreground="{DynamicResource MaterialDesignBody}" Width="220" Margin="15 5" TextWrapping="Wrap" FontSize="18" >
+                                Do you want to Log Out?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Button_Click">
+                            Yes
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_VehicleHistory">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Customers" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/customer-data.png" Width="100" Height="100"/>
-                                <TextBlock Text="Vehicle History" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
+                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                            No
                         </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_inventory">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Inventory" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/supplier.png" Width="100" Height="100" />
-                                <TextBlock Text="Inventory" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_paintjobs">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Paint Jobs" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/car-painting.png" Width="100" Height="100"/>
-                                <TextBlock Text="Paint Jobs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehicleservice">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,00">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Vehicle Service" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image  Source="/Images/car-service.png" Width="100" Height="100"/>
-                                <TextBlock Text="Vehicle Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehiclerepairs">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Vehicle Repairs" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/car-repair.png" Width="100" Height="100"/>
-                                <TextBlock Text="Vehicle Repairs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_spareparts">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Spare Parts" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/maintenance.png" Width="100" Height="100"/>
-                                <TextBlock Text="Spare Parts" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_delivaryservice">
-                            <Button.ToolTip>
-                                <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="Delivary Service" FontSize="15"/>
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" 
-                                        BorderBrush="{TemplateBinding BorderBrush}" 
-                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                        CornerRadius="10" x:Name="border"
-                                        RenderTransformOrigin="0.5,0.5">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="border"
-                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-
-
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.1" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleX"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                        <DoubleAnimation Storyboard.TargetName="scaleTransform"
-                                                 Storyboard.TargetProperty="ScaleY"
-                                                 To="1.0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image Source="/Images/truck.png" Width="100" Height="100"/>
-                                <TextBlock Text="Carrier Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                            </StackPanel>
-                        </Button>
-                    </UniformGrid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,20">
-                        <Button Background="Transparent" BorderBrush="Transparent" Height="50" Width="90"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
-                            <StackPanel>
-                                <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
-                                    <Image.ToolTip >
-                                        <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                            <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                        </ToolTip>
-                                    </Image.ToolTip>
-                                </Image>
-                            </StackPanel>
-                        </Button>
-                        <TextBlock Text="Hi! No UserName" Foreground="White" FontSize="21" VerticalAlignment="Center"/>
-
                     </StackPanel>
                 </Grid>
-            </materialDesign:DialogHost>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Welcome!" Foreground="White" FontSize="59" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
+                <UniformGrid Grid.Row="1" Rows="2" Columns="4" HorizontalAlignment="Center" VerticalAlignment="center">
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18"  Click="btn_registor">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Register" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+                                    
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
 
-        </Grid>
-      
-   </Grid>
-    
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/register.png" Width="100" Height="100"/>
+                            <TextBlock Text="Register" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_VehicleHistory">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Customers" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/customer-data.png" Width="100" Height="100"/>
+                            <TextBlock Text="Vehicle History" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_inventory">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Inventory" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/supplier.png" Width="100" Height="100" />
+                            <TextBlock Text="Inventory" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_paintjobs">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Top" Margin="0,0,80,20">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Paint Jobs" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/car-painting.png" Width="100" Height="100"/>
+                            <TextBlock Text="Paint Jobs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehicleservice">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,00">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Vehicle Service" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image  Source="/Images/car-service.png" Width="100" Height="100"/>
+                            <TextBlock Text="Vehicle Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_vehiclerepairs">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Vehicle Repairs" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/car-repair.png" Width="100" Height="100"/>
+                            <TextBlock Text="Vehicle Repairs" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_spareparts">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Spare Parts" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/maintenance.png" Width="100" Height="100"/>
+                            <TextBlock Text="Spare Parts" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="White" BorderBrush="Gray" BorderThickness="1" Padding="20" Height="190" Width="210" Margin="18" Click="btn_delivaryservice">
+                        <Button.ToolTip>
+                            <ToolTip Background="White" Foreground="Black" BorderThickness="4" BorderBrush="Black" Placement="Bottom" Margin="0,20,80,0">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Delivary Service" FontSize="15"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        CornerRadius="10" x:Name="border"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="scaleTransform" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="border"
+                                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                To="LightBlue" Duration="0:0:0.3" AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.1" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                                 Storyboard.TargetProperty="ScaleY"
+                                                 To="1.0" Duration="0:0:0.2" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Source="/Images/truck.png" Width="100" Height="100"/>
+                            <TextBlock Text="Carrier Service" Foreground="Black"  FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </UniformGrid>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,20">
+                    <Button Background="Transparent" BorderBrush="Transparent" Height="50" Width="90"  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}">
+                        <StackPanel>
+                            <Image Source="/Images/logout.png" Width="30" Height="30" Margin="15,0,15,0" Cursor="Hand">
+                                <Image.ToolTip >
+                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                    </ToolTip>
+                                </Image.ToolTip>
+                            </Image>
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Text="Hi! No UserName" Foreground="White" FontSize="21" VerticalAlignment="Center"/>
+
+                </StackPanel>
+            </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
 </Window>

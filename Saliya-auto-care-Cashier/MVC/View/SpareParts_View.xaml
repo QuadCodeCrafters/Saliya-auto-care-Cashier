@@ -1,13 +1,50 @@
 ﻿<UserControl x:Class="Saliya_auto_care_Cashier.MVVM.View.SpareParts_View"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
     <Grid>
-        <Border Background="#a9d6a9" Grid.Row="0" CornerRadius="10" >
-            <TextBlock Text="Welcome to the Spare Parts View!" FontSize="24"  Margin="20" />
-        </Border>
+        <materialDesign:Card UniformCornerRadius="15" 
+                             Background="#E6E6E6"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.6*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.ColumnSpan="2" Grid.Row="0" Fill="Pink" Height="40" />
+                <Grid Grid.Column="0" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="0.4*" />
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Grid.Row="0" Fill="NavajoWhite"/>
+                    <Rectangle Grid.Row="1" Fill="BlueViolet"/>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="1" Fill="BlueViolet"/>
+                    <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">
+                        <Frame Name="CalContainer"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
+
 </UserControl>
