@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Saliya_auto_care_Cashier.MVC.Controller; // Import the namespace for VehicleRegistrationController
+using Saliya_auto_care_Cashier.MVC.Controller; 
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -113,10 +113,9 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
         public void RegisterVehicle()
         {
-            // Create an instance of the controller
+
             VehicleRegistrationController controller = new VehicleRegistrationController();
 
-            // Get data from the text boxes
             string vehicleNumber = txtvehiclenum.Text;
             string vehicleType = txtvehicletype.Text;
             string vehicleModel = txtvehiclemodel.Text;
@@ -128,7 +127,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             string emergencyContact = txtemergencycontact.Text;
             string specialNotes = txtcusspec.Text;
 
-            // Register the vehicle using the controller
             controller.RegisterVehicle(vehicleNumber, vehicleType, vehicleModel, customerName, customerAddress, customerNIC, customerEmail, customerPhone, emergencyContact, specialNotes);
         }
     }

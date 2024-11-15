@@ -6,74 +6,170 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <!-- Resources of TextBlock-->
+        <Style x:Key="TextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        
+        <!-- Resources of SCROLLBARS-->
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid x:Name="Grid">
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                                           Height="Auto" Fill="Transparent"/>
+                            <Border x:Name="Rectangle1" CornerRadius="10 0 0 10" HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch" Width="Auto" Height="Auto" 
+                                        Background="{TemplateBinding Background}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto"/>
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--SCROLLBARS-->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="LightBlue"/>
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="12" Background="{x:Null}">
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="False">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                               Style="{DynamicResource ScrollThumbs}"/>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter Value="{DynamicResource ButtonSelectBrush}" 
+                                            TargetName="Thumb" Property="Background"/>
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="12"/>
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal"/>
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand"/>
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"
                              Margin="-1"
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1050"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="550,25,0,0" Width="500" Height="38">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="350"/>
-                            <ColumnDefinition Width="80"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
-                            <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
-                                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                                     Tag="🔎 Search Here" Padding="10,0,0,0">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="TextBox">
-                                                    <Grid>
-                                                        <TextBlock Text="{TemplateBinding Tag}"
-                                                                   Foreground="Gray"
-                                                                   VerticalAlignment="Center"
-                                                                   IsHitTestVisible="False"
-                                                                   Margin="5,-1,0,0">
-                                                            <TextBlock.Style>
-                                                                <Style TargetType="TextBlock">
-                                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                                    <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
-                                                                            <Setter Property="Visibility" Value="Visible"/>
-                                                                        </DataTrigger>
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </TextBlock.Style>
-                                                        </TextBlock>
-                                                        <ScrollViewer x:Name="PART_ContentHost"/>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                        </Border>
-                        <Button Content="Clear" Width="70" Height="40" Margin="10,-5,0,0" 
-                                VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"  />
-                    </Grid>
-                </StackPanel>
 
                 <TextBlock Text="Inventory" FontSize="29" FontWeight="SemiBold" 
-                           Margin="30,14,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                         Margin="30,10,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                <Grid Grid.Column="0" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-                    <ItemsControl ItemsSource="{Binding FilteredInventoryItems}">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="-65" Width="500" Height="38" Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="350"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
+                                <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
+                                   Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                   Tag="🔎 Search Here" Padding="10,0,0,0">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="TextBox">
+                                                        <Grid>
+                                                            <TextBlock Text="{TemplateBinding Tag}"
+                                                                 Foreground="Gray"
+                                                                 VerticalAlignment="Center"
+                                                                 IsHitTestVisible="False"
+                                                                 Margin="5,-1,0,0">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Border>
+                            <Button Content="Clear" Width="70" Height="40" Margin="10,-5,0,0" 
+                              VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"  />
+                        </Grid>
+                    </StackPanel>
+                    
+                  <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+                    <ItemsControl ItemsSource="{Binding FilteredInventoryItems}" Margin="27,0,0,0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" />
@@ -135,7 +231,6 @@
                                                 <TextBlock Foreground="White" Text="{Binding Price, StringFormat=Rs. {0:F2}}" FontSize="15" 
                                                            HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold"/>
                                             </Border>
-                                            
                                         </Grid>
                                     </Border>
                                 </materialDesign:Card>
@@ -143,18 +238,77 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
+                </Grid>
                 <materialDesign:Card Grid.Column="1" Grid.Row="1" UniformCornerRadius="10" 
-                     Background="{DynamicResource MaterialDesignPaper}"
-                     Margin="9"
-                     materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                                <StackPanel>
-                <Image Source="{Binding SelectedItemDetails.ImageSource}" Width="200" Height="200" Margin="0,10,0,10" />
-                <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" Margin="0,10,0,5" />
-                <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" />
-            </StackPanel>
+                   Background="{DynamicResource MaterialDesignPaper}"
+                   Margin="5"
+                   materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="220"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Image Source="{Binding SelectedItemDetails.ImageSource}" Width="200" Height="200" Margin="0,10,0,10" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Margin="20,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Availability:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Item Name:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="SKU:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Item Price:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Category:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Description:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Manufacturer:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Model Number:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Warranty Information:" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,20">
+                                    <TextBlock Text="Warranty :" 
+                                               Style="{StaticResource TextStyle}"/>
+                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                </StackPanel>
+                            </StackPanel>
+                    </Grid>
+                   </ScrollViewer>
                 </materialDesign:Card>
-
-
             </Grid>
         </materialDesign:Card>
     </Grid>

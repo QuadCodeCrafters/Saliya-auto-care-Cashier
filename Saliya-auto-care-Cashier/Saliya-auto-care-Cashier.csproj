@@ -93,6 +93,15 @@
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
+    <Compile Include="MVC\View\Bill_VIew.xaml.cs">
+      <DependentUpon>Bill_VIew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Cal_View.xaml.cs">
+      <DependentUpon>Cal_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Categories_View.xaml.cs">
+      <DependentUpon>Categories_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVC\View\DelivaryService_View.xaml.cs">
       <DependentUpon>DelivaryService_View.xaml</DependentUpon>
     </Compile>
@@ -147,6 +156,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVC\View\Bill_VIew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Cal_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Categories_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\View\DelivaryService_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,6 +358,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
