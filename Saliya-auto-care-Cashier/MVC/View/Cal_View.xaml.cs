@@ -24,10 +24,18 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             InitializeComponent();
         }
-
-        private void btn_(object sender, RoutedEventArgs e)
+        private void btn_member(object sender, RoutedEventArgs e)
         {
-
+            // Find the Dashboard  and show the dialog
+            var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+            if (dashboardWindow != null)
+            {
+                var dialogHost = dashboardWindow.FindName("MemberDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
+                }
+            }
         }
     }
 }

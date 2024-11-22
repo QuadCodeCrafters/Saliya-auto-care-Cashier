@@ -294,12 +294,12 @@
                                     <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Warranty Information:" 
+                                    <TextBlock Text="Warranty:" 
                                                Style="{StaticResource TextStyle}"/>
                                     <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,15,0,20">
-                                    <TextBlock Text="Warranty :" 
+                                    <TextBlock Text="Storage Location:" 
                                                Style="{StaticResource TextStyle}"/>
                                     <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
                                 </StackPanel>

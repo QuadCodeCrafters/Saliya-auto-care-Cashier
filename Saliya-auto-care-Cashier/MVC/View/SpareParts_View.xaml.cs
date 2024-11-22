@@ -31,6 +31,14 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
+            try
+            {
+                BillContainer.Navigate(new System.Uri("MVC/View/Bill_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
         }
     }
 }

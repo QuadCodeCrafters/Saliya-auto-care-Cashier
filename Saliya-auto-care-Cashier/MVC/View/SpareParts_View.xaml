@@ -26,11 +26,14 @@
                 <Grid Grid.Column="0" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
-                        <RowDefinition Height="0.4*" />
+                        <RowDefinition Height="0.3*" />
                     </Grid.RowDefinitions>
 
                     <Rectangle Grid.Row="0" Fill="NavajoWhite"/>
                     <Rectangle Grid.Row="1" Fill="BlueViolet"/>
+                    <Border Grid.Row="0" Margin="8" CornerRadius="10" BorderThickness="1">
+                        <Frame Name="BillContainer"/>
+                    </Border>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1">
