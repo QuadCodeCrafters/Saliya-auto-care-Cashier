@@ -24,5 +24,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             InitializeComponent();
         }
+
     }
 }

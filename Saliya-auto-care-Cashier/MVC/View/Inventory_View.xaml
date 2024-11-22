@@ -38,7 +38,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--SCROLLBARS-->
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
             <Setter Property="Foreground" Value="LightBlue"/>
@@ -130,7 +129,7 @@
                             <Border CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
                                 <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
                                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                                   Tag="🔎 Search Here" Padding="10,0,0,0">
+                                   Tag="🔎 Search By Name or Category">
                                     <TextBox.Style>
                                         <Style TargetType="TextBox">
                                             <Setter Property="Foreground" Value="Black"/>
@@ -142,7 +141,7 @@
                                                                  Foreground="Gray"
                                                                  VerticalAlignment="Center"
                                                                  IsHitTestVisible="False"
-                                                                 Margin="5,-1,0,0">
+                                                                 Margin="4,-1,0,0">
                                                                 <TextBlock.Style>
                                                                     <Style TargetType="TextBlock">
                                                                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -168,15 +167,14 @@
                         </Grid>
                     </StackPanel>
                     
-                  <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-                    <ItemsControl ItemsSource="{Binding FilteredInventoryItems}" Margin="27,0,0,0">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemTemplate>
+                   <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+                       <ItemsControl ItemsSource="{Binding FilteredInventoryItems}" Margin="27,0,0,0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card Width="150" Height="200" Margin="10" UniformCornerRadius="10"
                                                      Background="{DynamicResource MaterialDesignPaper}"
@@ -235,9 +233,9 @@
                                     </Border>
                                 </materialDesign:Card>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                       </ItemsControl.ItemTemplate>
+                   </ItemsControl>
+                   </ScrollViewer>
                 </Grid>
                 <materialDesign:Card Grid.Column="1" Grid.Row="1" UniformCornerRadius="10" 
                    Background="{DynamicResource MaterialDesignPaper}"
