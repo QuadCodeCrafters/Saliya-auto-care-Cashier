@@ -365,5 +365,8 @@
   <ItemGroup>
     <Resource Include="Images\saliyalogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loyal.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,12 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
+    <Window.Resources>
+        <Storyboard x:Key="ShakeAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                             From="0" To="-5" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="3x"/>
+        </Storyboard>
+    </Window.Resources>
     <Grid>
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>
@@ -33,9 +39,44 @@
             <Grid>
                 <materialDesign:DialogHost x:Name="MemberDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                     <materialDesign:DialogHost.DialogContent>
-
-                        <Grid Width="450" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center">
- 
+                        <Grid Width="475" Height="275" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border BorderBrush="LightBlue" BorderThickness="5,5,5,5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <StackPanel Margin="15,20,0,0" HorizontalAlignment="Left">
+                                            <Image Source="/Images/loyal.PNG" Width="100"/>
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0">
+                                            <TextBlock Text="Welcome to Loyalty Unlock" FontSize="15" Foreground="Black" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <Rectangle Fill="Red" Height="1.5" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,00,20,0"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <StackPanel HorizontalAlignment="Left" Margin="40,30,0,0">
+                                            <TextBlock Text="Example: 123456789158 "/>
+                                            <TextBox x:Name="txtloyalid" 
+                                                     Width="300" 
+                                                     Height="55" 
+                                                     FontSize="16" 
+                                                     Margin="22,3,0,0"
+                                                     materialDesign:HintAssist.Hint="Enter The ID Number" 
+                                                     BorderThickness="2" 
+                                                     BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                <TextBox.Triggers>
+                                                    <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                        <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                    </EventTrigger>
+                                                </TextBox.Triggers>
+                                            </TextBox>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
                         </Grid>
                     </materialDesign:DialogHost.DialogContent>
                     <Grid>
