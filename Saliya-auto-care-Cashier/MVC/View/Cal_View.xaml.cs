@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Saliya_auto_care_Cashier.Notifications;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -36,6 +37,47 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     dialogHost.IsOpen = true;  // Open the dialog
                 }
             }
+        }
+        private SolidColorBrush HextoSolidBrush(string Hex)
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(Hex));
+        }
+
+        private void btn_error(object sender, RoutedEventArgs e)
+        {
+            Notificationbox error = new Notificationbox(
+              "Error !!",
+              "You entered wrong credentials",
+              "/Images/Error_Icon.png",
+                (LinearGradientBrush)this.Resources["RedGradient"],
+                HextoSolidBrush("#F24A50")
+            );
+
+            error.Show();
+        }
+        private void btn_info(object sender, RoutedEventArgs e)
+        {
+            Notificationbox info = new Notificationbox(
+              "Error !!",
+              "You entered wrong credentials",
+              "/Images/bell_icon.png",
+              (LinearGradientBrush)this.Resources["GreenGradient"],
+              HextoSolidBrush("#36AE3B")
+            );
+
+            info.Show();
+        }
+        private void btn_success(object sender, RoutedEventArgs e)
+        {
+            Notificationbox success = new Notificationbox(
+              "Error !!",
+              "You entered wrong credentials",
+              "/Images/success_icon.png",
+             (LinearGradientBrush)this.Resources["YellowGradient"],
+             HextoSolidBrush("#E7BC06")
+            );
+
+            success.Show();
         }
     }
 }

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -125,6 +126,14 @@
     </Compile>
     <Compile Include="MVC\View\VehicleService_View.xaml.cs">
       <DependentUpon>VehicleService_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Notificationbox.xaml.cs">
+      <DependentUpon>Notificationbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
@@ -200,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Notifications\Notificationbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\MainStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -213,11 +226,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -225,6 +233,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -367,6 +376,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\loyal.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bell_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Close_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Error_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\success_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
