@@ -3,27 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Saliya_auto_care_Cashier.Notifications"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Notification"
-    Width="350"
-    Height="60"
+    Width="380"
+    Height="90"
     AllowsTransparency="True"
     Background="Transparent"
     Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d"
-    Loaded="Window_Loaded"
-    >
-
+    Loaded="Window_Loaded">
     <Window.Resources>
-        <!--  || Gradient ||  -->
-        <LinearGradientBrush x:Key="RedGradient" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Offset="0" Color="#602D30" />
-            <GradientStop Offset="0.4" Color="#20232E" />
-        </LinearGradientBrush>
-        
-        <Storyboard x:Key="CloseButtonFadeInAnimation" >
+        <Storyboard x:Key="CloseButtonFadeInAnimation">
             <DoubleAnimation
                 AutoReverse="False"
                 FillBehavior="HoldEnd"
@@ -31,12 +22,9 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0"
                 To="1"
-                Duration="0:0:0.3"
-                />
+                Duration="0:0:0.3" />
         </Storyboard>
-
-
-        <Storyboard x:Key="CloseButtonFadeOutAnimation" >
+        <Storyboard x:Key="CloseButtonFadeOutAnimation">
             <DoubleAnimation
                 AutoReverse="False"
                 FillBehavior="HoldEnd"
@@ -44,33 +32,24 @@
                 Storyboard.TargetProperty="Opacity"
                 From="1"
                 To="0"
-                Duration="0:0:0.3"
-                />
+                Duration="0:0:0.3" />
         </Storyboard>
-
-
         <Storyboard x:Key="WindowSlideInAnimation" Completed="WindowSlideInAnimation_Completed">
             <ThicknessAnimation
                 Storyboard.TargetName="_Border"
                 Storyboard.TargetProperty="Margin"
-                From="350 0 0 0"
-                To="0 0 0 0"
-                Duration="0:0:0.5"
-                ></ThicknessAnimation>
+                From="350,0,0,0"
+                To="0,0,0,0"
+                Duration="0:0:0.5" />
         </Storyboard>
-
-
         <Storyboard x:Key="WindowSlideOutAnimation" Completed="WindowSlideOutAnimation_Completed">
             <ThicknessAnimation
-              Storyboard.TargetName="_Border"
-              Storyboard.TargetProperty="Margin"
-              From="0 0 0 0"
-              To="350 0 0 0"
-              Duration="0:0:0.5"
-              ></ThicknessAnimation>
+                Storyboard.TargetName="_Border"
+                Storyboard.TargetProperty="Margin"
+                From="0,0,0,0"
+                To="350,0,0,0"
+                Duration="0:0:0.5" />
         </Storyboard>
-
-
         <Storyboard x:Key="RectangleWidthDecreaseAnimation" Completed="Storyboard_Completed">
             <DoubleAnimation
                 AutoReverse="False"
@@ -79,71 +58,65 @@
                 Storyboard.TargetProperty="Width"
                 From="350"
                 To="0"
-                Duration="0:0:6"
-                />
+                Duration="0:0:6" />
         </Storyboard>
-
-
     </Window.Resources>
+    <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="_Border">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="260" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-
-    <Border
-        x:Name="_Border"
-        d:Background="{StaticResource RedGradient}"
-        Background="{Binding Gradient}"
-        CornerRadius="5">
-        <StackPanel VerticalAlignment="Bottom">
-            <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                <Image
-                    Width="30"
-                    Height="30"
-                    Margin="20,0"
-                    Source="{Binding ImagePath}"
-                    d:Source="/images/Error_Icon.png"
-                    Stretch="Fill" />
-
-                <StackPanel Margin="0,3,0,0">
-                    <TextBlock
-                        FontFamily="#Poppins"
-                        FontSize="22"
-                        FontWeight="Medium"
-                        Foreground="#F4F4F4"
-                        d:Text="Error !"
-                        Text="{Binding Header}" />
-
-                    <TextBlock
-                        FontFamily="#Poppins"
-                        FontSize="11"
-                        FontWeight="Light"
-                        Foreground="#F4F4F4"
-                        d:Text="An Unexpected Problem has occured."
-                        Text="{Binding Message}"
-                        />
-                </StackPanel>
-
+            <Image
+                Grid.Column="0"
+                Width="80"
+                Source="{Binding ImagePath}"
+                d:Source="/images/Error_Icon.gif"
+                Stretch="Fill"/>
+            
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,10,0,0">
+                <TextBlock
+                    FontFamily="Poppins"
+                    FontSize="22"
+                    FontWeight="Medium"
+                    Foreground="Black"
+                    Text="{Binding Header}"
+                    d:Text="Error!" />
+                <TextBlock
+                    FontFamily="Poppins"
+                    FontSize="15"
+                    FontWeight="Light"
+                    Foreground="Black"
+                    Text="{Binding Message}"
+                    d:Text="An Unexpected Problem has occurred."
+                    Margin="0,5,0,0"
+                />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="0" Width="30" Height="30" Margin="0,-50,0,0">
                 <Image
                     x:Name="_Close"
                     Width="30"
                     Height="30"
-                    Margin="60 10 0 0"
-                    HorizontalAlignment="Right"
                     Cursor="Hand"
                     Source="/images/Close_Icon.png"
                     Stretch="Fill"
                     MouseDown="_Close_MouseDown"
-                    Opacity="0"
-                    />
-
-
+                    Opacity="0"/>
             </StackPanel>
             <Rectangle
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
                 x:Name="_Rectangle"
-                Width="350"
-                Height="4"
-                HorizontalAlignment="Left"
-                d:Fill="#F24A50"
+                Height="5"
                 Fill="{Binding RecFill}"
-                />
-        </StackPanel>
+                HorizontalAlignment="Left" 
+            />
+        </Grid>
     </Border>
 </Window>

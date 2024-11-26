@@ -25,7 +25,6 @@ namespace Saliya_auto_care_Cashier.Notifications
         public string Header { get; set; }
         public string Message { get; set; }
         public string ImagePath { get; set; }
-        public LinearGradientBrush Gradient { get; set; }
         public SolidColorBrush RecFill { get; set; }
 
 
@@ -37,13 +36,12 @@ namespace Saliya_auto_care_Cashier.Notifications
             _Border.MouseLeave += _Border_MouseLeave;
         }
 
-        public Notificationbox(string header, string message, string imagePath, LinearGradientBrush gradient, SolidColorBrush recFill)
+        public Notificationbox(string header, string message, string imagePath, SolidColorBrush recFill)
             : this()
         {
             Header = header;
             Message = message;
             ImagePath = imagePath;
-            Gradient = gradient;
             RecFill = recFill;
         }
 
@@ -69,14 +67,12 @@ namespace Saliya_auto_care_Cashier.Notifications
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Positioning to the bottom right corner
             this.Left = _ScreenArea.Right - this.Width;
-            this.Top = _ScreenArea.Bottom - this.Height - 10;
-
-            // Slide in window
+            this.Top = _ScreenArea.Top +50;  
             Storyboard slidein = (Storyboard)this.Resources["WindowSlideInAnimation"];
             slidein.Begin();
         }
+
 
 
         private void WindowSlideInAnimation_Completed(object sender, EventArgs e)

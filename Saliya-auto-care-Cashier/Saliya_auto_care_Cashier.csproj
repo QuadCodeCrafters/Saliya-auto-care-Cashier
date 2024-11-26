@@ -384,10 +384,10 @@
     <Resource Include="Images\Close_Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Error_Icon.png" />
+    <Resource Include="Images\success_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\success_icon.png" />
+    <Resource Include="Images\Error_Icon.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

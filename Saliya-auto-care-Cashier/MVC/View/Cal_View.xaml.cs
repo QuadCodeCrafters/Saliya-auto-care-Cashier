@@ -48,9 +48,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
             Notificationbox error = new Notificationbox(
               "Error !!",
               "You entered wrong credentials",
-              "/Images/Error_Icon.png",
-                (LinearGradientBrush)this.Resources["RedGradient"],
-                HextoSolidBrush("#F24A50")
+              "/Images/Error_Icon.gif",
+               HextoSolidBrush("#F24A50")
             );
 
             error.Show();
@@ -60,8 +59,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             Notificationbox info = new Notificationbox(
               "Error !!",
               "You entered wrong credentials",
-              "/Images/bell_icon.png",
-              (LinearGradientBrush)this.Resources["GreenGradient"],
+              "/Images/Error_Icon.gif",
               HextoSolidBrush("#36AE3B")
             );
 
@@ -73,8 +71,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
               "Error !!",
               "You entered wrong credentials",
               "/Images/success_icon.png",
-             (LinearGradientBrush)this.Resources["YellowGradient"],
-             HextoSolidBrush("#E7BC06")
+              HextoSolidBrush("#E7BC06")
             );
 
             success.Show();
