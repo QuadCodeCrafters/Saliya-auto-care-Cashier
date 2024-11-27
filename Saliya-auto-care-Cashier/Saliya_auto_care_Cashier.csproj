@@ -260,6 +260,9 @@
     <PackageReference Include="MySqlConnector">
       <Version>2.3.7</Version>
     </PackageReference>
+    <PackageReference Include="WpfAnimatedGif">
+      <Version>2.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
@@ -378,16 +381,16 @@
     <Resource Include="Images\loyal.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\bell_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Close_Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\success_icon.png" />
+    <Resource Include="Images\Error_Icon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Error_Icon.gif" />
+    <Resource Include="Images\success_icon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\info.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

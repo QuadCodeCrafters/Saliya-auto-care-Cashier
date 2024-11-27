@@ -13,10 +13,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public Categories_View()
         {
             InitializeComponent();
-            LoadButtonsFromDatabase();
+            Loadnames();
         }
 
-        private void LoadButtonsFromDatabase()
+        private void Loadnames()
         {
             List<string> buttonNames = GetButtonNamesFromDatabase();
 
@@ -25,7 +25,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 Button button = new Button
                 {
                     Content = name,
-                    Style = (Style)FindResource("CategoryButtonStyle"),
+                    Style = (Style)FindResource("Category"),
+                    Tag = "Unselected" // Initial state
                 };
 
                 button.Click += Button_Click;
@@ -44,8 +45,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 connection.Open();
                 string query = "SELECT name FROM Categories";
 
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataReader reader = command.ExecuteReader();
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -63,12 +64,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             if (selectedButton != null)
             {
-                selectedButton.BorderBrush = Brushes.Gray;
-                selectedButton.BorderThickness = new Thickness(1);
+                selectedButton.Tag = "Unselected";
             }
 
-            clickedButton.BorderBrush = Brushes.Green;
-            clickedButton.BorderThickness = new Thickness(2);
+            clickedButton.Tag = "Selected";
             selectedButton = clickedButton;
         }
     }

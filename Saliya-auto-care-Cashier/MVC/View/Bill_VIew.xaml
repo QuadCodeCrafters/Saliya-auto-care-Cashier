@@ -151,7 +151,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Date : " FontSize="15" Margin="70,3,0,0"/>
-                            <TextBlock Text="Date" FontSize="12" Margin="0,7,0,0"/>
+                            <TextBlock x:Name="date"  FontSize="12" Margin="0,7,0,0"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

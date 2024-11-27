@@ -38,43 +38,19 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 }
             }
         }
-        private SolidColorBrush HextoSolidBrush(string Hex)
-        {
-            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(Hex));
-        }
 
         private void btn_error(object sender, RoutedEventArgs e)
         {
-            Notificationbox error = new Notificationbox(
-              "Error !!",
-              "You entered wrong credentials",
-              "/Images/Error_Icon.gif",
-               HextoSolidBrush("#F24A50")
-            );
-
-            error.Show();
+            Notificationbox.ShowError();
         }
+
         private void btn_info(object sender, RoutedEventArgs e)
         {
-            Notificationbox info = new Notificationbox(
-              "Error !!",
-              "You entered wrong credentials",
-              "/Images/Error_Icon.gif",
-              HextoSolidBrush("#36AE3B")
-            );
-
-            info.Show();
+            Notificationbox.ShowInfo();
         }
         private void btn_success(object sender, RoutedEventArgs e)
         {
-            Notificationbox success = new Notificationbox(
-              "Error !!",
-              "You entered wrong credentials",
-              "/Images/success_icon.png",
-              HextoSolidBrush("#E7BC06")
-            );
-
-            success.Show();
+            Notificationbox.ShowSuccess();
         }
     }
 }

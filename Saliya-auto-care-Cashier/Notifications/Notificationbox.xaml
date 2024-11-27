@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
     Title="Notification"
     Width="380"
     Height="90"
@@ -58,7 +59,7 @@
                 Storyboard.TargetProperty="Width"
                 From="350"
                 To="0"
-                Duration="0:0:6" />
+                Duration="0:0:3" />
         </Storyboard>
     </Window.Resources>
     <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="_Border">
@@ -75,10 +76,11 @@
 
             <Image
                 Grid.Column="0"
-                Width="80"
-                Source="{Binding ImagePath}"
-                d:Source="/images/Error_Icon.gif"
-                Stretch="Fill"/>
+                Width="70"
+                Height="70"
+                gif:ImageBehavior.AnimatedSource="{Binding ImagePath}"
+                Stretch="Fill"
+            />
             
             <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,10,0,0">
                 <TextBlock

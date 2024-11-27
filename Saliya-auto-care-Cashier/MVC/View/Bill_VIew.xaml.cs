@@ -23,6 +23,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public Bill_VIew()
         {
             InitializeComponent();
+            date.Text = DateTime.Now.ToString("MMMM dd, yyyy");
         }
 
     }

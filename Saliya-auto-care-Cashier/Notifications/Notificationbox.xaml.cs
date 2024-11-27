@@ -96,6 +96,43 @@ namespace Saliya_auto_care_Cashier.Notifications
             // after slide out close the window
             this.Close();
         }
+        private SolidColorBrush HextoSolidBrush(string Hex)
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(Hex));
+        }
+
+        public static void ShowError()
+        {
+            Notificationbox error = new Notificationbox(
+                "Error !!",
+                "You entered wrong credentials",
+                "/Images/Error_Icon.gif",
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F24A50"))
+            );
+            error.Show();
+        }
+        public static void ShowInfo()
+        {
+            Notificationbox info = new Notificationbox(
+                "Error !!",
+                "You entered wrong credentials",
+                "/Images/info.gif",
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+            );
+            info.Show();
+        }
+
+        public static void ShowSuccess()
+        {
+            Notificationbox success = new Notificationbox(
+                "Error !!",
+                "You entered wrong credentials",
+                "/Images/success_icon.gif",
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
+            );
+            success.Show();
+        }
+
     }
 }
 
