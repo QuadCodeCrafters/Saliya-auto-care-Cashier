@@ -213,9 +213,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\MainStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Styles\ScrollViewerStyle.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Welcomepage.xaml">
       <SubType>Designer</SubType>
@@ -392,5 +392,6 @@
   <ItemGroup>
     <Resource Include="Images\info.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
