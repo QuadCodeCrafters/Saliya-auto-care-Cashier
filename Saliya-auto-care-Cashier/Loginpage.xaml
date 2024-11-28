@@ -14,13 +14,14 @@
 
         <!-- Add column definitions to divide the Grid into two columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="768*" />
+            <ColumnDefinition Width="535*" />
+            <ColumnDefinition Width="233*"/>
             <ColumnDefinition Width="455*" />
         </Grid.ColumnDefinitions>
 
 
 
-        <Image Source="Images/car-repair-maintenance-services-garage_981948-9673.png" Stretch="UniformToFill" Opacity="0.8" Grid.ColumnSpan="2">
+        <Image Source="Images/car-repair-maintenance-services-garage_981948-9673.png" Stretch="UniformToFill" Opacity="0.8" Grid.ColumnSpan="3">
             <Image.Effect>
                 <BlurEffect Radius="20"/>
             </Image.Effect>
@@ -33,7 +34,7 @@
             <!-- You can add your checklist or other elements here -->
         </StackPanel>
 
-        <Grid Grid.Column="1" Background="Black" Opacity="0.7">
+        <Grid Grid.Column="2" Background="Black" Opacity="0.7">
 
             <!-- Right side (Password box and keypad) -->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,90,0,0" Height="631" Width="406">
@@ -228,13 +229,13 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <TextBlock Text="Select user" FontSize="30" FontWeight="DemiBold" Foreground="White" Margin="50,132,554,557"/>
+        <TextBlock Text="Select user" FontSize="30" FontWeight="DemiBold" Foreground="White" Margin="50,132,321,557"/>
         <DataGrid x:Name="UserDisplay" 
           AutoGenerateColumns="False" 
           Margin="50,220,179,200" 
           Opacity="0.9" 
           SelectionMode="Single" 
-          SelectionChanged="UsernamesDataGrid_SelectionChanged">
+          SelectionChanged="UsernamesDataGrid_SelectionChanged" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Username" Binding="{Binding Mode=OneWay }" />
             </DataGrid.Columns>

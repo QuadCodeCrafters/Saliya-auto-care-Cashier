@@ -12,7 +12,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public DatabaseStringModel()
         {
-            // Define the connection string (adjust the server, user ID, and password as needed)
+            // Define the connection string 
           ConnectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
         }
     }
