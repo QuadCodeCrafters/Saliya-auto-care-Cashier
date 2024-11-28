@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using MySql.Data.MySqlClient;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
     public partial class Categories_View : UserControl
     {
-        private Button selectedButton;
+        private List<Button> selectedButtons = new List<Button>();
+        public event EventHandler<List<string>> CategoriesSelected;
 
         public Categories_View()
         {
             InitializeComponent();
-            Loadnames();
+            LoadNames();
         }
 
-        private void Loadnames()
+        private void LoadNames()
         {
             List<string> buttonNames = GetButtonNamesFromDatabase();
 
@@ -26,7 +27,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 {
                     Content = name,
                     Style = (Style)FindResource("Category"),
-                    Tag = "Unselected" // Initial state
+                    Tag = "Unselected"
                 };
 
                 button.Click += Button_Click;
@@ -37,22 +38,28 @@ namespace Saliya_auto_care_Cashier.MVC.View
         private List<string> GetButtonNamesFromDatabase()
         {
             List<string> names = new List<string>();
-
             string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string query = "SELECT name FROM Categories";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                using (MySqlDataReader reader = command.ExecuteReader())
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    string query = "SELECT name FROM Categories";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        names.Add(reader.GetString(0));
+                        while (reader.Read())
+                        {
+                            names.Add(reader.GetString(0));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading category names: {ex.Message}");
             }
 
             return names;
@@ -62,13 +69,20 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             Button clickedButton = sender as Button;
 
-            if (selectedButton != null)
+            if (clickedButton.Tag.ToString() == "Unselected")
             {
-                selectedButton.Tag = "Unselected";
+                clickedButton.Tag = "Selected";
+                selectedButtons.Add(clickedButton);
+            }
+            else
+            {
+                clickedButton.Tag = "Unselected";
+                selectedButtons.Remove(clickedButton);
             }
 
-            clickedButton.Tag = "Selected";
-            selectedButton = clickedButton;
+            List<string> selectedCategories = selectedButtons.ConvertAll(b => b.Content.ToString());
+            CategoriesSelected?.Invoke(this, selectedCategories);
         }
     }
 }
+

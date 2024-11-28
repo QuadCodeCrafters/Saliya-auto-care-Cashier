@@ -138,10 +138,6 @@
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Assets\Icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
-    <Resource Include="Images\POS.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\truck.png" />
@@ -278,32 +273,7 @@
     <Resource Include="Images\logout.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\apple.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\disney.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\music.png" />
-    <Resource Include="Images\pay.png" />
-    <Resource Include="Images\photos.png" />
-    <Resource Include="Images\store.png" />
-    <Resource Include="Images\tv.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\icloud.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\support.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\car-repair.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\car-lifter.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\car-painting.png" />
@@ -315,9 +285,6 @@
     <Resource Include="Images\customer-data.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\pen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\car-service.png" />
   </ItemGroup>
   <ItemGroup>
@@ -327,37 +294,7 @@
     <Resource Include="Images\register.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\macbook_pro_m3_design_background-t2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\POSbackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\jeff-smith-Wg-2kBVND3c-unsplash.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\torsten-dederichs-MC4vKEsIKVY-unsplash.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\check.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\check %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\checkmark-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\360_F_330178536_8uqY3syFVr302dA2ELR54j7CnObeL2uK.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\istockphoto-1387759698-612x612.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\9396ef7f378df8dbfa5d3ed5ca8787b9_t.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -387,11 +324,10 @@
     <Resource Include="Images\Error_Icon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\success_icon.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\info.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
