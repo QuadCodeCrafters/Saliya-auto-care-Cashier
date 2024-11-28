@@ -84,9 +84,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
-            <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
+            <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" Click="btn_error" />
+            <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumberButtonStyle}"  Click="btn_success" />
+            <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"  Click="btn_info" />
             <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
             <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
             <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
@@ -95,7 +95,7 @@
             <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
             <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
             <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" Click="btn_" />
+            <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" Click="btn_member"/>
             <Button Content="Refund" Grid.Row="0" Grid.Column="3" Style="{StaticResource GrayButtonStyle}" />
             <Button Content="Print" Grid.Row="1" Grid.Column="3" Style="{StaticResource GrayButtonStyle}" />
             <Button Content="+" Grid.Row="2" Grid.Column="3" Style="{StaticResource RedButtonStyle}" />

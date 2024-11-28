@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saliya-auto-care-Cashier", "Saliya-auto-care-Cashier\Saliya-auto-care-Cashier.csproj", "{8FC8C984-2ECB-449A-84FF-941A355086D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saliya_auto_care_Cashier", "Saliya-auto-care-Cashier\Saliya_auto_care_Cashier.csproj", "{8FC8C984-2ECB-449A-84FF-941A355086D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
