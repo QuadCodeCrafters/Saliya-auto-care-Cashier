@@ -19,11 +19,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
             {
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             }
-
-            if (descriptionListView == null)
-            {
-                throw new Exception("descriptionListView not found in XAML");
-            }
         }
 
         public void UpdateDescriptions(List<string> descriptions)
