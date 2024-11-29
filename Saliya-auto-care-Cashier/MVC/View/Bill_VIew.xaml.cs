@@ -28,7 +28,31 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 descriptionListView.Items.Clear();
                 foreach (var description in descriptions)
                 {
-                    descriptionListView.Items.Add(new { Description = description });
+                    descriptionListView.Items.Add(new
+                    {
+                        Description = description,
+                    });
+
+                    quantityListView.Items.Add(new
+                    {
+                        Quantity = 100,  // Default value, update as needed
+                    });
+
+                    priceListView.Items.Add(new
+                    {
+                        Price = 10000.00,  // Default value, update as needed
+                    });
+
+                    taxListView.Items.Add(new
+                    {
+                        Tax = 100,    // Default value, update as needed
+                    });
+
+                    amountListView.Items.Add(new
+                    {
+                        Amount = 78770.00  // Default value, update as needed
+                    });
+
                 }
             }
         }

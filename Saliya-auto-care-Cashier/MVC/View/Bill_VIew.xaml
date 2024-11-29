@@ -84,58 +84,101 @@
                 </Grid>
                 <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
             </Grid>
-            <Grid Grid.Row="2">
-                <Grid Margin="20,10,20,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1.1*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="DESCRIPTION" Grid.Column="0" FontSize="12" FontWeight="ExtraLight" />
-                    <TextBlock Text="Quantity" Grid.Column="1" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Price" Grid.Column="2" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
-                    <TextBlock Text="TAX" Grid.Column="3" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Amount (LKR)" Grid.Column="4" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Right"/>
-                </Grid>
-                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,00,20,0"/>
-            </Grid>
-            <Grid Grid.Row="3">
-                <ListView x:Name="descriptionListView" Grid.Row="3">
+            <Grid Grid.Row="2" IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.2*"/>
+                    <ColumnDefinition Width="0.55*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.63*"/>
+                    <ColumnDefinition Width="1.1*"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView x:Name="descriptionListView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Description" Width="200">
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Product" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-7,0,0,0" />
+                                </GridViewColumn.Header>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Description}"/>
+                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/> <!-- sometimes need to be change wrap when the content goes up-->
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <!-- Add other columns as needed -->
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <!-- need to change this to listview  
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,15,11,22">
-                    <ListViewItem>
-                        <Grid Margin="15,0,0,0" Width="480">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="descriptionTextBlock" Grid.Column="0"/>
-                            <TextBlock Text="2" Grid.Column="1" HorizontalAlignment="Center"/>
-                            <TextBlock Text="10" Grid.Column="2" HorizontalAlignment="Center"/>
-                            <TextBlock Text="10%" Grid.Column="3" HorizontalAlignment="Center"/>
-                            <TextBlock Text="40.00" Grid.Column="4" HorizontalAlignment="Center" Foreground="#FF62013C"/>
-                        </Grid>
-                    </ListViewItem>
+
+                <ListView x:Name="quantityListView" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Qty" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Quantity}" HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
                 </ListView>
-                -->
+
+                <ListView x:Name="priceListView" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Price" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Price, StringFormat=C}" HorizontalAlignment="Right"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView x:Name="taxListView" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="TAX" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView x:Name="amountListView" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Amount" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5,0,0,0"/>
+                                </GridViewColumn.Header>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Amount, StringFormat=C}" HorizontalAlignment="Right" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="3">
                 <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
             </Grid>
             <Grid Grid.Row="4" Margin="0,0,0,35">
