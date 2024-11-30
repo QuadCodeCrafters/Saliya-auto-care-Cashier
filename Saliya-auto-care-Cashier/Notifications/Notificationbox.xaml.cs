@@ -20,7 +20,7 @@ namespace Saliya_auto_care_Cashier.Notifications
     /// </summary>
     public partial class Notificationbox : Window
     {
-        Rect _ScreenArea = SystemParameters.WorkArea;
+        Rect ScreenArea = SystemParameters.WorkArea;
 
         public string Header { get; set; }
         public string Message { get; set; }
@@ -32,8 +32,8 @@ namespace Saliya_auto_care_Cashier.Notifications
         {
             InitializeComponent();
             this.DataContext = this;
-            _Border.MouseEnter += _Border_MouseEnter;
-            _Border.MouseLeave += _Border_MouseLeave;
+            Border.MouseEnter += Border_MouseEnter;
+            Border.MouseLeave += Border_MouseLeave;
         }
 
         public Notificationbox(string header, string message, string imagePath, SolidColorBrush recFill)
@@ -45,19 +45,19 @@ namespace Saliya_auto_care_Cashier.Notifications
             RecFill = recFill;
         }
 
-        private void _Border_MouseLeave(object sender, MouseEventArgs e)
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
             Storyboard fadeOUt = (Storyboard)this.Resources["CloseButtonFadeOutAnimation"];
             fadeOUt.Begin();
         }
 
-        private void _Border_MouseEnter(object sender, MouseEventArgs e)
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
             Storyboard fadeIn = (Storyboard)this.Resources["CloseButtonFadeInAnimation"];
             fadeIn.Begin();
         }
 
-        private void _Close_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Close_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -67,8 +67,8 @@ namespace Saliya_auto_care_Cashier.Notifications
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Left = _ScreenArea.Right - this.Width;
-            this.Top = _ScreenArea.Top +50;  
+            this.Left = ScreenArea.Right - this.Width;
+            this.Top = ScreenArea.Top +50;  
             Storyboard slidein = (Storyboard)this.Resources["WindowSlideInAnimation"];
             slidein.Begin();
         }
@@ -78,7 +78,7 @@ namespace Saliya_auto_care_Cashier.Notifications
         private void WindowSlideInAnimation_Completed(object sender, EventArgs e)
         {
             // Slide in Complete then decrease rectangle length
-            this.Left = _ScreenArea.Right - this.Width - 10;
+            this.Left = ScreenArea.Right - this.Width - 10;
             Storyboard decreaseWidth = (Storyboard)this.Resources["RectangleWidthDecreaseAnimation"];
             decreaseWidth.Begin();
         }
@@ -87,7 +87,7 @@ namespace Saliya_auto_care_Cashier.Notifications
         {
             // after decrease width of rectangle slide out window
             Storyboard SlideOut = (Storyboard)this.Resources["WindowSlideOutAnimation"];
-            this.Left = _ScreenArea.Right - this.Width;
+            this.Left = ScreenArea.Right - this.Width;
             SlideOut.Begin();
         }
 

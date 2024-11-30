@@ -39,7 +39,7 @@
                 <Grid Grid.Column="1" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
-                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2.1*" />
                     </Grid.RowDefinitions>
                     <Rectangle Grid.Row="1" Fill="BlueViolet"/>
                     <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">

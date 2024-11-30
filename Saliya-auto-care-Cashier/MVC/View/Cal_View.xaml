@@ -2,17 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
-             mc:Ignorable="d">
-    <!--
-            <UserControl x:Class="YourNamespace.NumericKeypad"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
-        <UserControl.Resources>
-        <Style x:Key="NumberButtonStyle" TargetType="Button">
+    <UserControl.Resources>
+        <Style x:Key="Number" TargetType="Button">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="24"/>
@@ -21,46 +13,58 @@
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
         </Style>
         
-        <Style x:Key="AmountButtonStyle" TargetType="Button" BasedOn="{StaticResource NumberButtonStyle}">
+        <Style x:Key="Amount" TargetType="Button" BasedOn="{StaticResource Number}">
             <Setter Property="Background" Value="#666666"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
         
-        <Style x:Key="ActionButtonStyle" TargetType="Button" BasedOn="{StaticResource NumberButtonStyle}">
+        <Style x:Key="Action" TargetType="Button" BasedOn="{StaticResource Number}">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
-           </UserControl.Resources>
+        
+    </UserControl.Resources>
 
-           <Grid>
+   <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.24*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
    
-        <Grid Grid.Row="0" Background="#F0F0F0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+      <Grid Grid.Row="0" Background="#F0F0F0" Margin="10,0,10,5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="✕" FontSize="25" Width="40" Height="40"
+                        Background="#a5a8ad" BorderThickness="0" Margin="5,0,10,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="100">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+                <TextBlock Grid.Column="1" Text="need to change"
+                       FontSize="25" VerticalAlignment="Center" Margin="0,0,20,0"/>
 
-        <Button Grid.Column="0" Content="✕" Width="40" Height="40" 
-                    Background="Transparent" BorderThickness="0"/>
-
-        <TextBlock Grid.Column="1" Text="$6.95" 
-                       FontSize="24" HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
-
-        <Button Grid.Column="2" Content="SKU" Width="80" Height="40"
+                <Button Grid.Column="2" Content="SKU" Width="100" Height="Auto" Margin="0,3,3,3"
                     Background="#3498db" Foreground="White" 
-                    BorderThickness="0"/>
+                    BorderThickness="2"/>
             </Grid>
+        </Grid>
 
   
-          <Grid Grid.Row="1">
+     <Grid Grid.Row="1" Margin="10,0,10,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -76,135 +80,33 @@
         </Grid.RowDefinitions>
 
      
-        <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" Foreground="#3498db"/>
-        <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumberButtonStyle}"/>
-        <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"/>
+        <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource Number}" Click="btn_error" />
+        <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource Number}" Click="btn_success"/>
+        <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource Number}" Click="btn_info"/>
+        <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource Number}"/>
+        <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource Number}"/>
+        <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource Number}"/>
+        <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource Number}"/>
+        <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource Number}"/>
+        <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource Number}"/>
+        <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource Number}"/>
+        <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource Number}"/>
+        <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource Number}" Click="btn_member"/>
+         
+        <Button Content="Rs 500" Grid.Row="0" Grid.Column="3" Style="{StaticResource Amount}"/>
+        <Button Content="Rs 1000" Grid.Row="1" Grid.Column="3" Style="{StaticResource Amount}"/>
+        <Button Content="Rs 5000" Grid.Row="2" Grid.Column="3" Style="{StaticResource Amount}"/>
+         <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource Action}" Background="#2ecc71">
+                <TextBlock Text="+" FontSize="55" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-10,0,0"/>
+         </Button>
 
- 
-        <Button Content="$50" Grid.Row="0" Grid.Column="3" Style="{StaticResource AmountButtonStyle}"/>
-        <Button Content="$100" Grid.Row="0" Grid.Column="4" Style="{StaticResource AmountButtonStyle}"/>
-        <Button Content="$43" Grid.Row="1" Grid.Column="3" Style="{StaticResource AmountButtonStyle}"/>
-        <Button Content="$42.24" Grid.Row="1" Grid.Column="4" Style="{StaticResource AmountButtonStyle}"/>
+        <Button Content="Cash" Grid.Row="0" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+        <Button Content="Refund" Grid.Row="1" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+        <Button Content="Print" Grid.Row="2" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+        <Button Content="Clear" Grid.Row="3" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
 
-      
-        <Button Content="Credit" Grid.Row="2" Grid.Column="3" 
-                    Style="{StaticResource ActionButtonStyle}" Background="#e74c3c"/>
-        <Button Content="Other" Grid.Row="2" Grid.Column="4" 
-                    Style="{StaticResource ActionButtonStyle}" Background="#e74c3c"/>
-        <Button Content="Refund" Grid.Row="3" Grid.Column="3" 
-                    Style="{StaticResource ActionButtonStyle}" Background="#e74c3c"/>
-        <Button Content="Cash" Grid.Row="3" Grid.Column="4" 
-                    Style="{StaticResource ActionButtonStyle}" Background="#2ecc71"/>
-            </Grid>
-             </Grid>
-        </UserControl>
-            -->
-    
-    
-        <UserControl.Resources>
-        <Style x:Key="NumberButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
-
-        <Style x:Key="GrayButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Gray"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
-
-        <Style x:Key="RedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Red"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
-
-        <Style x:Key="GreenButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Green"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-        </Style>
-    </UserControl.Resources>
-
-    <Grid>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Margin="15,0,15,0" Background="#f0f0f0" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="" 
-                       FontSize="24"
-                       Margin="10" 
-                       Grid.Column="0"
-            />
-            <Button Content="SKU" 
-                    FontSize="20" 
-                    Background="#4285F4" 
-                    Foreground="White" 
-                    Margin="0,2,2,2.5" 
-                    Grid.Column="1"
-                    Height="Auto"
-            />
         </Grid>
-        
-        <Grid Grid.Row="1" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+       
+   </Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
-            <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" Click="btn_error" />
-            <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource NumberButtonStyle}"  Click="btn_success" />
-            <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource NumberButtonStyle}"  Click="btn_info" />
-            <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource NumberButtonStyle}" />
-            <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource NumberButtonStyle}" Click="btn_member"/>
-            <Button Content="Refund" Grid.Row="0" Grid.Column="3" Style="{StaticResource GrayButtonStyle}" />
-            <Button Content="Print" Grid.Row="1" Grid.Column="3" Style="{StaticResource GrayButtonStyle}" />
-            <Button Content="+" Grid.Row="2" Grid.Column="3" Style="{StaticResource RedButtonStyle}" />
-            <Button Content="Cash" Grid.Row="3" Grid.Column="3" Style="{StaticResource GreenButtonStyle}" />
-        </Grid>
-    </Grid>
 </UserControl>
