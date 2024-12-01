@@ -16,6 +16,7 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
+        <!--The message box of Go back-->
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>
 
@@ -37,6 +38,7 @@
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Grid>
+                <!--The message box of Loyality Unlock-->
                 <materialDesign:DialogHost x:Name="MemberDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                     <materialDesign:DialogHost.DialogContent>
                         <Grid Width="485" Height="295" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -64,7 +66,7 @@
                                                      Width="390" 
                                                      Height="55" 
                                                      FontSize="17.5" 
-                                                     materialDesign:HintAssist.Hint="Enter The ID Number" 
+                                                     materialDesign:HintAssist.Hint="Enter The Customer ID Number" 
                                                      BorderThickness="2" 
                                                      BorderBrush="{DynamicResource MaterialDesignDivider}" 
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}">
@@ -76,7 +78,7 @@
                                             </TextBox>
                                         </StackPanel>
                                         <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,15" Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,0,140,0" >
+                                            <Button Foreground="{DynamicResource MaterialDesignBody}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,0,140,0" Click="addbtn_click">
                                                 Add
                                             </Button>
                                             <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">

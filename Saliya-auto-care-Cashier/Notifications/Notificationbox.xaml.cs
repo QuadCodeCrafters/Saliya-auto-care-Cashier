@@ -127,7 +127,7 @@ namespace Saliya_auto_care_Cashier.Notifications
             Notificationbox success = new Notificationbox(
                 "Error !!",
                 "You entered wrong credentials",
-                "/Images/success_icon.gif",
+                "/Images/success.gif",
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
             );
             success.Show();

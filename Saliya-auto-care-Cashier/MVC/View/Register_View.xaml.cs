@@ -12,11 +12,13 @@ namespace Saliya_auto_care_Cashier.MVVM.View
     public partial class Register_View : UserControl
     {
         private List<Control> requiredFields;
+        private VehicleRegistrationController controller;
 
         public Register_View()
         {
             InitializeComponent();
             InitializeRequiredFields();
+            controller = new VehicleRegistrationController(this);
         }
 
         private void InitializeRequiredFields()
@@ -113,9 +115,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
         public void RegisterVehicle()
         {
-
-            VehicleRegistrationController controller = new VehicleRegistrationController();
-
             string vehicleNumber = txtvehiclenum.Text;
             string vehicleType = txtvehicletype.Text;
             string vehicleModel = txtvehiclemodel.Text;
@@ -128,6 +127,20 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             string specialNotes = txtcusspec.Text;
 
             controller.RegisterVehicle(vehicleNumber, vehicleType, vehicleModel, customerName, customerAddress, customerNIC, customerEmail, customerPhone, emergencyContact, specialNotes);
+        }
+        public void ClearAllFields()
+        {
+            foreach (var field in requiredFields)
+            {
+                if (field is TextBox textBox)
+                {
+                    textBox.Text = string.Empty;
+                }
+                else if (field is ComboBox comboBox)
+                {
+                    comboBox.SelectedIndex = -1;
+                }
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -127,6 +129,41 @@ namespace Saliya_auto_care_Cashier
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
+        }
+
+        private void addbtn_click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtloyalid.Text))
+            {
+                ErrorAnimation();
+            }
+
+            else
+            {
+
+            }
+
+        }
+
+        private void ErrorAnimation()
+        {
+            txtloyalid.BorderBrush = Brushes.Red;
+            txtloyalid.Foreground = new SolidColorBrush(Colors.Red);
+
+            TranslateTransform translateTransform = new TranslateTransform();
+            txtloyalid.RenderTransform = translateTransform;
+
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation); //imported from ErrorAnimation.cs
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += (s, e) =>
+            {
+                txtloyalid.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD"); // Reset to default border color
+                txtloyalid.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6e6e6e"));
+                timer.Stop();
+            };
+            timer.Start();
         }
     }
 }

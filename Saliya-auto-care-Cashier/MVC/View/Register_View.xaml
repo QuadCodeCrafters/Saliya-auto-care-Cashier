@@ -9,10 +9,16 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Storyboard x:Key="ShakeAnimation">
+        <ResourceDictionary>
+            <Storyboard x:Key="ShakeAnimation">
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                              From="0" To="-5" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="3x"/>
         </Storyboard>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
