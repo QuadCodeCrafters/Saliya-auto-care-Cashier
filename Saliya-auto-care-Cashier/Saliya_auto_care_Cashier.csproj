@@ -88,10 +88,10 @@
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\DatabaseStringModel.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
-    <Compile Include="MVC\Model\DatabaseStringModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
@@ -336,8 +336,6 @@
   <ItemGroup>
     <Resource Include="Images\success.gif" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
