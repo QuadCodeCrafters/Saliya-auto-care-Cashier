@@ -1,6 +1,10 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Mysqlx;
+using Saliya_auto_care_Cashier.MVC.Model;
 using System;
 using System.Windows;
+using MySql.Data.MySqlClient;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
@@ -9,9 +13,11 @@ namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+        private readonly DatabaseStringModel conn; //DatabaseStringModel
         public Dashboard()
         {
             InitializeComponent();
+            conn = new DatabaseStringModel(); // conn
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
@@ -131,18 +137,70 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
+        private void addbtn_cancel(object sender, RoutedEventArgs e)
+        {
+            txtloyalid.Text = " ";
+        }
+
         private void addbtn_click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtloyalid.Text))
             {
                 ErrorAnimation();
-            }
+                txtloyalid.Text = "Please Enter the ID";
 
+            }
             else
             {
+                string ID = txtloyalid.Text;
+                string connectionString = conn.ConnectionString;
 
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        string query = "SELECT CustomerNIC FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+                        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@CustomerNIC", ID);
+
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string id = reader.GetString("CustomerNIC");
+                                    MessageBox.Show("Customer found: " + id);
+                                }
+                                else
+                                {
+                                    txtloyalid.Text = "Incorrect ID try again";
+                                }
+                            }
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Database error: " + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                    finally
+                    {
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
             }
-
+        }
+        private void txtloyalid_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            IDError.Text = ""; // Clear the error message TextChanged property on xaml
         }
 
         private void ErrorAnimation()
