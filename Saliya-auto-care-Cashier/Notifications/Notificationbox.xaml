@@ -111,14 +111,20 @@
                     MouseDown="Close_MouseDown"
                     Opacity="0"/>
             </StackPanel>
-            <Rectangle
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                x:Name="Rectangle"
-                Height="5"
-                Fill="{Binding RecFill}"
-                HorizontalAlignment="Left" 
-            />
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <Border Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Height="5"
+                        HorizontalAlignment="Left"
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        BorderBrush="White">
+                    <Rectangle x:Name="Rectangle"
+                                Fill="{Binding RecFill}"
+                                Margin="1,0,0,0"
+                    />
+                </Border>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

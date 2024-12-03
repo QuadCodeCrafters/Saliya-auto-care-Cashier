@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using Saliya_auto_care_Cashier.Notifications;
+using Saliya_auto_care_Cashier.MVC.View;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -139,16 +141,15 @@ namespace Saliya_auto_care_Cashier
 
         private void addbtn_cancel(object sender, RoutedEventArgs e)
         {
-            txtloyalid.Text = " ";
+            txtloyalid.Text = "";
+            Cusname.Text = "";
         }
-
         private void addbtn_click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtloyalid.Text))
             {
                 ErrorAnimation();
-                txtloyalid.Text = "Please Enter the ID";
-
+                IDError.Text = "Please Enter the ID";
             }
             else
             {
@@ -161,7 +162,7 @@ namespace Saliya_auto_care_Cashier
                     {
                         connection.Open();
 
-                        string query = "SELECT CustomerNIC FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+                        string query = "SELECT CustomerName FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
                         using (MySqlCommand cmd = new MySqlCommand(query, connection))
                         {
                             cmd.Parameters.AddWithValue("@CustomerNIC", ID);
@@ -170,12 +171,24 @@ namespace Saliya_auto_care_Cashier
                             {
                                 if (reader.Read())
                                 {
-                                    string id = reader.GetString("CustomerNIC");
-                                    MessageBox.Show("Customer found: " + id);
+                                    string Name = reader.GetString("CustomerName");
+                                    Cusname.Text = ("Customer Found: " + Name);
+                                    Notificationbox.ShowSuccess();
+
+                                    // Directly access Bill_VIew and update the customer name
+                                    if (billViewControl != null)
+                                    {
+                                        billViewControl.SetCustomerName(Name); // Update the name in Bill_VIew
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Bill View is not accessible.");
+                                    }
                                 }
                                 else
                                 {
-                                    txtloyalid.Text = "Incorrect ID try again";
+                                    IDError.Text = "No Customer Found";
+                                    ErrorAnimation();
                                 }
                             }
                         }
@@ -198,6 +211,7 @@ namespace Saliya_auto_care_Cashier
                 }
             }
         }
+
         private void txtloyalid_TextChanged(object sender, TextChangedEventArgs e)
         {
             IDError.Text = ""; // Clear the error message TextChanged property on xaml
@@ -223,5 +237,6 @@ namespace Saliya_auto_care_Cashier
             };
             timer.Start();
         }
+
     }
 }

@@ -105,7 +105,7 @@ namespace Saliya_auto_care_Cashier.Notifications
         {
             Notificationbox error = new Notificationbox(
                 "Error !!",
-                "You entered wrong credentials",
+                "You entered wrong credentials.",
                 "/Images/Error_Icon.gif",
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F24A50"))
             );
@@ -114,10 +114,10 @@ namespace Saliya_auto_care_Cashier.Notifications
         public static void ShowInfo()
         {
             Notificationbox info = new Notificationbox(
-                "Error !!",
-                "You entered wrong credentials",
+                "Warning !!",
+                "Please review your input and try again.",
                 "/Images/info.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
             );
             info.Show();
         }
@@ -125,10 +125,10 @@ namespace Saliya_auto_care_Cashier.Notifications
         public static void ShowSuccess()
         {
             Notificationbox success = new Notificationbox(
-                "Error !!",
-                "You entered wrong credentials",
+                "Success !!",
+                "Operation was completed successfully!",
                 "/Images/success.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
             );
             success.Show();
         }

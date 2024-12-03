@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Saliya_auto_care_Cashier.MVC.View
@@ -20,6 +21,19 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             }
         }
+        public void SetCustomerName(string Name)
+        {
+            // Check that txtname is correctly assigned
+            if (txtname != null)
+            {
+                txtname.Text = Name;
+            }
+            else
+            {
+                MessageBox.Show("TextBlock not found!"); // Debugging message
+            }
+        }
+
 
         public void UpdateDescriptions(List<string> descriptions)
         {
