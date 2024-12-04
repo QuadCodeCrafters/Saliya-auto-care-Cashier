@@ -10,15 +10,19 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Saliya_auto_care_Cashier.Notifications;
 using Saliya_auto_care_Cashier.MVC.View;
+using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
 
 namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+        private Data Name;
         private readonly DatabaseStringModel conn; //DatabaseStringModel
         public Dashboard()
         {
             InitializeComponent();
+            Name = new SharedName();
+            Bill_VIew.SharedDataInstance = Name;  // Updated to match renamed property
             conn = new DatabaseStringModel(); // conn
         }
 
@@ -150,53 +154,55 @@ namespace Saliya_auto_care_Cashier
             {
                 ErrorAnimation();
                 IDError.Text = "Please Enter the ID";
+                return;
             }
-            else
+
+            string ID = txtloyalid.Text;
+            string connectionString = conn.ConnectionString;
+
+            using (var connection = new MySqlConnection(connectionString))
             {
-                string ID = txtloyalid.Text;
-                string connectionString = conn.ConnectionString;
-
-                using (var connection = new MySqlConnection(connectionString))
+                try
                 {
-                    try
+                    connection.Open();
+                    string query = "SELECT CustomerName FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        connection.Open();
+                        cmd.Parameters.AddWithValue("@CustomerNIC", ID);
 
-                        string query = "SELECT CustomerName FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
-                        using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            cmd.Parameters.AddWithValue("@CustomerNIC", ID);
-
-                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            if (reader.Read())
                             {
-                                if (reader.Read())
-                                {
-                                    string Name = reader.GetString("CustomerName");
-                                    Cusname.Text = ("Customer Found: " + Name);
-                                    Notificationbox.ShowSuccess();
-                                }
-                                else
-                                {
-                                    IDError.Text = "No Customer Found";
-                                    ErrorAnimation();
-                                }
+                                string Name = reader.GetString("CustomerName");
+                                Cusname.Text = "Customer Found: " + Name;
+                                Notificationbox.ShowSuccess();
+
+                                // send the name
+                                SharedName.CustomerName = Name;
+                            }
+                            else
+                            {
+                                IDError.Text = "No Customer Found";
+                                ErrorAnimation();
                             }
                         }
                     }
-                    catch (MySqlException ex)
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+                finally
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
                     {
-                        MessageBox.Show("Database error: " + ex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                    finally
-                    {
-                        if (connection.State == System.Data.ConnectionState.Open)
-                        {
-                            connection.Close();
-                        }
+                        connection.Close();
                     }
                 }
             }

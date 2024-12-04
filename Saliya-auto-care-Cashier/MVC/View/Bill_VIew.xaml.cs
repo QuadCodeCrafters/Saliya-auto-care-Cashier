@@ -1,18 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Controls;
+using System;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
     public partial class Bill_VIew : UserControl
     {
- 
+        public static SharedName SharedDataInstance { get; set; }  // the shared name from the Dashboard
+
+        public class SharedName : INotifyPropertyChanged
+        {
+            private string customerName;
+            public string CustomerName
+            {
+                get => customerName;
+                set
+                {
+                    if (customerName != value)
+                    {
+                        customerName = value;
+                        OnPropertyChanged(nameof(CustomerName));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         private TextBlock dateTextBlock;
 
         public Bill_VIew()
         {
             InitializeComponent();
+            if (SharedDataInstance != null)
+            {
+                DataContext = SharedDataInstance; // Bind to shared data
+            }
+
             dateTextBlock = FindName("date") as TextBlock;
             descriptionListView = FindName("descriptionListView") as ListView;
 
@@ -53,10 +83,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     {
                         Amount = 78770.00  // Default value, update as needed
                     });
-
                 }
             }
         }
     }
 }
-
