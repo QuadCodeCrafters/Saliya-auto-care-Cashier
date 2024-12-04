@@ -174,16 +174,6 @@ namespace Saliya_auto_care_Cashier
                                     string Name = reader.GetString("CustomerName");
                                     Cusname.Text = ("Customer Found: " + Name);
                                     Notificationbox.ShowSuccess();
-
-                                    // Directly access Bill_VIew and update the customer name
-                                    if (billViewControl != null)
-                                    {
-                                        billViewControl.SetCustomerName(Name); // Update the name in Bill_VIew
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Bill View is not accessible.");
-                                    }
                                 }
                                 else
                                 {

@@ -17,8 +17,6 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
-        <local1:Bill_VIew x:Name="billViewControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <!--The message box of Go back-->
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>
 
