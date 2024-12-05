@@ -1,6 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using Mysqlx;
-using Saliya_auto_care_Cashier.MVC.Model;
+﻿using Saliya_auto_care_Cashier.MVC.Model;
 using System;
 using System.Windows;
 using MySql.Data.MySqlClient;
@@ -16,13 +14,28 @@ namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
-        private Data Name;
+        private Shared sharename;
+        private Sharedaddress sharecustomeraddress;
+        private Shared sharevehicletype;
+        private Shared sharevehiclenumber;
+
         private readonly DatabaseStringModel conn; //DatabaseStringModel
         public Dashboard()
         {
             InitializeComponent();
-            Name = new SharedName();
-            Bill_VIew.SharedDataInstance = Name;  // Updated to match renamed property
+
+            sharename = new Shared();
+            Bill_VIew.name = sharename;
+
+            sharecustomeraddress = new Sharedaddress();
+            Bill_VIew.address = sharecustomeraddress;
+
+            sharevehicletype = new Shared();
+            Bill_VIew.type = sharevehicletype;
+
+            sharevehiclenumber = new Shared();
+            Bill_VIew.number = sharevehiclenumber;
+
             conn = new DatabaseStringModel(); // conn
         }
 
@@ -165,7 +178,7 @@ namespace Saliya_auto_care_Cashier
                 try
                 {
                     connection.Open();
-                    string query = "SELECT CustomerName FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+                    string query = "SELECT CustomerName, CustomerAddress, VehicleType, VehicleNumber FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -176,11 +189,18 @@ namespace Saliya_auto_care_Cashier
                             if (reader.Read())
                             {
                                 string Name = reader.GetString("CustomerName");
+                                string CustomerAddress = reader.GetString("CustomerAddress");
+                                string VehicleType = reader.GetString("VehicleType");
+                                string VehicleNumber = reader.GetString("VehicleNumber");
                                 Cusname.Text = "Customer Found: " + Name;
                                 Notificationbox.ShowSuccess();
 
-                                // send the name
-                                SharedName.CustomerName = Name;
+                                // send the data
+                                sharename.CustomerName = Name;
+                                sharecustomeraddress.CustomerAddress = CustomerAddress;
+
+
+
                             }
                             else
                             {

@@ -53,18 +53,18 @@
                     <StackPanel Grid.Column="0" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Bill To :" FontSize="15" Margin="5" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding CustomerName}" FontSize="12" Margin="0,9,0,0"/>
+                            <TextBlock Text="{ Binding name.CustomerName}" FontSize="12" Margin="0,9,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Name="txtaddress" Text="Address" FontSize="12" Margin="50,0,0,0"/>
+                            <TextBlock Text="{Binding address.CustomerAddress}" FontSize="12" Margin="50,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Vehicle :" FontSize="15" Margin="5" />
-                            <TextBlock x:Name="txtvname" Text="Name" FontSize="12" Margin="0,9,0,0"/>
+                            <TextBlock Text="{Binding VehicleType}" FontSize="12" Margin="0,9,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Vehicle ID:" FontSize="15" Margin="5" />
-                            <TextBlock x:Name="txtvid" Text="Id" FontSize="12" Margin="0,9,0,0"/>
+                            <TextBlock Text="{Binding VehicleNumber}" FontSize="12" Margin="0,9,0,0"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10">

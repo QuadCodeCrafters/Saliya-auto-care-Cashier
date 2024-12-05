@@ -2,25 +2,59 @@
 using System.ComponentModel;
 using System.Windows.Controls;
 using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
     public partial class Bill_VIew : UserControl
     {
-        public static SharedName SharedDataInstance { get; set; }  // the shared name from the Dashboard
+        public static Shared name { get; set; }
+        public static Sharedaddress address { get; set; }
+        public static Shared type { get; set; }
+        public static Shared number { get; set; }
 
-        public class SharedName : INotifyPropertyChanged
+        // Class for Customer Name
+        public class Shared : INotifyPropertyChanged //for the name
         {
             private string customerName;
+
             public string CustomerName
             {
                 get => customerName;
                 set
                 {
-                    if (customerName != value)
+                    if (customerName != value)  // check if the name is not equal to the new value
                     {
                         customerName = value;
-                        OnPropertyChanged(nameof(CustomerName));
+                        OnPropertyChanged(nameof(CustomerName)); // Notify UI about the change
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        // Class for Customer Address
+        public class Sharedaddress : INotifyPropertyChanged //for the address
+        {
+            private string customerAddress;
+
+            public string CustomerAddress
+            {
+                get => customerAddress;
+                set
+                {
+                    if (customerAddress != value)  // check if the address is not equal to the new value
+                    {
+                        customerAddress = value;
+                        OnPropertyChanged(nameof(CustomerAddress)); // Notify UI about the change
+                        MessageBox.Show(CustomerAddress);
                     }
                 }
             }
@@ -38,9 +72,11 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public Bill_VIew()
         {
             InitializeComponent();
-            if (SharedDataInstance != null)
+
+            // Bind both CustomerName and CustomerAddress at the same time by setting the DataContext
+            if (name != null && address != null)
             {
-                DataContext = SharedDataInstance; // Bind to shared data
+                DataContext = this; // Bind to the current instance of Bill_VIew
             }
 
             dateTextBlock = FindName("date") as TextBlock;
