@@ -336,6 +336,11 @@
   <ItemGroup>
     <Resource Include="Images\success.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="MVC\View\LastInvoiceID.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Invoice\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

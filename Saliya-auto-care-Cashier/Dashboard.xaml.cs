@@ -16,8 +16,8 @@ namespace Saliya_auto_care_Cashier
     {
         private Shared sharename;
         private Sharedaddress sharecustomeraddress;
-        private Shared sharevehicletype;
-        private Shared sharevehiclenumber;
+        private Sharedtype sharevehicletype;
+        private Sharednumber sharevehiclenumber;
 
         private readonly DatabaseStringModel conn; //DatabaseStringModel
         public Dashboard()
@@ -30,10 +30,10 @@ namespace Saliya_auto_care_Cashier
             sharecustomeraddress = new Sharedaddress();
             Bill_VIew.address = sharecustomeraddress;
 
-            sharevehicletype = new Shared();
+            sharevehicletype = new Sharedtype();
             Bill_VIew.type = sharevehicletype;
 
-            sharevehiclenumber = new Shared();
+            sharevehiclenumber = new Sharednumber();
             Bill_VIew.number = sharevehiclenumber;
 
             conn = new DatabaseStringModel(); // conn
@@ -198,6 +198,8 @@ namespace Saliya_auto_care_Cashier
                                 // send the data
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
+                                sharevehicletype.VehicleType = VehicleType;
+                                sharevehiclenumber.VehicleNumber = VehicleNumber;
 
 
 
