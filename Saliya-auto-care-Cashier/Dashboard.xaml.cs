@@ -14,6 +14,9 @@ namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+
+        public Bill_VIew LoadedBillView { get; set; }
+
         private Shared sharename;
         private Sharedaddress sharecustomeraddress;
         private Sharedtype sharevehicletype;
@@ -100,6 +103,9 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
+                var billView = new Bill_VIew();
+                LoadedBillView = billView;
+                fContainer.Navigate(billView);
                 fContainer.Navigate(new System.Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)

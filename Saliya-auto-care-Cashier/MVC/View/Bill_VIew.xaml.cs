@@ -9,36 +9,25 @@ namespace Saliya_auto_care_Cashier.MVC.View
 {
     public partial class Bill_VIew : UserControl, INotifyPropertyChanged
     {
-        // Singleton instance for Bill_VIew
-        private static Bill_VIew instance;
-        public static Bill_VIew Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new Bill_VIew();
-                return instance;
-            }
-        }
+        private static readonly string InvoiceFilePath = "LastInvoiceID.txt";
 
-        public static Shared name { get; set; }
+        public static Shared name { get; set; } = new Shared();
         public static Sharedaddress address { get; set; }
         public static Sharedtype type { get; set; }
         public static Sharednumber number { get; set; }
 
-        private static string InvoiceFilePath = "LastInvoiceID.txt"; // Path to store last invoice number
-        private static int currentInvoiceNumber = 1; // Default invoice number
+        private string invoiceNo;
 
-        // Bind this property to the TextBlock in XAML
         public string InvoiceNo
         {
-            get { return $"SA{currentInvoiceNumber:000}"; }
+            get => invoiceNo;
             set
             {
-                // Increment the invoice number when set explicitly
-                currentInvoiceNumber++;
-                OnPropertyChanged(nameof(InvoiceNo));
-                SaveInvoiceNumber();
+                if (invoiceNo != value)
+                {
+                    invoiceNo = value;
+                    OnPropertyChanged(nameof(InvoiceNo));
+                }
             }
         }
 
@@ -50,7 +39,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         // Class for Customer Name
-        public class Shared : INotifyPropertyChanged //for the name
+        public class Shared : INotifyPropertyChanged
         {
             private string customerName;
 
@@ -59,13 +48,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 get => customerName;
                 set
                 {
-                    if (customerName != value)  // Check if the name is different
+                    if (customerName != value)
                     {
                         customerName = value;
-                        OnPropertyChanged(nameof(CustomerName)); // Notify UI about the change
-
-                        // Increment the InvoiceNo instantly when CustomerName changes
-                        Bill_VIew.Instance.InvoiceNo = Bill_VIew.Instance.InvoiceNo; // This triggers real-time update
+                        OnPropertyChanged(nameof(CustomerName));
                     }
                 }
             }
@@ -79,7 +65,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         // Class for Customer Address
-        public class Sharedaddress : INotifyPropertyChanged //for the address
+        public class Sharedaddress : INotifyPropertyChanged
         {
             private string customerAddress;
 
@@ -88,10 +74,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 get => customerAddress;
                 set
                 {
-                    if (customerAddress != value)  // Check if the address is different
+                    if (customerAddress != value)
                     {
                         customerAddress = value;
-                        OnPropertyChanged(nameof(CustomerAddress)); // Notify UI about the change
+                        OnPropertyChanged(nameof(CustomerAddress));
                     }
                 }
             }
@@ -105,7 +91,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         // Class for Vehicle Type
-        public class Sharedtype : INotifyPropertyChanged //for the address
+        public class Sharedtype : INotifyPropertyChanged
         {
             private string vehicleType;
 
@@ -114,10 +100,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 get => vehicleType;
                 set
                 {
-                    if (vehicleType != value)  // Check if the address is different
+                    if (vehicleType != value)
                     {
                         vehicleType = value;
-                        OnPropertyChanged(nameof(VehicleType)); // Notify UI about the change
+                        OnPropertyChanged(nameof(VehicleType));
                     }
                 }
             }
@@ -131,7 +117,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         // Class for Vehicle Number
-        public class Sharednumber : INotifyPropertyChanged //for the address
+        public class Sharednumber : INotifyPropertyChanged
         {
             private string vehicleNumber;
 
@@ -140,10 +126,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 get => vehicleNumber;
                 set
                 {
-                    if (vehicleNumber != value)  // Check if the address is different
+                    if (vehicleNumber != value)
                     {
                         vehicleNumber = value;
-                        OnPropertyChanged(nameof(VehicleNumber)); // Notify UI about the change
+                        OnPropertyChanged(nameof(VehicleNumber));
                     }
                 }
             }
@@ -161,11 +147,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public Bill_VIew()
         {
             InitializeComponent();
-            LoadLastInvoiceNumber();
 
             if (name != null && address != null && number != null && type != null)
             {
-                DataContext = this; // Bind to the current in the bill view
+                DataContext = this;
             }
 
             dateTextBlock = FindName("date") as TextBlock;
@@ -175,37 +160,80 @@ namespace Saliya_auto_care_Cashier.MVC.View
             {
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             }
+
+            // Read the last invoice number from the file
+            InvoiceNo = LoadLastInvoiceID();
+
+            // Subscribe to CustomerName changes
+            name.PropertyChanged += Name_PropertyChanged;
+
         }
 
-        private static void SaveInvoiceNumber()
+        private void Name_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Shared.CustomerName) && !string.IsNullOrWhiteSpace(name.CustomerName))
+            {
+                // Increment and update InvoiceNo
+                InvoiceNo = GenerateNextInvoiceNo(InvoiceNo);
+
+                // Save the updated InvoiceNo to the file
+                SaveLastInvoiceID(InvoiceNo);
+            }
+        }
+
+        private string LoadLastInvoiceID()
         {
             try
             {
-                File.WriteAllText(InvoiceFilePath, currentInvoiceNumber.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to save invoice number: {ex.Message}");
-            }
-        }
-
-        private static void LoadLastInvoiceNumber()
-        {
-            try
-            {
-                if (File.Exists(InvoiceFilePath))
+                // Ensure the file exists
+                if (!File.Exists(InvoiceFilePath))
                 {
-                    var lastInvoiceStr = File.ReadAllText(InvoiceFilePath);
-                    if (int.TryParse(lastInvoiceStr, out int lastInvoice))
-                    {
-                        currentInvoiceNumber = lastInvoice;
-                    }
+                    File.WriteAllText(InvoiceFilePath, "SA000");
+                }
+
+                // Read the last invoice number
+                var lastInvoice = File.ReadAllText(InvoiceFilePath).Trim();
+
+                // Validate the structure of the invoice number
+                if (!string.IsNullOrEmpty(lastInvoice) && lastInvoice.StartsWith("SA") && int.TryParse(lastInvoice.Substring(2), out _))
+                {
+                    return lastInvoice;
+                }
+                else
+                {
+                    // Default value if the file is invalid
+                    return "SA000";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to load last invoice number: {ex.Message}");
+                // Log or handle file read exceptions
+                MessageBox.Show($"Error reading last invoice ID: {ex.Message}");
+                return "SA000";
             }
+        }
+
+        private void SaveLastInvoiceID(string invoiceNo)
+        {
+            try
+            {
+                File.WriteAllText(InvoiceFilePath, invoiceNo);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle file write exceptions
+                MessageBox.Show($"Error saving last invoice ID: {ex.Message}");
+            }
+        }
+
+        private string GenerateNextInvoiceNo(string currentInvoiceNo)
+        {
+            // Extract the numeric part of the invoice number
+            int currentNumber = int.Parse(currentInvoiceNo.Substring(2));
+            int nextNumber = currentNumber + 1;
+
+            // Generate the next invoice number with leading zeros
+            return $"SA{nextNumber:D3}";
         }
 
         public void UpdateDescriptions(List<string> descriptions)
@@ -222,25 +250,31 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     quantityListView.Items.Add(new
                     {
-                        Quantity = 100,  // Default value, update as needed
+                        Quantity = 100,
                     });
 
                     priceListView.Items.Add(new
                     {
-                        Price = 10000.00,  // Default value, update as needed
+                        Price = 10000.00,
                     });
 
                     taxListView.Items.Add(new
                     {
-                        Tax = 100,    // Default value, update as needed
+                        Tax = 100,
                     });
 
                     amountListView.Items.Add(new
                     {
-                        Amount = 78770.00  // Default value, update as needed
+                        Amount = 78770.00,
                     });
                 }
             }
         }
+
+        public void Buttonclear_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerName.Text = string.Empty;
+        }
+
     }
 }

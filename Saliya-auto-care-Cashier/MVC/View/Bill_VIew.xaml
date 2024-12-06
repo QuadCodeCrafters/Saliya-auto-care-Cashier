@@ -6,7 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d"
-             Background="White">
+             Background="White"
+             x:Name="BillViewControl">
     <UserControl.Resources>
         <!-- Resources of SCROLLBARS-->
         <ResourceDictionary>
@@ -53,7 +54,7 @@
                     <StackPanel Grid.Column="0" Margin="10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Bill To :" FontSize="15" Margin="5" FontWeight="Bold"/>
-                            <TextBlock Name="CustomerNameBlock" Text="{ Binding name.CustomerName, Mode=TwoWay}" FontSize="12" Margin="0,9,0,0" />
+                            <TextBlock x:Name="CustomerName" Text="{ Binding name.CustomerName, Mode=TwoWay}" FontSize="12" Margin="0,9,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding address.CustomerAddress}" FontSize="12" Margin="60,0,0,0"/>
@@ -283,6 +284,9 @@
                                  Text=" * Refunds will follow the original payment method."/>
                             <TextBlock 
                                  Text="*** (C) Saliya Auto Care ***" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="12.5"/>
+                            <Button Width="30" Foreground="White" Click="Buttonclear_Click" Margin="0,10,0,0">
+                                HI
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </Grid>
