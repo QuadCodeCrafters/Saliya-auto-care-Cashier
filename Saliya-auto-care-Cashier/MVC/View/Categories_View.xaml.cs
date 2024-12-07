@@ -83,6 +83,16 @@ namespace Saliya_auto_care_Cashier.MVC.View
             List<string> selectedCategories = selectedButtons.ConvertAll(b => b.Content.ToString());
             CategoriesSelected?.Invoke(this, selectedCategories);
         }
+
+
+        public void ClearSelections(object sender, RoutedEventArgs e)
+        {
+            foreach (var button in selectedButtons)
+            {
+                button.Tag = "Unselected";
+            }
+            selectedButtons.Clear();
+        }
     }
 }
 

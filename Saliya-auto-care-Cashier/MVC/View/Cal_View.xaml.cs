@@ -99,14 +99,18 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             Display.Text = string.Empty;
 
-            // Access Dashboard reference
             var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+
             if (dashboardWindow?.LoadedBillView != null)
             {
-                dashboardWindow.LoadedBillView.Buttonclear_Click(sender, e);
+                dashboardWindow.LoadedBillView?.Buttonclear_Click(sender, e);
+            }
+
+            if (dashboardWindow?.LoadedCategoriesView != null)
+            {
+                dashboardWindow.LoadedCategoriesView.ClearSelections(sender, e);
             }
         }
-
 
     }
 }

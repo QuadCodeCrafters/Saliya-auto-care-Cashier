@@ -3,11 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
     <Grid>
-        <Border Background="#baafe3" Grid.Row="0" CornerRadius="10" >
-            <TextBlock Text="Welcome to the Delivary Service View!" FontSize="24"  Margin="20" />
+        <Border Background="#baafe3" CornerRadius="10" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Carrier Service Requests" FontSize="24" FontWeight="Bold" Margin="0 0 0 20"/>
+
+                <DataGrid x:Name="ServiceRequestsDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                          materialDesign:DataGridAssist.CellPadding="13"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="13">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding serviceID}"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding FullName}"/>
+                        <DataGridTextColumn Header="Phone" Binding="{Binding phone}"/>
+                        <DataGridTextColumn Header="Vehicle" Binding="{Binding vehiclePlateNumber}"/>
+                        <DataGridTextColumn Header="Problem" Binding="{Binding problem}"/>
+                        <DataGridTextColumn Header="Latitude" Binding="{Binding Latitude}"/>
+                        <DataGridTextColumn Header="Longitude" Binding="{Binding Longitude}"/>
+                        <DataGridTextColumn Header="Distance (km)" Binding="{Binding Distance, StringFormat=N2}"/>
+                        <DataGridTextColumn Header="Total Bill" Binding="{Binding TotalBill, StringFormat=C}"/>
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Approve" Margin="0 0 5 0" Click="ApproveButton_Click"/>
+                                        <Button Content="Reject" Click="RejectButton_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
+                    <Button Content="Refresh" Click="RefreshButton_Click" Margin="0 0 10 0"/>
+                    <Button Content="View Details" Click="ViewDetailsButton_Click"/>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

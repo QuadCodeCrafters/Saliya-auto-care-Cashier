@@ -23,6 +23,11 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public SpareParts_View()
         {
             InitializeComponent();
+            Loadviews();
+        }
+
+        private void Loadviews()
+        {
             try
             {
                 CalContainer.Navigate(new System.Uri("MVC/View/Cal_View.xaml", UriKind.RelativeOrAbsolute));

@@ -57,15 +57,15 @@
                             <TextBlock x:Name="CustomerName" Text="{ Binding name.CustomerName, Mode=TwoWay}" FontSize="12" Margin="0,9,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding address.CustomerAddress}" FontSize="12" Margin="60,0,0,0"/>
+                            <TextBlock x:Name="Customeraddress" Text="{Binding address.CustomerAddress , Mode=TwoWay}" FontSize="12" Margin="60,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Vehicle :" FontSize="15" Margin="5" />
-                            <TextBlock Text="{Binding type.VehicleType}" FontSize="12" Margin="0,9,0,0"/>
+                            <TextBlock x:Name="Customervehicletype" Text="{Binding type.VehicleType , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Vehicle ID:" FontSize="15" Margin="5" />
-                            <TextBlock Text="{Binding number.VehicleNumber}" FontSize="12" Margin="0,9,0,0"/>
+                            <TextBlock x:Name="Customervehiclenumber"  Text="{Binding number.VehicleNumber , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10">
@@ -284,9 +284,10 @@
                                  Text=" * Refunds will follow the original payment method."/>
                             <TextBlock 
                                  Text="*** (C) Saliya Auto Care ***" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="12.5"/>
-                            <Button Width="30" Foreground="White" Click="Buttonclear_Click" Margin="0,10,0,0">
-                                HI
-                            </Button>
+
+                            <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
+                            <Button Width="30" Click="Buttonclear_Click" Visibility="Collapsed"/>
+                            
                         </StackPanel>
                     </Grid>
                 </Grid>

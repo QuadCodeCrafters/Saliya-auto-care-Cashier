@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Saliya_auto_care_Cashier.Notifications;
 using Saliya_auto_care_Cashier.MVC.View;
 using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
+using static Saliya_auto_care_Cashier.MVC.View.Categories_View;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -16,6 +17,9 @@ namespace Saliya_auto_care_Cashier
     {
 
         public Bill_VIew LoadedBillView { get; set; }
+        public Categories_View LoadedCategoriesView { get; set; }
+
+
 
         private Shared sharename;
         private Sharedaddress sharecustomeraddress;
@@ -105,14 +109,26 @@ namespace Saliya_auto_care_Cashier
             {
                 var billView = new Bill_VIew();
                 LoadedBillView = billView;
-                fContainer.Navigate(billView);
+
+
+                var categoriesView = new Categories_View();
+                LoadedCategoriesView = categoriesView;
+
+
+                fContainer.Navigate(categoriesView);
+
+
                 fContainer.Navigate(new System.Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
+
+                // MessageBox.Show($"LoadedBillView: {LoadedBillView != null}, LoadedCategoriesView: {LoadedCategoriesView != null}"); // Debugging
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
         }
+
+
 
         private void btn_Vehicle_Services(object sender, RoutedEventArgs e)
         {
