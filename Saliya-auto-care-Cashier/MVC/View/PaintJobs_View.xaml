@@ -4,14 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
+             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View" xmlns:local1="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="#E6E6E6"
                              Margin="-1"
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            
             <Grid>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2.6*" />
                     <ColumnDefinition Width="4*" />
@@ -34,6 +36,7 @@
                     <Border Grid.Row="0" Margin="8" CornerRadius="10" BorderThickness="1">
                         <Frame Name="BillContainer"/>
                     </Border>
+                    
                 </Grid>
                 
                 <Grid Grid.Column="1" Grid.Row="1">

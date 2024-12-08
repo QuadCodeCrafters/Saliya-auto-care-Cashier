@@ -16,8 +16,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-        <Grid x:Name="Invoice">
+    <Grid x:Name="Invoice">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+          <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -32,11 +33,11 @@
                         <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Margin="20,0,0,0">
+                    <Grid Grid.Column="0" Margin="10,0,0,0" Width="73">
                         <Image Source="/Images/saliyalogo.png"/>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <StackPanel Margin="-70,35,0,30">
+                        <StackPanel Margin="-100,35,0,30">
                             <TextBlock Text="SALIYA MOTORS" FontSize="21" HorizontalAlignment="Center" FontWeight="Bold"/>
                             <TextBlock Text="1/300,KANDY ROAD,MILLAWA,KURUNAGALA" FontSize="13" HorizontalAlignment="Center"/>
                             <TextBlock Text="Phone:037-2222093 | Email: saliyamotors@gmail.com" FontSize="13" HorizontalAlignment="Center"/>
@@ -287,11 +288,13 @@
 
                             <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
                             <Button Width="30" Click="Buttonclear_Click" Visibility="Collapsed"/>
-                            
+                            <Button Width="30" Click="Buttonprint_Click" Margin="0,10,0,0" />
+
                         </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-    </ScrollViewer>
+            </Grid>
+        </ScrollViewer>
+   </Grid>
 </UserControl>

@@ -44,6 +44,7 @@ namespace Saliya_auto_care_Cashier
             Bill_VIew.number = sharevehiclenumber;
 
             conn = new DatabaseStringModel(); // conn
+
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)

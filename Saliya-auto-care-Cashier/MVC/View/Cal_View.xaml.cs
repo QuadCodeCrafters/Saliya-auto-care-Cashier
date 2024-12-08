@@ -21,6 +21,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
     /// </summary>
     public partial class Cal_View : UserControl
     {
+
         public Cal_View()
         {
             InitializeComponent();
@@ -112,5 +113,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
+        private void Buttonmainprint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

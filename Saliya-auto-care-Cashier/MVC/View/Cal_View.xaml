@@ -126,7 +126,7 @@
 
         <Button Content="Cash" Grid.Row="0" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
         <Button Content="Refund" Grid.Row="1" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
-        <Button Content="Print" Grid.Row="2" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+            <Button Content="Print" Grid.Row="2" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="Buttonmainprint_Click" Command="{Binding Path=MyCommand, ElementName=Bill_VIew}"/>
         <Button Content="Clear" Grid.Row="3" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="ButtonClear_Click"/>
          
      </Grid>

@@ -164,11 +164,17 @@ namespace Saliya_auto_care_Cashier.MVVM.View
     {
         private readonly Action executes;
         private readonly Func<bool> canExecutes;
+        private Action<object, RoutedEventArgs> buttonprint_Click;
 
         public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
             executes = execute;
             canExecutes = canExecute;
+        }
+
+        public RelayCommand(Action<object, RoutedEventArgs> buttonprint_Click)
+        {
+            this.buttonprint_Click = buttonprint_Click;
         }
 
         public bool CanExecute(object parameter) => canExecutes == null || canExecutes();

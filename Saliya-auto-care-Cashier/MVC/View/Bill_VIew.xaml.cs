@@ -3,12 +3,18 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System;
 using System.Windows;
+using System.Windows.Media;
 using System.IO;
+using System.Windows.Input;
+using Saliya_auto_care_Cashier.MVVM.View;
+using System.Data.Common;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
+
     public partial class Bill_VIew : UserControl, INotifyPropertyChanged
     {
+        public ICommand MyCommand { get; private set; }
         private static readonly string InvoiceFilePath = "LastInvoiceID.txt";
 
         public static Shared name { get; set; } = new Shared();
@@ -143,6 +149,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         private TextBlock dateTextBlock;
+   
 
         public Bill_VIew()
         {
@@ -166,6 +173,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             // Subscribe to CustomerName changes
             name.PropertyChanged += Name_PropertyChanged;
+
+            MyCommand = new RelayCommand(Buttonprint_Click);
 
         }
 
@@ -278,6 +287,68 @@ namespace Saliya_auto_care_Cashier.MVC.View
             Customervehicletype.Text = string.Empty;
             Customervehiclenumber.Text = string.Empty;
 
+        }
+
+        public void Buttonprint_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    // Create a copy of the UserControl for printing
+                    UserControl printContent = new UserControl();
+                    printContent.Content = this.Content;
+
+                    // Remove any ScrollViewer to ensure all content is visible
+                    RemoveScrollViewers(printContent);
+
+                    // Measure and arrange
+                    printContent.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    printContent.Arrange(new Rect(new Point(0, 0), printContent.DesiredSize));
+
+                    // Print the content
+                    printDialog.PrintVisual(printContent, "Invoice"); 
+                }
+
+                showagain();
+            }
+            finally
+            {
+                this.IsEnabled = true;
+            }
+        }
+
+        public void RemoveScrollViewers(DependencyObject parent)
+        {
+            for (int i = VisualTreeHelper.GetChildrenCount(parent) - 1; i >= 0; i--)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child is ScrollViewer)
+                {
+                    if (parent is Panel panel)
+                    {
+                        panel.Children.Remove(child as UIElement);
+                        panel.Children.Add((child as ScrollViewer).Content as UIElement);
+                    }
+                    else if (parent is ContentControl contentControl)
+                    {
+                        contentControl.Content = (child as ScrollViewer).Content;
+                    }
+                }
+                else
+                {
+                    RemoveScrollViewers(child);
+                }
+            }
+        }
+
+        public void showagain()
+        {
+            MessageBox.Show("Invoice Printed Successfully");
+            UserControl newUser = new Bill_VIew();
+            this.Content = newUser; 
         }
 
     }
