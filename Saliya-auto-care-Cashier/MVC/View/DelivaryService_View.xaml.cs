@@ -1,54 +1,80 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using System;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
     public partial class DelivaryService_View : UserControl
     {
-        private IHubProxy _hubProxy;
-        private HubConnection _connection;
-
         public DelivaryService_View()
         {
             InitializeComponent();
-           // InitializeSignalR();
+            OverviewButton_Click(OverviewButton,null);
+            //  InitializeMap();
+            OverviewButton.Background = Brushes.White;
+            MessageButton.Background = Brushes.Transparent;
+
+
         }
 
-        private void InitializeSignalR()
+        private void InitializeMap()
         {
-            _connection = new HubConnection("https://SaliyaSignalRService.azurewebsites.net");
-            _hubProxy = _connection.CreateHubProxy("MyHub");
+          /*  // Initialize map
+            MapControl.MapProvider = GMapProviders.OpenStreetMap;
+            MapControl.Position = new PointLatLng(7.2906, 80.6337); // Coordinates for Kandy, Sri Lanka
+            MapControl.MinZoom = 2;
+            MapControl.MaxZoom = 17;
+            MapControl.Zoom = 10;
+            MapControl.ShowCenter = false;
 
-            _hubProxy.On<string>("UpdateUI", (message) =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    // Update your UI here
-                    MessageBox.Show("Button Pressed on Web App: " + message);
-                });
-            });
+            // Enable map dragging
+            MapControl.DragButton = System.Windows.Input.MouseButton.Left;
+            MapControl.CanDragMap = true;
+          */
+        }
+        private void OverviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(OverviewButton);
 
-            _connection.Start().ContinueWith(task =>
+            try
             {
-                if (task.IsFaulted)
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        MessageBox.Show("There was an error opening the connection: " + task.Exception.GetBaseException());
-                    });
-                }
-                else
-                {
-                    Dispatcher.Invoke(() =>
-                    {
-                        MessageBox.Show("Connected to SignalR");
-                    });
-                }
-            });
+                Container.Navigate(new System.Uri("MVC/View/Overviews.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Overviews View: {ex.Message}");
+            }
         }
 
+        private void MessageButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(MessageButton);
+
+            try
+            {
+                Container.Navigate(new System.Uri("MVC/View/Newcarrier.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Newcarrier View: {ex.Message}");
+            }
+        }
+
+        private void SetSelectedButton(Button selectedButton)
+        {
+            // Reset all buttons
+            OverviewButton.Background = Brushes.Transparent;
+            MessageButton.Background = Brushes.Transparent;
+
+            // Set clicked button as selected
+            selectedButton.Background = Brushes.White;
+        }
 
     }
 }
+

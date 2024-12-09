@@ -113,7 +113,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        private void Buttonmainprint_Click(object sender, RoutedEventArgs e)
+        private void ButtonLock_Click(object sender, RoutedEventArgs e)
         {
 
         }

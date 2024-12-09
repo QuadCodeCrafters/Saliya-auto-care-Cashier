@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Saliya_auto_care_Cashier.MVC.View.Overviews"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!-- Resources of SCROLLBARS-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <materialDesign:Card UniformCornerRadius="12"
+                             Background="White"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Border Background="Pink" CornerRadius="15" Margin="20">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Border Background="LightGreen" CornerRadius="15" Margin="20">
+                            <Button Height="50">
+
+                            </Button>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

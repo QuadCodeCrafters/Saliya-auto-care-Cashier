@@ -16,285 +16,299 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid x:Name="Invoice">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-          <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Margin="10,0,0,0" Width="73">
-                        <Image Source="/Images/saliyalogo.png"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <StackPanel Margin="-100,35,0,30">
-                            <TextBlock Text="SALIYA MOTORS" FontSize="21" HorizontalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="1/300,KANDY ROAD,MILLAWA,KURUNAGALA" FontSize="13" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Phone:037-2222093 | Email: saliyamotors@gmail.com" FontSize="13" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5" Grid.Row="0" VerticalAlignment="Bottom"/>
-            <Grid Grid.Row="1">
-                <Grid HorizontalAlignment="Stretch" Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="10">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Bill To :" FontSize="15" Margin="5" FontWeight="Bold"/>
-                            <TextBlock x:Name="CustomerName" Text="{ Binding name.CustomerName, Mode=TwoWay}" FontSize="12" Margin="0,9,0,0" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Name="Customeraddress" Text="{Binding address.CustomerAddress , Mode=TwoWay}" FontSize="12" Margin="60,0,0,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Vehicle :" FontSize="15" Margin="5" />
-                            <TextBlock x:Name="Customervehicletype" Text="{Binding type.VehicleType , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Vehicle ID:" FontSize="15" Margin="5" />
-                            <TextBlock x:Name="Customervehiclenumber"  Text="{Binding number.VehicleNumber , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="10">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Invoice No: " FontSize="15" Margin="70,6,0,0" FontWeight="Bold"/>
-                            <TextBlock  Text="{Binding InvoiceNo}" FontSize="12" Margin="0,10,0,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Terminal ID : " FontSize="15" Margin="70,6,0,0" />
-                            <TextBlock Text="001" FontSize="12" Margin="0,10,0,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Date : " FontSize="15" Margin="70,3,0,0"/>
-                            <TextBlock x:Name="date"  FontSize="12" Margin="0,7,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
-            </Grid>
-            <Grid Grid.Row="2" IsSharedSizeScope="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.2*"/>
-                    <ColumnDefinition Width="0.55*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.63*"/>
-                    <ColumnDefinition Width="1.1*"/>
-                </Grid.ColumnDefinitions>
+  <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-                <ListView x:Name="descriptionListView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="Product" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-7,0,0,0" />
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/> <!-- sometimes need to be change wrap when the content goes up-->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <ListView x:Name="quantityListView" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="Qty" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Quantity}" HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <ListView x:Name="priceListView" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="Price" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Price, StringFormat=C}" HorizontalAlignment="Right"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <ListView x:Name="taxListView" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="TAX" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <ListView x:Name="amountListView" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="Amount" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5,0,0,0"/>
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Amount, StringFormat=C}" HorizontalAlignment="Right" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
-            <Grid Grid.Row="3">
-                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
-            </Grid>
-            <Grid Grid.Row="4" Margin="0,0,0,35">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0,15,0,10">
-                        <StackPanel Orientation="Horizontal" Grid.Column="0">
-                            <TextBlock Text="Subtotal :" FontSize="14"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14"  />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <StackPanel Orientation="Horizontal" Grid.Column="0">
-                            <TextBlock Text="Discount(10%) :" FontSize="14"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14"  />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                            <TextBlock Text="Shipping Cost :" FontSize="14"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14"  />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="3">
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                            <TextBlock Text="Sales Tax :" FontSize="14"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14"  />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="4">
-                        <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
-                        <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Top" Margin="0,7,25,0"/>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                            <TextBlock Text="Total :" FontSize="14" FontWeight="Bold"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14" FontWeight="Bold" />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="5">
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                            <TextBlock Text="Amount Paid:" FontSize="14"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14"  />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="6">
-                        <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                            <TextBlock Text="Balance Due:" FontSize="14" FontWeight="Bold"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                            <TextBlock Text="LKR 0.00" FontSize="14" FontWeight="Bold"  />
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="5">
-                <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5" Grid.Row="0" VerticalAlignment="Top"/>
+        <Grid x:Name="Invoice">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <StackPanel Margin="20,10,0,0">
-                            <TextBlock Text="Terms &amp; Conditions :" FontWeight="Bold" FontSize="12"/>
-                        </StackPanel>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Margin="10,0,0,0" Width="73">
+                                <Image Source="/Images/saliyalogo.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="-100,35,0,30">
+                                    <TextBlock Text="SALIYA MOTORS" FontSize="21" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock Text="1/300,KANDY ROAD,MILLAWA,KURUNAGALA" FontSize="13" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Phone:037-2222093 | Email: saliyamotors@gmail.com" FontSize="13" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Row="1" Margin="20,10,10,40">
-                        <StackPanel>
-                            <TextBlock 
+                    <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5" Grid.Row="0" VerticalAlignment="Bottom"/>
+                    <Grid Grid.Row="1">
+                        <Grid HorizontalAlignment="Stretch" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Bill To :" FontSize="15" Margin="5" FontWeight="Bold"/>
+                                    <TextBlock x:Name="CustomerName" Text="{ Binding name.CustomerName, Mode=TwoWay}" FontSize="12" Margin="0,9,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="Customeraddress" Text="{Binding address.CustomerAddress , Mode=TwoWay}" FontSize="12" Margin="60,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Vehicle :" FontSize="15" Margin="5" />
+                                    <TextBlock x:Name="Customervehicletype" Text="{Binding type.VehicleType , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Vehicle ID:" FontSize="15" Margin="5" />
+                                    <TextBlock x:Name="Customervehiclenumber"  Text="{Binding number.VehicleNumber , Mode=TwoWay}" FontSize="12" Margin="0,9,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Invoice No: " FontSize="15" Margin="70,6,0,0" FontWeight="Bold"/>
+                                    <TextBlock  Text="{Binding InvoiceNo}" FontSize="12" Margin="0,10,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Terminal ID : " FontSize="15" Margin="70,6,0,0" />
+                                    <TextBlock Text="001" FontSize="12" Margin="0,10,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Date : " FontSize="15" Margin="70,3,0,0"/>
+                                    <TextBlock x:Name="date"  FontSize="12" Margin="0,7,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
+                    </Grid>
+                    <Grid Grid.Row="2" IsSharedSizeScope="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.2*"/>
+                            <ColumnDefinition Width="0.55*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="0.63*"/>
+                            <ColumnDefinition Width="1.1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView x:Name="descriptionListView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto">
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Product" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-7,0,0,0" />
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                                <!-- sometimes need to be change wrap when the content goes up-->
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <ListView x:Name="quantityListView" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto">
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Qty" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Quantity}" HorizontalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <ListView x:Name="priceListView" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto">
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Price" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Price, StringFormat=C}" HorizontalAlignment="Right"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <ListView x:Name="taxListView" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto">
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="TAX" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-15,0,0,0"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <ListView x:Name="amountListView" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="Auto">
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Amount" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-5,0,0,0"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Amount, StringFormat=C}" HorizontalAlignment="Right" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,0,20,0"/>
+                    </Grid>
+                    <Grid Grid.Row="4" Margin="0,0,0,35">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,15,0,10">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <TextBlock Text="Subtotal :" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <TextBlock Text="Discount(10%) :" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Shipping Cost :" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Sales Tax :" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
+                                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Top" Margin="0,7,25,0"/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Total :" FontSize="14" FontWeight="Bold"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14" FontWeight="Bold" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="5">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Amount Paid:" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="6">
+                                <Rectangle Fill="Black" Height="1" Opacity="0.5" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Balance Due:" FontSize="14" FontWeight="Bold"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBlock Text="LKR 0.00" FontSize="14" FontWeight="Bold"  />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5" Grid.Row="0" VerticalAlignment="Top"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Margin="20,10,0,0">
+                                    <TextBlock Text="Terms &amp; Conditions :" FontWeight="Bold" FontSize="12"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1" Margin="20,10,10,40">
+                                <StackPanel>
+                                    <TextBlock 
                                  Text=" * All Spare and Electrical parts come with a 6-Month warranty."/>
-                            <TextBlock 
+                                    <TextBlock 
                                  Text=" * Refunds or exchanges are accepted within 14 days with a valid receipt."/>
-                            <TextBlock 
+                                    <TextBlock 
                                  Text=" * To Refund Items must be unused, in original packaging, and undamaged."/>
-                            <TextBlock 
+                                    <TextBlock 
                                  Text=" * Electrical parts, custom orders, and opened fluids are Non-refundable."/>
-                            <TextBlock 
+                                    <TextBlock 
                                  Text=" * Refunds will follow the original payment method."/>
-                            <TextBlock 
+                                    <TextBlock 
                                  Text="*** (C) Saliya Auto Care ***" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="12.5"/>
 
-                            <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
-                            <Button Width="30" Click="Buttonclear_Click" Visibility="Collapsed"/>
-                            <Button Width="30" Click="Buttonprint_Click" Margin="0,10,0,0" />
-
-                        </StackPanel>
+                                    <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
+                                    <Button Width="30" Click="Buttonclear_Click" Visibility="Collapsed"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-            </Grid>
-        </ScrollViewer>
+            </ScrollViewer>
+        </Grid>
+      
+        <Grid Grid.Row="1">
+            <Border Background="Beige">
+                <Button Width="30" Click="Buttonprint_Click" Margin="0,10,0,0" />
+            </Border>
+        </Grid>
+      
    </Grid>
+    
 </UserControl>

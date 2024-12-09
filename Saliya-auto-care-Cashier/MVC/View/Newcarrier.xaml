@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Saliya_auto_care_Cashier.MVC.View.Newcarrier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
+             mc:Ignorable="d">
+    <Grid>
+        <materialDesign:Card UniformCornerRadius="12"
+                             Background="White"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
