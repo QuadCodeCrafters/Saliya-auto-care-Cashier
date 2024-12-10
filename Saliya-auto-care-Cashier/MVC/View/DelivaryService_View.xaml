@@ -88,7 +88,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Border Margin="5,-2,5,8" BorderThickness="1">
+                    <Border Margin="5,-20,5,8" BorderThickness="1">
                         <Frame Name="Container"/> 
                     </Border>
                 </Grid>

@@ -15,27 +15,10 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             InitializeComponent();
             OverviewButton_Click(OverviewButton,null);
-            //  InitializeMap();
             OverviewButton.Background = Brushes.White;
             MessageButton.Background = Brushes.Transparent;
 
 
-        }
-
-        private void InitializeMap()
-        {
-          /*  // Initialize map
-            MapControl.MapProvider = GMapProviders.OpenStreetMap;
-            MapControl.Position = new PointLatLng(7.2906, 80.6337); // Coordinates for Kandy, Sri Lanka
-            MapControl.MinZoom = 2;
-            MapControl.MaxZoom = 17;
-            MapControl.Zoom = 10;
-            MapControl.ShowCenter = false;
-
-            // Enable map dragging
-            MapControl.DragButton = System.Windows.Input.MouseButton.Left;
-            MapControl.CanDragMap = true;
-          */
         }
         private void OverviewButton_Click(object sender, RoutedEventArgs e)
         {
