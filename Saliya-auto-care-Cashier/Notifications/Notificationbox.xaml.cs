@@ -133,6 +133,17 @@ namespace Saliya_auto_care_Cashier.Notifications
             success.Show();
         }
 
+        public static void ShowDelivery()
+        {
+            Notificationbox delivery = new Notificationbox(
+                "Success !!",
+                "Operation was completed successfully!",
+                "/Images/success.gif",
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+            );
+            delivery.Show();
+        }
+
     }
 }
 
