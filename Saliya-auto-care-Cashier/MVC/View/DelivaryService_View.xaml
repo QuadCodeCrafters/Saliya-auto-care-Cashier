@@ -4,10 +4,95 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
+             xmlns:gmap="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ToggleButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FAFAFA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Border Background="#baafe3" Grid.Row="0" CornerRadius="10" >
-            <TextBlock Text="Welcome to the Delivary Service View!" FontSize="24"  Margin="20" />
-        </Border>
+        <materialDesign:Card UniformCornerRadius="15" 
+                             Background="White"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.173*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                     <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="10" Background="LightGray" Margin="20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="OverviewButton" 
+                                            Width="135" 
+                                            Height="45" 
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Background="White"
+                                            Click="OverviewButton_Click"
+                                            Content="Overviews"/>
+
+                                    <Button x:Name="MessageButton"
+                                            Width="135" 
+                                            Height="45"
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Grid.Column="1"
+                                            Click="MessageButton_Click"
+                                            Content="Messages"/>
+                                </Grid>
+                            </Border>
+                     </Grid>
+
+                    <Grid Grid.Column="1">
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Margin="0,0,40,0" Background="#5c77d6" Style="{StaticResource ToggleButtonStyle}" Foreground="White"> 
+                                + Schedule Pickup
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Margin="5,-20,5,8" BorderThickness="1">
+                        <Frame Name="Container"/> 
+                    </Border>
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

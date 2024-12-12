@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Saliya_auto_care_Cashier.Animations;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
@@ -29,7 +30,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            if (txtvehiclenum.Text == "")
+            if (string.IsNullOrWhiteSpace(txtvehiclenum.Text))
             {
                 ErrorAnimation();
             }
@@ -50,16 +51,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             TranslateTransform translateTransform = new TranslateTransform();
             txtvehiclenum.RenderTransform = translateTransform;
 
-            DoubleAnimation animation = new DoubleAnimation
-            {
-                From = 0,
-                To = 10,
-                Duration = TimeSpan.FromMilliseconds(50),
-                AutoReverse = true,
-                RepeatBehavior = new RepeatBehavior(5) // Shake 5 times
-            };
-
-            translateTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation); //imported from ErrorAnimation.cs
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(3);
