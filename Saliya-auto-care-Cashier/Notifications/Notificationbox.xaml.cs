@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saliya_auto_care_Cashier.MVVM.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -133,14 +134,38 @@ namespace Saliya_auto_care_Cashier.Notifications
             success.Show();
         }
 
-        public static void ShowDelivery()
+        public static void carrierservice()
         {
             Notificationbox delivery = new Notificationbox(
-                "Success !!",
-                "Operation was completed successfully!",
-                "/Images/success.gif",
+                "",
+                "Carrier Service Requested !!",
+                "/Images/emergency.png",
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
             );
+
+            // The click event
+            delivery.MouseDown += (sender, e) =>
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    // go to the carrier service view
+                    if (Application.Current.MainWindow is Dashboard dashboard)
+                    {
+                        try
+                        {
+                            var deliveryServiceView = new DelivaryService_View();
+                            dashboard.fContainer.Navigate(new System.Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                            deliveryServiceView.MessageButton_Click(deliveryServiceView.OverviewButton, null);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error navigating to page: {ex.Message}");
+                        }
+                    }
+                    delivery.Close(); // Close the notification after navigating
+                }
+            };
+
             delivery.Show();
         }
 

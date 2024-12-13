@@ -22,6 +22,8 @@ namespace Saliya_auto_care_Cashier
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Dashboard DashboardInstance { get; internal set; }
+
         public MainWindow()
         {
             InitializeComponent();

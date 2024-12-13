@@ -34,7 +34,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
         }
 
-        private void MessageButton_Click(object sender, RoutedEventArgs e)
+        public void MessageButton_Click(object sender, RoutedEventArgs e)
         {
             SetSelectedButton(MessageButton);
 
