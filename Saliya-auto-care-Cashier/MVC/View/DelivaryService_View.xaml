@@ -41,7 +41,7 @@
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.173*"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
@@ -55,7 +55,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Border CornerRadius="10" Background="LightGray" Margin="20">
-                                <Grid>
+                                <Grid Margin="10,10,10,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
@@ -81,7 +81,7 @@
 
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <Button Margin="0,0,40,0" Background="#5c77d6" Style="{StaticResource ToggleButtonStyle}" Foreground="White"> 
+                            <Button Margin="0,0,40,0" Background="#5c77d6" Width="180" Height="45" Foreground="White" FontSize="17" FontWeight="Bold" Click="btn_pickupclick"> 
                                 + Schedule Pickup
                             </Button>
                         </StackPanel>
