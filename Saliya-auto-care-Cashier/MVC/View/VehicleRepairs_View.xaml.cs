@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saliya_auto_care_Cashier.MVC.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace Saliya_auto_care_Cashier.MVVM.View
     /// </summary>
     public partial class VehicleRepairs_View : UserControl
     {
+        private Bill_VIew billView;
         public VehicleRepairs_View()
         {
             InitializeComponent();
+            LoadViews();
+        }
+
+        private void LoadViews()
+        {
             try
             {
                 CalContainer.Navigate(new System.Uri("MVC/View/Cal_View.xaml", UriKind.RelativeOrAbsolute));
@@ -30,6 +37,16 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             catch (Exception ex)
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+
+            try
+            {
+                billView = new Bill_VIew();
+                BillContainer.Navigate(billView);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Bill View: {ex.Message}");
             }
         }
     }

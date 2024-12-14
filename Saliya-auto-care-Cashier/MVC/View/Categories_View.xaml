@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+
     <UserControl.Resources>
         <Style x:Key="Category" TargetType="Button">
             <Setter Property="Width" Value="100"/>
@@ -16,17 +17,20 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Border x:Name="MainBorder"
-                                    Background="{TemplateBinding Background}"
+                                    Background="{TemplateBinding Background }"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="3">
                                 <Grid>
+                                    
                                     <TextBlock Text="{TemplateBinding Content}"
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
                                     />
+                                    
+                                    
                                     <Path x:Name="Checkmark"
                                           Data="M0,9 L6,15 L18,0"
                                           Stroke="Green"
@@ -36,9 +40,13 @@
                                           VerticalAlignment="Top"
                                           Margin="0,3,5,0"
                                     />
+                                    
                                 </Grid>
+                                
                             </Border>
+                            
                         </Grid>
+                        
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#E5E5E5"/>
@@ -54,10 +62,18 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    
+
     <WrapPanel x:Name="buttonPanel" 
-               Orientation="Horizontal"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Top"
-               Margin="10"/>
+           Orientation="Horizontal"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Top"
+           Margin="10">
+
+        <Button Click="ClearSelections">
+            HI
+        </Button>
+    </WrapPanel>
+
+
+
 </UserControl>

@@ -84,13 +84,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Animations\ErrorAnimation.cs" />
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DB\DatabaseStringModel.cs" />
+    <Compile Include="Mails\SendEmail.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
-    <Compile Include="MVC\Model\DatabaseStringModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
@@ -108,6 +110,24 @@
     </Compile>
     <Compile Include="MVC\View\Inventory_View.xaml.cs">
       <DependentUpon>Inventory_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Loyalty\Paint.xaml.cs">
+      <DependentUpon>Paint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Loyalty\Repairs.xaml.cs">
+      <DependentUpon>Repairs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Loyalty\Services.xaml.cs">
+      <DependentUpon>Services.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Loyalty\SpareParts.xaml.cs">
+      <DependentUpon>SpareParts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Newcarrier.xaml.cs">
+      <DependentUpon>Newcarrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Overviews.xaml.cs">
+      <DependentUpon>Overviews.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\PaintJobs_View.xaml.cs">
       <DependentUpon>PaintJobs_View.xaml</DependentUpon>
@@ -181,6 +201,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVC\View\Loyalty\Paint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Loyalty\Repairs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Loyalty\Services.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Loyalty\SpareParts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Newcarrier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Overviews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\View\PaintJobs_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,11 +288,26 @@
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
+    <PackageReference Include="GMap.NET.WinPresentation">
+      <Version>2.1.7</Version>
+    </PackageReference>
+    <PackageReference Include="MailKit">
+      <Version>4.9.0</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignColors">
       <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
       <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client">
+      <Version>2.4.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
+      <Version>9.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Web.WebView2">
+      <Version>1.0.2903.40</Version>
     </PackageReference>
     <PackageReference Include="MySql.Data">
       <Version>9.1.0</Version>
@@ -328,6 +387,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\car-repair-maintenance-services-garage_981948-9673.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\POS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\success.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MVC\View\LastInvoiceID.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Invoice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\emergency.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

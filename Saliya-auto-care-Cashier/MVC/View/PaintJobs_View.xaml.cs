@@ -15,6 +15,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             InitializeComponent();
             LoadViews();
+
         }
 
         private void LoadViews()
