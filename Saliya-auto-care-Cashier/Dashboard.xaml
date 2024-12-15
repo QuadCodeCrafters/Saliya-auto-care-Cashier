@@ -98,37 +98,79 @@
                         </Grid>
                     </materialDesign:DialogHost.DialogContent>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Border Background="Blue" Grid.Row="0" Height="40">
-                        </Border>
-                        <Border Background="LightBlue" Grid.Row="1">
-                        </Border>
-                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="-200,0,0,0">
-                                <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
-                                    <Image.ToolTip>
-                                        <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                            <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                        </ToolTip>
-                                    </Image.ToolTip>
-                                </Image>
-                            </Button>
-                            <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                            <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
-                            <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
-                            <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
-                            <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
-                            <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
-                            <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
-                            <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/>
-                        </StackPanel>
-                        <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
-                            <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
-                        </Border>
+                        <!--Schrdule Pickup message box-->
+                        <materialDesign:DialogHost x:Name="SchedulePickupDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <materialDesign:DialogHost.DialogContent>
+                                <Grid Width="750" Height="475"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Border BorderBrush="LightBlue" BorderThickness="5,5,5,5" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,20,0,0">
+                                                <TextBlock Text="Schedule A Pickup" FontSize="18" Foreground="Black" FontWeight="Bold"/>
+                                            </StackPanel>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="txtcusname" 
+                                                     TextChanged="txtloyalid_TextChanged" 
+                                                     Width="390" 
+                                                     Height="60"
+                                                     FontSize="17.5" 
+                                                     materialDesign:HintAssist.Hint="Enter The Customer ID Number" 
+                                                     BorderThickness="2" 
+                                                     BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                        <TextBox.Triggers>
+                                                            <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                                <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                            </EventTrigger>
+                                                        </TextBox.Triggers>
+                                                    </TextBox>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </materialDesign:DialogHost.DialogContent>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border Background="Blue" Grid.Row="0" Height="40">
+                                </Border>
+                                <Border Background="LightBlue" Grid.Row="1">
+                                </Border>
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="-200,0,0,0">
+                                        <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
+                                            <Image.ToolTip>
+                                                <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                                    <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                                </ToolTip>
+                                            </Image.ToolTip>
+                                        </Image>
+                                    </Button>
+                                    <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
+                                    <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
+                                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
+                                    <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
+                                    <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
+                                    <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
+                                    <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
+                                    <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/>
+                                </StackPanel>
+                                <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
+                                    <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
+                                </Border>
+                            </Grid>
+                        </materialDesign:DialogHost>
                     </Grid>
                 </materialDesign:DialogHost>
             </Grid>

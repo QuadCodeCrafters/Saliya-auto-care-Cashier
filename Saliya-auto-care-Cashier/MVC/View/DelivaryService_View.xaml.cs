@@ -64,7 +64,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
             if (dashboardWindow != null)
             {
-                var dialogHost = dashboardWindow.FindName("MemberDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                var dialogHost = dashboardWindow.FindName("SchedulePickupDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
                 if (dialogHost != null)
                 {
                     dialogHost.IsOpen = true;  // Open the dialog

@@ -9,15 +9,9 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="TextStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="17"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="0,0,10,0"/>
-            </Style>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/InventoryStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

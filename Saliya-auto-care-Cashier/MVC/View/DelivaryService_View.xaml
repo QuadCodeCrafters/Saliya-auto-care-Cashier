@@ -54,8 +54,8 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Border CornerRadius="10" Background="LightGray" Margin="20">
-                                <Grid Margin="10,10,10,10">
+                            <Border CornerRadius="10" Background="LightGray" Margin="15,15,0,25">
+                                <Grid Margin="8,8,8,8">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
@@ -81,14 +81,14 @@
 
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                            <Button Margin="0,0,40,0" Background="#5c77d6" Width="180" Height="45" Foreground="White" FontSize="17" FontWeight="Bold" Click="btn_pickupclick"> 
+                            <Button Margin="0,-15,40,0" Background="#5c77d6" Width="180" Height="45" Foreground="White" FontSize="17" FontWeight="Bold" Click="btn_pickupclick"> 
                                 + Schedule Pickup
                             </Button>
                         </StackPanel>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Border Margin="5,-20,5,8" BorderThickness="1">
+                    <Border Margin="5,-25,5,-5" BorderThickness="1">
                         <Frame Name="Container"/> 
                     </Border>
                 </Grid>

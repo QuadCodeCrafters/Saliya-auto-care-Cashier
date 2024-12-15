@@ -4,32 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              PreviewKeyDown="UserControl_PreviewKeyDown">
-    <!-- capture and process keyboard from above PreviewKeyDown-->
-
+    <!-- Resources of cal-->
     <UserControl.Resources>
-        <Style x:Key="Number" TargetType="Button">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#CCCCCC"/>
-        </Style>
-        
-        <Style x:Key="Amount" TargetType="Button" BasedOn="{StaticResource Number}">
-            <Setter Property="Background" Value="#666666"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
-        
-        <Style x:Key="Action" TargetType="Button" BasedOn="{StaticResource Number}">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/CalStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
-   <Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.24*"/>
             <RowDefinition Height="*"/>
