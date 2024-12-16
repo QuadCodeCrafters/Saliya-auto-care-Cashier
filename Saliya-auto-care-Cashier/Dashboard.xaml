@@ -101,37 +101,103 @@
                         <!--Schrdule Pickup message box-->
                         <materialDesign:DialogHost x:Name="SchedulePickupDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                             <materialDesign:DialogHost.DialogContent>
-                                <Grid Width="750" Height="475"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Width="700" Height="400"  HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <Border BorderBrush="LightBlue" BorderThickness="5,5,5,5" >
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="200"/>
+                                                <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,20,0,0">
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,20,0,0">
                                                 <TextBlock Text="Schedule A Pickup" FontSize="18" Foreground="Black" FontWeight="Bold"/>
                                             </StackPanel>
-                                            <Grid Grid.Row="1">
+                                            <Button Margin="0,20,40,0" Background="#509ea3" Width="160" Height="38" Foreground="White" FontSize="15" FontWeight="Bold" Click="btn_availability" HorizontalAlignment="Right">
+                                                Check Availability
+                                            </Button>
+                                                <Grid Grid.Row="1" Margin="0,0,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBox x:Name="txtcusname" 
-                                                     TextChanged="txtloyalid_TextChanged" 
-                                                     Width="390" 
-                                                     Height="60"
-                                                     FontSize="17.5" 
-                                                     materialDesign:HintAssist.Hint="Enter The Customer ID Number" 
-                                                     BorderThickness="2" 
-                                                     BorderBrush="{DynamicResource MaterialDesignDivider}" 
-                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                                                        <TextBox.Triggers>
-                                                            <EventTrigger RoutedEvent="TextBox.GotFocus">
-                                                                <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
-                                                            </EventTrigger>
-                                                        </TextBox.Triggers>
-                                                    </TextBox>
+                                                         Margin="0,-35,0,0"
+                                                         Width="300" 
+                                                         Height="60"
+                                                         FontSize="17.5" 
+                                                         materialDesign:HintAssist.Hint="Enter The Customer Name" 
+                                                         BorderThickness="2" 
+                                                         BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                         Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                            <TextBox.Triggers>
+                                                                <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                                    <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                                </EventTrigger>
+                                                            </TextBox.Triggers>
+                                                </TextBox>
+
+                                                <TextBox Grid.Column="1"
+                                                         x:Name="txtcusmobile" 
+                                                         Margin="0,-35,0,0"
+                                                         Width="300" 
+                                                         Height="60"
+                                                         FontSize="17.5" 
+                                                         materialDesign:HintAssist.Hint="Enter The Mobile Number" 
+                                                         BorderThickness="2" 
+                                                         BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                         Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                    <TextBox.Triggers>
+                                                        <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                        </EventTrigger>
+                                                    </TextBox.Triggers>
+                                                </TextBox>
+                                                <ComboBox VerticalAlignment="Bottom"
+                                                          x:Name="cmbdrivername" 
+                                                          Margin="0,0,0,-10"
+                                                          Width="300" 
+                                                          Height="60"
+                                                          FontSize="17.5" 
+                                                          materialDesign:HintAssist.Hint="Select A Driver" 
+                                                          BorderThickness="2" 
+                                                          BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                          Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                    <ComboBox.Triggers>
+                                                        <EventTrigger RoutedEvent="ComboBox.GotFocus">
+                                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                        </EventTrigger>
+                                                    </ComboBox.Triggers>
+                                                </ComboBox>
+
+                                                <ComboBox VerticalAlignment="Bottom" Grid.Column="1"
+                                                          x:Name="cmbcarriername" 
+                                                          Width="300" 
+                                                          Margin="0,0,0,-10"
+                                                          Height="60"
+                                                          FontSize="17.5" 
+                                                          materialDesign:HintAssist.Hint="Select A Carrier" 
+                                                          BorderThickness="2" 
+                                                          BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                          Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                    <ComboBox.Triggers>
+                                                        <EventTrigger RoutedEvent="ComboBox.GotFocus">
+                                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                        </EventTrigger>
+                                                    </ComboBox.Triggers>
+                                                </ComboBox>
+
+                                            </Grid>
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Button Foreground="{DynamicResource MaterialDesignBody}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,0,-50,0" FontWeight="Bold" FontSize="17" Width="120" Height="40" Click="ButtonSchedule_click">
+                                                    Schedule
+                                                </Button>
+                                                <Button Grid.Column="1" Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" FontWeight="Bold" FontSize="17" Margin="-100,0,0,0" Height="40" Width="100" Click="goback">
+                                                    Go Back
+                                                </Button>
                                             </Grid>
                                         </Grid>
                                     </Border>
