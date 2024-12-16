@@ -10,12 +10,13 @@ using Saliya_auto_care_Cashier.Notifications;
 using Saliya_auto_care_Cashier.MVC.View;
 using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
 using static Saliya_auto_care_Cashier.MVC.View.Categories_View;
+using System.Collections.Generic;
 
 namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
-
+        private List<Control> requiredFields;
         public Bill_VIew LoadedBillView { get; set; }
         public Categories_View LoadedCategoriesView { get; set; }
 
@@ -30,6 +31,7 @@ namespace Saliya_auto_care_Cashier
         public Dashboard()
         {
             InitializeComponent();
+            RequiredFields();
 
             sharename = new Shared();
             Bill_VIew.name = sharename;
@@ -255,7 +257,7 @@ namespace Saliya_auto_care_Cashier
 
         private void txtloyalid_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IDError.Text = ""; // Clear the error message TextChanged property on xaml
+            IDError.Text = ""; // Clear the error message  
         }
 
         private void ErrorAnimation()
@@ -279,5 +281,160 @@ namespace Saliya_auto_care_Cashier
             timer.Start();
         }
 
+        private void ErrorAppearance(Control control)
+        {
+            control.BorderBrush = Brushes.Red;
+            control.Foreground = new SolidColorBrush(Colors.Red);
+        }
+
+        private void ShakeControl(Control control)
+        {
+            TranslateTransform translateTransform = new TranslateTransform();
+            control.RenderTransform = translateTransform;
+
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation); //imported from ErrorAnimation.cs
+        }
+
+        private void ShowError()
+        {
+            foreach (var field in requiredFields)
+            {
+                bool hasError = (field is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text)) ||
+                                (field is ComboBox comboBox && comboBox.SelectedItem == null);
+
+                if (hasError)
+                {
+                    ErrorAppearance(field);
+                    ShakeControl(field);
+                }
+            }
+
+            DispatcherTimer timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(3)
+            };
+            timer.Tick += (s, e) =>
+            {
+                foreach (var field in requiredFields)
+                {
+                    DefaultAppearance(field);
+                }
+                timer.Stop();
+            };
+            timer.Start();
+        }
+
+        private void DefaultAppearance(Control control)
+        {
+            control.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD");
+            control.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6e6e6e"));
+        }
+
+        private bool IsAnyFieldEmpty()
+        {
+            foreach (var field in requiredFields)
+            {
+                if (field is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text) ||
+                    field is ComboBox comboBox && comboBox.SelectedItem == null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void RequiredFields()
+        {
+            requiredFields = new List<Control>
+            {
+               txtcusmobile,txtcusname ,cmbcarriername,cmbdrivername
+            };
+        }
+
+        private void ButtonSchedule_click(object sender, RoutedEventArgs e)
+        {
+            if (IsAnyFieldEmpty())
+            {
+                ShowError();
+            }
+
+            else
+            {
+                MessageBox.Show("Need to add the Sql");
+            }
+        }
+
+        private void goback(object sender, RoutedEventArgs e)
+        {
+            cmbcarriername.Text = "";
+            cmbdrivername.Text = "";
+            txtcusmobile.Text = "";
+            txtcusname.Text = "";
+        }
+
+
+        private void ComboBoxtext()
+        {
+            string connectionString = conn.ConnectionString;
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string driverQuery = "SELECT Name FROM Employee WHERE Position = 'Driver'";
+                    using (MySqlCommand cmd = new MySqlCommand(driverQuery, connection))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                cmbdrivername.Items.Add(reader["Name"].ToString());
+                            }
+                        }
+                    }
+
+
+                    string carrierQuery = "SELECT Model FROM CarrierVehicle"; // need to add the Available status
+                    using (MySqlCommand cmd = new MySqlCommand(carrierQuery, connection))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                cmbcarriername.Items.Add(reader["Model"].ToString());
+                            }
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+
+                finally
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                        if (connection.State == System.Data.ConnectionState.Closed)
+                        {
+                            //MessageBox.Show("The connection has been successfully closed.");  //for Debugging
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void btn_availability(object sender, RoutedEventArgs e)
+        {
+            ComboBoxtext();
+        }
     }
 }

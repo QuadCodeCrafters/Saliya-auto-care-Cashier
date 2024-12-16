@@ -95,16 +95,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             TranslateTransform translateTransform = new TranslateTransform();
             control.RenderTransform = translateTransform;
 
-            DoubleAnimation animation = new DoubleAnimation
-            {
-                From = 0,
-                To = 10,
-                Duration = TimeSpan.FromMilliseconds(50),
-                AutoReverse = true,
-                RepeatBehavior = new RepeatBehavior(5) // Shake 5 times
-            };
-
-            translateTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+            translateTransform.BeginAnimation(TranslateTransform.XProperty, Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation); //imported from ErrorAnimation.cs
         }
 
         private void ResetToDefaultAppearance(Control control)

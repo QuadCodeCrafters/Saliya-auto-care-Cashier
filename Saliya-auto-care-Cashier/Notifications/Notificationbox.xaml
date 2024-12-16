@@ -62,7 +62,7 @@
                 Duration="0:0:3" />
         </Storyboard>
     </Window.Resources>
-    <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="Border">
+    <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="Border" >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*" />

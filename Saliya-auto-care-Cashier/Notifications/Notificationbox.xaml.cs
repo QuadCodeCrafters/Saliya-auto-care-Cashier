@@ -143,7 +143,7 @@ namespace Saliya_auto_care_Cashier.Notifications
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
             );
 
-            // The click event
+            // For click
             delivery.MouseDown += (sender, e) =>
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
@@ -162,7 +162,7 @@ namespace Saliya_auto_care_Cashier.Notifications
                             MessageBox.Show($"Error navigating to page: {ex.Message}");
                         }
                     }
-                    delivery.Close(); // Close the notification after navigating
+                    delivery.Close(); // Close the notification 
                 }
             };
 
