@@ -21,6 +21,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
     /// </summary>
     public partial class Cal_View : UserControl
     {
+        private Dashboard _dashboard;
 
         public Cal_View()
         {
@@ -115,7 +116,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         private void ButtonLock_Click(object sender, RoutedEventArgs e)
         {
-
+            Notifications.Notificationbox.carrierservice();
         }
     }
 }
