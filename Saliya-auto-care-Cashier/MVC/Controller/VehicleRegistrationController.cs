@@ -1,5 +1,7 @@
-﻿using Saliya_auto_care_Cashier.MVC.Model;
+﻿using Saliya_auto_care_Cashier.Mails;
+using Saliya_auto_care_Cashier.MVC.Model;
 using Saliya_auto_care_Cashier.MVVM.View;
+using Saliya_auto_care_Cashier.Notifications;
 using System;
 using System.Windows;
 
@@ -32,15 +34,53 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
                 model.EmergencyContact = emergencyContact;
                 model.SpecialNotes = specialNotes;
 
+                // Register the vehicle
                 model.RegisterVehicle();
-                MessageBox.Show("Vehicle registered successfully!");
+                Notificationbox.ShowSuccess();
+
+                // Send registration email
+                RegisterMail();
 
                 // Clear all fields after successful registration
                 view.ClearAllFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        public async void RegisterMail()
+        {
+            try
+            {
+                EmailService emailService = new EmailService();
+                string registrationContent = emailService.GenerateRegistrationContent(model.CustomerName);
+
+                bool emailSent = await emailService.SendEmailAsync(
+                    model.CustomerEmail,
+                    model.CustomerName,
+                    "Welcome to Saliya Auto Care!",
+                    registrationContent
+                );
+
+                if (emailSent)
+                {
+                    MessageBox.Show("Registration email sent successfully!");
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"Failed to send registration email to {model.CustomerEmail}. Please check the email address or network connection.",
+                        "Email Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while sending the email: {ex.Message}");
             }
         }
     }
