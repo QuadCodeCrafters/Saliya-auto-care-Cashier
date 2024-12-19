@@ -2,12 +2,14 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using MySql.Data.MySqlClient;
+using WpfAnimatedGif;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -152,6 +154,25 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+
+        private void Click_refresh(object sender, RoutedEventArgs e)
+        {
+            // Set the AnimatedSource of the Image to the GIF file path
+            var gifPath = new Uri("pack://application:,,,/Images/Refresh.gif");
+            RefreshImage.SetValue(ImageBehavior.AnimatedSourceProperty, gifPath);
+
+            // Optionally stop the animation after some time
+            Task.Delay(2000).ContinueWith(_ =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    // Remove the source to stop the animation
+                    RefreshImage.ClearValue(ImageBehavior.AnimatedSourceProperty);
+                });
+            });
+        }
+
     }
     public class InventoryItem
     {
@@ -184,4 +205,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public event EventHandler CanExecuteChanged;
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+
+
 }

@@ -150,7 +150,7 @@ namespace Saliya_auto_care_Cashier.Mails
 
             if (!File.Exists(templatePath))
             {
-                throw new FileNotFoundException($"Email template not found: {templatePath}");
+                MessageBox.Show($"Email template not found: {templatePath}");
             }
 
             string htmlContent = File.ReadAllText(templatePath);

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
 
@@ -39,11 +40,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="-65" Width="500" Height="38" Grid.Row="0">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,30,0" Width="500" Height="38" Grid.Row="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="350"/>
+                                <ColumnDefinition Width="360"/>
                                 <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Border CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
                                 <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
@@ -82,7 +84,12 @@
                                 </TextBox>
                             </Border>
                             <Button Content="Clear" Width="70" Height="40" Margin="10,-5,0,0" 
-                              VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"  />
+                              VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"/>
+
+                            <Button Grid.Column="2" Height="60" Margin="0,-20,-30,-15" Background="Transparent" BorderBrush="Transparent" Click="Click_refresh">
+                                <Image  x:Name="RefreshImage" gif:ImageBehavior.AnimatedSource="/Images/Refresh.gif" Cursor="Hand" Width="80" Height="55">
+                                </Image>
+                            </Button>
                         </Grid>
                     </StackPanel>
                     
