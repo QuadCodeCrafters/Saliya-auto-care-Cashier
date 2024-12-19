@@ -55,7 +55,7 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
             try
             {
                 EmailService emailService = new EmailService();
-                string registrationContent = emailService.GenerateRegistrationContent(model.CustomerName);
+                string registrationContent = emailService.RegistrationContent(model.CustomerName);
 
                 bool emailSent = await emailService.SendEmailAsync(
                     model.CustomerEmail,
@@ -71,7 +71,7 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
                 else
                 {
                     MessageBox.Show(
-                        $"Failed to send registration email to {model.CustomerEmail}. Please check the email address or network connection.",
+                        $"Failed to send registration email to {model.CustomerEmail}. Please check your Email Address formating or Network Connection.",
                         "Email Error",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error

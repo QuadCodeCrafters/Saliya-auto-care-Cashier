@@ -426,5 +426,10 @@
   <ItemGroup>
     <Resource Include="Images\emergency.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmailTemplates\RegistrationTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

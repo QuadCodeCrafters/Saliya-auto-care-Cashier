@@ -2,6 +2,7 @@
 using Mailjet.Client.Resources;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,11 +23,12 @@ namespace Saliya_auto_care_Cashier.Mails
             apiSecret = GetCredential("SaliyaAutoCare/apiSecret", "API Secret");
             senderEmail = GetCredential("SaliyaAutoCare/Email", "Sender Email");
 
+            // for debugging
             MessageBox.Show($"API Key: {apiKey}\nAPI Secret: {apiSecret}\nSender Email: {senderEmail}", "Retrieved Credentials", MessageBoxButton.OK, MessageBoxImage.Information);
 
             if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiSecret) || string.IsNullOrEmpty(senderEmail))
             {
-                throw new Exception("Missing API credentials. Please check the Credential Manager settings.");
+                MessageBox.Show("Missing API credentials. Please check the Credential Manager settings.");
             }
         }
 
@@ -68,6 +70,9 @@ namespace Saliya_auto_care_Cashier.Mails
             }
         }
 
+        // I modified the GetCredential method because the keys had some strange chinese letters
+        // Windows Credential Manager using raw binary data with UTF-16 array and in here i converted  them in to  windows string values
+
         private string GetCredential(string target, string fieldName)
         {
             IntPtr credPointer;
@@ -80,12 +85,29 @@ namespace Saliya_auto_care_Cashier.Mails
                 return null;
             }
 
-            var credential = (CREDENTIAL)Marshal.PtrToStructure(credPointer, typeof(CREDENTIAL));
-            string password = Marshal.PtrToStringUni(credential.CredentialBlob);
-            CredFree(credPointer);
+            try
+            {
+                // Cast the pointer to the CREDENTIAL structure
+                var credential = (CREDENTIAL)Marshal.PtrToStructure(credPointer, typeof(CREDENTIAL));
 
-            MessageBox.Show($"Successfully retrieved {fieldName}: {password}");
-            return password;
+                // Decode the CredentialBlob to a string
+                if (credential.CredentialBlob != IntPtr.Zero && credential.CredentialBlobSize > 0)
+                {
+                    byte[] credentialBytes = new byte[credential.CredentialBlobSize];
+                    Marshal.Copy(credential.CredentialBlob, credentialBytes, 0, (int)credential.CredentialBlobSize);
+
+                    // Convert the byte array to a string (UTF-16 encoding for Windows strings)
+                    string decodedCredential = System.Text.Encoding.Unicode.GetString(credentialBytes);
+                    return decodedCredential;
+                }
+
+                return null;
+            }
+            finally
+            {
+                // Free the memory allocated for the credential
+                CredFree(credPointer);
+            }
         }
 
 
@@ -121,19 +143,27 @@ namespace Saliya_auto_care_Cashier.Mails
             public string UserName;
         }
 
-        public string GenerateRegistrationContent(string username)
+        //for the Registration mail
+        public string RegistrationContent(string username)
         {
-            return $@"
-            <html>
-            <body>
-                <h1>Welcome, {username}!</h1>
-                <p>Thank you for registering with Saliya Auto Care.</p>
-                <p>We’re excited to have you on board!</p>
-            </body>
-            </html>";
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplates", "RegistrationTemplate.html");
+
+            if (!File.Exists(templatePath))
+            {
+                throw new FileNotFoundException($"Email template not found: {templatePath}");
+            }
+
+            string htmlContent = File.ReadAllText(templatePath);
+
+            // The username from the registration model
+            htmlContent = htmlContent.Replace("{username}", username);
+            htmlContent = htmlContent.Replace("{year}", DateTime.Now.Year.ToString());
+
+            return htmlContent;
         }
 
-        public string GenerateBillContent(string customerName, string billDetails)
+        //for the bill mail
+        public string BillContent(string customerName, string billDetails)
         {
             return $@"
             <html>
