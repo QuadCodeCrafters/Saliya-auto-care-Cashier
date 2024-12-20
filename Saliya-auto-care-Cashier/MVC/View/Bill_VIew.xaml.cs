@@ -8,6 +8,7 @@ using System.IO;
 using System.Windows.Input;
 using Saliya_auto_care_Cashier.MVVM.View;
 using System.Data.Common;
+using Saliya_auto_care_Cashier.Notifications;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
@@ -309,10 +310,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     printContent.Arrange(new Rect(new Point(0, 0), printContent.DesiredSize));
 
                     // Print the content
-                    printDialog.PrintVisual(printContent, "Invoice"); 
-                }
+                    printDialog.PrintVisual(printContent, "Invoice");
 
-                showagain();
+                    ShowAgain();
+                }
+                else
+                {
+                    Notificationbox.ShowError();
+                }
             }
             finally
             {
@@ -344,9 +349,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        public void showagain()
+        public void ShowAgain()
         {
-            MessageBox.Show("Invoice Printed Successfully");
+            Notificationbox.ShowSuccess();
             UserControl newUser = new Bill_VIew();
             this.Content = newUser; 
         }
