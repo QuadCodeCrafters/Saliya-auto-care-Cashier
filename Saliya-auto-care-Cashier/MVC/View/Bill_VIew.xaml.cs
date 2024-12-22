@@ -281,13 +281,13 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        public void Buttonclear_Click(object sender, RoutedEventArgs e)
+        public void Billclear_Click(object sender, RoutedEventArgs e)
         {
             CustomerName.Text = string.Empty;
             Customeraddress.Text = string.Empty;
             Customervehicletype.Text = string.Empty;
             Customervehiclenumber.Text = string.Empty;
-
+            //descriptionListView.Items.Clear(); need to change
         }
 
         public void Buttonprint_Click(object sender, RoutedEventArgs e)

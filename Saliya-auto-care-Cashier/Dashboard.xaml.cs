@@ -106,7 +106,7 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
+      /*  private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace Saliya_auto_care_Cashier
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
-        }
+        }*/
 
         private void btn_Delivary_Service(object sender, RoutedEventArgs e)
         {
