@@ -106,7 +106,7 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
+      /*  private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace Saliya_auto_care_Cashier
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
-        }
+        }*/
 
         private void btn_Delivary_Service(object sender, RoutedEventArgs e)
         {
@@ -203,7 +203,20 @@ namespace Saliya_auto_care_Cashier
                 try
                 {
                     connection.Open();
-                    string query = "SELECT CustomerName, CustomerAddress, VehicleType, VehicleNumber FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+
+                    string query = @"SELECT 
+                                    vr.CustomerName, 
+                                    vr.CustomerAddress, 
+                                    vr.VehicleType, 
+                                    vr.VehicleNumber, 
+                                    csc.price, 
+                                    csc.tax,
+                                    csc.vehiclePlateNumber,
+                                    csc.billedStatus 
+                                    FROM vehicleregister vr
+                                    INNER JOIN carrierServiceCustomers csc ON vr.CustomerNIC = csc.NIC
+                                    WHERE vr.CustomerNIC = @CustomerNIC"
+                    ;
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -213,19 +226,50 @@ namespace Saliya_auto_care_Cashier
                         {
                             if (reader.Read())
                             {
+                                // Data from vehicleregister
                                 string Name = reader.GetString("CustomerName");
                                 string CustomerAddress = reader.GetString("CustomerAddress");
                                 string VehicleType = reader.GetString("VehicleType");
                                 string VehicleNumber = reader.GetString("VehicleNumber");
-                                Cusname.Text = "Customer Found: " + Name;
-                                Notificationbox.ShowSuccess();
 
-                                // send the data
+                                // Data from carrierServiceCustomers
+                                decimal Price = reader.GetDecimal("price");
+                                decimal Tax = reader.GetDecimal("tax");
+                                string BilledStatus = reader.GetString("billedStatus");
+                                string PlateNumber = reader.GetString("vehiclePlateNumber");
+
+                                // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
                                 sharevehicletype.VehicleType = VehicleType;
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
 
+
+
+                                // Check BilledStatus
+                                if (BilledStatus == "Billed")
+                                {
+                                    MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    return;
+                                }
+                                else
+                                {
+                                    // Display Price and Tax for Debugging
+                                    MessageBox.Show(
+                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber} ",
+                                        "Price and Tax Details",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information
+                                    );
+
+                                    Bill_VIew.sharedPrice.Price = (double)Price; // Update the price
+                                    Bill_VIew.sharedTax.Tax = (double)Tax;       // Update the tax
+                                    Bill_VIew.sharedProduct.Description = PlateNumber; // Update the plate number
+
+
+                                    Cusname.Text = "Customer Found: " + Name;
+                                    Notificationbox.ShowSuccess();
+                                }
 
 
                             }
@@ -254,6 +298,8 @@ namespace Saliya_auto_care_Cashier
                 }
             }
         }
+
+
 
         private void txtloyalid_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -360,14 +406,14 @@ namespace Saliya_auto_care_Cashier
 
             else
             {
-                MessageBox.Show("Need to add the Sql");
+                InsertData();
             }
         }
 
         private void goback(object sender, RoutedEventArgs e)
         {
-            cmbcarriername.Text = "";
-            cmbdrivername.Text = "";
+            cmbcarriername.Items.Clear();
+            cmbdrivername.Items.Clear();
             txtcusmobile.Text = "";
             txtcusname.Text = "";
         }
@@ -436,5 +482,69 @@ namespace Saliya_auto_care_Cashier
         {
             ComboBoxtext();
         }
+
+        public void InsertData()
+        {
+            string connectionString = conn.ConnectionString;
+
+            // Get the data 
+            string carrierName = cmbcarriername.SelectedItem?.ToString();
+            string driverName = cmbdrivername.SelectedItem?.ToString();
+            string customerMobile = txtcusmobile.Text.ToString();
+            string customerName = txtcusname.Text.ToString();
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "INSERT INTO SchedulePickup (CarrierName, DriverName, CustomerMobile, CustomerName) "+" VALUES (@CarrierName, @DriverName, @CustomerMobile, @CustomerName)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+
+                        cmd.Parameters.AddWithValue("@CarrierName", carrierName);
+                        cmd.Parameters.AddWithValue("@DriverName", driverName);
+                        cmd.Parameters.AddWithValue("@CustomerMobile", customerMobile);
+                        cmd.Parameters.AddWithValue("@CustomerName", customerName);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                           Notificationbox.ShowSuccess();
+
+                            // Clear the form
+                            cmbcarriername.SelectedIndex = -1;//to clear the selected item
+                            cmbdrivername.SelectedIndex = -1;
+                            txtcusmobile.Clear();
+                            txtcusname.Clear();
+
+                            MessageBox.Show("In here when new column added to the DB new notification need to go to the Mobile Appp ");
+                        }
+                        else
+                        {
+                            Notificationbox.ShowError();
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
     }
 }

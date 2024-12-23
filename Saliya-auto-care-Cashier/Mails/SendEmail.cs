@@ -1,65 +1,180 @@
-﻿using System;
+﻿using Mailjet.Client;
+using Mailjet.Client.Resources;
+using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using MimeKit;
-using MailKit.Net.Smtp;
+using System.Windows;
 
 namespace Saliya_auto_care_Cashier.Mails
 {
-    internal class SendEmail
+    public class EmailService
     {
-        public async Task SendRegistratio(string customerEmail, string customerName)
+        private readonly string apiKey;
+        private readonly string apiSecret;
+        private readonly string senderEmail;
+        private readonly string senderName = "Saliya Auto Care";
+
+        public EmailService()
+        {
+            // get the  credentials from Windows Credential Manager
+            apiKey = GetCredential("SaliyaAutoCare/apiKey", "API Key");
+            apiSecret = GetCredential("SaliyaAutoCare/apiSecret", "API Secret");
+            senderEmail = GetCredential("SaliyaAutoCare/Email", "Sender Email");
+
+            // for debugging
+            MessageBox.Show($"API Key: {apiKey}\nAPI Secret: {apiSecret}\nSender Email: {senderEmail}", "Retrieved Credentials", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiSecret) || string.IsNullOrEmpty(senderEmail))
+            {
+                MessageBox.Show("Missing API credentials. Please check the Credential Manager settings.");
+            }
+        }
+
+        public async Task<bool> SendEmailAsync(string recipientEmail, string recipientName, string subject, string htmlContent)
         {
             try
             {
-                // Create the email message
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Saliya Auto Care", "your-email@example.com")); // Replace with your email
-                message.To.Add(new MailboxAddress(customerName, customerEmail));
-                message.Subject = "Welcome to Saliya Auto Care";
-
-                // HTML content for the email
-                var bodyBuilder = new BodyBuilder
+                var message = new JObject
                 {
-                    HtmlBody = $@"
-                        <html>
-                        <body style='font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;'>
-                            <div style='max-width: 600px; margin: auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
-                                <div style='background: #1E88E5; padding: 10px; text-align: center;'>
-                                    <h1 style='color: #fff;'>Saliya Auto Care</h1>
-                                </div>
-                                <div style='padding: 20px;'>
-                                    <h2>Welcome, {customerName}!</h2>
-                                    <p>Thank you for registering with <strong>Saliya Auto Care</strong>. We're excited to serve you!</p>
-                                    <p>Explore our services including vehicle repairs, paint jobs, spare parts, and more.</p>
-                                    <p style='text-align: center;'>
-                                        <a href='http://your-website-link.com' style='text-decoration: none; background: #1E88E5; color: white; padding: 10px 20px; border-radius: 5px;'>Visit Us</a>
-                                    </p>
-                                </div>
-                                <div style='text-align: center; padding: 10px; font-size: 12px; color: #888;'>
-                                    <p>&copy; 2024 Saliya Auto Care. All rights reserved.</p>
-                                </div>
-                            </div>
-                        </body>
-                        </html>"
+                    { "From", new JObject { { "Email", senderEmail }, { "Name", senderName } } },
+                    { "To", new JArray { new JObject { { "Email", recipientEmail }, { "Name", recipientName } } } },
+                    { "Subject", subject },
+                    { "HTMLPart", htmlContent }
                 };
 
-                message.Body = bodyBuilder.ToMessageBody();
-
-                // Send the email
-                using (var smtpClient = new SmtpClient())
+                MailjetClient client = new MailjetClient(apiKey, apiSecret);
+                MailjetRequest request = new MailjetRequest
                 {
-                    await smtpClient.ConnectAsync("smtp.example.com", 587, MailKit.Security.SecureSocketOptions.StartTls); // Replace with your SMTP server
-                    await smtpClient.AuthenticateAsync("your-email@example.com", "your-email-password"); // Replace with your email credentials
-                    await smtpClient.SendAsync(message);
-                    await smtpClient.DisconnectAsync(true);
+                    Resource = SendV31.Resource,
                 }
+                .Property(Send.Messages, new JArray { message });
 
-                Console.WriteLine("Email sent successfully!");
+                MailjetResponse response = await client.PostAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show($"Email send failed. Status: {response.StatusCode}, Error: {response.GetData()}");
+                    return false;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to send email: {ex.Message}");
+                MessageBox.Show($"An exception occurred while sending the email: {ex.Message}");
+                return false;
             }
+        }
+
+        // I modified the GetCredential method because the keys had some strange chinese letters
+        // Windows Credential Manager using raw binary data with UTF-16 array and in here i converted  them in to  windows string values
+
+        private string GetCredential(string target, string fieldName)
+        {
+            IntPtr credPointer;
+            bool success = CredRead(target, CRED_TYPE.GENERIC, 0, out credPointer);
+
+            if (!success)
+            {
+                MessageBox.Show($"Failed to retrieve {fieldName} from Credential Manager.\nError Code: {Marshal.GetLastWin32Error()}",
+                                "Credential Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+
+            try
+            {
+                // Cast the pointer to the CREDENTIAL structure
+                var credential = (CREDENTIAL)Marshal.PtrToStructure(credPointer, typeof(CREDENTIAL));
+
+                // Decode the CredentialBlob to a string
+                if (credential.CredentialBlob != IntPtr.Zero && credential.CredentialBlobSize > 0)
+                {
+                    byte[] credentialBytes = new byte[credential.CredentialBlobSize];
+                    Marshal.Copy(credential.CredentialBlob, credentialBytes, 0, (int)credential.CredentialBlobSize);
+
+                    // Convert the byte array to a string (UTF-16 encoding for Windows strings)
+                    string decodedCredential = System.Text.Encoding.Unicode.GetString(credentialBytes);
+                    return decodedCredential;
+                }
+
+                return null;
+            }
+            finally
+            {
+                // Free the memory allocated for the credential
+                CredFree(credPointer);
+            }
+        }
+
+
+        [DllImport("Advapi32.dll", SetLastError = true)]
+        private static extern bool CredRead(string target, CRED_TYPE type, int reservedFlag, out IntPtr credential);
+
+        [DllImport("Advapi32.dll", SetLastError = true)]
+        private static extern void CredFree(IntPtr buffer);
+
+        private enum CRED_TYPE
+        {
+            GENERIC = 1,
+            DOMAIN_PASSWORD = 2,
+            DOMAIN_CERTIFICATE = 3,
+            DOMAIN_VISIBLE_PASSWORD = 4,
+            GENERIC_CERTIFICATE = 5
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private struct CREDENTIAL
+        {
+            public uint Flags;
+            public CRED_TYPE Type;
+            public string TargetName;
+            public string Comment;
+            public long LastWritten;
+            public uint CredentialBlobSize;
+            public IntPtr CredentialBlob;
+            public uint Persist;
+            public uint AttributeCount;
+            public IntPtr Attributes;
+            public string TargetAlias;
+            public string UserName;
+        }
+
+        //for the Registration mail
+        public string RegistrationContent(string username)
+        {
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplates", "RegistrationTemplate.html");
+
+            if (!File.Exists(templatePath))
+            {
+                MessageBox.Show($"Email template not found: {templatePath}");
+            }
+
+            string htmlContent = File.ReadAllText(templatePath);
+
+            // The username from the registration model
+            htmlContent = htmlContent.Replace("{username}", username);
+            htmlContent = htmlContent.Replace("{year}", DateTime.Now.Year.ToString());
+
+            return htmlContent;
+        }
+
+        //for the bill mail
+        public string BillContent(string customerName, string billDetails)
+        {
+            return $@"
+            <html>
+            <body>
+                <h1>Dear {customerName},</h1>
+                <p>Thank you for your purchase!</p>
+                <p>Here are your bill details:</p>
+                <div>{billDetails}</div>
+                <p>We look forward to serving you again.</p>
+            </body>
+            </html>";
         }
     }
 }

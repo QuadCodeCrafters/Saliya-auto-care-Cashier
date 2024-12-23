@@ -87,11 +87,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         public void ClearSelections(object sender, RoutedEventArgs e)
         {
-            foreach (var button in selectedButtons)
+            // MessageBox.Show("click"); Debuging
             {
-                button.Tag = "Unselected";
+                foreach (var button in selectedButtons)
+                {
+                    button.Tag = "Unselected";
+                }
+                selectedButtons.Clear();
             }
-            selectedButtons.Clear();
         }
     }
 }

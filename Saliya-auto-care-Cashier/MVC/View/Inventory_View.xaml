@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
 
@@ -32,18 +33,19 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Inventory" FontSize="29" FontWeight="SemiBold" 
-                         Margin="30,10,0,0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                         Margin="30,25,0,-35" HorizontalAlignment="Left"/>
                 <Grid Grid.Column="0" Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="-65" Width="500" Height="38" Grid.Row="0">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,-8,0" Width="500" Height="38" Grid.Row="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="350"/>
+                                <ColumnDefinition Width="360"/>
                                 <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Border CornerRadius="10" Background="#d3e7f5" Margin="5,-4,0,0">
                                 <TextBox Width="300" Height="25" VerticalAlignment="Center" FontSize="18"
@@ -82,149 +84,223 @@
                                 </TextBox>
                             </Border>
                             <Button Content="Clear" Width="70" Height="40" Margin="10,-5,0,0" 
-                              VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"  />
+                              VerticalAlignment="Center" Grid.Column="1" Command="{Binding ClearSearchCommand}"/>
                         </Grid>
                     </StackPanel>
-                    
-                   <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
-                       <ItemsControl ItemsSource="{Binding FilteredInventoryItems}" Margin="27,0,0,0">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <materialDesign:Card Width="150" Height="200" Margin="10" UniformCornerRadius="10"
-                                                     Background="{DynamicResource MaterialDesignPaper}"
-                                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                                                     MouseLeftButtonUp="Card_Click">
-                                    <materialDesign:Card.Style>
-                                        <Style TargetType="materialDesign:Card">
-                                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
-                                            <Setter Property="RenderTransform">
-                                                <Setter.Value>
-                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Trigger.EnterActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.1" Duration="0:0:0.2" />
-                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.1" Duration="0:0:0.2" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.EnterActions>
-                                                    <Trigger.ExitActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.2" />
-                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.2" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.ExitActions>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </materialDesign:Card.Style>
-                                    <Border BorderBrush="#92a1a8" BorderThickness="6,6,6,0" CornerRadius="10" Margin="-3">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="169" />
-                                                <RowDefinition Height="*" />
-                                            </Grid.RowDefinitions>
 
-                                            <Border Grid.Row="0">
-                                                <StackPanel Grid.Row="0" Margin="0,0,0,5">
-                                                    <Image Source="{Binding ImageSource}" Width="100" Height="100" />
-                                                    <TextBlock Text="{Binding ItemName}" FontSize="14" FontWeight="Bold" 
-                                                               HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center" />
-                                                </StackPanel>
-                                            </Border>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+                        <Grid>
+                            <Border CornerRadius="20" Background="White">
+                                <Grid>
+                                    <ItemsControl ItemsSource="{Binding FilteredInventoryItems}" Margin="27,0,0,0">
+                                        <ItemsControl.Style>
+                                            <Style TargetType="ItemsControl">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding FilteredInventoryItems.Count}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding FilteredInventoryItems}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ItemsControl.Style>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <materialDesign:Card Width="150" Height="200" Margin="10" UniformCornerRadius="10"
+                                                             Background="{DynamicResource MaterialDesignPaper}"
+                                                             materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                                                             MouseLeftButtonUp="Card_Click">
+                                                    <materialDesign:Card.Style>
+                                                        <Style TargetType="materialDesign:Card">
+                                                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+                                                            <Setter Property="RenderTransform">
+                                                                <Setter.Value>
+                                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.1" Duration="0:0:0.2" />
+                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.1" Duration="0:0:0.2" />
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                    <Trigger.ExitActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.2" />
+                                                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.2" />
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.ExitActions>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialDesign:Card.Style>
+                                                    <Border BorderBrush="#92a1a8" BorderThickness="6,6,6,0" CornerRadius="10" Margin="-3">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="169" />
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
 
-                                            <Border Grid.Row="1" Background="#92a1a8">
-                                                <TextBlock Foreground="White" Text="{Binding Price, StringFormat=Rs. {0:F2}}" FontSize="15" 
-                                                           HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold"/>
-                                            </Border>
-                                        </Grid>
-                                    </Border>
-                                </materialDesign:Card>
-                            </DataTemplate>
-                       </ItemsControl.ItemTemplate>
-                   </ItemsControl>
-                   </ScrollViewer>
+                                                            <Border Grid.Row="0">
+                                                                <StackPanel Grid.Row="0" Margin="0,0,0,5">
+                                                                    <Image Source="{Binding ImageSource}" Width="100" Height="100" />
+                                                                    <TextBlock Text="{Binding ItemName}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center" />
+                                                                </StackPanel>
+                                                            </Border>
+
+                                                            <Border Grid.Row="1" Background="#92a1a8">
+                                                                <TextBlock Foreground="White" Text="{Binding Price, StringFormat=Rs. {0:F2}}" FontSize="15" 
+                                                                   HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold"/>
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+                                                </materialDesign:Card>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <!-- Display the Image when FilteredInventoryItems is empty ( count == 0 )-->
+                                    <Image gif:ImageBehavior.AnimatedSource="/Images/noresultfound.gif"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" Width="719" Height="539">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding FilteredInventoryItems.Count}" Value="0">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding FilteredInventoryItems}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
                 <materialDesign:Card Grid.Column="1" Grid.Row="1" UniformCornerRadius="10" 
-                   Background="{DynamicResource MaterialDesignPaper}"
-                   Margin="5"
-                   materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="220"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0">
-                            <Image Source="{Binding SelectedItemDetails.ImageSource}" Width="200" Height="200" Margin="0,10,0,10" />
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Margin="20,0,0,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Availability:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Item Name:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="SKU:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Item Price:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
+                                     Background="{DynamicResource MaterialDesignPaper}"
+                                     Margin="5"
+                                     materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                    <ContentControl Grid.Column="1" Grid.Row="1">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="220"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <StackPanel>
+                                                    <Image Source="{Binding SelectedItemDetails.ImageSource}" Width="200" Height="200" Margin="0,10,0,10" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="1" Margin="20,0,0,0">
+                                                    
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Availability:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Item Name:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="SKU:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Item Price:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Category:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Description:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Manufacturer:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Model Number:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                        <TextBlock Text="Warranty:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,20">
+                                                        <TextBlock Text="Storage Location:" 
+                                                                   Style="{StaticResource TextStyle}"/>
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Category:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Setter.Value>
+                                </Setter>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Description:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Manufacturer:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Model Number:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBlock Text="Warranty:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,20">
-                                    <TextBlock Text="Storage Location:" 
-                                               Style="{StaticResource TextStyle}"/>
-                                    <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
-                                </StackPanel>
-                            </StackPanel>
-                    </Grid>
-                   </ScrollViewer>
+                                <!-- In here when nothing is selected It wil Show the text nothing is selected it's working when Binding SelectedItemDetails become null value with using the contenetcontrol datatriggers-->
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItemDetails}" Value="{x:Null}">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <materialDesign:Card UniformCornerRadius="10"
+                                                                     Background="{DynamicResource MaterialDesignPaper}"
+                                                                     Margin="0"
+                                                                     materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                                                    <Grid>
+                                                        <TextBlock Text="Please select an item to proceed" FontSize="23" FontWeight="Bold" Foreground="Black" 
+                                                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Grid>
+                                                </materialDesign:Card>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
+
                 </materialDesign:Card>
             </Grid>
         </materialDesign:Card>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Saliya_auto_care_Cashier.MVC.View;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
@@ -15,9 +16,11 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             InitializeComponent();
             LoadViews();
+            PaintButton_Click(PaintButton, null);
 
         }
 
+        //For load all the views
         private void LoadViews()
         {
             try
@@ -57,6 +60,39 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             {
                 billView.UpdateDescriptions(categories);
             }
+        }
+
+        //for the toggle buttons
+        private void PaintButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(PaintButton);
+
+        }
+
+        public void ServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(ServiceButton);
+        }
+
+        public void RepairButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(RepairButton);
+        }
+
+        public void PartsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(PartsButton);
+        }
+
+        private void SetSelectedButton(Button selectedButton)
+        {
+            // Reset all buttons
+            PaintButton.Background = Brushes.Transparent;
+            ServiceButton.Background = Brushes.Transparent;
+            RepairButton.Background = Brushes.Transparent;
+            PartsButton.Background = Brushes.Transparent;
+            // Set clicked button as selected
+            selectedButton.Background = Brushes.White;
         }
     }
 }

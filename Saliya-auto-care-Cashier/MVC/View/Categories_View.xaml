@@ -5,23 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
 
     <UserControl.Resources>
-        <!-- Resources of SCROLLBARS-->
+        <!-- Resources of CategoriesStyle-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/CategoriesStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
     </UserControl.Resources>
 
     <WrapPanel x:Name="buttonPanel" 
            Orientation="Horizontal"
            HorizontalAlignment="Center"
            VerticalAlignment="Top"
-           Margin="10">
+           Margin="1,0,0,0" >
 
-        <Button Click="ClearSelections">
+        <!--<Button Click="ClearSelections">
             HI
-        </Button>
+        </Button> -->
     </WrapPanel>
 
 
