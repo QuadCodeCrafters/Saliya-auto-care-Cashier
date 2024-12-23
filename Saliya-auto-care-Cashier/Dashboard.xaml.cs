@@ -203,7 +203,20 @@ namespace Saliya_auto_care_Cashier
                 try
                 {
                     connection.Open();
-                    string query = "SELECT CustomerName, CustomerAddress, VehicleType, VehicleNumber FROM vehicleregister WHERE CustomerNIC = @CustomerNIC";
+
+                    string query = @"SELECT 
+                                    vr.CustomerName, 
+                                    vr.CustomerAddress, 
+                                    vr.VehicleType, 
+                                    vr.VehicleNumber, 
+                                    csc.price, 
+                                    csc.tax,
+                                    csc.vehiclePlateNumber,
+                                    csc.billedStatus 
+                                    FROM vehicleregister vr
+                                    INNER JOIN carrierServiceCustomers csc ON vr.CustomerNIC = csc.NIC
+                                    WHERE vr.CustomerNIC = @CustomerNIC"
+                    ;
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -213,19 +226,50 @@ namespace Saliya_auto_care_Cashier
                         {
                             if (reader.Read())
                             {
+                                // Data from vehicleregister
                                 string Name = reader.GetString("CustomerName");
                                 string CustomerAddress = reader.GetString("CustomerAddress");
                                 string VehicleType = reader.GetString("VehicleType");
                                 string VehicleNumber = reader.GetString("VehicleNumber");
-                                Cusname.Text = "Customer Found: " + Name;
-                                Notificationbox.ShowSuccess();
 
-                                // send the data
+                                // Data from carrierServiceCustomers
+                                decimal Price = reader.GetDecimal("price");
+                                decimal Tax = reader.GetDecimal("tax");
+                                string BilledStatus = reader.GetString("billedStatus");
+                                string PlateNumber = reader.GetString("vehiclePlateNumber");
+
+                                // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
                                 sharevehicletype.VehicleType = VehicleType;
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
 
+
+
+                                // Check BilledStatus
+                                if (BilledStatus == "Billed")
+                                {
+                                    MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    return;
+                                }
+                                else
+                                {
+                                    // Display Price and Tax for Debugging
+                                    MessageBox.Show(
+                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber} ",
+                                        "Price and Tax Details",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information
+                                    );
+
+                                    Bill_VIew.sharedPrice.Price = (double)Price; // Update the price
+                                    Bill_VIew.sharedTax.Tax = (double)Tax;       // Update the tax
+                                    Bill_VIew.sharedProduct.Description = PlateNumber; // Update the plate number
+
+
+                                    Cusname.Text = "Customer Found: " + Name;
+                                    Notificationbox.ShowSuccess();
+                                }
 
 
                             }
@@ -254,6 +298,8 @@ namespace Saliya_auto_care_Cashier
                 }
             }
         }
+
+
 
         private void txtloyalid_TextChanged(object sender, TextChangedEventArgs e)
         {
