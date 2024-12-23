@@ -110,7 +110,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="10,0,0,0"/>
                                                 <!-- sometimes need to be change wrap when the content goes up-->
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -118,7 +118,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-
+    
                         <ListView x:Name="quantityListView" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <ListView.View>
                                 <GridView>
@@ -294,7 +294,7 @@
                                  Text="*** (C) Saliya Auto Care ***" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="12.5"/>
 
                                     <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
-                                    <Button Width="30" Click="Buttonclear_Click" Visibility="Collapsed"/>
+                                    <Button Width="30" Click="Billclear_Click" Visibility="Collapsed"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>

@@ -8,6 +8,8 @@ using System.IO;
 using System.Windows.Input;
 using Saliya_auto_care_Cashier.MVVM.View;
 using System.Data.Common;
+using Saliya_auto_care_Cashier.Notifications;
+
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
@@ -18,6 +20,11 @@ namespace Saliya_auto_care_Cashier.MVC.View
         private static readonly string InvoiceFilePath = "LastInvoiceID.txt";
 
         public static Shared name { get; set; } = new Shared();
+
+        public static SharedPrice sharedPrice { get; set; } = new SharedPrice();
+        public static SharedTax sharedTax { get; set; } = new SharedTax();
+        public static SharedProduct sharedProduct { get; set; } = new SharedProduct();
+
         public static Sharedaddress address { get; set; }
         public static Sharedtype type { get; set; }
         public static Sharednumber number { get; set; }
@@ -148,6 +155,85 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
+
+        //class for Price
+        public class SharedPrice : INotifyPropertyChanged
+        {
+            private double price;
+
+            public double Price
+            {
+                get => price;
+                set
+                {
+                    if (price != value)
+                    {
+                        price = value;
+                        OnPropertyChanged(nameof(Price));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        //class for Tax
+        public class SharedTax : INotifyPropertyChanged
+        {
+            private double tax;
+
+            public double Tax
+            {
+                get => tax;
+                set
+                {
+                    if (tax != value)
+                    {
+                        tax = value;
+                        OnPropertyChanged(nameof(Tax));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        //class for Product
+        public class SharedProduct : INotifyPropertyChanged
+        {
+            private string plateNumber;
+
+            public string Description
+            {
+                get => plateNumber;
+                set
+                {
+                    if (plateNumber != value)
+                    {
+                        plateNumber = value;
+                        OnPropertyChanged(nameof(Description));
+                    }
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected virtual void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         private TextBlock dateTextBlock;
    
 
@@ -155,7 +241,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             InitializeComponent();
 
-            if (name != null && address != null && number != null && type != null)
+            if (name != null && address != null && number != null && type != null && sharedPrice != null && sharedTax != null && sharedProduct != null)
             {
                 DataContext = this;
             }
@@ -168,6 +254,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
             }
 
+            sharedPrice.PropertyChanged += SharedPrice_PropertyChanged;
+            sharedTax.PropertyChanged += SharedTax_PropertyChanged;
+            sharedProduct.PropertyChanged += SharedProduct_PropertyChanged;
+
             // Read the last invoice number from the file
             InvoiceNo = LoadLastInvoiceID();
 
@@ -176,6 +266,38 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             MyCommand = new RelayCommand(Buttonprint_Click);
 
+        }
+
+        private void SharedProduct_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SharedProduct.Description))
+            {
+                // Clear existing items and add the updated product
+                descriptionListView.Items.Clear();
+                descriptionListView.Items.Add(new { Description = sharedProduct.Description });
+            }
+        }
+
+
+
+        private void SharedPrice_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SharedPrice.Price))
+            {
+                // Update priceListView with the new price
+                priceListView.Items.Clear();
+                priceListView.Items.Add(new { Price = sharedPrice.Price });
+            }
+        }
+
+        private void SharedTax_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SharedTax.Tax))
+            {
+                // Update taxListView with the new tax
+                taxListView.Items.Clear();
+                taxListView.Items.Add(new { Tax = sharedTax.Tax });
+            }
         }
 
         private void Name_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -249,7 +371,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             if (descriptionListView != null)
             {
-                descriptionListView.Items.Clear();
+               // descriptionListView.Items.Clear();
                 foreach (var description in descriptions)
                 {
                     descriptionListView.Items.Add(new
@@ -280,13 +402,13 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        public void Buttonclear_Click(object sender, RoutedEventArgs e)
+        public void Billclear_Click(object sender, RoutedEventArgs e)
         {
             CustomerName.Text = string.Empty;
             Customeraddress.Text = string.Empty;
             Customervehicletype.Text = string.Empty;
             Customervehiclenumber.Text = string.Empty;
-
+            //descriptionListView.Items.Clear(); need to change
         }
 
         public void Buttonprint_Click(object sender, RoutedEventArgs e)
@@ -309,10 +431,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     printContent.Arrange(new Rect(new Point(0, 0), printContent.DesiredSize));
 
                     // Print the content
-                    printDialog.PrintVisual(printContent, "Invoice"); 
-                }
+                    printDialog.PrintVisual(printContent, "Invoice");
 
-                showagain();
+                    ShowAgain();
+                }
+                else
+                {
+                    Notificationbox.ShowError();
+                }
             }
             finally
             {
@@ -344,9 +470,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        public void showagain()
+        public void ShowAgain()
         {
-            MessageBox.Show("Invoice Printed Successfully");
+            Notificationbox.ShowSuccess();
             UserControl newUser = new Bill_VIew();
             this.Content = newUser; 
         }

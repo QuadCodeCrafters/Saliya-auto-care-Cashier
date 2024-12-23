@@ -2,12 +2,14 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using MySql.Data.MySqlClient;
+using WpfAnimatedGif;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -184,4 +186,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public event EventHandler CanExecuteChanged;
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+
+
 }

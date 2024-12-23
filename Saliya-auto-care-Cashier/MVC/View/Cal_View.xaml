@@ -67,7 +67,7 @@
 
                 <Button Grid.Column="3" Content="SKU" Width="100" Height="Auto" Margin="0,3,3,3"
                     Background="#3498db" Foreground="White" 
-                    BorderThickness="2"/>
+                    BorderThickness="2" Click="btnsku"/>
             </Grid>
         </Grid>
 

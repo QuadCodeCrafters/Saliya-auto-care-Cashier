@@ -21,7 +21,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
     /// </summary>
     public partial class Cal_View : UserControl
     {
-        private Dashboard _dashboard;
+        private Dashboard dashboard;
 
         public Cal_View()
         {
@@ -105,7 +105,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             if (dashboardWindow?.LoadedBillView != null)
             {
-                dashboardWindow.LoadedBillView?.Buttonclear_Click(sender, e);
+                dashboardWindow.LoadedBillView?.Billclear_Click(sender, e);
             }
 
             if (dashboardWindow?.LoadedCategoriesView != null)
@@ -114,9 +114,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        private void ButtonLock_Click(object sender, RoutedEventArgs e)
+        private void ButtonLock_Click(object sender, RoutedEventArgs e) // need to change
         {
             Notifications.Notificationbox.carrierservice();
+        }
+
+        private void btnsku(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
