@@ -100,9 +100,6 @@
     <Compile Include="MVC\View\Bill_VIew.xaml.cs">
       <DependentUpon>Bill_VIew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\View\Cal_View.xaml.cs">
-      <DependentUpon>Cal_View.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MVC\View\Categories_View.xaml.cs">
       <DependentUpon>Categories_View.xaml</DependentUpon>
     </Compile>
@@ -130,23 +127,14 @@
     <Compile Include="MVC\View\Overviews.xaml.cs">
       <DependentUpon>Overviews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\View\PaintJobs_View.xaml.cs">
-      <DependentUpon>PaintJobs_View.xaml</DependentUpon>
+    <Compile Include="MVC\View\Menu_View.xaml.cs">
+      <DependentUpon>Menu_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\View\SpareParts_View.xaml.cs">
-      <DependentUpon>SpareParts_View.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MVC\View\VehicleHistory_View.xaml.cs">
       <DependentUpon>VehicleHistory_View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\VehicleRepairs_View.xaml.cs">
-      <DependentUpon>VehicleRepairs_View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\VehicleService_View.xaml.cs">
-      <DependentUpon>VehicleService_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\Notificationbox.xaml.cs">
       <DependentUpon>Notificationbox.xaml</DependentUpon>
@@ -186,10 +174,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\Cal_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVC\View\Categories_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\PaintJobs_View.xaml">
+    <Page Include="MVC\View\Menu_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,19 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\SpareParts_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MVC\View\VehicleHistory_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\VehicleRepairs_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\VehicleService_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

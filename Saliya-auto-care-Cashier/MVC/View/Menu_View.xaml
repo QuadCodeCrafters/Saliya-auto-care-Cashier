@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="Saliya_auto_care_Cashier.MVVM.View.PaintJobs_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View" xmlns:local1="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/CalStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <materialDesign:Card UniformCornerRadius="15" 
+                             Background="#E6E6E6"
+                             Margin="-1"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.6*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="1">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0" Fill="NavajoWhite"/>
+                    <Border Grid.Row="0" Margin="8" CornerRadius="10" BorderThickness="1">
+                        <Frame Name="BillContainer"/>
+                    </Border>
+                    
+                </Grid>
+                
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2.1*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="1" Fill="Transparent"/>
+                    <Border Grid.Row="1" Margin="8" CornerRadius="10" BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.24*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+
+                            <Grid Grid.Row="0" Background="#F0F0F0" Margin="10,0,10,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Content="✕" FontSize="25" Width="40" Height="40"
+                                            Background="#a5a8ad" BorderThickness="0" Margin="5,0,10,0"
+                                            Click="ClearButton_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                                        CornerRadius="100">
+                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+
+                                    <TextBox x:Name="Display" Grid.Column="1" 
+                                             Text="" FontSize="25" VerticalAlignment="Center" 
+                                             Margin="0,0,20,0" IsReadOnly="True" 
+                                             BorderThickness="0" Background="Transparent" 
+                                             HorizontalAlignment="Center" TextAlignment="Center"/>
+
+
+                                    <Button Grid.Column="2" Content="&lt;" FontSize="30" Width="40" Height="40"
+                                            Background="#abadb0" BorderThickness="0" Margin="5,0,10,0"
+                                            Click="Backspace_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                                        CornerRadius="100">
+                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" Margin="0,-5,0,0"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+
+                                    <Button Grid.Column="3" Content="SKU" Width="100" Height="Auto" Margin="0,3,3,3"
+                                            Background="#3498db" Foreground="White" 
+                                            BorderThickness="2" Click="btnsku"/>
+                                </Grid>
+                            </Grid>
+
+
+
+                            <Grid Grid.Row="1" Margin="10,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Content="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="8" Grid.Row="0" Grid.Column="1" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="9" Grid.Row="0" Grid.Column="2" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="5" Grid.Row="1" Grid.Column="1" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="6" Grid.Row="1" Grid.Column="2" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="1" Grid.Row="2" Grid.Column="0" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="2" Grid.Row="2" Grid.Column="1" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource Number}" Click="Number_Click"/>
+                                <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource Number}" Click="btn_member"/>
+
+                                <Button Content="Rs 500" Grid.Row="0" Grid.Column="3" Style="{StaticResource Amount}"/>
+                                <Button Content="Rs 1000" Grid.Row="1" Grid.Column="3" Style="{StaticResource Amount}"/>
+                                <Button Content="Rs 5000" Grid.Row="2" Grid.Column="3" Style="{StaticResource Amount}"/>
+                                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource Action}" Background="#2ecc71">
+                                    <TextBlock Text="+" FontSize="55" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-10,0,0"/>
+                                </Button>
+
+                                <Button Content="Cash" Grid.Row="0" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+                                <Button Content="Refund" Grid.Row="1" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c"/>
+                                <Button Content="Clear" Grid.Row="2" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="ButtonClear_Click"/>
+                                <Button Content="Carrier" Grid.Row="3" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="ButtonLock_Click"/>
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PaintButton" 
+                                            Width="Auto" 
+                                            Height="Auto" 
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Background="White"
+                                            Click="PaintButton_Click"
+                                            Content="Paint"/>
+
+                            <Button x:Name="ServiceButton"
+                                            Width="Auto" 
+                                            Height="Auto"
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Grid.Column="1"
+                                            Click="ServiceButton_Click"
+                                            Content="Services"/>
+
+                            <Button x:Name="RepairButton"
+                                            Width="Auto" 
+                                            Height="Auto"
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Grid.Column="2"
+                                            Click="RepairButton_Click"
+                                            Content="Repairs"/>
+
+                            <Button x:Name="PartsButton"
+                                            Width="Auto" 
+                                            Height="Auto"
+                                            Style="{StaticResource ToggleButtonStyle}"
+                                            Grid.Column="3"
+                                            Click="PartsButton_Click"
+                                            Content="Parts"/>
+                            
+                        </Grid>
+                        <Frame Name="CatContainer" Grid.Row="1"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+            
+        </materialDesign:Card>
+        
+    </Grid>
+    
+</UserControl>

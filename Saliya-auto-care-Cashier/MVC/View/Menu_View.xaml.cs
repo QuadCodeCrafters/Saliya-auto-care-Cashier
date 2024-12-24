@@ -1,32 +1,104 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Saliya_auto_care_Cashier.Notifications;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using Saliya_auto_care_Cashier.MVC.View;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Input;
 
-namespace Saliya_auto_care_Cashier.MVC.View
+namespace Saliya_auto_care_Cashier.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for Cal_View.xaml
-    /// </summary>
-    public partial class Cal_View : UserControl
+    public partial class PaintJobs_View : UserControl
     {
+        private Categories_View categoriesView;
         private Dashboard dashboard;
+        private Bill_VIew billView;
 
-        public Cal_View()
+        public PaintJobs_View()
         {
             InitializeComponent();
+            LoadViews();
+            PaintButton_Click(PaintButton, null);
+
         }
+
+        //For load all the views
+        private void LoadViews()
+        {
+            try
+            {
+                categoriesView = new Categories_View();
+                CatContainer.Navigate(categoriesView);
+                categoriesView.CategoriesSelected += OnCategoriesSelected;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Categories View: {ex.Message}");
+            }
+
+            try
+            {
+                billView = new Bill_VIew();
+                BillContainer.Navigate(billView);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Bill View: {ex.Message}");
+            }
+
+            //try
+            //{
+            //    CalContainer.Navigate(new System.Uri("MVC/View/Cal_View.xaml", UriKind.RelativeOrAbsolute));
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error loading Calculator View: {ex.Message}");
+            //}
+        }
+
+        private void OnCategoriesSelected(object sender, List<string> categories)
+        {
+            if (billView != null)
+            {
+                billView.UpdateDescriptions(categories);
+            }
+        }
+
+        //for the toggle buttons
+        private void PaintButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(PaintButton);
+
+        }
+
+        public void ServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(ServiceButton);
+        }
+
+        public void RepairButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(RepairButton);
+        }
+
+        public void PartsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetSelectedButton(PartsButton);
+        }
+
+        private void SetSelectedButton(Button selectedButton)
+        {
+            // Reset all buttons
+            PaintButton.Background = Brushes.Transparent;
+            ServiceButton.Background = Brushes.Transparent;
+            RepairButton.Background = Brushes.Transparent;
+            PartsButton.Background = Brushes.Transparent;
+            // Set clicked button as selected
+            selectedButton.Background = Brushes.White;
+        }
+
         private void Number_Click(object sender, RoutedEventArgs e) // from 1 to 9 
         {
             var button = sender as Button;
@@ -38,7 +110,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+                private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             Display.Text = string.Empty; // Clear the display
         }
@@ -126,3 +198,4 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
     }
 }
+

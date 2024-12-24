@@ -223,6 +223,7 @@
                                     </Image>
                                 </Button>
                                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Button Content="Menu" Width="100" Height="40" Click="btn_nenu" Margin="0,0,50,0"/>
                                     <Button Content="Register" Width="100" Height="40" Click="btn_registor" Margin="0,0,50,0"/>
                                     <Button Content="Vehicle History" Width="130" Margin="0,0,50,0" Height="40" Click="btn_VehicleHistory"/>
                                     <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory" Margin="0,0,50,0"/>

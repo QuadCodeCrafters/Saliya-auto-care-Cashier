@@ -81,6 +81,18 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
+        private void btn_nenu(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVC/View/Menu_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
         private void btn_VehicleHistory(object sender, RoutedEventArgs e)
         {
             try
