@@ -252,7 +252,7 @@
                                     <TextBlock Text="Amount Paid:" FontSize="14"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" FontSize="14"  />
+                                    <TextBlock Text="LKR 0.00" FontSize="14" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="6">
@@ -294,7 +294,7 @@
                                  Text="*** (C) Saliya Auto Care ***" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="12.5"/>
 
                                     <!--This button is the main button that clear all the text in textblocks and it is hidden because it is not good to display on the bill-->
-                                    <Button Width="30" Click="Billclear_Click" Visibility="Collapsed"/>
+                                    <Button Width="30" Click="Billclear_Click"  />
                                 </StackPanel>
                             </Grid>
                         </Grid>

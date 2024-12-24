@@ -19,10 +19,9 @@ namespace Saliya_auto_care_Cashier
         private List<Control> requiredFields;
         public Bill_VIew LoadedBillView { get; set; }
         public Categories_View LoadedCategoriesView { get; set; }
+        public static object SharedInstance { get; internal set; }
 
-
-
-        private Shared sharename;
+        private Sharedname sharename;
         private Sharedaddress sharecustomeraddress;
         private Sharedtype sharevehicletype;
         private Sharednumber sharevehiclenumber;
@@ -33,7 +32,7 @@ namespace Saliya_auto_care_Cashier
             InitializeComponent();
             RequiredFields();
 
-            sharename = new Shared();
+            sharename = new Sharedname();
             Bill_VIew.name = sharename;
 
             sharecustomeraddress = new Sharedaddress();
@@ -238,6 +237,9 @@ namespace Saliya_auto_care_Cashier
                                 string BilledStatus = reader.GetString("billedStatus");
                                 string PlateNumber = reader.GetString("vehiclePlateNumber");
 
+                                decimal Total = Price + Tax;
+                                decimal Qty = 1;
+
                                 // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
@@ -256,7 +258,7 @@ namespace Saliya_auto_care_Cashier
                                 {
                                     // Display Price and Tax for Debugging
                                     MessageBox.Show(
-                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber} ",
+                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
                                         "Price and Tax Details",
                                         MessageBoxButton.OK,
                                         MessageBoxImage.Information
@@ -264,7 +266,9 @@ namespace Saliya_auto_care_Cashier
 
                                     Bill_VIew.sharedPrice.Price = (double)Price; // Update the price
                                     Bill_VIew.sharedTax.Tax = (double)Tax;       // Update the tax
-                                    Bill_VIew.sharedProduct.Description = PlateNumber; // Update the plate number
+                                    Bill_VIew.sharedProduct.Description = ("Carrier Service: "+PlateNumber); // Update the plate number
+                                    Bill_VIew.sharedTotal.Amount = (double)Total; // Update the total
+                                    Bill_VIew.sharedQty.Quantity = (double)Qty; // Update the Qty
 
 
                                     Cusname.Text = "Customer Found: " + Name;

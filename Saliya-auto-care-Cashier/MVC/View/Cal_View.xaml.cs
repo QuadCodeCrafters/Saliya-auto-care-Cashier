@@ -34,6 +34,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             {
                 // display number to the Display TextBox
                 Display.Text += button.Content.ToString();
+
             }
         }
 
