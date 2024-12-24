@@ -7,31 +7,11 @@
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View" xmlns:local1="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <Style x:Key="ToggleButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" 
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="8"
-                                Padding="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FAFAFA"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
@@ -86,7 +66,7 @@
                             <Button x:Name="PaintButton" 
                                             Width="Auto" 
                                             Height="Auto" 
-                                            Style="{StaticResource ToggleButton}"
+                                            Style="{StaticResource ToggleButtonStyle}"
                                             Background="White"
                                             Click="PaintButton_Click"
                                             Content="Paint"/>
@@ -94,7 +74,7 @@
                             <Button x:Name="ServiceButton"
                                             Width="Auto" 
                                             Height="Auto"
-                                            Style="{StaticResource ToggleButton}"
+                                            Style="{StaticResource ToggleButtonStyle}"
                                             Grid.Column="1"
                                             Click="ServiceButton_Click"
                                             Content="Services"/>
@@ -102,7 +82,7 @@
                             <Button x:Name="RepairButton"
                                             Width="Auto" 
                                             Height="Auto"
-                                            Style="{StaticResource ToggleButton}"
+                                            Style="{StaticResource ToggleButtonStyle}"
                                             Grid.Column="2"
                                             Click="RepairButton_Click"
                                             Content="Repairs"/>
@@ -110,7 +90,7 @@
                             <Button x:Name="PartsButton"
                                             Width="Auto" 
                                             Height="Auto"
-                                            Style="{StaticResource ToggleButton}"
+                                            Style="{StaticResource ToggleButtonStyle}"
                                             Grid.Column="3"
                                             Click="PartsButton_Click"
                                             Content="Parts"/>
