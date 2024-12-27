@@ -59,7 +59,7 @@
                                     </Grid>
                                     <Grid Grid.Row="1">
                                         <StackPanel HorizontalAlignment="Left" Margin="40,25,0,0">
-                                            <TextBlock Text="Example: 123456789158 "/>
+                                            <TextBlock Text="Example: 1234567 "/>
                                         </StackPanel>
                                         <StackPanel HorizontalAlignment="Right" Margin="0,25,-20,0">
                                             <TextBlock x:Name="IDError" TextWrapping="Wrap" Text="" Width="260" Height="27" TextAlignment="Center" Foreground="Red"/>
@@ -73,7 +73,7 @@
                                                      Width="390" 
                                                      Height="60"
                                                      FontSize="17.5" 
-                                                     materialDesign:HintAssist.Hint="Enter The Customer ID Number" 
+                                                     materialDesign:HintAssist.Hint="Enter The Vehicle Number" 
                                                      BorderThickness="2" 
                                                      BorderBrush="{DynamicResource MaterialDesignDivider}" 
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}">
@@ -204,45 +204,68 @@
                                 </Grid>
                             </materialDesign:DialogHost.DialogContent>
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Border Background="Blue" Grid.Row="0" Height="40">
-                                </Border>
-                                <Border Background="LightBlue" Grid.Row="1">
-                                </Border>
-                                <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left">
-                                    <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
-                                        <Image.ToolTip>
-                                            <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                                <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                            </ToolTip>
-                                        </Image.ToolTip>
-                                    </Image>
-                                </Button>
-                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Button Content="Menu" Width="100" Height="40" Click="btn_nenu" Margin="0,0,50,0"/>
-                                    <Button Content="Register" Width="100" Height="40" Click="btn_registor" Margin="0,0,50,0"/>
-                                    <Button Content="Vehicle History" Width="130" Margin="0,0,50,0" Height="40" Click="btn_VehicleHistory"/>
-                                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory" Margin="0,0,50,0"/>
-                                    <Button Content="Carrier Service" Width="135" Height="40" Click="btn_Delivary_Service" Margin="0,0,0,0"/>
+                                <!--Clear All message box-->
+                                <materialDesign:DialogHost x:Name="ClearAllDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                    <materialDesign:DialogHost.DialogContent>
+                                        <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" Margin="15">
+                                                <materialDesign:PackIcon Kind="CloseBox" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" />
+                                                <TextBlock Foreground="{DynamicResource MaterialDesignBody}" Width="220" Margin="15 5" TextWrapping="Wrap" FontSize="18">
+                                                           Do you want to clear all? This action can't be undone.
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                                                <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="Buttondashboardclear_Click">
+                                                    Yes
+                                                </Button>
+                                                <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                                                    No
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </materialDesign:DialogHost.DialogContent>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Background="Blue" Grid.Row="0" Height="40">
+                                        </Border>
+                                        <Border Background="LightBlue" Grid.Row="1">
+                                        </Border>
+                                        <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left">
+                                            <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
+                                                <Image.ToolTip>
+                                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                                    </ToolTip>
+                                                </Image.ToolTip>
+                                            </Image>
+                                        </Button>
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button Content="Menu" Width="100" Height="40" Click="btn_nenu" Margin="0,0,50,0"/>
+                                            <Button Content="Register" Width="100" Height="40" Click="btn_registor" Margin="0,0,50,0"/>
+                                            <Button Content="Vehicle History" Width="130" Margin="0,0,50,0" Height="40" Click="btn_VehicleHistory"/>
+                                            <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory" Margin="0,0,50,0"/>
+                                            <Button Content="Carrier Service" Width="135" Height="40" Click="btn_Delivary_Service" Margin="0,0,0,0"/>
 
-                                   <!-- <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                                        <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
-                                        <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
-                                        <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
-                                        <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
-                                        <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
-                                        <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
-                                        <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/>
-                                   -->
+                                            <!-- <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
+                                                    <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
+                                                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
+                                                    <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
+                                                    <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
+                                                    <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
+                                                    <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
+                                                    <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/>
+                                            -->
 
-                                </StackPanel>
-                                <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
-                                    <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
-                                </Border>
+                                        </StackPanel>
+                                        <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
+                                            <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
+                                        </Border>
+                                    </Grid>
+                                </materialDesign:DialogHost>
                             </Grid>
                         </materialDesign:DialogHost>
                     </Grid>

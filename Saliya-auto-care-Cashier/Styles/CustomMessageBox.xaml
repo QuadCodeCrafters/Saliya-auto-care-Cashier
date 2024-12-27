@@ -1,0 +1,29 @@
+﻿<Window x:Class="Saliya_auto_care_Cashier.Styles.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Custom MessageBox" 
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen">
+    <Border Height="200" Width="400" BorderThickness="4" BorderBrush="#34a8eb">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Background="#34a8eb">
+                <TextBlock Text="Item already exists." HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="27"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Background="White">
+                <TextBlock x:Name="MessageText" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" Margin="0,15,0,45"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Button x:Name="YesButton" Content="Yes" Width="80" Click="YesButton_Click" Margin="80,0,0,0" Background="Green" BorderBrush="Green"/>
+                <Button x:Name="NoButton" Content="No" Width="80" Click="NoButton_Click" Margin="80,0,0,0" Background="Red" BorderBrush="Red"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

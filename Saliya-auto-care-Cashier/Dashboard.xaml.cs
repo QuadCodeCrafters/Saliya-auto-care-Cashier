@@ -11,11 +11,13 @@ using Saliya_auto_care_Cashier.MVC.View;
 using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
 using static Saliya_auto_care_Cashier.MVC.View.Categories_View;
 using System.Collections.Generic;
+using Saliya_auto_care_Cashier.MVVM.View;
 
 namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+        private Bill_VIew billView;
         private List<Control> requiredFields;
         public Bill_VIew LoadedBillView { get; set; }
         public Categories_View LoadedCategoriesView { get; set; }
@@ -206,7 +208,7 @@ namespace Saliya_auto_care_Cashier
                 return;
             }
 
-            string ID = txtloyalid.Text;
+            string VHNUM = txtloyalid.Text;
             string connectionString = conn.ConnectionString;
 
             using (var connection = new MySqlConnection(connectionString))
@@ -225,13 +227,13 @@ namespace Saliya_auto_care_Cashier
                                     csc.vehiclePlateNumber,
                                     csc.billedStatus 
                                     FROM vehicleregister vr
-                                    INNER JOIN carrierServiceCustomers csc ON vr.CustomerNIC = csc.NIC
-                                    WHERE vr.CustomerNIC = @CustomerNIC"
+                                    INNER JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
+                                    WHERE vr.VehicleNumber = @VehicleNumber"
                     ;
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@CustomerNIC", ID);
+                        cmd.Parameters.AddWithValue("@VehicleNumber", VHNUM);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -283,7 +285,7 @@ namespace Saliya_auto_care_Cashier
                                     Bill_VIew.sharedQty.Quantity = (double)Qty; // Update the Qty
 
 
-                                    Cusname.Text = "Customer Found: " + Name;
+                                    Cusname.Text = "Owner: " + Name;
                                     Notificationbox.ShowSuccess();
                                 }
 
@@ -291,7 +293,7 @@ namespace Saliya_auto_care_Cashier
                             }
                             else
                             {
-                                IDError.Text = "No Customer Found";
+                                IDError.Text = "No Vehicle Found";
                                 ErrorAnimation();
                             }
                         }
@@ -559,6 +561,18 @@ namespace Saliya_auto_care_Cashier
                         connection.Close();
                     }
                 }
+            }
+        }
+        private void Buttondashboardclear_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear the text the function is located in Menu_View
+            if (fContainer.Content is PaintJobs_View paintJobsView)
+            {
+                paintJobsView.ClearAll();
+            }
+            else
+            {
+                MessageBox.Show("PaintJobs_View is not currently loaded.");
             }
         }
 

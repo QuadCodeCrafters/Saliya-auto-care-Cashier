@@ -65,7 +65,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Button Grid.Column="0" Content="✕" FontSize="25" Width="40" Height="40"
                                             Background="#a5a8ad" BorderThickness="0" Margin="5,0,10,0"
-                                            Click="ClearButton_Click">
+                                            Click="ClearDisplay_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border Background="{TemplateBinding Background}" 

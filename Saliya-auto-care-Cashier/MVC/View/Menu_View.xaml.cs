@@ -110,7 +110,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
         }
 
-                private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void ClearDisplay_Click(object sender, RoutedEventArgs e)
         {
             Display.Text = string.Empty; // Clear the display
         }
@@ -172,18 +172,14 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-            Display.Text = string.Empty;
-
             var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
-
-            if (dashboardWindow?.LoadedBillView != null)
+            if (dashboardWindow != null)
             {
-                dashboardWindow.LoadedBillView?.Billclear_Click(sender, e);
-            }
-
-            if (dashboardWindow?.LoadedCategoriesView != null)
-            {
-                dashboardWindow.LoadedCategoriesView.ClearSelections(sender, e);
+                var dialogHost = dashboardWindow.FindName("ClearAllDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
+                }
             }
         }
 
@@ -196,6 +192,28 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             
         }
+
+        public void ClearAll()
+        {
+            // Clear the display text
+            if (Display != null)
+            {
+                Display.Text = string.Empty;
+            }
+
+            // Clear categories selection
+            if (categoriesView != null)
+            {
+                categoriesView.ClearSelection();
+            }
+
+            // Clear bill view
+            if (billView != null)
+            {
+                billView.Billclear_Click(this, new RoutedEventArgs());
+            }
+        }
+
     }
 }
 

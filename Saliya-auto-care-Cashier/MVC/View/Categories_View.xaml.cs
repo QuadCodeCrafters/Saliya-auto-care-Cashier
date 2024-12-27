@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using MySql.Data.MySqlClient;
@@ -9,6 +10,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
     public partial class Categories_View : UserControl
     {
         private List<Button> selectedButtons = new List<Button>();
+        private Button lastClickedButton = null; // Track the most recently clicked button
         public event EventHandler<List<string>> CategoriesSelected;
 
         public Categories_View()
@@ -68,34 +70,36 @@ namespace Saliya_auto_care_Cashier.MVC.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
+            lastClickedButton = clickedButton; // Store the last clicked button
 
             if (clickedButton.Tag.ToString() == "Unselected")
             {
                 clickedButton.Tag = "Selected";
                 selectedButtons.Add(clickedButton);
             }
-            else
-            {
-                clickedButton.Tag = "Unselected";
-                selectedButtons.Remove(clickedButton);
-            }
 
-            List<string> selectedCategories = selectedButtons.ConvertAll(b => b.Content.ToString());
-            CategoriesSelected?.Invoke(this, selectedCategories);
+            // Send only the current clicked button's content
+            List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
+            CategoriesSelected?.Invoke(this, currentSelection);
         }
 
-
-        public void ClearSelections(object sender, RoutedEventArgs e)
+        private void ClearSelections_Click(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("click"); Debuging
+            ClearSelection();
+        }
+
+        public void ClearSelection()
+        {
+            // Clear all selected buttons
+            foreach (Button button in selectedButtons.ToList())
             {
-                foreach (var button in selectedButtons)
-                {
-                    button.Tag = "Unselected";
-                }
-                selectedButtons.Clear();
+                button.Tag = "Unselected";
             }
+            selectedButtons.Clear();
+            lastClickedButton = null;
+
+            // Notify that no categories are selected
+            CategoriesSelected?.Invoke(this, new List<string>());
         }
     }
 }
-
