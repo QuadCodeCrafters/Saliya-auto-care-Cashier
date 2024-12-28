@@ -6,14 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View" xmlns:local1="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml"/>
-                <ResourceDictionary Source="/Styles/CalStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="#E6E6E6"

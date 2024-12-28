@@ -92,8 +92,10 @@
     </Compile>
     <Compile Include="DB\DatabaseStringModel.cs" />
     <Compile Include="Mails\SendEmail.cs" />
+    <Compile Include="MVC\Controller\CategoryViewController.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
+    <Compile Include="MVC\Model\CategoryViewModel.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
@@ -151,6 +153,10 @@
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Animations\ShakeAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

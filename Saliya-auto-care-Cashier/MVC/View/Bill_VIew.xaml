@@ -8,15 +8,6 @@
              mc:Ignorable="d"
              Background="White"
              x:Name="BillViewControl">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
-                <ResourceDictionary Source="/Styles/BillViewStyles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>

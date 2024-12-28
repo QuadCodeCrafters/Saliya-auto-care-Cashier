@@ -10,16 +10,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
-
-    <Window.Resources>
-        <!-- Resources of Welcomepage Buttons-->
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Welcomepagestyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-
+    
     <Grid>
         <Image Source="Images/Saliya.jpg" Stretch="UniformToFill" Opacity="0.8">
             <Image.Effect>

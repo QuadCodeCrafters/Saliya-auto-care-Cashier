@@ -10,12 +10,6 @@
         WindowState="Maximized"
         WindowStyle="None"
         ResizeMode="NoResize">
-    <Window.Resources>
-        <Storyboard x:Key="ShakeAnimation">
-            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                             From="0" To="-5" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="3x"/>
-        </Storyboard>
-    </Window.Resources>
     <Grid>
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
             <materialDesign:DialogHost.DialogContent>

@@ -15,52 +15,7 @@
     mc:Ignorable="d"
     Loaded="Window_Loaded">
     <Window.Resources>
-        <Storyboard x:Key="CloseButtonFadeInAnimation">
-            <DoubleAnimation
-                AutoReverse="False"
-                FillBehavior="HoldEnd"
-                Storyboard.TargetName="Close"
-                Storyboard.TargetProperty="Opacity"
-                From="0"
-                To="1"
-                Duration="0:0:0.3" />
-        </Storyboard>
-        <Storyboard x:Key="CloseButtonFadeOutAnimation">
-            <DoubleAnimation
-                AutoReverse="False"
-                FillBehavior="HoldEnd"
-                Storyboard.TargetName="Close"
-                Storyboard.TargetProperty="Opacity"
-                From="1"
-                To="0"
-                Duration="0:0:0.3" />
-        </Storyboard>
-        <Storyboard x:Key="WindowSlideInAnimation" Completed="WindowSlideInAnimation_Completed">
-            <ThicknessAnimation
-                Storyboard.TargetName="Border"
-                Storyboard.TargetProperty="Margin"
-                From="350,0,0,0"
-                To="0,0,0,0"
-                Duration="0:0:0.5" />
-        </Storyboard>
-        <Storyboard x:Key="WindowSlideOutAnimation" Completed="WindowSlideOutAnimation_Completed">
-            <ThicknessAnimation
-                Storyboard.TargetName="Border"
-                Storyboard.TargetProperty="Margin"
-                From="0,0,0,0"
-                To="350,0,0,0"
-                Duration="0:0:0.5" />
-        </Storyboard>
-        <Storyboard x:Key="RectangleWidthDecreaseAnimation" Completed="Storyboard_Completed">
-            <DoubleAnimation
-                AutoReverse="False"
-                FillBehavior="HoldEnd"
-                Storyboard.TargetName="Rectangle"
-                Storyboard.TargetProperty="Width"
-                From="350"
-                To="0"
-                Duration="0:0:3" />
-        </Storyboard>
+
     </Window.Resources>
     <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="Border" >
         <Grid>
