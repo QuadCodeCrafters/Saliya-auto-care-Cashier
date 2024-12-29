@@ -7,20 +7,6 @@
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Storyboard x:Key="ShakeAnimation">
-            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                             From="0" To="-5" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="3x"/>
-        </Storyboard>
-
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"

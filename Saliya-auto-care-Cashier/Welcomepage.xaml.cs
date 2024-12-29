@@ -51,22 +51,22 @@ namespace Saliya_auto_care_Cashier
 
         private void btn_paintjobs(object sender, RoutedEventArgs e)
         {
-            StartFadeOutAnimation("MVC/View/PaintJobs_View.xaml");
+            StartFadeOutAnimation("MVC/View/Menu_View.xaml");
         }
 
         private void btn_vehicleservice(object sender, RoutedEventArgs e)
         {
-            StartFadeOutAnimation("MVC/View/VehicleService_View.xaml");
+            StartFadeOutAnimation("MVC/View/Menu_View.xaml");
         }
 
         private void btn_vehiclerepairs(object sender, RoutedEventArgs e)
         {
-            StartFadeOutAnimation("MVC/View/VehicleRepairs_View.xaml");
+            StartFadeOutAnimation("MVC/View/Menu_View.xaml");
         }
 
         private void btn_spareparts(object sender, RoutedEventArgs e)
         {
-            StartFadeOutAnimation("MVC/View/SpareParts_View.xaml");
+            StartFadeOutAnimation("MVC/View/Menu_View.xaml");
         }
 
         private void btn_delivaryservice(object sender, RoutedEventArgs e)

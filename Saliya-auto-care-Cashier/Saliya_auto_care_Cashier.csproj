@@ -63,6 +63,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -91,17 +92,16 @@
     </Compile>
     <Compile Include="DB\DatabaseStringModel.cs" />
     <Compile Include="Mails\SendEmail.cs" />
+    <Compile Include="MVC\Controller\CategoryViewController.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
+    <Compile Include="MVC\Model\CategoryViewModel.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
     <Compile Include="MVC\View\Bill_VIew.xaml.cs">
       <DependentUpon>Bill_VIew.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\Cal_View.xaml.cs">
-      <DependentUpon>Cal_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\Categories_View.xaml.cs">
       <DependentUpon>Categories_View.xaml</DependentUpon>
@@ -130,23 +130,23 @@
     <Compile Include="MVC\View\Overviews.xaml.cs">
       <DependentUpon>Overviews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\View\PaintJobs_View.xaml.cs">
-      <DependentUpon>PaintJobs_View.xaml</DependentUpon>
+    <Compile Include="MVC\View\Menu_View.xaml.cs">
+      <DependentUpon>Menu_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Parts.xaml.cs">
+      <DependentUpon>Parts.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\View\SpareParts_View.xaml.cs">
-      <DependentUpon>SpareParts_View.xaml</DependentUpon>
+    <Compile Include="MVC\View\Repairs.xaml.cs">
+      <DependentUpon>Repairs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Service.xaml.cs">
+      <DependentUpon>Service.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\VehicleHistory_View.xaml.cs">
       <DependentUpon>VehicleHistory_View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\VehicleRepairs_View.xaml.cs">
-      <DependentUpon>VehicleRepairs_View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\VehicleService_View.xaml.cs">
-      <DependentUpon>VehicleService_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\Notificationbox.xaml.cs">
       <DependentUpon>Notificationbox.xaml</DependentUpon>
@@ -156,9 +156,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Styles\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Welcomepage.xaml.cs">
       <DependentUpon>Welcomepage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Animations\ShakeAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,10 +190,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MVC\View\Bill_VIew.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\Cal_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +229,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\PaintJobs_View.xaml">
+    <Page Include="MVC\View\Menu_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Parts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,7 +241,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\SpareParts_View.xaml">
+    <Page Include="MVC\View\Repairs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Service.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,15 +253,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\View\VehicleRepairs_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\VehicleService_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Notifications\Notificationbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BillViewStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\CategoriesStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

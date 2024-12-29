@@ -9,6 +9,8 @@ using System.Windows.Input;
 using Saliya_auto_care_Cashier.MVVM.View;
 using System.Data.Common;
 using Saliya_auto_care_Cashier.Notifications;
+using System.Linq;
+using Saliya_auto_care_Cashier.Styles;
 
 
 namespace Saliya_auto_care_Cashier.MVC.View
@@ -289,7 +291,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
 
         private TextBlock dateTextBlock;
-   
+
 
         public Bill_VIew()
         {
@@ -447,9 +449,29 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             if (descriptionListView != null)
             {
-               // descriptionListView.Items.Clear();
                 foreach (var description in descriptions)
                 {
+                    // Check if the description already exists in the ListView
+                    bool itemExists = descriptionListView.Items
+                        .Cast<dynamic>()
+                        .Any(item => item.Description == description);
+
+                    if (itemExists)
+                    {
+                        // Use the custom message box
+                        var result = CustomMessageBox.Show(
+                            $"The product '{description}' is already in the bill.\n Do you want to add it again?",
+                            "Product Exists"
+                        );
+
+                        if (result == false) // User selected "No"
+                        {
+                            continue; // Skip this item if user selects No
+                        }
+                    }
+
+
+                    // Add the item if it's not already in the list or user selects Yes
                     descriptionListView.Items.Add(new
                     {
                         Description = description,
@@ -457,40 +479,42 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     quantityListView.Items.Add(new
                     {
-                        Quantity = 100,
+                        Quantity = 1,
                     });
 
                     priceListView.Items.Add(new
                     {
-                        Price = 10000.00,
+                        Price = 0.00,
                     });
 
                     taxListView.Items.Add(new
                     {
-                        Tax = 100,
+                        Tax = 0,
                     });
 
                     amountListView.Items.Add(new
                     {
-                        Amount = 78770.00,
+                        Amount = 00.00,
                     });
                 }
             }
         }
 
+
         public void Billclear_Click(object sender, RoutedEventArgs e)
         {
-            CustomerName.Text = string.Empty;
-            Customeraddress.Text = string.Empty;
-            Customervehicletype.Text = string.Empty;
-            Customervehiclenumber.Text = string.Empty;
+            //CustomerName.Text = string.Empty;
+            //Customeraddress.Text = string.Empty;
+            //Customervehicletype.Text = string.Empty;
+            //Customervehiclenumber.Text = string.Empty;
+
             descriptionListView.Items.Clear();
             amountListView.Items.Clear();
             quantityListView.Items.Clear();
             priceListView.Items.Clear();
             taxListView.Items.Clear();
-
         }
+
 
         public void Buttonprint_Click(object sender, RoutedEventArgs e)
         {
@@ -500,62 +524,13 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 PrintDialog printDialog = new PrintDialog();
                 if (printDialog.ShowDialog() == true)
                 {
-                    // Create a copy of the UserControl for printing
-                    UserControl printContent = new UserControl();
-                    printContent.Content = this.Content;
-
-                    // Remove any ScrollViewer to ensure all content is visible
-                    RemoveScrollViewers(printContent);
-
-                    // Measure and arrange
-                    printContent.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                    printContent.Arrange(new Rect(new Point(0, 0), printContent.DesiredSize));
-
-                    // Print the content
-                    printDialog.PrintVisual(printContent, "Invoice");
-
-                    ShowAgain();
-                }
-                else
-                {
-                    Notificationbox.ShowError();
+                    printDialog.PrintVisual(Invoice, "invoice");
                 }
             }
             finally
             {
                 this.IsEnabled = true;
             }
-        }
-
-        public void RemoveScrollViewers(DependencyObject parent)
-        {
-            for (int i = VisualTreeHelper.GetChildrenCount(parent) - 1; i >= 0; i--)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
-                if (child is ScrollViewer)
-                {
-                    if (parent is Panel panel)
-                    {
-                        panel.Children.Remove(child as UIElement);
-                        panel.Children.Add((child as ScrollViewer).Content as UIElement);
-                    }
-                    else if (parent is ContentControl contentControl)
-                    {
-                        contentControl.Content = (child as ScrollViewer).Content;
-                    }
-                }
-                else
-                {
-                    RemoveScrollViewers(child);
-                }
-            }
-        }
-
-        public void ShowAgain()
-        {
-            Notificationbox.ShowSuccess();
-            UserControl newUser = new Bill_VIew();
-            this.Content = newUser; 
         }
 
     }

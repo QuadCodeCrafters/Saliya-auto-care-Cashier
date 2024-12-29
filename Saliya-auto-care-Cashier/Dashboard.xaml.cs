@@ -11,11 +11,16 @@ using Saliya_auto_care_Cashier.MVC.View;
 using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
 using static Saliya_auto_care_Cashier.MVC.View.Categories_View;
 using System.Collections.Generic;
+using Saliya_auto_care_Cashier.MVVM.View;
 
 namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+        private CategoryViewModel CategoryViewModel;
+
+
+        private Bill_VIew billView;
         private List<Control> requiredFields;
         public Bill_VIew LoadedBillView { get; set; }
         public Categories_View LoadedCategoriesView { get; set; }
@@ -46,6 +51,7 @@ namespace Saliya_auto_care_Cashier
 
             conn = new DatabaseStringModel(); // conn
 
+            CategoryViewModel = new CategoryViewModel();
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
@@ -74,6 +80,18 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Navigate(new System.Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+        }
+
+        private void btn_nenu(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                fContainer.Navigate(new System.Uri("MVC/View/Menu_View.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -194,7 +212,7 @@ namespace Saliya_auto_care_Cashier
                 return;
             }
 
-            string ID = txtloyalid.Text;
+            string VHNUM = txtloyalid.Text;
             string connectionString = conn.ConnectionString;
 
             using (var connection = new MySqlConnection(connectionString))
@@ -213,13 +231,13 @@ namespace Saliya_auto_care_Cashier
                                     csc.vehiclePlateNumber,
                                     csc.billedStatus 
                                     FROM vehicleregister vr
-                                    INNER JOIN carrierServiceCustomers csc ON vr.CustomerNIC = csc.NIC
-                                    WHERE vr.CustomerNIC = @CustomerNIC"
+                                    INNER JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
+                                    WHERE vr.VehicleNumber = @VehicleNumber"
                     ;
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@CustomerNIC", ID);
+                        cmd.Parameters.AddWithValue("@VehicleNumber", VHNUM);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -246,6 +264,9 @@ namespace Saliya_auto_care_Cashier
                                 sharevehicletype.VehicleType = VehicleType;
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
 
+                                //send the VehicleNumber to the CategoryViewModel
+                                CategoryViewModel.sendvehicleno(VehicleNumber);
+
 
 
                                 // Check BilledStatus
@@ -271,7 +292,7 @@ namespace Saliya_auto_care_Cashier
                                     Bill_VIew.sharedQty.Quantity = (double)Qty; // Update the Qty
 
 
-                                    Cusname.Text = "Customer Found: " + Name;
+                                    Cusname.Text = "Owner: " + Name;
                                     Notificationbox.ShowSuccess();
                                 }
 
@@ -279,7 +300,7 @@ namespace Saliya_auto_care_Cashier
                             }
                             else
                             {
-                                IDError.Text = "No Customer Found";
+                                IDError.Text = "No Vehicle Found";
                                 ErrorAnimation();
                             }
                         }
@@ -547,6 +568,18 @@ namespace Saliya_auto_care_Cashier
                         connection.Close();
                     }
                 }
+            }
+        }
+        private void Buttondashboardclear_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear the text the function is located in Menu_View
+            if (fContainer.Content is PaintJobs_View paintJobsView)
+            {
+                paintJobsView.ClearAll();
+            }
+            else
+            {
+                MessageBox.Show("PaintJobs_View is not currently loaded.");
             }
         }
 
