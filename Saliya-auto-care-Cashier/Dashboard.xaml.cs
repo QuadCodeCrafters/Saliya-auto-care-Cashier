@@ -17,6 +17,9 @@ namespace Saliya_auto_care_Cashier
 {
     public partial class Dashboard : Window
     {
+        private CategoryViewModel CategoryViewModel;
+
+
         private Bill_VIew billView;
         private List<Control> requiredFields;
         public Bill_VIew LoadedBillView { get; set; }
@@ -48,6 +51,7 @@ namespace Saliya_auto_care_Cashier
 
             conn = new DatabaseStringModel(); // conn
 
+            CategoryViewModel = new CategoryViewModel();
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
@@ -259,6 +263,9 @@ namespace Saliya_auto_care_Cashier
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
                                 sharevehicletype.VehicleType = VehicleType;
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
+
+                                //send the VehicleNumber to the CategoryViewModel
+                                CategoryViewModel.sendvehicleno(VehicleNumber);
 
 
 

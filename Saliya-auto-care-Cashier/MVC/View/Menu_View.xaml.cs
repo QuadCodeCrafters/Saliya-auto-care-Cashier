@@ -71,11 +71,29 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             SetSelectedButton(PaintButton);
 
+            try
+            {
+                CatContainer.Navigate(new System.Uri("MVC/View/Categories_View.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
+
         }
 
         public void ServiceButton_Click(object sender, RoutedEventArgs e)
         {
             SetSelectedButton(ServiceButton);
+
+            try
+            {
+                CatContainer.Navigate(new System.Uri("MVC/View/Parts.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
         }
 
         public void RepairButton_Click(object sender, RoutedEventArgs e)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Saliya_auto_care_Cashier.MVC.Model
 {
@@ -37,6 +38,11 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             }
 
             return categories;
+        }
+
+        public void sendvehicleno(string vehicleNumber)
+        {
+            MessageBox.Show($"Got the Vehicle Number: {vehicleNumber}", "Vehicle Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

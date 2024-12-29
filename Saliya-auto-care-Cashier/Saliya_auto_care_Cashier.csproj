@@ -133,8 +133,17 @@
     <Compile Include="MVC\View\Menu_View.xaml.cs">
       <DependentUpon>Menu_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVC\View\Parts.xaml.cs">
+      <DependentUpon>Parts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Repairs.xaml.cs">
+      <DependentUpon>Repairs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\Service.xaml.cs">
+      <DependentUpon>Service.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\VehicleHistory_View.xaml.cs">
       <DependentUpon>VehicleHistory_View.xaml</DependentUpon>
@@ -224,7 +233,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVC\View\Parts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\View\Register_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Repairs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\Service.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
