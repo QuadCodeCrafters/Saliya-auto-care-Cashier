@@ -6,14 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <Storyboard x:Key="ShakeAnimation">
-            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
-                             From="0" To="-5" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="3x"/>
-        </Storyboard>
-    </UserControl.Resources>
-
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"

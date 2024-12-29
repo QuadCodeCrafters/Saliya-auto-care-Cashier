@@ -1,68 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using MySql.Data.MySqlClient;
+using Saliya_auto_care_Cashier.MVC.Controller;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
     public partial class Categories_View : UserControl
     {
+        private readonly CategoryViewController categoryController;
         private List<Button> selectedButtons = new List<Button>();
         public event EventHandler<List<string>> CategoriesSelected;
 
         public Categories_View()
         {
             InitializeComponent();
+            categoryController = new CategoryViewController();
             LoadNames();
         }
 
         private void LoadNames()
         {
-            List<string> buttonNames = GetButtonNamesFromDatabase();
-
-            foreach (var name in buttonNames)
-            {
-                Button button = new Button
-                {
-                    Content = name,
-                    Style = (Style)FindResource("Category"),
-                    Tag = "Unselected"
-                };
-
-                button.Click += Button_Click;
-                buttonPanel.Children.Add(button);
-            }
-        }
-
-        private List<string> GetButtonNamesFromDatabase()
-        {
-            List<string> names = new List<string>();
-            string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
-
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT name FROM Categories";
+                List<string> buttonNames = categoryController.GetCategoryNames();
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                foreach (var name in buttonNames)
+                {
+                    Button button = new Button
                     {
-                        while (reader.Read())
-                        {
-                            names.Add(reader.GetString(0));
-                        }
-                    }
+                        Content = name,
+                        Style = (Style)FindResource("Category"),
+                        Tag = "Unselected"
+                    };
+
+                    button.Click += Button_Click;
+                    buttonPanel.Children.Add(button);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading category names: {ex.Message}");
             }
-
-            return names;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -74,28 +55,25 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 clickedButton.Tag = "Selected";
                 selectedButtons.Add(clickedButton);
             }
-            else
-            {
-                clickedButton.Tag = "Unselected";
-                selectedButtons.Remove(clickedButton);
-            }
 
-            List<string> selectedCategories = selectedButtons.ConvertAll(b => b.Content.ToString());
-            CategoriesSelected?.Invoke(this, selectedCategories);
+            List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
+            CategoriesSelected?.Invoke(this, currentSelection);
         }
 
-
-        public void ClearSelections(object sender, RoutedEventArgs e)
+        private void ClearSelections_Click(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("click"); Debuging
+            ClearSelection();
+        }
+
+        public void ClearSelection()
+        {
+            foreach (Button button in selectedButtons.ToList())
             {
-                foreach (var button in selectedButtons)
-                {
-                    button.Tag = "Unselected";
-                }
-                selectedButtons.Clear();
+                button.Tag = "Unselected";
             }
+
+            selectedButtons.Clear();
+            CategoriesSelected?.Invoke(this, new List<string>());
         }
     }
 }
-

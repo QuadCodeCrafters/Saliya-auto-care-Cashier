@@ -7,16 +7,6 @@
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
              mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
-                <ResourceDictionary Source="/Styles/InventoryStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-    
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"
@@ -194,7 +184,7 @@
                     </ScrollViewer>
                 </Grid>
                 <materialDesign:Card Grid.Column="1" Grid.Row="1" UniformCornerRadius="10" 
-                                     Background="{DynamicResource MaterialDesignPaper}"
+                                     Background="White"
                                      Margin="5"
                                      materialDesign:ShadowAssist.ShadowDepth="Depth2">
                     <ContentControl Grid.Column="1" Grid.Row="1">
