@@ -19,6 +19,11 @@ namespace Saliya_auto_care_Cashier
     {
         private CategoryViewModel CategoryViewModel;
 
+        private Inventory_View Inventory;
+        //private PaintJobs_View paintJobs;
+        private Register_View Register;
+        private VehicleHistory_View History;
+        private DelivaryService_View Carrier;
 
         private Bill_VIew billView;
         private List<Control> requiredFields;
@@ -32,10 +37,12 @@ namespace Saliya_auto_care_Cashier
         private Sharednumber sharevehiclenumber;
 
         private readonly DatabaseStringModel conn; //DatabaseStringModel
+
         public Dashboard()
         {
             InitializeComponent();
             RequiredFields();
+            LoadViews();
 
             sharename = new Sharedname();
             Bill_VIew.name = sharename;
@@ -52,6 +59,24 @@ namespace Saliya_auto_care_Cashier
             conn = new DatabaseStringModel(); // conn
 
             CategoryViewModel = new CategoryViewModel();
+        }
+
+        private void LoadViews()
+        {
+            try
+            {
+                Inventory = new Inventory_View();
+                //paintJobs = new PaintJobs_View();
+                Register = new Register_View();
+                History = new VehicleHistory_View();
+                Carrier = new DelivaryService_View();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Something went wrong: {ex.Message}");
+            }
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
@@ -79,7 +104,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Register;
             }
             catch (Exception ex)
             {
@@ -87,7 +112,7 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void btn_nenu(object sender, RoutedEventArgs e)
+        private void btn_menu(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -103,7 +128,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleHistory_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = History;
             }
             catch (Exception ex)
             {
@@ -115,82 +140,19 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Inventory;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
         }
-
-      /*  private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var billView = new Bill_VIew();
-                LoadedBillView = billView;
-
-
-                var categoriesView = new Categories_View();
-                LoadedCategoriesView = categoriesView;
-
-
-                fContainer.Navigate(categoriesView);
-
-
-                fContainer.Navigate(new System.Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
-
-                // MessageBox.Show($"LoadedBillView: {LoadedBillView != null}, LoadedCategoriesView: {LoadedCategoriesView != null}"); // Debugging
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-
-
-        private void btn_Vehicle_Services(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-        private void btn_Vehicle_Repairs(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-        private void btn_Spare_Parts(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }*/
 
         private void btn_Delivary_Service(object sender, RoutedEventArgs e)
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Carrier;
             }
             catch (Exception ex)
             {

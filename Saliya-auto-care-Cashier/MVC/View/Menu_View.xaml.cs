@@ -41,21 +41,12 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             try
             {
                 billView = new Bill_VIew();
-                BillContainer.Navigate(billView);
+                BillContainer.Content = billView;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading Bill View: {ex.Message}");
             }
-
-            //try
-            //{
-            //    CalContainer.Navigate(new System.Uri("MVC/View/Cal_View.xaml", UriKind.RelativeOrAbsolute));
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error loading Calculator View: {ex.Message}");
-            //}
         }
 
         private void OnCategoriesSelected(object sender, List<string> categories)
@@ -73,12 +64,22 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
             try
             {
-                CatContainer.Navigate(new System.Uri("MVC/View/Categories_View.xaml", UriKind.RelativeOrAbsolute));
+                CatContainer.Content = categoriesView;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
+                MessageBox.Show($"Error showing Categories View: {ex.Message}");
             }
+
+
+            //try
+            //{
+            //    CatContainer.Navigate(new System.Uri("MVC/View/Categories_View.xaml", UriKind.RelativeOrAbsolute));
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error navigating to page: {ex.Message}");
+            //}
 
         }
 
