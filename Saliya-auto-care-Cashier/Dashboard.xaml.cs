@@ -114,6 +114,7 @@ namespace Saliya_auto_care_Cashier
 
         private void btn_menu(object sender, RoutedEventArgs e)
         {
+            //Set the same Navigation method to the Menu_View.xaml.cs
             try
             {
                 fContainer.Navigate(new System.Uri("MVC/View/Menu_View.xaml", UriKind.RelativeOrAbsolute));

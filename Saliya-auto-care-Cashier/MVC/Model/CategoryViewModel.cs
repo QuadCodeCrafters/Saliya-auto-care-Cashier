@@ -20,7 +20,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
                 using (MySqlConnection connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT name FROM Categories";
+                    string query = "SELECT name FROM Categories ";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     using (MySqlDataReader reader = command.ExecuteReader())

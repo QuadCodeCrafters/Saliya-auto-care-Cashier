@@ -94,11 +94,17 @@
     <Compile Include="Mails\SendEmail.cs" />
     <Compile Include="MVC\Controller\CategoryViewController.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
+    <Compile Include="MVC\Controller\PartsController.cs" />
+    <Compile Include="MVC\Controller\RepairsController.cs" />
+    <Compile Include="MVC\Controller\ServiceController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\CategoryViewModel.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
+    <Compile Include="MVC\Model\PartsModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
+    <Compile Include="MVC\Model\RepairsModel.cs" />
+    <Compile Include="MVC\Model\ServicesModel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
     <Compile Include="MVC\View\Bill_VIew.xaml.cs">
       <DependentUpon>Bill_VIew.xaml</DependentUpon>

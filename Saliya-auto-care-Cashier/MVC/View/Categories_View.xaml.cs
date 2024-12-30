@@ -39,6 +39,18 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     button.Click += Button_Click;
                     buttonPanel.Children.Add(button);
                 }
+
+                // Check if there are any buttons or not 
+                if (buttonPanel.Children.Count == 0)
+                {
+                    noButtons.Visibility = Visibility.Visible;
+                    buttonPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    noButtons.Visibility = Visibility.Collapsed;
+                    buttonPanel.Visibility = Visibility.Visible;
+                }
             }
             catch (Exception ex)
             {
