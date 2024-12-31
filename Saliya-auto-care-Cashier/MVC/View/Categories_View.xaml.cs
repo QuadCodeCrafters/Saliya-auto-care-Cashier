@@ -40,6 +40,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     buttonPanel.Children.Add(button);
                 }
 
+
+                // need to change
                 // Check if there are any buttons or not 
                 if (buttonPanel.Children.Count == 0)
                 {

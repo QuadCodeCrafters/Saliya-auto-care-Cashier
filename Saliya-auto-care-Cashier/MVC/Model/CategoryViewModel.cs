@@ -10,14 +10,14 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 {
     internal class CategoryViewModel
     {
-        private readonly string _connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+        private readonly string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
 
         public List<string> GetCategories()
         {
             List<string> categories = new List<string>();
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(_connectionString))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
                     string query = "SELECT name FROM Categories ";
