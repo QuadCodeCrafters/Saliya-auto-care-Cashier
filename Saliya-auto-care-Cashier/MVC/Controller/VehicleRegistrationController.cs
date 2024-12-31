@@ -18,35 +18,53 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
             this.view = view;
         }
 
-        public void RegisterVehicle(string vehicleNumber, string vehicleType, string vehicleModel, string customerName, string customerAddress, string customerNIC, string customerEmail, string customerPhone, string emergencyContact, string specialNotes)
+        public void RegisterVehicle(string vehicleNumber, string vehicleCategory, string vehicleModel,
+            string vehicleType, string customerName, string customerAddress, string customerNIC,
+            string customerEmail, string customerPhone, string specialNotes)
         {
             try
             {
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(vehicleNumber) ||
+                    string.IsNullOrWhiteSpace(customerName) ||
+                    string.IsNullOrWhiteSpace(customerNIC))
+                {
+                    MessageBox.Show("Required fields cannot be empty!", "Validation Error",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 // Set model properties
                 model.VehicleNumber = vehicleNumber;
-                model.VehicleType = vehicleType;
+                model.VehicleCategory = vehicleCategory;
                 model.VehicleModel = vehicleModel;
+                model.VehicleType = vehicleType;
                 model.CustomerName = customerName;
                 model.CustomerAddress = customerAddress;
                 model.CustomerNIC = customerNIC;
                 model.CustomerEmail = customerEmail;
                 model.CustomerPhone = customerPhone;
-                model.EmergencyContact = emergencyContact;
                 model.SpecialNotes = specialNotes;
 
                 // Register the vehicle
                 model.RegisterVehicle();
+
+                // Show success notification
                 Notificationbox.ShowSuccess();
 
-                // Send registration email
-                RegisterMail();
+                // Send registration email if email is provided
+                if (!string.IsNullOrWhiteSpace(customerEmail))
+                {
+                    RegisterMail();
+                }
 
                 // Clear all fields after successful registration
                 view.ClearAllFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -64,23 +82,21 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
                     registrationContent
                 );
 
-                if (emailSent)
-                {
-                    MessageBox.Show("Registration email sent successfully!");
-                }
-                else
+                if (!emailSent)
                 {
                     MessageBox.Show(
-                        $"Failed to send registration email to {model.CustomerEmail}. Please check your Email Address formating or Network Connection.",
+                        $"Failed to send registration email to {model.CustomerEmail}. " +
+                        "Please check your Email Address formatting or Network Connection.",
                         "Email Error",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Error
+                        MessageBoxImage.Warning
                     );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while sending the email: {ex.Message}");
+                MessageBox.Show($"An error occurred while sending the email: {ex.Message}",
+                    "Email Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
