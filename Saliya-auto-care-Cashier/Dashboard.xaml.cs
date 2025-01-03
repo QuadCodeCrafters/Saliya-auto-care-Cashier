@@ -194,7 +194,7 @@ namespace Saliya_auto_care_Cashier
                                     csc.vehiclePlateNumber,
                                     csc.billedStatus 
                                     FROM vehicleregister vr
-                                    INNER JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
+                                    LEFT JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
                                     WHERE vr.VehicleNumber = @VehicleNumber"
                     ;
 
@@ -212,15 +212,6 @@ namespace Saliya_auto_care_Cashier
                                 string VehicleType = reader.GetString("VehicleType");
                                 string VehicleNumber = reader.GetString("VehicleNumber");
 
-                                // Data from carrierServiceCustomers
-                                decimal Price = reader.GetDecimal("price");
-                                decimal Tax = reader.GetDecimal("tax");
-                                string BilledStatus = reader.GetString("billedStatus");
-                                string PlateNumber = reader.GetString("vehiclePlateNumber");
-
-                                decimal Total = Price + Tax;
-                                decimal Qty = 1;
-
                                 // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
@@ -230,36 +221,51 @@ namespace Saliya_auto_care_Cashier
                                 //send the VehicleNumber to the CategoryViewModel
                                 CategoryViewModel.sendvehicleno(VehicleNumber);
 
-
-
-                                // Check BilledStatus
-                                if (BilledStatus == "Billed")
+                                // Data from carrierServiceCustomers
+                                if (!reader.IsDBNull(reader.GetOrdinal("vehiclePlateNumber")))
                                 {
-                                    MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
-                                    return;
+                                    decimal Price = reader.GetDecimal("price");
+                                    decimal Tax = reader.GetDecimal("tax");
+                                    string BilledStatus = reader.GetString("billedStatus");
+                                    string PlateNumber = reader.GetString("vehiclePlateNumber");
+
+                                    decimal Total = Price + Tax;
+                                    decimal Qty = 1;
+
+                                    // Check BilledStatus
+                                    if (BilledStatus == "Billed")
+                                    {
+                                        MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                                        return;
+                                    }
+                                    else
+                                    {
+
+                                        // Display Price and Tax for Debugging
+                                        MessageBox.Show(
+                                            $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
+                                            "Price and Tax Details",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Information
+                                        );
+
+
+                                        // Update Bill_View shared properties
+                                        Bill_VIew.sharedPrice.Price = (double)Price;
+                                        Bill_VIew.sharedTax.Tax = (double)Tax;
+                                        Bill_VIew.sharedProduct.Description = ("Carrier Service: " + PlateNumber);
+                                        Bill_VIew.sharedTotal.Amount = (double)Total;
+                                        Bill_VIew.sharedQty.Quantity = (double)Qty;
+
+                                        Cusname.Text = "Owner: " + Name;
+                                        Notificationbox.ShowSuccess();
+                                    }
                                 }
                                 else
                                 {
-                                    // Display Price and Tax for Debugging
-                                    MessageBox.Show(
-                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
-                                        "Price and Tax Details",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Information
-                                    );
-
-                                    Bill_VIew.sharedPrice.Price = (double)Price; // Update the price
-                                    Bill_VIew.sharedTax.Tax = (double)Tax;       // Update the tax
-                                    Bill_VIew.sharedProduct.Description = ("Carrier Service: "+PlateNumber); // Update the plate number
-                                    Bill_VIew.sharedTotal.Amount = (double)Total; // Update the total
-                                    Bill_VIew.sharedQty.Quantity = (double)Qty; // Update the Qty
-
-
-                                    Cusname.Text = "Owner: " + Name;
-                                    Notificationbox.ShowSuccess();
+                                    // No matching carrier service record found
+                                    MessageBox.Show("No carrier service data found for this vehicle.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                                 }
-
-
                             }
                             else
                             {
@@ -285,6 +291,7 @@ namespace Saliya_auto_care_Cashier
                     }
                 }
             }
+
         }
 
 
