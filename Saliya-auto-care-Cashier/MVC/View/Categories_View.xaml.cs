@@ -71,7 +71,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
 
             List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
-            CategoriesSelected?.Invoke(this, currentSelection);
+            CategoriesSelected?.Invoke(this, currentSelection); // Event is triggered with the selected category name
         }
 
         private void ClearSelections_Click(object sender, RoutedEventArgs e)

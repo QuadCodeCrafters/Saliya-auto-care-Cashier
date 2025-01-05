@@ -42,6 +42,12 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
                 CatContainer.Navigate(categoriesView);
                 categoriesView.CategoriesSelected += OnCategoriesSelected;
+
+                CatContainer.Navigate(servicesView);
+                servicesView.ServicesSelected += OnServicesSelected;
+
+                CatContainer.Navigate(repairsView);
+                repairsView.RepairSelected += OnRepairSelected;
             }
             catch (Exception ex)
             {
@@ -52,6 +58,8 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             {
                 billView = new Bill_VIew();
                 BillContainer.Content = billView;
+
+
             }
             catch (Exception ex)
             {
@@ -66,6 +74,26 @@ namespace Saliya_auto_care_Cashier.MVVM.View
                 billView.UpdateDescriptions(categories);
             }
         }
+
+        private void OnServicesSelected(object sender, List<string> categories)
+        {
+            if (billView != null)
+            {
+                billView.UpdateDescriptions(categories);
+            }
+        }
+
+        private void OnRepairSelected(object sender, List<string> categories)
+        {
+            if (billView != null)
+            {
+                billView.UpdateDescriptions(categories);
+            }
+        }
+
+
+
+
 
         //for the toggle buttons
         private void PaintButton_Click(object sender, RoutedEventArgs e)
@@ -252,6 +280,17 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             if (categoriesView != null)
             {
                 categoriesView.ClearSelection();
+            }
+
+            // Clear service selection
+            if (servicesView != null)
+            {
+                servicesView.ClearSelection();
+            }
+
+            if (repairsView != null)
+            {
+                repairsView.ClearSelection();
             }
 
             // Clear bill view

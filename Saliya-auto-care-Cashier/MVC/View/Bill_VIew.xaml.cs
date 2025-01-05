@@ -305,6 +305,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             dateTextBlock = FindName("date") as TextBlock;
             descriptionListView = FindName("descriptionListView") as ListView;
 
+
             if (dateTextBlock != null)
             {
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
