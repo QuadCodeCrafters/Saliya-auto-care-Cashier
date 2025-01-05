@@ -219,7 +219,7 @@ namespace Saliya_auto_care_Cashier
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
 
                                 //send the VehicleNumber to the CategoryViewModel
-                                CategoryViewModel.sendvehicleno(VehicleNumber);
+                                //CategoryViewModel.sendvehicleno(VehicleNumber);
 
                                 // Data from carrierServiceCustomers
                                 if (!reader.IsDBNull(reader.GetOrdinal("vehiclePlateNumber")))
