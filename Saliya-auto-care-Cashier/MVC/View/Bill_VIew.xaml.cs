@@ -458,8 +458,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     if (itemExists)
                     {
+                        //Need to change there was an font issue
+                        //var result = CustomMessageBox.Show(
+                        //    $"The product '{item.Name}' is already in the bill.\nDo you want to add it again?",
+                        //    "Product Exists"
+                        //);
+
                         var result = CustomMessageBox.Show(
-                            $"The product '{item.Name}' is already in the bill.\nDo you want to add it again?",
+                            $"The product is already in the bill.\n   Do you want to add it again?",
                             "Product Exists"
                         );
 
@@ -470,10 +476,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     }
 
                     descriptionListView.Items.Add(new { Description = item.Name });
-                    quantityListView.Items.Add(new { Quantity = 1 });
+                    quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
                     priceListView.Items.Add(new { Price = item.Price });
                     taxListView.Items.Add(new { Tax = 0 });
-                    amountListView.Items.Add(new { Amount = item.Price  });
+                    amountListView.Items.Add(new { Amount = item.Price  }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
                 }
             }
         }
