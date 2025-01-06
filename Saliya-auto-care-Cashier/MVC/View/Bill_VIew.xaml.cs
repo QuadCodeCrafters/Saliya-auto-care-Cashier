@@ -478,8 +478,15 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     descriptionListView.Items.Add(new { Description = item.Name });
                     quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
                     priceListView.Items.Add(new { Price = item.Price });
-                    taxListView.Items.Add(new { Tax = 0 });
+                    taxListView.Items.Add(new { Tax = 220 });
                     amountListView.Items.Add(new { Amount = item.Price  }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
+
+
+                    // Calculate subtotal after adding the new item
+                    CalculateSubtotal();
+
+                    // Calculate sales Tax after adding the new item
+                    CalculateSalestax();
                 }
             }
         }
@@ -517,5 +524,63 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
+        //the methods for calculating the subtotal amount
+        //In here i assumed that normaly in a POS system is keeping the lates cash details before adding an another customer 
+
+        private string subtotalText = "Rs 0.00";
+        public string SubtotalText
+        {
+            get => subtotalText;
+            set
+            {
+                if (subtotalText != value)
+                {
+                    subtotalText = value;
+                    OnPropertyChanged(nameof(SubtotalText));
+                }
+            }
+        }
+        private void CalculateSubtotal()
+        {
+            double total = 0;
+
+            foreach (var item in amountListView.Items.Cast<dynamic>())
+            {
+                total += (double)item.Amount;
+            }
+
+            SubtotalText = $"Rs {total:N2}";
+        }
+
+
+
+
+        //the methods for calculating the sales tax
+
+        private string salesTaxText = "Rs 0.00";
+        public string SalesTaxText
+        {
+            get => salesTaxText;
+            set
+            {
+                if (salesTaxText != value)
+                {
+                    salesTaxText = value;
+                    OnPropertyChanged(nameof(SalesTaxText));
+                }
+            }
+        }
+
+        private void CalculateSalestax()
+        {
+            double tax = 0;
+
+            foreach (var item in taxListView.Items.Cast<dynamic>())
+            {
+                tax += (double)item.Tax;
+            }
+
+            SalesTaxText = $"Rs {tax:N2}";
+        }
     }
 }
