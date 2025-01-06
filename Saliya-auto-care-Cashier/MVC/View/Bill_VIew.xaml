@@ -106,7 +106,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="10,0,0,0"/>
+                                                <TextBlock Text="{Binding Description}"  Margin="10,0,-100,0"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

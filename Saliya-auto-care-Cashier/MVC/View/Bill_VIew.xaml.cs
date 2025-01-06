@@ -446,57 +446,34 @@ namespace Saliya_auto_care_Cashier.MVC.View
             return $"SA{nextNumber:D3}";
         }
 
-        public void UpdateDescriptions(List<string> descriptions)
+        public void UpdateDescriptionsAndPrices(List<(string Name, decimal Price)> items)
         {
             if (descriptionListView != null)
             {
-                foreach (var description in descriptions)
+                foreach (var item in items)
                 {
-                    // Check if the description already exists in the ListView
                     bool itemExists = descriptionListView.Items
                         .Cast<dynamic>()
-                        .Any(item => item.Description == description);
+                        .Any(existingItem => existingItem.Description == item.Name);
 
                     if (itemExists)
                     {
-                        // Use the custom message box
                         var result = CustomMessageBox.Show(
-                            $"The product '{description}' is already in the bill.\n Do you want to add it again?",
+                            $"The product '{item.Name}' is already in the bill.\nDo you want to add it again?",
                             "Product Exists"
                         );
 
-                        if (result == false) // User selected "No"
+                        if (result == false)
                         {
-                            continue; // Skip this item if user selects No
+                            continue;
                         }
                     }
 
-
-                    // Add the item if it's not already in the list or user selects Yes
-                    descriptionListView.Items.Add(new
-                    {
-                        Description = description,
-                    });
-
-                    quantityListView.Items.Add(new
-                    {
-                        Quantity = 1,
-                    });
-
-                    priceListView.Items.Add(new
-                    {
-                        Price = 0.00,
-                    });
-
-                    taxListView.Items.Add(new
-                    {
-                        Tax = 0,
-                    });
-
-                    amountListView.Items.Add(new
-                    {
-                        Amount = 00.00,
-                    });
+                    descriptionListView.Items.Add(new { Description = item.Name });
+                    quantityListView.Items.Add(new { Quantity = 1 });
+                    priceListView.Items.Add(new { Price = item.Price });
+                    taxListView.Items.Add(new { Tax = 0 });
+                    amountListView.Items.Add(new { Amount = item.Price  });
                 }
             }
         }

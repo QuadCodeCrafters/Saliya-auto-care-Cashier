@@ -16,7 +16,7 @@ namespace Saliya_auto_care_Cashier.MVC.Controller
             categoryModel = new CategoryViewModel();
         }
 
-        public List<string> GetCategoryNames()
+        public List<(string Name, decimal Price)> GetCategories()
         {
             return categoryModel.GetCategories();
         }
