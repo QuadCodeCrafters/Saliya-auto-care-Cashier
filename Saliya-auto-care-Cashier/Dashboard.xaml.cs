@@ -507,7 +507,7 @@ namespace Saliya_auto_care_Cashier
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                           Notificationbox.ShowSuccess();
+              
 
                             // Clear the form
                             cmbcarriername.SelectedIndex = -1;//to clear the selected item
@@ -515,7 +515,9 @@ namespace Saliya_auto_care_Cashier
                             txtcusmobile.Clear();
                             txtcusname.Clear();
 
-                            MessageBox.Show("In here when new column added to the DB new notification need to go to the Mobile Appp ");
+                            MessageBox.Show(" Success! ,In here when new column added to the DB new notification need to go to the Mobile Appp and need to have a ststus");
+
+                            Notificationbox.ShowSuccess();
                         }
                         else
                         {
