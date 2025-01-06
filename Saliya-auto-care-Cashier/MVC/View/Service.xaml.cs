@@ -1,4 +1,5 @@
 ﻿using Saliya_auto_care_Cashier.MVC.Controller;
+using Saliya_auto_care_Cashier.MVC.View.Loyalty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
     {
         private readonly ServiceController serviseController;
         private List<Button> selectedButtons = new List<Button>();
-        public event EventHandler<List<string>> ServicesSelected;
+        public event EventHandler<List<(string Name, decimal Price)>> ServicesSelected;
 
 
         public Service()
@@ -38,15 +39,17 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             try
             {
-                List<string> buttonNames = serviseController.GetCategoryNames();
+                List<(string Name, decimal Price)> Services = serviseController.GetCategories();
 
-                foreach (var name in buttonNames)
+                foreach (var Service in Services)
                 {
                     Button button = new Button
                     {
-                        Content = name,
+                        Content = Service.Name,
                         Style = (Style)FindResource("Category"),
+                        ToolTip = Service.Price,
                         Tag = "Unselected"
+
                     };
 
                     button.Click += Button_Click;
@@ -83,7 +86,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 selectedButtons.Add(clickedButton);
             }
 
-            List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
+            string name = clickedButton.Content.ToString();
+            decimal price = (decimal)clickedButton.ToolTip;
+
+            List<(string Name, decimal Price)> currentSelection = new List<(string Name, decimal Price)> { (name, price) };
             ServicesSelected?.Invoke(this, currentSelection); // Event is triggered with the selected category name
         }
 
@@ -100,7 +106,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
 
             selectedButtons.Clear();
-            ServicesSelected?.Invoke(this, new List<string>());
+            ServicesSelected?.Invoke(this, new List<(string Name, decimal Price)>());
         }
 
     }

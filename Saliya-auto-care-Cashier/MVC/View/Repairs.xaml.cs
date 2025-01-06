@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
@@ -24,12 +25,11 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         private readonly RepairsController repairsController;
         private List<Button> selectedButtons = new List<Button>();
-        public event EventHandler<List<string>> RepairSelected;
+        public event EventHandler<List<(string Name, decimal Price)>> RepairSelected;
 
 
         public Repairs()
         {
-            InitializeComponent();
             InitializeComponent();
             repairsController = new RepairsController();
             LoadNames();
@@ -39,14 +39,15 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             try
             {
-                List<string> buttonNames = repairsController.GetCategoryNames();
+                List<(string Name, decimal Price)> Repairs = repairsController.GetCategories();
 
-                foreach (var name in buttonNames)
+                foreach (var Repair in Repairs)
                 {
                     Button button = new Button
                     {
-                        Content = name,
+                        Content = Repair.Name,
                         Style = (Style)FindResource("Category"),
+                        ToolTip = Repair.Price,
                         Tag = "Unselected"
                     };
 
@@ -83,8 +84,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 clickedButton.Tag = "Selected";
                 selectedButtons.Add(clickedButton);
             }
+            string name = clickedButton.Content.ToString();
+            decimal price = (decimal)clickedButton.ToolTip;
 
-            List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
+            List<(string Name, decimal Price)> currentSelection = new List<(string Name, decimal Price)> { (name, price) };
             RepairSelected?.Invoke(this, currentSelection); // Event is triggered with the selected category name
         }
 
@@ -101,7 +104,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
 
             selectedButtons.Clear();
-            RepairSelected?.Invoke(this, new List<string>());
+            RepairSelected?.Invoke(this, new List<(string Name, decimal Price)>());
         }
 
     }

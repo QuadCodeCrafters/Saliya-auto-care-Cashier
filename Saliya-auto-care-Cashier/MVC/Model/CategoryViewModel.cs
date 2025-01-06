@@ -7,7 +7,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 {
     internal class CategoryViewModel
     {
-        private readonly DatabaseStringModel conn;
+        private readonly DatabaseStringModel conn;  // DatabaseStringModel
 
         public CategoryViewModel()
         {
@@ -16,7 +16,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public List<(string Name, decimal Price)> GetCategories()
         {
-            string connectionString = conn.ConnectionString;
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             List<(string Name, decimal Price)> categories = new List<(string Name, decimal Price)>();
 
             MySqlConnection connection = null;
@@ -45,6 +45,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             }
             finally
             {
+                // connection is closed  
                 if (connection != null && connection.State == System.Data.ConnectionState.Open)
                 {
                     connection.Close();

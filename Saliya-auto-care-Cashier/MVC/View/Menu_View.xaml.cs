@@ -43,11 +43,11 @@ namespace Saliya_auto_care_Cashier.MVVM.View
                 CatContainer.Navigate(categoriesView);
                 categoriesView.CategoriesSelected += OnCategoriesSelected;
 
-                //CatContainer.Navigate(servicesView);
-                //servicesView.ServicesSelected += OnServicesSelected;
+                CatContainer.Navigate(servicesView);
+                servicesView.ServicesSelected += OnServicesSelected;
 
-                //CatContainer.Navigate(repairsView);
-                //repairsView.RepairSelected += OnRepairSelected;
+                CatContainer.Navigate(repairsView);
+                repairsView.RepairSelected += OnRepairSelected;
             }
             catch (Exception ex)
             {
@@ -71,25 +71,25 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             if (billView != null)
             {
-                billView.UpdateDescriptionsAndPrices(categories);
+                billView.Updateitems(categories);
             }
         }
 
-        //private void OnServicesSelected(object sender, List<string> categories)
-        //{
-        //    if (billView != null)
-        //    {
-        //        billView.UpdateDescriptions(categories);
-        //    }
-        //}
+        private void OnServicesSelected(object sender, List<(string Name, decimal Price)> categories)
+        {
+            if (billView != null)
+            {
+                billView.Updateitems(categories);
+            }
+        }
 
-        //private void OnRepairSelected(object sender, List<string> categories)
-        //{
-        //    if (billView != null)
-        //    {
-        //        billView.UpdateDescriptions(categories);
-        //    }
-        //}
+        private void OnRepairSelected(object sender, List<(string Name, decimal Price)> categories)
+        {
+            if (billView != null)
+            {
+                billView.Updateitems(categories);
+            }
+        }
 
 
 

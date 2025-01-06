@@ -446,7 +446,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             return $"SA{nextNumber:D3}";
         }
 
-        public void UpdateDescriptionsAndPrices(List<(string Name, decimal Price)> items)
+        public void Updateitems(List<(string Name, decimal Price)> items)
         {
             if (descriptionListView != null)
             {

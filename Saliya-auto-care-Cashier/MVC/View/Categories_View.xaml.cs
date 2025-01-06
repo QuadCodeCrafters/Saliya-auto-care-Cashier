@@ -8,6 +8,10 @@ using Saliya_auto_care_Cashier.MVC.Controller;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
+    /// <summary>
+    /// Interaction logic for Categories_View.xaml
+    /// </summary>
+    /// 
     public partial class Categories_View : UserControl
     {
         private readonly CategoryViewController categoryController;
@@ -42,6 +46,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     button.Click += Button_Click;
                     buttonPanel.Children.Add(button);
                 }
+
+                // need to change
+                // Check if there are any buttons or not 
 
                 if (buttonPanel.Children.Count == 0)
                 {
