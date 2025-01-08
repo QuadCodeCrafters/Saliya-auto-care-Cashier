@@ -21,6 +21,11 @@
     <Style x:Key="ListViewHeaderStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style x:Key="BindingViewStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
     <Style x:Key="SeparatorStyle" TargetType="Rectangle">

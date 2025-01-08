@@ -106,7 +106,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Description}"  Margin="10,0,-100,0"/>
+                                                <TextBlock Text="{Binding Description}"  Margin="10,0,-100,0" Style="{StaticResource BindingViewStyle}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -123,7 +123,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Quantity}" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Quantity}" HorizontalAlignment="Center"  Style="{StaticResource BindingViewStyle}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -140,7 +140,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Price,StringFormat='Rs {0:N2}'}" HorizontalAlignment="Right"/>
+                                                <TextBlock Text="{Binding Price,StringFormat='Rs {0:N2}'}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -157,7 +157,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"/>
+                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -174,7 +174,7 @@
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Amount, StringFormat='Rs {0:N2}'}" HorizontalAlignment="Right" />
+                                                <TextBlock Text="{Binding Amount, StringFormat='Rs {0:N2}'}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

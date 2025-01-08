@@ -162,7 +162,7 @@ namespace Saliya_auto_care_Cashier.Mails
             return htmlContent;
         }
 
-        //for the bill mail
+        //for the customer need to be changed
         public string BillContent(string customerName, string billDetails)
         {
             return $@"
