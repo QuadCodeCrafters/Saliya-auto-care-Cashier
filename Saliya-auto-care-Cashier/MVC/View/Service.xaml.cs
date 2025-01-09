@@ -1,5 +1,4 @@
 ﻿using Saliya_auto_care_Cashier.MVC.Controller;
-using Saliya_auto_care_Cashier.MVC.View.Loyalty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
