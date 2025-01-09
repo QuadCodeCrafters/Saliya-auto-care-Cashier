@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using Saliya_auto_care_Cashier.MVC.Controller; 
+using Saliya_auto_care_Cashier.MVC.Controller;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -26,7 +26,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             requiredFields = new List<Control>
             {
                 txtvehiclenum, txtvehicletype, txtvehiclemodel, txtcusname,
-                txtcusaddress, txtcusNIC, txtcusmail, txtcusnumber, txtcusspec, txtemergencycontact
+                txtcusaddress, txtcusNIC, txtcusmail, txtcusnumber, txtcusspec, txtvehiclecategory
             };
         }
 
@@ -35,10 +35,28 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             if (IsAnyFieldEmpty())
             {
                 ShowErrorAnimation();
+                return;
             }
-            else
+
+            try
             {
-                RegisterVehicle(); // Call the function to register vehicle data
+                controller.RegisterVehicle(
+                    txtvehiclenum.Text,
+                    txtvehiclecategory.Text,
+                    txtvehiclemodel.Text,
+                    txtvehicletype.Text,
+                    txtcusname.Text,
+                    txtcusaddress.Text,
+                    txtcusNIC.Text,
+                    txtcusmail.Text,
+                    txtcusnumber.Text,
+                    txtcusspec.Text
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Registration failed: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -60,7 +78,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             foreach (var field in requiredFields)
             {
                 bool hasError = (field is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text)) ||
-                                (field is ComboBox comboBox && comboBox.SelectedItem == null);
+                               (field is ComboBox comboBox && comboBox.SelectedItem == null);
 
                 if (hasError)
                 {
@@ -94,31 +112,17 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             TranslateTransform translateTransform = new TranslateTransform();
             control.RenderTransform = translateTransform;
-
-            translateTransform.BeginAnimation(TranslateTransform.XProperty, Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation); //imported from ErrorAnimation.cs
+            translateTransform.BeginAnimation(TranslateTransform.XProperty,
+                Saliya_auto_care_Cashier.Animations.ErrorAnimation.animation);
         }
 
         private void ResetToDefaultAppearance(Control control)
         {
             control.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#FFDDDDDD");
-            control.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6e6e6e"));
+            control.Foreground = new SolidColorBrush(
+                (Color)ColorConverter.ConvertFromString("#6e6e6e"));
         }
 
-        public void RegisterVehicle()
-        {
-            string vehicleNumber = txtvehiclenum.Text;
-            string vehicleType = txtvehicletype.Text;
-            string vehicleModel = txtvehiclemodel.Text;
-            string customerName = txtcusname.Text;
-            string customerAddress = txtcusaddress.Text;
-            string customerNIC = txtcusNIC.Text;
-            string customerEmail = txtcusmail.Text;
-            string customerPhone = txtcusnumber.Text;
-            string emergencyContact = txtemergencycontact.Text;
-            string specialNotes = txtcusspec.Text;
-
-            controller.RegisterVehicle(vehicleNumber, vehicleType, vehicleModel, customerName, customerAddress, customerNIC, customerEmail, customerPhone, emergencyContact, specialNotes);
-        }
         public void ClearAllFields()
         {
             foreach (var field in requiredFields)

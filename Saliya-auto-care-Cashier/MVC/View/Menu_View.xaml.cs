@@ -12,7 +12,12 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 {
     public partial class PaintJobs_View : UserControl
     {
+
         private Categories_View categoriesView;
+        private Service servicesView;
+        private Repairs repairsView;
+        private Parts partsView;        
+
         private Dashboard dashboard;
         private Bill_VIew billView;
 
@@ -30,8 +35,19 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             try
             {
                 categoriesView = new Categories_View();
+                servicesView = new Service();
+                repairsView = new Repairs();
+                partsView = new Parts();
+
+
                 CatContainer.Navigate(categoriesView);
                 categoriesView.CategoriesSelected += OnCategoriesSelected;
+
+                CatContainer.Navigate(servicesView);
+                servicesView.ServicesSelected += OnServicesSelected;
+
+                CatContainer.Navigate(repairsView);
+                repairsView.RepairSelected += OnRepairSelected;
             }
             catch (Exception ex)
             {
@@ -41,30 +57,43 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             try
             {
                 billView = new Bill_VIew();
-                BillContainer.Navigate(billView);
+                BillContainer.Content = billView;
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading Bill View: {ex.Message}");
             }
-
-            //try
-            //{
-            //    CalContainer.Navigate(new System.Uri("MVC/View/Cal_View.xaml", UriKind.RelativeOrAbsolute));
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error loading Calculator View: {ex.Message}");
-            //}
         }
 
-        private void OnCategoriesSelected(object sender, List<string> categories)
+        private void OnCategoriesSelected(object sender, List<(string Name, decimal Price)> categories)
         {
             if (billView != null)
             {
-                billView.UpdateDescriptions(categories);
+                billView.Updateitems(categories);
             }
         }
+
+        private void OnServicesSelected(object sender, List<(string Name, decimal Price)> categories)
+        {
+            if (billView != null)
+            {
+                billView.Updateitems(categories);
+            }
+        }
+
+        private void OnRepairSelected(object sender, List<(string Name, decimal Price)> categories)
+        {
+            if (billView != null)
+            {
+                billView.Updateitems(categories);
+            }
+        }
+
+
+
+
 
         //for the toggle buttons
         private void PaintButton_Click(object sender, RoutedEventArgs e)
@@ -73,12 +102,22 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
             try
             {
-                CatContainer.Navigate(new System.Uri("MVC/View/Categories_View.xaml", UriKind.RelativeOrAbsolute));
+                CatContainer.Content = categoriesView;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
+                MessageBox.Show($"Error showing Categories View: {ex.Message}");
             }
+
+
+            //try
+            //{
+            //    CatContainer.Navigate(new System.Uri("MVC/View/Categories_View.xaml", UriKind.RelativeOrAbsolute));
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error navigating to page: {ex.Message}");
+            //}
 
         }
 
@@ -88,7 +127,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
             try
             {
-                CatContainer.Navigate(new System.Uri("MVC/View/Parts.xaml", UriKind.RelativeOrAbsolute));
+                CatContainer.Content = servicesView;
             }
             catch (Exception ex)
             {
@@ -99,11 +138,29 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public void RepairButton_Click(object sender, RoutedEventArgs e)
         {
             SetSelectedButton(RepairButton);
+
+            try
+            {
+                CatContainer.Content = repairsView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
         }
 
         public void PartsButton_Click(object sender, RoutedEventArgs e)
         {
             SetSelectedButton(PartsButton);
+
+            try
+            {
+                CatContainer.Content = partsView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to page: {ex.Message}");
+            }
         }
 
         private void SetSelectedButton(Button selectedButton)
@@ -223,6 +280,17 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             if (categoriesView != null)
             {
                 categoriesView.ClearSelection();
+            }
+
+            // Clear service selection
+            if (servicesView != null)
+            {
+                servicesView.ClearSelection();
+            }
+
+            if (repairsView != null)
+            {
+                repairsView.ClearSelection();
             }
 
             // Clear bill view

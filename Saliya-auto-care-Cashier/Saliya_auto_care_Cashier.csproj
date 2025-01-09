@@ -94,11 +94,17 @@
     <Compile Include="Mails\SendEmail.cs" />
     <Compile Include="MVC\Controller\CategoryViewController.cs" />
     <Compile Include="MVC\Controller\LoginPageController.cs" />
+    <Compile Include="MVC\Controller\PartsController.cs" />
+    <Compile Include="MVC\Controller\RepairsController.cs" />
+    <Compile Include="MVC\Controller\ServiceController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\CategoryViewModel.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
+    <Compile Include="MVC\Model\PartsModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
+    <Compile Include="MVC\Model\RepairsModel.cs" />
+    <Compile Include="MVC\Model\ServicesModel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
     <Compile Include="MVC\View\Bill_VIew.xaml.cs">
       <DependentUpon>Bill_VIew.xaml</DependentUpon>
@@ -111,18 +117,6 @@
     </Compile>
     <Compile Include="MVC\View\Inventory_View.xaml.cs">
       <DependentUpon>Inventory_View.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\Loyalty\Paint.xaml.cs">
-      <DependentUpon>Paint.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\Loyalty\Repairs.xaml.cs">
-      <DependentUpon>Repairs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\Loyalty\Services.xaml.cs">
-      <DependentUpon>Services.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\View\Loyalty\SpareParts.xaml.cs">
-      <DependentUpon>SpareParts.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\Newcarrier.xaml.cs">
       <DependentUpon>Newcarrier.xaml</DependentUpon>
@@ -202,22 +196,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVC\View\Inventory_View.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\Loyalty\Paint.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\Loyalty\Repairs.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\Loyalty\Services.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\View\Loyalty\SpareParts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,6 +19,11 @@ namespace Saliya_auto_care_Cashier
     {
         private CategoryViewModel CategoryViewModel;
 
+        private Inventory_View Inventory;
+        //private PaintJobs_View paintJobs;
+        private Register_View Register;
+        private VehicleHistory_View History;
+        private DelivaryService_View Carrier;
 
         private Bill_VIew billView;
         private List<Control> requiredFields;
@@ -32,10 +37,12 @@ namespace Saliya_auto_care_Cashier
         private Sharednumber sharevehiclenumber;
 
         private readonly DatabaseStringModel conn; //DatabaseStringModel
+
         public Dashboard()
         {
             InitializeComponent();
             RequiredFields();
+            LoadViews();
 
             sharename = new Sharedname();
             Bill_VIew.name = sharename;
@@ -52,6 +59,24 @@ namespace Saliya_auto_care_Cashier
             conn = new DatabaseStringModel(); // conn
 
             CategoryViewModel = new CategoryViewModel();
+        }
+
+        private void LoadViews()
+        {
+            try
+            {
+                Inventory = new Inventory_View();
+                //paintJobs = new PaintJobs_View();
+                Register = new Register_View();
+                History = new VehicleHistory_View();
+                Carrier = new DelivaryService_View();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Something went wrong: {ex.Message}");
+            }
         }
 
         private void FadeOutAnimation_Completed(object sender, EventArgs e)
@@ -79,7 +104,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/Register_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Register;
             }
             catch (Exception ex)
             {
@@ -87,8 +112,9 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void btn_nenu(object sender, RoutedEventArgs e)
+        private void btn_menu(object sender, RoutedEventArgs e)
         {
+            //Set the same Navigation method to the Menu_View.xaml.cs
             try
             {
                 fContainer.Navigate(new System.Uri("MVC/View/Menu_View.xaml", UriKind.RelativeOrAbsolute));
@@ -103,7 +129,7 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleHistory_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = History;
             }
             catch (Exception ex)
             {
@@ -115,82 +141,19 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/Inventory_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Inventory;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error navigating to page: {ex.Message}");
             }
         }
-
-      /*  private void btn_Paint_Jobs(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var billView = new Bill_VIew();
-                LoadedBillView = billView;
-
-
-                var categoriesView = new Categories_View();
-                LoadedCategoriesView = categoriesView;
-
-
-                fContainer.Navigate(categoriesView);
-
-
-                fContainer.Navigate(new System.Uri("MVC/View/PaintJobs_View.xaml", UriKind.RelativeOrAbsolute));
-
-                // MessageBox.Show($"LoadedBillView: {LoadedBillView != null}, LoadedCategoriesView: {LoadedCategoriesView != null}"); // Debugging
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-
-
-        private void btn_Vehicle_Services(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleService_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-        private void btn_Vehicle_Repairs(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/VehicleRepairs_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }
-
-        private void btn_Spare_Parts(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                fContainer.Navigate(new System.Uri("MVC/View/SpareParts_View.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error navigating to page: {ex.Message}");
-            }
-        }*/
 
         private void btn_Delivary_Service(object sender, RoutedEventArgs e)
         {
             try
             {
-                fContainer.Navigate(new System.Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainer.Content = Carrier;
             }
             catch (Exception ex)
             {
@@ -231,7 +194,7 @@ namespace Saliya_auto_care_Cashier
                                     csc.vehiclePlateNumber,
                                     csc.billedStatus 
                                     FROM vehicleregister vr
-                                    INNER JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
+                                    LEFT JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
                                     WHERE vr.VehicleNumber = @VehicleNumber"
                     ;
 
@@ -249,15 +212,6 @@ namespace Saliya_auto_care_Cashier
                                 string VehicleType = reader.GetString("VehicleType");
                                 string VehicleNumber = reader.GetString("VehicleNumber");
 
-                                // Data from carrierServiceCustomers
-                                decimal Price = reader.GetDecimal("price");
-                                decimal Tax = reader.GetDecimal("tax");
-                                string BilledStatus = reader.GetString("billedStatus");
-                                string PlateNumber = reader.GetString("vehiclePlateNumber");
-
-                                decimal Total = Price + Tax;
-                                decimal Qty = 1;
-
                                 // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
@@ -265,38 +219,53 @@ namespace Saliya_auto_care_Cashier
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
 
                                 //send the VehicleNumber to the CategoryViewModel
-                                CategoryViewModel.sendvehicleno(VehicleNumber);
+                                //CategoryViewModel.sendvehicleno(VehicleNumber);
 
-
-
-                                // Check BilledStatus
-                                if (BilledStatus == "Billed")
+                                // Data from carrierServiceCustomers
+                                if (!reader.IsDBNull(reader.GetOrdinal("vehiclePlateNumber")))
                                 {
-                                    MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
-                                    return;
+                                    decimal Price = reader.GetDecimal("price");
+                                    decimal Tax = reader.GetDecimal("tax");
+                                    string BilledStatus = reader.GetString("billedStatus");
+                                    string PlateNumber = reader.GetString("vehiclePlateNumber");
+
+                                    decimal Total = Price + Tax;
+                                    decimal Qty = 1;
+
+                                    // Check BilledStatus
+                                    if (BilledStatus == "Billed")
+                                    {
+                                        MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                                        return;
+                                    }
+                                    else
+                                    {
+
+                                        // Display Price and Tax for Debugging
+                                        MessageBox.Show(
+                                            $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
+                                            "Price and Tax Details",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Information
+                                        );
+
+
+                                        // Update Bill_View shared properties
+                                        Bill_VIew.sharedPrice.Price = (double)Price;
+                                        Bill_VIew.sharedTax.Tax = (double)Tax;
+                                        Bill_VIew.sharedProduct.Description = ("Carrier Service: " + PlateNumber);
+                                        Bill_VIew.sharedTotal.Amount = (double)Total;
+                                        Bill_VIew.sharedQty.Quantity = (double)Qty;
+
+                                        Cusname.Text = "Owner: " + Name;
+                                        Notificationbox.ShowSuccess();
+                                    }
                                 }
                                 else
                                 {
-                                    // Display Price and Tax for Debugging
-                                    MessageBox.Show(
-                                        $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
-                                        "Price and Tax Details",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Information
-                                    );
-
-                                    Bill_VIew.sharedPrice.Price = (double)Price; // Update the price
-                                    Bill_VIew.sharedTax.Tax = (double)Tax;       // Update the tax
-                                    Bill_VIew.sharedProduct.Description = ("Carrier Service: "+PlateNumber); // Update the plate number
-                                    Bill_VIew.sharedTotal.Amount = (double)Total; // Update the total
-                                    Bill_VIew.sharedQty.Quantity = (double)Qty; // Update the Qty
-
-
-                                    Cusname.Text = "Owner: " + Name;
-                                    Notificationbox.ShowSuccess();
+                                    // No matching carrier service record found
+                                    MessageBox.Show("No carrier service data found for this vehicle.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                                 }
-
-
                             }
                             else
                             {
@@ -322,6 +291,7 @@ namespace Saliya_auto_care_Cashier
                     }
                 }
             }
+
         }
 
 
@@ -537,7 +507,7 @@ namespace Saliya_auto_care_Cashier
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                           Notificationbox.ShowSuccess();
+              
 
                             // Clear the form
                             cmbcarriername.SelectedIndex = -1;//to clear the selected item
@@ -545,7 +515,9 @@ namespace Saliya_auto_care_Cashier
                             txtcusmobile.Clear();
                             txtcusname.Clear();
 
-                            MessageBox.Show("In here when new column added to the DB new notification need to go to the Mobile Appp ");
+                            MessageBox.Show(" Success! ,In here when new column added to the DB new notification need to go to the Mobile Appp and need to have a ststus");
+
+                            Notificationbox.ShowSuccess();
                         }
                         else
                         {

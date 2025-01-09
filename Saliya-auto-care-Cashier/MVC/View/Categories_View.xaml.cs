@@ -8,11 +8,15 @@ using Saliya_auto_care_Cashier.MVC.Controller;
 
 namespace Saliya_auto_care_Cashier.MVC.View
 {
+    /// <summary>
+    /// Interaction logic for Categories_View.xaml
+    /// </summary>
+    /// 
     public partial class Categories_View : UserControl
     {
         private readonly CategoryViewController categoryController;
         private List<Button> selectedButtons = new List<Button>();
-        public event EventHandler<List<string>> CategoriesSelected;
+        public event EventHandler<List<(string Name, decimal Price)>> CategoriesSelected;
 
         public Categories_View()
         {
@@ -25,19 +29,36 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             try
             {
-                List<string> buttonNames = categoryController.GetCategoryNames();
+                List<(string Name, decimal Price)> categories = categoryController.GetCategories();
 
-                foreach (var name in buttonNames)
+                foreach (var category in categories)
                 {
                     Button button = new Button
                     {
-                        Content = name,
+                        Content = category.Name,
                         Style = (Style)FindResource("Category"),
+                        ToolTip = category.Price,
                         Tag = "Unselected"
+
+
                     };
 
                     button.Click += Button_Click;
                     buttonPanel.Children.Add(button);
+                }
+
+                // need to change
+                // Check if there are any buttons or not 
+
+                if (buttonPanel.Children.Count == 0)
+                {
+                    noButtons.Visibility = Visibility.Visible;
+                    buttonPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    noButtons.Visibility = Visibility.Collapsed;
+                    buttonPanel.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex)
@@ -56,7 +77,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 selectedButtons.Add(clickedButton);
             }
 
-            List<string> currentSelection = new List<string> { clickedButton.Content.ToString() };
+            string name = clickedButton.Content.ToString();
+            decimal price = (decimal)clickedButton.ToolTip;
+
+            List<(string Name, decimal Price)> currentSelection = new List<(string Name, decimal Price)> { (name, price) };
             CategoriesSelected?.Invoke(this, currentSelection);
         }
 
@@ -73,7 +97,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
 
             selectedButtons.Clear();
-            CategoriesSelected?.Invoke(this, new List<string>());
+            CategoriesSelected?.Invoke(this, new List<(string Name, decimal Price)>());
         }
     }
 }

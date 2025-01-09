@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Saliya_auto_care_Cashier.MVC.Controller
 {
-    internal class CategoryViewController
+    internal class RepairsController
     {
-        private readonly CategoryViewModel categoryModel;
+        private readonly RepairsModel repairsModel;
 
-        public CategoryViewController()
+        public RepairsController()
         {
-            categoryModel = new CategoryViewModel();
+            repairsModel = new RepairsModel();
         }
 
         public List<(string Name, decimal Price)> GetCategories()
         {
-            return categoryModel.GetCategories();
+            return repairsModel.GetCategories();
         }
     }
 }

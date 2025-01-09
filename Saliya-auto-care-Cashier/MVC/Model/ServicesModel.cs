@@ -1,22 +1,26 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Saliya_auto_care_Cashier.MVC.Model
 {
-    internal class CategoryViewModel
+    internal class ServicesModel
     {
-        private readonly DatabaseStringModel conn;  // DatabaseStringModel
+        private readonly DatabaseStringModel conn; // DatabaseStringModel
 
-        public CategoryViewModel()
+        public ServicesModel()
         {
             conn = new DatabaseStringModel();
         }
 
         public List<(string Name, decimal Price)> GetCategories()
         {
-            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
+            string connectionString = conn.ConnectionString; // Use the DatabaseStringModel connection string
+
             List<(string Name, decimal Price)> categories = new List<(string Name, decimal Price)>();
 
             MySqlConnection connection = null;
@@ -24,14 +28,14 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             {
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
-                string query = "SELECT name, price FROM paintservices";
+                string query = "SELECT name, price FROM services";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        categories.Add((reader.GetString(0), reader.GetDecimal(1)));
+                        categories.Add((reader.GetString(0) , reader.GetDecimal(1)));
                     }
                 }
             }
@@ -41,7 +45,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading Paint Services: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error loading Paint Services : {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

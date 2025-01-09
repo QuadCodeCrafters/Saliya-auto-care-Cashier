@@ -305,6 +305,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             dateTextBlock = FindName("date") as TextBlock;
             descriptionListView = FindName("descriptionListView") as ListView;
 
+
             if (dateTextBlock != null)
             {
                 dateTextBlock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
@@ -445,57 +446,47 @@ namespace Saliya_auto_care_Cashier.MVC.View
             return $"SA{nextNumber:D3}";
         }
 
-        public void UpdateDescriptions(List<string> descriptions)
+        public void Updateitems(List<(string Name, decimal Price)> items)
         {
             if (descriptionListView != null)
             {
-                foreach (var description in descriptions)
+                foreach (var item in items)
                 {
-                    // Check if the description already exists in the ListView
                     bool itemExists = descriptionListView.Items
                         .Cast<dynamic>()
-                        .Any(item => item.Description == description);
+                        .Any(existingItem => existingItem.Description == item.Name);
 
                     if (itemExists)
                     {
-                        // Use the custom message box
+                        //Need to change there was an font issue
+                        //var result = CustomMessageBox.Show(
+                        //    $"The product '{item.Name}' is already in the bill.\nDo you want to add it again?",
+                        //    "Product Exists"
+                        //);
+
                         var result = CustomMessageBox.Show(
-                            $"The product '{description}' is already in the bill.\n Do you want to add it again?",
+                            $"The product is already in the bill.\n   Do you want to add it again?",
                             "Product Exists"
                         );
 
-                        if (result == false) // User selected "No"
+                        if (result == false)
                         {
-                            continue; // Skip this item if user selects No
+                            continue;
                         }
                     }
 
+                    descriptionListView.Items.Add(new { Description = item.Name });
+                    quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
+                    priceListView.Items.Add(new { Price = item.Price });
+                    taxListView.Items.Add(new { Tax = 220 });
+                    amountListView.Items.Add(new { Amount = item.Price  }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
 
-                    // Add the item if it's not already in the list or user selects Yes
-                    descriptionListView.Items.Add(new
-                    {
-                        Description = description,
-                    });
 
-                    quantityListView.Items.Add(new
-                    {
-                        Quantity = 1,
-                    });
+                    // Calculate subtotal after adding the new item
+                    CalculateSubtotal();
 
-                    priceListView.Items.Add(new
-                    {
-                        Price = 0.00,
-                    });
-
-                    taxListView.Items.Add(new
-                    {
-                        Tax = 0,
-                    });
-
-                    amountListView.Items.Add(new
-                    {
-                        Amount = 00.00,
-                    });
+                    // Calculate sales Tax after adding the new item
+                    CalculateSalestax();
                 }
             }
         }
@@ -533,5 +524,63 @@ namespace Saliya_auto_care_Cashier.MVC.View
             }
         }
 
+        //the methods for calculating the subtotal amount
+        //In here i assumed that normaly in a POS system is keeping the lates cash details before adding an another customer 
+
+        private string subtotalText = "Rs 0.00";
+        public string SubtotalText
+        {
+            get => subtotalText;
+            set
+            {
+                if (subtotalText != value)
+                {
+                    subtotalText = value;
+                    OnPropertyChanged(nameof(SubtotalText));
+                }
+            }
+        }
+        private void CalculateSubtotal()
+        {
+            double total = 0;
+
+            foreach (var item in amountListView.Items.Cast<dynamic>())
+            {
+                total += (double)item.Amount;
+            }
+
+            SubtotalText = $"Rs {total:N2}";
+        }
+
+
+
+
+        //the methods for calculating the sales tax
+
+        private string salesTaxText = "Rs 0.00";
+        public string SalesTaxText
+        {
+            get => salesTaxText;
+            set
+            {
+                if (salesTaxText != value)
+                {
+                    salesTaxText = value;
+                    OnPropertyChanged(nameof(SalesTaxText));
+                }
+            }
+        }
+
+        private void CalculateSalestax()
+        {
+            double tax = 0;
+
+            foreach (var item in taxListView.Items.Cast<dynamic>())
+            {
+                tax += (double)item.Tax;
+            }
+
+            SalesTaxText = $"Rs {tax:N2}";
+        }
     }
 }
