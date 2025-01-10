@@ -130,6 +130,9 @@
     <Compile Include="MVC\View\Parts.xaml.cs">
       <DependentUpon>Parts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVC\View\QuantitySelector.xaml.cs">
+      <DependentUpon>QuantitySelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVC\View\Parts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\View\QuantitySelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
