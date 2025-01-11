@@ -79,6 +79,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+
+
         }
 
         // Class for Customer Address
@@ -478,10 +480,10 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     descriptionListView.Items.Add(new { Description = item.Name });
                     quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
                     priceListView.Items.Add(new { Price = item.Price });
-                    taxListView.Items.Add(new { Tax = "10%"});
+                    taxListView.Items.Add(new { Tax = "10%" });//need to change according to admin's choice
 
 
-                    decimal amount = (item.Price * 10) /100 + item.Price; // Price + 10% tax
+                    decimal amount = (item.Price * 10) / 100 + item.Price; // Price + 10% tax need to change according to admin's choice
                     amountListView.Items.Add(new { Amount = amount }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
 
 
@@ -496,6 +498,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     // Calculate the Discount after adding the new item(all)
                     CalculateDiscount();
+
+                    // Calculate the Total after adding the new item(all)
+                    CalculateTotal();
                 }
             }
         }
@@ -551,14 +556,14 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
         private void CalculateSubtotal()
         {
-            double total = 0;
+            double subtotal = 0;
 
             foreach (var item in amountListView.Items.Cast<dynamic>())
             {
-                total += (double)item.Amount;
+                subtotal += (double)item.Amount;
             }
 
-            SubtotalText = $"Rs {total:N2}";
+            SubtotalText = $"Rs {subtotal:N2}";
         }
 
 
@@ -585,7 +590,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             decimal totalTax = 0;
             foreach (var item in priceListView.Items.Cast<dynamic>())
             {
-                totalTax += (decimal)(item.Price * 10) / 100; // 10% of the price
+                totalTax += (decimal)(item.Price * 10) / 100; // 10% of the price need to change according to admin's choice
             }
 
             SalesTaxText = $"Rs {totalTax:N2}";
@@ -593,27 +598,76 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
 
         //the methods to calculate the shipping cost 
-        private void CalculateShippingcost() 
-        { 
-        
-        
+        private void CalculateShippingcost()
+        {
+
+
         }
 
 
         //the methods to calculate the discount
 
-        private string DiscountText = "Rs 0.00";
-
+        private string discountText = "Rs 0.00";
+        public string DiscountText
+        {
+            get => discountText;
+            set
+            {
+                if (discountText != value)
+                {
+                    discountText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DiscountText)));
+                }
+            }
+        }
         private void CalculateDiscount()
         {
-            DiscountText = $"Rs {200:N2}";
+            double discount = 0;
+            double subtotalValue = Convert.ToDouble(SubtotalText.Replace("Rs", "").Trim());
+
+            if (subtotalValue > 500.00) // need to change according to admin's choice
+            {
+                discount += (subtotalValue * 10) / 100; //need to change according to admin's choice
+                DiscountText = $"Rs {discount:N2}";
+
+            }
+            else
+            {
+
+                DiscountText = "Rs 0.00";
+            }
+
         }
 
         //the methods to calculate the total
+
+        private string totalText = "Rs 0.00";
+        public string TotalText
+        {
+            get => totalText;
+            set
+            {
+                if (totalText != value)
+                {
+                    totalText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalText)));
+                }
+            }
+        }
+        private void CalculateTotal()
+        {
+            double Total = 0;
+            double subtotalValue = Convert.ToDouble(SubtotalText.Replace("Rs", "").Trim());
+            double discountValue = Convert.ToDouble(DiscountText.Replace("Rs", "").Trim());
+
+            Total = subtotalValue - discountValue;
+
+            TotalText = $"Rs {Total:N2}";
+
+        }
+
+
         //the methods to calculate the Amount paid
         //the methods to calculate the balance Due
-
-
-
     }
 }
