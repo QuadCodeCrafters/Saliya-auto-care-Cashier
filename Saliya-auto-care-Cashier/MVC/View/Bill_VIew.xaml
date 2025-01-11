@@ -213,7 +213,7 @@
                             </Grid>
                             <Grid Grid.Row="1">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                    <TextBlock Text="Discount(10%) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Shipping Cost :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
                                     <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsSectionTextBlockStyle}" />
@@ -221,10 +221,10 @@
                             </Grid>
                             <Grid Grid.Row="2">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                                    <TextBlock Text="Shipping Cost :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Discount(10%) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsSectionTextBlockStyle}" />
+                                    <TextBlock Text="{Binding DiscountText}"  Style="{StaticResource TotalsSectionTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="3">

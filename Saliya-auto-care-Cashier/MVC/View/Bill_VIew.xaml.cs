@@ -478,8 +478,11 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     descriptionListView.Items.Add(new { Description = item.Name });
                     quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
                     priceListView.Items.Add(new { Price = item.Price });
-                    taxListView.Items.Add(new { Tax = 220 });
-                    amountListView.Items.Add(new { Amount = item.Price  }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
+                    taxListView.Items.Add(new { Tax = "10%"});
+
+
+                    decimal amount = (item.Price * 10) /100 + item.Price; // Price + 10% tax
+                    amountListView.Items.Add(new { Amount = amount }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
 
 
                     // Calculate subtotal after adding the new item
@@ -487,6 +490,12 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     // Calculate sales Tax after adding the new item
                     CalculateSalestax();
+
+                    // Calculate Shipping cost after adding the new item(Patrs)
+                    CalculateShippingcost();
+
+                    // Calculate the Discount after adding the new item(all)
+                    CalculateDiscount();
                 }
             }
         }
@@ -566,21 +575,45 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 if (salesTaxText != value)
                 {
                     salesTaxText = value;
-                    OnPropertyChanged(nameof(SalesTaxText));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SalesTaxText)));
                 }
             }
         }
 
         private void CalculateSalestax()
         {
-            double tax = 0;
-
-            foreach (var item in taxListView.Items.Cast<dynamic>())
+            decimal totalTax = 0;
+            foreach (var item in priceListView.Items.Cast<dynamic>())
             {
-                tax += (double)item.Tax;
+                totalTax += (decimal)(item.Price * 10) / 100; // 10% of the price
             }
 
-            SalesTaxText = $"Rs {tax:N2}";
+            SalesTaxText = $"Rs {totalTax:N2}";
         }
+
+
+        //the methods to calculate the shipping cost 
+        private void CalculateShippingcost() 
+        { 
+        
+        
+        }
+
+
+        //the methods to calculate the discount
+
+        private string DiscountText = "Rs 0.00";
+
+        private void CalculateDiscount()
+        {
+            DiscountText = $"Rs {200:N2}";
+        }
+
+        //the methods to calculate the total
+        //the methods to calculate the Amount paid
+        //the methods to calculate the balance Due
+
+
+
     }
 }
