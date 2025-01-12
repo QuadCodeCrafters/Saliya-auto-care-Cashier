@@ -131,7 +131,7 @@
                                 <Button Content="Rs 500" Grid.Row="0" Grid.Column="3" Style="{StaticResource Amount}"/>
                                 <Button Content="Rs 1000" Grid.Row="1" Grid.Column="3" Style="{StaticResource Amount}"/>
                                 <Button Content="Rs 5000" Grid.Row="2" Grid.Column="3" Style="{StaticResource Amount}"/>
-                                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource Action}" Background="#2ecc71">
+                                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource Action}" Background="#2ecc71" Click="AddButton_Click">
                                     <TextBlock Text="+" FontSize="55" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-10,0,0"/>
                                 </Button>
 

@@ -268,6 +268,30 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             
         }
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (billView != null && !string.IsNullOrEmpty(Display.Text))
+            {
+                if (decimal.TryParse(Display.Text, out decimal amount))
+                {
+                    // Find the TextBox for "Amount Paid" in the Bill_View
+                    var amountPaid = billView.FindName("AmountPaidText") as TextBox;
+                    if (amountPaid != null)
+                    {
+                        // Update the text of the "Amount Paid" TextBox
+                        amountPaid.Text = $"Rs {amount:N2}";
+                    }
+
+                    // Clear the display
+                    Display.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid amount entered.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         public void ClearAll()
         {
             // Clear the display text

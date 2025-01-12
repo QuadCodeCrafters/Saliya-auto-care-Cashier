@@ -327,6 +327,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             MyCommand = new RelayCommand(Buttonprint_Click);
 
+            AmountPaidText.Text = "Rs 0.00";
+
         }
 
         private void SharedProduct_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -498,6 +500,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     // Calculate the Total after adding the new item(all)
                     CalculateTotal();
+
                 }
             }
         }
@@ -653,8 +656,38 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         }
 
+        //the methods to calculate the difference
 
-        //the methods to calculate the Amount paid
+        private void txtamount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalculateBalance();
+        }
+
         //the methods to calculate the balance Due
+
+        private string balanceText = "Rs 0.00";
+        public string BalanceText
+        {
+            get => balanceText;
+            set
+            {
+                if (balanceText != value)
+                {
+                    balanceText = value;
+                    OnPropertyChanged(nameof(BalanceText));
+                }
+            }
+        }
+        private void CalculateBalance()
+        {
+            double Balance = 0;
+            double TotalValue = Convert.ToDouble(TotalText.Replace("Rs", "").Trim());
+            double PaidValue = Convert.ToDouble(AmountPaidText.Text.Replace("Rs", "").Trim());
+
+            Balance = PaidValue - TotalValue;
+
+            BalanceText = $"Rs {Balance:N2}";
+
+        }
     }
 }
