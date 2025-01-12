@@ -493,9 +493,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     // Calculate sales Tax after adding the new item
                     CalculateSalestax();
 
-                    // Calculate Shipping cost after adding the new item(Patrs)
-                    CalculateShippingcost();
-
                     // Calculate the Discount after adding the new item(all)
                     CalculateDiscount();
 
@@ -595,16 +592,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             SalesTaxText = $"Rs {totalTax:N2}";
         }
-
-
-        //the methods to calculate the shipping cost 
-        private void CalculateShippingcost()
-        {
-
-
-        }
-
-
         //the methods to calculate the discount
 
         private string discountText = "Rs 0.00";
