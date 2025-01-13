@@ -153,11 +153,11 @@
                                 <GridView>
                                     <GridViewColumn Width="Auto">
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="TAX" Style="{StaticResource ListViewHeaderStyle}" Margin="-15,0,0,0"/>
+                                            <TextBlock Text="VAT" Style="{StaticResource ListViewHeaderStyle}" Margin="-15,0,0,0"/>
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/>
+                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/> <!-- Tax == Vat-->
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -201,10 +201,11 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Margin="0,15,0,10">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                    <TextBlock Text="Subtotal (With Tax) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Subtotal (With Vat) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
                                     <TextBlock Text="{Binding SubtotalText}" Style="{StaticResource TotalsSectionTextBlockStyle}" />
@@ -220,13 +221,21 @@
                             </Grid>
                             <Grid Grid.Row="2">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                                    <TextBlock Text="Sales Tax :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Sales Vat :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
                                     <TextBlock Text="{Binding SalesTaxText}" Style="{StaticResource TotalsSectionTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="3">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
+                                    <TextBlock Text="Service Charges :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
+                                    <TextBox  x:Name="ChargesText"  TextChanged="txtCharges_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="4">
                                 <Rectangle Style="{StaticResource SeparatorStyle}" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
                                 <Rectangle Style="{StaticResource SeparatorStyle}" VerticalAlignment="Top" Margin="0,7,25,0"/>
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
@@ -236,7 +245,7 @@
                                     <TextBlock Text="{Binding TotalText}"  Style="{StaticResource TotalsBoldTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
-                            <Grid Grid.Row="4">
+                            <Grid Grid.Row="5">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
                                     <TextBlock Text="Amount Paid:" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
@@ -244,7 +253,7 @@
                                     <TextBox  x:Name="AmountPaidText"  TextChanged="txtamount_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" />
                                 </StackPanel>
                             </Grid>
-                            <Grid Grid.Row="5">
+                            <Grid Grid.Row="6">
                                 <Rectangle Style="{StaticResource SeparatorStyle}" VerticalAlignment="Bottom" Margin="0,0,25,0"/>
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
                                     <TextBlock Text="Balance Due:" Style="{StaticResource TotalsBoldTextBlockStyle}"/>

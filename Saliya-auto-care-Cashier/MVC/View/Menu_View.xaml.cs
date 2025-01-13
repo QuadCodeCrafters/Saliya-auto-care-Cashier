@@ -174,13 +174,28 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             selectedButton.Background = Brushes.White;
         }
 
-        private void Number_Click(object sender, RoutedEventArgs e) // from 1 to 9 
+        private void Number_Click(object sender, RoutedEventArgs e) // from 1 to 9 and 500 , 1000 , 5000
         {
             var button = sender as Button;
             if (button != null)
             {
                 // display number to the Display TextBox
                 Display.Text += button.Content.ToString();
+
+            }
+        }
+
+        private void Value_Click(object sender, RoutedEventArgs e) //  500 , 1000 , 5000
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                var buttonContent = button.Content.ToString();//get the value
+
+                var numericValue = buttonContent.Replace("Rs", "").Trim(); //Remove the Rs tag
+
+                // display number to the Display TextBox
+                Display.Text += numericValue;
 
             }
         }
@@ -258,9 +273,28 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
         }
 
-        private void ButtonLock_Click(object sender, RoutedEventArgs e) // need to change
+        private void ButtonCharges_Click(object sender, RoutedEventArgs e) // need to change
         {
-            Notifications.Notificationbox.carrierservice();
+            if (billView != null && !string.IsNullOrEmpty(Display.Text))
+            {
+                if (decimal.TryParse(Display.Text, out decimal amount))
+                {
+                    // Find the TextBox for "Amount Paid" in the Bill_View
+                    var amountPaid = billView.FindName("ChargesText") as TextBox;
+                    if (amountPaid != null)
+                    {
+                        // Update the text of the "Amount Paid" TextBox
+                        amountPaid.Text = $"Rs {amount:N2}";
+                    }
+
+                    // Clear the display
+                    Display.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid amount entered.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void btnsku(object sender, RoutedEventArgs e)

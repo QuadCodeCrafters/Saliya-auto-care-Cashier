@@ -328,6 +328,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             MyCommand = new RelayCommand(Buttonprint_Click);
 
             AmountPaidText.Text = "Rs 0.00";
+            ChargesText.Text = "Rs 0.00";
 
         }
 
@@ -570,7 +571,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
 
         //the methods for calculating the sales tax
-
+        //in here i assumed that the tax is like Vat (requirment change)
         private string salesTaxText = "Rs 0.00";
         public string SalesTaxText
         {
@@ -595,8 +596,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             SalesTaxText = $"Rs {totalTax:N2}";
         }
-        //the methods to calculate the discount
 
+
+        //the methods to calculate the discount
         private string discountText = "Rs 0.00";
         public string DiscountText
         {
@@ -629,8 +631,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
         }
 
-        //the methods to calculate the total
 
+
+        //the methods to calculate the total
         private string totalText = "Rs 0.00";
         public string TotalText
         {
@@ -649,22 +652,29 @@ namespace Saliya_auto_care_Cashier.MVC.View
             double Total = 0;
             double subtotalValue = Convert.ToDouble(SubtotalText.Replace("Rs", "").Trim());
             double discountValue = Convert.ToDouble(DiscountText.Replace("Rs", "").Trim());
+            double chargesValue = Convert.ToDouble(ChargesText.Text.Replace("Rs", "").Trim());
 
-            Total = subtotalValue - discountValue;
+            Total = (subtotalValue - discountValue) + chargesValue;
 
             TotalText = $"Rs {Total:N2}";
 
         }
 
-        //the methods to calculate the difference
 
+
+        //the methods to calculate the difference
         private void txtamount_TextChanged(object sender, TextChangedEventArgs e)
         {
             CalculateBalance();
         }
 
-        //the methods to calculate the balance Due
+        private void txtCharges_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalculateTotal();
+            CalculateBalance();
+        }
 
+        //the methods to calculate the balance Due
         private string balanceText = "Rs 0.00";
         public string BalanceText
         {
