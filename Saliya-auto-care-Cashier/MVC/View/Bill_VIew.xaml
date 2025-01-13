@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
-       <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" x:Name="BillScrollViewer">
             <Grid x:Name="Invoice">
                 <Grid>
                     <Grid.RowDefinitions>

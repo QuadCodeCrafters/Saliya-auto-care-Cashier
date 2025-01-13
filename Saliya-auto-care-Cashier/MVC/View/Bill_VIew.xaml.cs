@@ -11,6 +11,7 @@ using System.Data.Common;
 using Saliya_auto_care_Cashier.Notifications;
 using System.Linq;
 using Saliya_auto_care_Cashier.Styles;
+using Saliya_auto_care_Cashier.MVC.Model;
 
 
 namespace Saliya_auto_care_Cashier.MVC.View
@@ -688,16 +689,101 @@ namespace Saliya_auto_care_Cashier.MVC.View
             try
             {
                 this.IsEnabled = false;
+
+                // Scroll the ScrollViewer to the top i added this is the Scroll was in the bottom the above content will not be print
+                var scrollViewer = FindName("BillScrollViewer") as ScrollViewer;
+                scrollViewer?.ScrollToVerticalOffset(0);
+
+                // Collect data
+                var invoiceID = InvoiceNo;
+                var customerName = name.CustomerName;
+                var customerAddress = address.CustomerAddress;
+                var vehicleType = type.VehicleType;
+                var vehicleNumber = number.VehicleNumber;
+                var date = DateTime.Now;
+                var subtotal = Convert.ToDecimal(SubtotalText.Replace("Rs", "").Trim());
+                var salesTax = Convert.ToDecimal(SalesTaxText.Replace("Rs", "").Trim());
+                var discount = Convert.ToDecimal(DiscountText.Replace("Rs", "").Trim());
+                var Charges = Convert.ToDecimal(ChargesText.Text.Replace("Rs", "").Trim());
+                var totalAmount = Convert.ToDecimal(TotalText.Replace("Rs", "").Trim());
+                var paidAmount = Convert.ToDecimal(AmountPaidText.Text.Replace("Rs", "").Trim());
+                var balance = Convert.ToDecimal(BalanceText.Replace("Rs", "").Trim());
+
+
+
+                // Helper function for safe decimal parsing
+                decimal SafeParseDecimal(dynamic value)
+                {
+                    if (value == null) return 0;
+
+                    // If value contains a percentage symbol, parse it correctly
+                    string strValue = value.ToString();
+                    if (strValue.EndsWith("%"))
+                    {
+                        strValue = strValue.TrimEnd('%');
+                        if (decimal.TryParse(strValue, out decimal percentValue))
+                        {
+                            return percentValue / 100; // Convert percentage to decimal (e.g., "10%" => 0.1)
+                        }
+                    }
+
+                    if (decimal.TryParse(strValue, out decimal result))
+                    {
+                        return result;
+                    }
+
+                    return 0;
+                }
+
+
+
+
+                // Collect item details
+                var items = descriptionListView.Items.Cast<dynamic>().Select((item, index) => (
+                    Description: (string)item.Description,
+                    Quantity: (int)((dynamic)quantityListView.Items[index]).Quantity,
+                    Price: SafeParseDecimal(((dynamic)priceListView.Items[index]).Price),
+                    Tax: SafeParseDecimal(((dynamic)taxListView.Items[index]).Tax),
+                    Amount: SafeParseDecimal(((dynamic)amountListView.Items[index]).Amount)
+                )).ToList();
+
+                // Save to database
+                var Bill = new Invoice();
+
+                Bill.SaveInvoice(
+                    invoiceID,
+                    customerName,
+                    customerAddress,
+                    vehicleType,
+                    vehicleNumber,
+                    date,
+                    subtotal,
+                    salesTax,
+                    discount,
+                    totalAmount,
+                    Charges,
+                    paidAmount,
+                    balance,
+                    items
+                );
+
+                // Print the invoice
                 PrintDialog printDialog = new PrintDialog();
+
                 if (printDialog.ShowDialog() == true)
                 {
                     printDialog.PrintVisual(Invoice, "invoice");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while printing the invoice: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
                 this.IsEnabled = true;
             }
         }
+
     }
 }
