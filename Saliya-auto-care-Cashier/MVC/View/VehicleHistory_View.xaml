@@ -6,83 +6,94 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
-    <Grid>
-        <materialDesign:Card UniformCornerRadius="15" 
+    <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"
                              Margin="-1" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Header Text -->
                 <TextBlock Text="Vehicle Repair History" FontSize="27" FontWeight="SemiBold" 
-                           Margin="27" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" />
+                           Margin="18,10,0,0" HorizontalAlignment="Left"/>
 
-                <!-- Search Section -->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,100,0,0"
-                            Grid.Row="0" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
-                        <TextBlock Text="Vehicle Number:" FontSize="17" FontWeight="SemiBold" 
+            </Grid>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,50,70,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                                <TextBlock Text="Vehicle Number:" FontSize="17" FontWeight="SemiBold" 
                                    VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBox x:Name="txtvehiclenum" 
-                                 Width="225" 
-                                 Height="55" 
-                                 FontSize="16" 
-                                 materialDesign:HintAssist.Hint="Enter The Vehicle Number" 
-                                 BorderThickness="2" 
-                                 BorderBrush="{DynamicResource MaterialDesignDivider}" 
-                                 Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                            <TextBox.Triggers>
-                                <EventTrigger RoutedEvent="TextBox.GotFocus">
-                                    <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
-                                </EventTrigger>
-                            </TextBox.Triggers>
-                        </TextBox>
-                    </StackPanel>
-                    <Button Content="Search" Width="100" Height="40"
-                            Margin="260,10,10,0" 
-                            Click="SearchButton_Click"/>
-                </StackPanel >
 
-                <!-- Details Section -->
-                <StackPanel Grid.Row="0" Grid.Column="1" Margin="-80,75,50,0">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="590" IsReadOnly="True" FontSize="16" Margin="20,0,0,0"  x:Name="txtownername" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                        <TextBlock Text="Service Mileage :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtservicemileage" />
-                        <TextBlock Text="Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttype" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                        <TextBlock Text="Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0"  x:Name="txtmodel" />
-                        <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="200" IsReadOnly="True" FontSize="16" Margin="10,0,0,0" x:Name="txtphone"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                        <TextBlock Text="E-Mail :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0" x:Name="txtmail"/>
-                        <TextBlock Text="Emergency Contact :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                        <TextBox Width="225" IsReadOnly="True" FontSize="16" Margin="30,0,0,0" x:Name="txtemergecontact"/>
-                    </StackPanel>
-                </StackPanel>
+                                <TextBox x:Name="txtvehiclenum" 
+                                                 Width="225" 
+                                                 Height="55" 
+                                                 FontSize="16" 
+                                                 materialDesign:HintAssist.Hint="Enter The Vehicle Number" 
+                                                 BorderThickness="2" 
+                                                 BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}">
 
-         
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Width="1000">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  materialDesign:ColorZoneAssist.Mode="PrimaryDark">
+                                    <TextBox.Triggers>
+                                        <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                        </EventTrigger>
+                                    </TextBox.Triggers>
+
+                                </TextBox>
+                            </StackPanel>
+                            <Button Content="Search" Width="100" Height="40"
+                                        Margin="260,10,10,0" Click="SearchButton_Click"/>
+
+                        </StackPanel>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel Margin="0,40,0,0">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtownername" />
+                                    <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtownerphone" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                    <TextBlock Text="Email :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" />
+                                    <TextBlock Text="Address :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                    <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtaddress" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                    <TextBlock Text="Vehicle Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtmodel" />
+                                    <TextBlock Text="Vehicle Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                    <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtphone"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                    <TextBlock Text="Registration Date:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtregistrationdate"/>
+                                    <TextBlock Text="Last Service Date :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                    <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtlastservicedate"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="50,0,50,0">
                         <DataGrid x:Name="ServiceHistoryDataGrid" AutoGenerateColumns="False" 
-                                  HorizontalAlignment="Stretch" Margin="0,20,0,0"
-                                  Height="200" VerticalAlignment="Bottom">
+                                  HorizontalAlignment="Stretch" Margin="0,-80,0,0"
+                                  Height="200">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*" />
                                 <DataGridTextColumn Header="Service Type" Binding="{Binding ServiceType}" Width="*" />
@@ -91,9 +102,9 @@
                                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*" />
                             </DataGrid.Columns>
                         </DataGrid>
-                    </ScrollViewer>
-                </StackPanel>
-            </Grid>
-        </materialDesign:Card>
-    </Grid>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </materialDesign:Card>
 </UserControl>

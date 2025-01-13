@@ -28,21 +28,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
             InitializeComponent();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtvehiclenum.Text))
-            {
-                ErrorAnimation();
-            }
-
-            else 
-            { 
-              
-            }
-        }
-
-
-
         private void ErrorAnimation()
         {
             txtvehiclenum.BorderBrush = Brushes.Red;
@@ -62,6 +47,21 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 timer.Stop();
             };
             timer.Start();
+        }
+
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtvehiclenum.Text))
+            {
+                ErrorAnimation();
+                
+            }
+
+            else
+            {
+
+            }
         }
     }
 
