@@ -232,7 +232,7 @@
                                     <TextBlock Text="Service Charges :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBox  x:Name="ChargesText"  TextChanged="txtCharges_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" />
+                                    <TextBox  x:Name="ChargesText"  TextChanged="txtCharges_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" Foreground="Black"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="4">
@@ -250,7 +250,7 @@
                                     <TextBlock Text="Amount Paid:" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBox  x:Name="AmountPaidText"  TextChanged="txtamount_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" />
+                                    <TextBox  x:Name="AmountPaidText"  TextChanged="txtamount_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" Foreground="Black"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="6">

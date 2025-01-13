@@ -521,24 +521,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
             taxListView.Items.Clear();
         }
 
-
-        public void Buttonprint_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.IsEnabled = false;
-                PrintDialog printDialog = new PrintDialog();
-                if (printDialog.ShowDialog() == true)
-                {
-                    printDialog.PrintVisual(Invoice, "invoice");
-                }
-            }
-            finally
-            {
-                this.IsEnabled = true;
-            }
-        }
-
         //the methods for calculating the subtotal amount
         //In here i assumed that normaly in a POS system is keeping the lates cash details before adding an another customer 
 
@@ -698,6 +680,24 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             BalanceText = $"Rs {Balance:N2}";
 
+        }
+
+
+        public void Buttonprint_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(Invoice, "invoice");
+                }
+            }
+            finally
+            {
+                this.IsEnabled = true;
+            }
         }
     }
 }
