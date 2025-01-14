@@ -89,14 +89,14 @@
                     FontWeight="Medium"
                     Foreground="Black"
                     Text="{Binding Header}"
-                    d:Text="Error!" />
+                    d:Text="" />
                 <TextBlock
                     FontFamily="Poppins"
                     FontSize="15"
                     FontWeight="Light"
                     Foreground="Black"
                     Text="{Binding Message}"
-                    d:Text="An Unexpected Problem has occurred."
+                    d:Text=""
                     Margin="0,5,0,0"
                 />
             </StackPanel>

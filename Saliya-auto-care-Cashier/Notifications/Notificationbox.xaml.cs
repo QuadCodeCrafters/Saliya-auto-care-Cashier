@@ -97,10 +97,6 @@ namespace Saliya_auto_care_Cashier.Notifications
             // after slide out close the window
             this.Close();
         }
-        private SolidColorBrush HextoSolidBrush(string Hex)
-        {
-            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(Hex));
-        }
 
         public static void ShowError()
         {

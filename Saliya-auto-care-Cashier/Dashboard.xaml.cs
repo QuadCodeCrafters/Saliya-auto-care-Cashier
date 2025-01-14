@@ -555,5 +555,18 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
+        private void Buttonhistoryclear_Click(object sender, RoutedEventArgs e)
+        {
+            // Clear the text the function is located in Menu_View
+            if (fContainer.Content is VehicleHistory_View historyView)
+            {
+                historyView.ClearAll();
+            }
+            else
+            {
+                MessageBox.Show("PaintJobs_View is not currently loaded.");
+            }
+        }
+
     }
 }
