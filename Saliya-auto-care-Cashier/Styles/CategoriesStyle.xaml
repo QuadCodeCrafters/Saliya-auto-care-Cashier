@@ -49,8 +49,9 @@
                             </Trigger>
                             <Trigger Property="Tag" Value="Selected">
                                 <Setter TargetName="MainBorder" Property="BorderBrush" Value="Green"/>
-                                <Setter TargetName="MainBorder" Property="BorderThickness" Value="2"/>
-                                <Setter TargetName="Checkmark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="MainBorder" Property="BorderThickness" Value="2.5"/>
+                                <!--<Setter TargetName="MainBorder" Property="Background" Value="White"/>-->
+                            <Setter TargetName="Checkmark" Property="Visibility" Value="Visible"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

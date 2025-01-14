@@ -26,7 +26,8 @@ namespace Saliya_auto_care_Cashier.Notifications
         public string Header { get; set; }
         public string Message { get; set; }
         public string ImagePath { get; set; }
-        public SolidColorBrush RecFill { get; set; }
+        public Color GradientStart { get; set; }
+        public Color GradientEnd { get; set; }
 
 
         public Notificationbox()
@@ -37,13 +38,14 @@ namespace Saliya_auto_care_Cashier.Notifications
             Border.MouseLeave += Border_MouseLeave;
         }
 
-        public Notificationbox(string header, string message, string imagePath, SolidColorBrush recFill)
+        public Notificationbox(string header, string message, string imagePath, Color gradientStart, Color gradientEnd)
             : this()
         {
             Header = header;
             Message = message;
             ImagePath = imagePath;
-            RecFill = recFill;
+            GradientStart = gradientStart;
+            GradientEnd = gradientEnd;
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
@@ -69,7 +71,7 @@ namespace Saliya_auto_care_Cashier.Notifications
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Left = ScreenArea.Right - this.Width;
-            this.Top = ScreenArea.Top +50;  
+            this.Top = ScreenArea.Top + 50;
             Storyboard slidein = (Storyboard)this.Resources["WindowSlideInAnimation"];
             slidein.Begin();
         }
@@ -104,7 +106,8 @@ namespace Saliya_auto_care_Cashier.Notifications
                 "Error !!",
                 "You entered wrong credentials.",
                 "/Images/Error_Icon.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F24A50"))
+                (Color)ColorConverter.ConvertFromString("#FF3333"),
+                (Color)ColorConverter.ConvertFromString("#FF0066")
             );
             error.Show();
         }
@@ -114,7 +117,8 @@ namespace Saliya_auto_care_Cashier.Notifications
                 "Warning !!",
                 "Please review your input and try again.",
                 "/Images/info.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
+                (Color)ColorConverter.ConvertFromString("#FFB75E"),
+                (Color)ColorConverter.ConvertFromString("#ED8F03")
             );
             info.Show();
         }
@@ -125,7 +129,8 @@ namespace Saliya_auto_care_Cashier.Notifications
                 "Success !!",
                 "Operation was completed successfully!",
                 "/Images/success.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+                (Color)ColorConverter.ConvertFromString("#28C76F"),
+                (Color)ColorConverter.ConvertFromString("#81FBB8")
             );
             success.Show();
         }
@@ -136,7 +141,8 @@ namespace Saliya_auto_care_Cashier.Notifications
                 "",
                 "Carrier Service Requested !!",
                 "/Images/emergency.png",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+                (Color)ColorConverter.ConvertFromString("#4776E6"),
+                (Color)ColorConverter.ConvertFromString("#8E54E9")
             );
 
             // For click
@@ -167,4 +173,3 @@ namespace Saliya_auto_care_Cashier.Notifications
 
     }
 }
-
