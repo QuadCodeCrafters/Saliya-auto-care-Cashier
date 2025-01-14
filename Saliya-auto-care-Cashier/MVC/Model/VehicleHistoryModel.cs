@@ -6,7 +6,12 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 {
     public class VehicleHistoryModel
     {
-        private string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+        private readonly DatabaseStringModel conn;  // DatabaseStringModel
+
+        public VehicleHistoryModel()
+        {
+            conn = new DatabaseStringModel();
+        }
 
         public class VehicleInfo
         {
@@ -33,6 +38,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public VehicleInfo GetVehicleInfo(string vehicleNumber)
         {
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -62,6 +68,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         private string GetLastServiceDate(string vehicleNumber)
         {
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -75,6 +82,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public List<ServiceHistory> GetServiceHistory(string vehicleNumber, string date = null)
         {
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             var history = new List<ServiceHistory>();
             using (var connection = new MySqlConnection(connectionString))
             {
@@ -119,6 +127,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public List<string> GetServiceDates(string vehicleNumber)
         {
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             var dates = new List<string>();
             using (var connection = new MySqlConnection(connectionString))
             {
@@ -139,6 +148,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
 
         public Dictionary<string, decimal> GetTotals(string vehicleNumber, string date = null)
         {
+            string connectionString = conn.ConnectionString;  // Use the DatabaseStringModel connection string
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
