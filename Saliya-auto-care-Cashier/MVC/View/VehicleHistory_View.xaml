@@ -55,8 +55,7 @@
                                     </TextBox.Triggers>
                                 </TextBox>
                             </StackPanel>
-                            <Button Width="100" Height="40"  Margin="260,10,10,0"  Click="SearchButton_Click">
-                                <materialDesign:PackIcon Kind="Search" Width="35" Height="30"/>
+                            <Button Width="100" Height="40"  Margin="260,10,10,0"  Click="SearchButton_Click" Content="Search">
                             </Button>
                             <TextBlock Text="Date:" 
                                        FontSize="17" 
@@ -156,6 +155,9 @@
                                 </StackPanel>
                             </StackPanel>
                             <Button Content="Clear" Width="100" Height="40" Margin="0,-70,0,0" Click="ClearButton_Click" HorizontalAlignment="Center" Grid.Column="1"/>
+                            <Grid>
+                                
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

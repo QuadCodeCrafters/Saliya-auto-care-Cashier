@@ -125,6 +125,21 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 txtpaidamount.Text = string.Format("Rs {0:N2}", totals["PaidAmount"]);
                 txtbalance.Text = string.Format("Rs {0:N2}", totals["Balance"]);
 
+                //if (ServiceHistoryDataGrid.ItemsSource == null)
+                //{
+                //    txtsub.Text = string.Empty;
+                //    txttax.Text = string.Empty;
+                //    txtdiscount.Text = string.Empty;
+                //    txttotal.Text = string.Empty;
+                //    txtcharges.Text = string.Empty;
+                //    txtpaidamount.Text = string.Empty;
+                //    txtbalance.Text = string.Empty;
+                //}
+                //else
+                //{
+
+                //}
+
             }
         }
 
