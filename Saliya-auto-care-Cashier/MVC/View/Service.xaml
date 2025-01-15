@@ -16,6 +16,9 @@
             <Button Click="ClearSelections_Click" Visibility="Collapsed">
                 HI
             </Button>
+
+            <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
+            
         </WrapPanel>
 
         <TextBlock x:Name="noButtons"

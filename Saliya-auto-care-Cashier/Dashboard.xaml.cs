@@ -584,5 +584,11 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
+        private void ButtonCustom_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This is a custom button.");
+        }
+
+
     }
 }

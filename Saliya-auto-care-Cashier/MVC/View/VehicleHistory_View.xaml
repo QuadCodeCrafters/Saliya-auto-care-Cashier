@@ -13,34 +13,35 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid>
                 <TextBlock Text="Vehicle Repair History" FontSize="27" FontWeight="SemiBold" 
                            Margin="18,10,0,0" HorizontalAlignment="Left"/>
             </Grid>
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
+            <Grid Grid.Row="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,50,70,0">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
-                                <TextBlock Text="Vehicle Number:" FontSize="17" FontWeight="SemiBold" 
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,50,70,0">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                                    <TextBlock Text="Vehicle Number:" FontSize="17" FontWeight="SemiBold" 
                                            VerticalAlignment="Center" Margin="0,0,10,0"/>
 
-                                <TextBox x:Name="txtvehiclenum" 
+                                    <TextBox x:Name="txtvehiclenum" 
                                          Width="225" 
                                          Height="55" 
                                          FontSize="16" 
@@ -48,21 +49,21 @@
                                          BorderThickness="2" 
                                          BorderBrush="{DynamicResource MaterialDesignDivider}" 
                                          Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                                    <TextBox.Triggers>
-                                        <EventTrigger RoutedEvent="TextBox.GotFocus">
-                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
-                                        </EventTrigger>
-                                    </TextBox.Triggers>
-                                </TextBox>
-                            </StackPanel>
-                            <Button Width="100" Height="40"  Margin="260,10,10,0"  Click="SearchButton_Click" Content="Search">
-                            </Button>
-                            <TextBlock Text="Date:" 
+                                        <TextBox.Triggers>
+                                            <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                            </EventTrigger>
+                                        </TextBox.Triggers>
+                                    </TextBox>
+                                </StackPanel>
+                                <Button Width="100" Height="40"  Margin="260,10,10,0"  Click="SearchButton_Click" Content="Search">
+                                </Button>
+                                <TextBlock Text="Date:" 
                                        FontSize="17" 
                                        FontWeight="SemiBold" 
                                        VerticalAlignment="Center" 
                                        Margin="0,20,0,0"/>
-                            <ComboBox VerticalAlignment="Bottom"
+                                <ComboBox VerticalAlignment="Bottom"
                                       x:Name="cmbdate" 
                                       Margin="45,-25,0,0"
                                       Width="300" 
@@ -73,95 +74,95 @@
                                       BorderBrush="{DynamicResource MaterialDesignDivider}" 
                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                       SelectionChanged="cmbdate_SelectionChanged">
-                            </ComboBox>
-                        </StackPanel>
-
-                        <Grid Grid.Column="1">
-                            <StackPanel Margin="0,40,0,0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtownername" />
-                                    <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtownerphone" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Email :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" />
-                                    <TextBlock Text="Address :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                    <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtaddress" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Vehicle Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtmodel" />
-                                    <TextBlock Text="Vehicle Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                    <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtphone"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Registration Date:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtregistrationdate"/>
-                                    <TextBlock Text="Last Service Date :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                    <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtlastservicedate"/>
-                                </StackPanel>
+                                </ComboBox>
                             </StackPanel>
-                        </Grid>
-                    </Grid>
 
-                    <Grid Grid.Row="1" Margin="30,50,30,0">
-                        <DataGrid x:Name="ServiceHistoryDataGrid"
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,40,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtownername" />
+                                        <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtownerphone" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Email :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" />
+                                        <TextBlock Text="Address :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                        <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtaddress" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Vehicle Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtmodel" />
+                                        <TextBlock Text="Vehicle Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                        <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtphone"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Registration Date:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtregistrationdate"/>
+                                        <TextBlock Text="Last Service Date :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtlastservicedate"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="30,50,30,0">
+                            <DataGrid x:Name="ServiceHistoryDataGrid"
                                       HorizontalAlignment="Center" 
                                       Margin="0,0,0,0"
                                       Height="Auto"
                                       AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Date (Y-M-D)" Binding="{Binding Date}" Width="*" />
-                                <DataGridTextColumn Header="Invoice ID" Binding="{Binding InvoiceID}" Width="*" />
-                                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
-                                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*" />
-                                <DataGridTextColumn Header="Price" Binding="{Binding Price , StringFormat='Rs {0:N2}'}" Width="*" />
-                                <DataGridTextColumn Header="Tax" Binding="{Binding Tax ,StringFormat='Rs {0:N2}'  }" Width="*" />
-                                <DataGridTextColumn Header="Amount" Binding="{Binding Amount , StringFormat='Rs {0:N2}'}" Width="*" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Date (Y-M-D)" Binding="{Binding Date}" Width="*" />
+                                    <DataGridTextColumn Header="Invoice ID" Binding="{Binding InvoiceID}" Width="*" />
+                                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" />
+                                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*" />
+                                    <DataGridTextColumn Header="Price" Binding="{Binding Price , StringFormat='Rs {0:N2}'}" Width="*" />
+                                    <DataGridTextColumn Header="Tax" Binding="{Binding Tax ,StringFormat='Rs {0:N2}'  }" Width="*" />
+                                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount , StringFormat='Rs {0:N2}'}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
 
-                    <Grid Grid.Row="2" Margin="50,10,0,70">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Margin="0,40,0,0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="Sub Total:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtsub" />
-                                    <TextBlock Text="Sales Tax :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttax" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Discount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" />
-                                    <TextBlock Text="Total Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                    <TextBox Width="235" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttotal" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Service Charges :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" />
-                                    <TextBlock Text="Paid Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                    <TextBox Width="240" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtpaidamount"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
-                                    <TextBlock Text="Balance:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                    <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <Button Content="Clear" Width="100" Height="40" Margin="0,-70,0,0" Click="ClearButton_Click" HorizontalAlignment="Center" Grid.Column="1"/>
+                        <Grid Grid.Row="2" Margin="50,10,0,70">
                             <Grid>
-                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,40,0,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="Sub Total:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtsub" />
+                                        <TextBlock Text="Sales Tax :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttax" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Discount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" />
+                                        <TextBlock Text="Total Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                        <TextBox Width="235" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttotal" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Service Charges :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" />
+                                        <TextBlock Text="Paid Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                        <TextBox Width="240" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtpaidamount"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                        <TextBlock Text="Balance:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance"/>
+                                    </StackPanel>
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </ScrollViewer>
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,-50,0,0">
+                <Button Content="Clear" Width="100" Height="40" Margin="1000,0,0,20" Click="ClearButton_Click" HorizontalAlignment="Center" Grid.Column="1"/>
+            </Grid>
         </Grid>
     </materialDesign:Card>
 </UserControl>

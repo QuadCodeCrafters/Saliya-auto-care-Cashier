@@ -6,8 +6,8 @@
             <Setter Property="Height" Value="60"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Background" Value="#F0F0F0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -24,6 +24,8 @@
                                                VerticalAlignment="Center"
                                                TextWrapping="Wrap"
                                                TextAlignment="Center"
+                                               FontSize="14"
+                                               FontWeight="DemiBold"
                                     />
 
 
