@@ -156,6 +156,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SocketServer\class.cs" />
     <Compile Include="Styles\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
@@ -344,6 +345,15 @@
     </PackageReference>
     <PackageReference Include="MySqlConnector">
       <Version>2.3.7</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SocketIOClient">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="SocketIOSharp">
+      <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>2.0.2</Version>

@@ -358,6 +358,19 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
         }
 
+        private void btnRefund_Click(object sender, RoutedEventArgs e)
+        {
+            var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+            if (dashboardWindow != null)
+            {
+                var dialogHost = dashboardWindow.FindName("RefundButtonDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
+                }
+            }
+        }
+
     }
 }
 
