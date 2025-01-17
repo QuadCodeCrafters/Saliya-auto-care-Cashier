@@ -339,6 +339,9 @@
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.2903.40</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.26100.1742</Version>
+    </PackageReference>
     <PackageReference Include="MySql.Data">
       <Version>9.1.0</Version>
     </PackageReference>
@@ -446,6 +449,7 @@
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\shutdown.png" />
     <Resource Include="Images\Back.png" />
     <Resource Include="Images\noresultfound.gif" />
   </ItemGroup>

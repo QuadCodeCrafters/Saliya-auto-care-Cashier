@@ -15,6 +15,10 @@ using Saliya_auto_care_Cashier.MVVM.View;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Threading;
+using Windows.Security.Credentials.UI;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -662,6 +666,68 @@ namespace Saliya_auto_care_Cashier
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private async void btn_Poweroff(object sender, RoutedEventArgs e)
+        {
+            // Step 1: Authenticate using Windows Hello
+            var result = await AuthenticateWithWindowsHello();
+
+            if (result)
+            {
+                // Get the PowerOffDialogHost
+                var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+                if (dashboardWindow != null)
+                {
+                    var dialogHost = dashboardWindow.FindName("PowerOffDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                    if (dialogHost != null)
+                    {
+                        dialogHost.IsOpen = true;  // Open the dialog
+                    }
+                }
+            }
+            else
+            {
+                // Show failure message
+                MessageBox.Show("Authentication failed. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task<bool> AuthenticateWithWindowsHello()
+        {
+            try
+            {
+                var availability = await Windows.Security.Credentials.UI.UserConsentVerifier.CheckAvailabilityAsync();
+
+                if (availability == Windows.Security.Credentials.UI.UserConsentVerifierAvailability.Available)
+                {
+                    var verificationResult = await Windows.Security.Credentials.UI.UserConsentVerifier.RequestVerificationAsync("Authenticate to proceed");
+                    return verificationResult == Windows.Security.Credentials.UI.UserConsentVerificationResult.Verified;
+                }
+                else
+                {
+                    MessageBox.Show("Windows Hello is not available on this device.",
+                                    "Authentication Error",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during authentication: {ex.Message}",
+                                "Authentication Error",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error
+                );
+            }
+
+            return false;
+        }
+
+        private async void Poweroff(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
