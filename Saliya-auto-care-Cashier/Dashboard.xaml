@@ -264,21 +264,15 @@
                                                         <!--Message box for Custom Button-->
                                                        <materialDesign:DialogHost x:Name="CustomButtonDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                                                             <materialDesign:DialogHost.DialogContent>
-                                                                <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                    <StackPanel Orientation="Horizontal" Margin="15">
-                                                                        <materialDesign:PackIcon Kind="InfoCircle" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" Margin="0,10,0,0"/>
-                                                                        <TextBlock Foreground="{DynamicResource MaterialDesignBody}" Width="230" Margin="15,15,0,0" TextWrapping="Wrap" FontSize="18">
-                                                                                              Add the Stuff.
-                                                                        </TextBlock>
-                                                                    </StackPanel>
-                                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-                                                                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center" Click="ButtonCustom_Click">
-                                                                            Yes
-                                                                        </Button>
-                                                                        <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
-                                                                            No
-                                                                        </Button>
-                                                                    </StackPanel>
+                                                                <Grid Width="620" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            
+                                                                        </Grid.RowDefinitions>
+                                                                    </Grid>
+                                                                    <Button Grid.Column="1" Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" FontWeight="Bold" FontSize="17" Margin="-100,0,0,0" Height="40" Width="100" Click="goback">
+                                                                        Go Back
+                                                                    </Button>
                                                                 </Grid>
                                                             </materialDesign:DialogHost.DialogContent>
                                                             <Grid>
@@ -303,46 +297,92 @@
                                                                         </Grid>
                                                                     </materialDesign:DialogHost.DialogContent>
                                                                     <Grid>
-                                                                        <Grid.RowDefinitions>
-                                                                            <RowDefinition Height="Auto"/>
-                                                                            <RowDefinition Height="*"/>
-                                                                            <RowDefinition Height="Auto"/>
-                                                                        </Grid.RowDefinitions>
+                                                                        <!--Message box for History Button-->
+                                                                        <materialDesign:DialogHost x:Name="HistoryButtonDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                                                            <materialDesign:DialogHost.DialogContent >
+                                                                                <Grid Width="910" Height="550" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                                                                                    <Grid>
+                                                                                        <Grid.RowDefinitions>
+                                                                                            <RowDefinition Height="Auto"/>
+                                                                                            <RowDefinition Height="*"/>
+                                                                                        </Grid.RowDefinitions>
+                                                                                        <Grid Background="LightBlue">
+                                                                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,5">
+                                                                                                <TextBlock Text="Bill History" FontSize="25" Foreground="Black" FontWeight="Bold"/>
+                                                                                            </StackPanel>
+                                                                                        </Grid>
+                                                                                        <materialDesign:Card Grid.Row="1" UniformCornerRadius="15" 
+                                                                                                             Background="{DynamicResource MaterialDesignPaper}"
+                                                                                                             Margin="5"
+                                                                                                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
 
-                                                                        <Border Background="Blue" Grid.Row="0" Height="40">
-                                                                        </Border>
-                                                                        <Border Background="LightBlue" Grid.Row="1">
-                                                                        </Border>
-                                                                        <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left">
-                                                                            <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
-                                                                                <Image.ToolTip>
-                                                                                    <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
-                                                                                        <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
-                                                                                    </ToolTip>
-                                                                                </Image.ToolTip>
-                                                                            </Image>
-                                                                        </Button>
-                                                                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                            <Button Content="Menu" Width="100" Height="40" Click="btn_menu" Margin="0,0,50,0"/>
-                                                                            <Button Content="Register" Width="100" Height="40" Click="btn_registor" Margin="0,0,50,0"/>
-                                                                            <Button Content="Vehicle History" Width="130" Margin="0,0,50,0" Height="40" Click="btn_VehicleHistory"/>
-                                                                            <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory" Margin="0,0,50,0"/>
-                                                                            <Button Content="Carrier Service" Width="135" Height="40" Click="btn_Delivary_Service" Margin="0,0,0,0"/>
+                                                                                            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,10,0,50"  >
+                                                                                                <DataGrid x:Name="HistoryDataGrid"
+                                                                                                      HorizontalAlignment="Center" 
+                                                                                                      Margin="0,0,0,0"
+                                                                                                      Height="Auto"
+                                                                                                      AutoGenerateColumns="False">
+                                                                                                    <DataGrid.Columns>
+                                                                                                        <DataGridTextColumn Header="Invoice ID" Binding="{Binding InvoiceID}" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Name}" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Vehicle" Binding="{Binding VehicleType}" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Vehicle ID" Binding="{Binding VehicleID}" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Total" Binding="{Binding TotalAmount , StringFormat='Rs {0:N2}'}" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Amount Paid" Binding="{Binding PaidAmount ,StringFormat='Rs {0:N2}'  }" Width="*" />
+                                                                                                        <DataGridTextColumn Header="Balance Due" Binding="{Binding Balance , StringFormat='Rs {0:N2}'}" Width="*" />
+                                                                                                    </DataGrid.Columns>
+                                                                                                </DataGrid>
+                                                                                            </ScrollViewer>
+                                                                                        </materialDesign:Card>
+                                                                                        <Button Background="Transparent" BorderBrush="Transparent" Height="100" Width="120" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                                                                            <Image Source="/Images/Back.png" Width="70" Height="70" Cursor="Hand"/>
+                                                                                        </Button>
+                                                                                    </Grid>
+                                                                                </Grid>
+                                                                            </materialDesign:DialogHost.DialogContent>
+                                                                            <Grid>
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="Auto"/>
+                                                                                    <RowDefinition Height="*"/>
+                                                                                    <RowDefinition Height="Auto"/>
+                                                                                </Grid.RowDefinitions>
 
-                                                                          <!-- <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
-                                                                            <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
-                                                                            <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
-                                                                            <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
-                                                                            <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
-                                                                            <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
-                                                                            <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
-                                                                            <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/ 
-                                                                          -->
+                                                                                <Border Background="Blue" Grid.Row="0" Height="40">
+                                                                                </Border>
+                                                                                <Border Background="LightBlue" Grid.Row="1">
+                                                                                </Border>
+                                                                                <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left">
+                                                                                    <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
+                                                                                        <Image.ToolTip>
+                                                                                            <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">
+                                                                                                <TextBlock Text="Logout" FontWeight="Bold" FontSize="15"/>
+                                                                                            </ToolTip>
+                                                                                        </Image.ToolTip>
+                                                                                    </Image>
+                                                                                </Button>
+                                                                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                                    <Button Content="Menu" Width="100" Height="40" Click="btn_menu" Margin="0,0,50,0"/>
+                                                                                    <Button Content="Register" Width="100" Height="40" Click="btn_registor" Margin="0,0,50,0"/>
+                                                                                    <Button Content="Vehicle History" Width="130" Margin="0,0,50,0" Height="40" Click="btn_VehicleHistory"/>
+                                                                                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory" Margin="0,0,50,0"/>
+                                                                                    <Button Content="Carrier Service" Width="135" Height="40" Click="btn_Delivary_Service" Margin="0,0,0,0"/>
 
-                                                                        </StackPanel>
-                                                                        <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
-                                                                            <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
-                                                                        </Border>
+                                                                                    <!-- <Button Content="Register" Width="100" Height="40" Click="btn_registor"/>
+                                                                                    <Button Content="Vehicle History" Width="130" Margin="10 0" Height="40" Click="btn_VehicleHistory"/>
+                                                                                    <Button Content="Inventory" Width="100" Height="40" Click="btn_Inventory"/>
+                                                                                    <Button Content="Paint Jobs" Width="100" Height="40" Margin="10 0" Click="btn_Paint_Jobs"/>
+                                                                                    <Button Content="Vehicle Services" Width="135" Height="40" Click="btn_Vehicle_Services"/>
+                                                                                    <Button Content="Vehicle Repairs" Width="135" Height="40" Margin="10 0" Click="btn_Vehicle_Repairs"/>
+                                                                                    <Button Content="Spare Parts" Width="125" Height="40" Click="btn_Spare_Parts"/>
+                                                                                    <Button Content="Carrier Service" Width="135" Height="40" Margin="10 0" Click="btn_Delivary_Service"/ 
+                                                                                    -->
+
+                                                                                </StackPanel>
+                                                                                <Border Grid.Row="1" Margin="5" CornerRadius="10" BorderThickness="1">
+                                                                                    <Frame Name="fContainer" NavigationUIVisibility="Hidden"/>
+                                                                                </Border>
+                                                                            </Grid>
+                                                                        </materialDesign:DialogHost>
                                                                     </Grid>
                                                                 </materialDesign:DialogHost>
                                                             </Grid>

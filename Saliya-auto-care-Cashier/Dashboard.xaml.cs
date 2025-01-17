@@ -12,6 +12,9 @@ using static Saliya_auto_care_Cashier.MVC.View.Bill_VIew;
 using static Saliya_auto_care_Cashier.MVC.View.Categories_View;
 using System.Collections.Generic;
 using Saliya_auto_care_Cashier.MVVM.View;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Threading;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -31,12 +34,17 @@ namespace Saliya_auto_care_Cashier
         public Categories_View LoadedCategoriesView { get; set; }
         public static object SharedInstance { get; internal set; }
 
+
         private Sharedname sharename;
         private Sharedaddress sharecustomeraddress;
         private Sharedtype sharevehicletype;
         private Sharednumber sharevehiclenumber;
 
         private readonly DatabaseStringModel conn; //DatabaseStringModel
+
+        private ObservableCollection<Invoice> invoices;
+        private Timer refreshTimer;
+        private bool isLoading = false;
 
         public Dashboard()
         {
@@ -59,6 +67,14 @@ namespace Saliya_auto_care_Cashier
             conn = new DatabaseStringModel(); // conn
 
             CategoryViewModel = new CategoryViewModel();
+
+            invoices = new ObservableCollection<Invoice>();
+            HistoryDataGrid.ItemsSource = invoices;
+
+            // Initialize timer to refresh every 5 seconds
+            refreshTimer = new Timer(RefreshData, null, 0, 5000);
+
+            LoadInvoiceData();
         }
 
         private void LoadViews()
@@ -584,11 +600,68 @@ namespace Saliya_auto_care_Cashier
             }
         }
 
-        private void ButtonCustom_Click(object sender, RoutedEventArgs e)
+        private void RefreshData(object state)
         {
-            MessageBox.Show("This is a custom button.");
+            // Avoid multiple simultaneous refreshes
+            if (isLoading) return;
+
+            // Update UI on the UI thread
+            Dispatcher.Invoke(() =>
+            {
+                LoadInvoiceData();
+            });
         }
 
+        public class Invoice
+        {
+            public string InvoiceID { get; set; }
+            public string Name { get; set; }
+            public string VehicleType { get; set; }
+            public string VehicleID { get; set; }
+            public decimal TotalAmount { get; set; }
+            public decimal PaidAmount { get; set; }
+            public decimal Balance { get; set; }
+        }
 
+        private void LoadInvoiceData()
+        {
+            string connectionString = conn.ConnectionString;
+            string query = "SELECT InvoiceID, CustomerName, VehicleType, VehicleNumber, TotalAmount, PaidAmount, Balance " + "FROM Invoice WHERE Date = CURDATE()";
+
+            ObservableCollection<Invoice> invoices = new ObservableCollection<Invoice>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                invoices.Add(new Invoice
+                                {
+                                    InvoiceID = reader["InvoiceID"].ToString(),
+                                    Name = reader["CustomerName"].ToString(),
+                                    VehicleType = reader["VehicleType"].ToString(),
+                                    VehicleID = reader["VehicleNumber"].ToString(),
+                                    TotalAmount = Convert.ToDecimal(reader["TotalAmount"]),
+                                    PaidAmount = Convert.ToDecimal(reader["PaidAmount"]),
+                                    Balance = Convert.ToDecimal(reader["Balance"])
+                                });
+                            }
+                        }
+                    }
+
+                    HistoryDataGrid.ItemsSource = invoices;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }
