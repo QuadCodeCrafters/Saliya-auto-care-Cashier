@@ -10,7 +10,7 @@ This project is the updated version of a Point-of-Sale (POS) system, created by 
 - **Framework**: Windows Presentation Foundation (WPF)
 
 ### Backend:
-- **Language**: C#
+- **Language**: C#,HTML
 
 ### Database:
 - (Edit the database used here, e.g., SQL Server, MySQL, etc.)
