@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Saliya_auto_care_Cashier.MVC.Controller;
+using Saliya_auto_care_Cashier.Notifications;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -57,6 +59,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             {
                 MessageBox.Show($"Registration failed: {ex.Message}", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificationbox.ShowError();
             }
         }
 
@@ -134,6 +137,19 @@ namespace Saliya_auto_care_Cashier.MVVM.View
                 else if (field is ComboBox comboBox)
                 {
                     comboBox.SelectedIndex = -1;
+                }
+            }
+        }
+        private void btn_clear(object sender, RoutedEventArgs e)
+        {
+            // Find the Dashboard  and show the dialog
+            var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+            if (dashboardWindow != null)
+            {
+                var dialogHost = dashboardWindow.FindName("ClearRegisterDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
                 }
             }
         }

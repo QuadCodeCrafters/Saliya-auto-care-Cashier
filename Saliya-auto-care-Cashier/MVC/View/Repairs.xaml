@@ -15,8 +15,11 @@
             <Button Click="ClearSelections_Click" Visibility="Collapsed">
                 HI
             </Button>
-        </WrapPanel>
 
+            <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
+            
+        </WrapPanel>
+        
         <TextBlock x:Name="noButtons"
                    Text="Please Press the @ button to proceed"
                    FontSize="23"

@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
-       <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" x:Name="BillScrollViewer">
             <Grid x:Name="Invoice">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -153,11 +153,11 @@
                                 <GridView>
                                     <GridViewColumn Width="Auto">
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="TAX" Style="{StaticResource ListViewHeaderStyle}" Margin="-15,0,0,0"/>
+                                            <TextBlock Text="VAT" Style="{StaticResource ListViewHeaderStyle}" Margin="-15,0,0,0"/>
                                         </GridViewColumn.Header>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/>
+                                                <TextBlock Text="{Binding Tax}" HorizontalAlignment="Right"  Style="{StaticResource BindingViewStyle}"/> <!-- Tax == Vat-->
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -205,34 +205,34 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Margin="0,15,0,10">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                    <TextBlock Text="Subtotal :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Subtotal (With Vat) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
                                     <TextBlock Text="{Binding SubtotalText}" Style="{StaticResource TotalsSectionTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,0,0,0">
                                     <TextBlock Text="Discount(10%) :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsSectionTextBlockStyle}" />
+                                    <TextBlock Text="{Binding DiscountText}"  Style="{StaticResource TotalsSectionTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="2">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                                    <TextBlock Text="Shipping Cost :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Sales Vat :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsSectionTextBlockStyle}" />
+                                    <TextBlock Text="{Binding SalesTaxText}" Style="{StaticResource TotalsSectionTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="3">
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
-                                    <TextBlock Text="Sales Tax :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
+                                    <TextBlock Text="Service Charges :" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="{Binding SalesTaxText}" Style="{StaticResource TotalsSectionTextBlockStyle}" />
+                                    <TextBox  x:Name="ChargesText"  TextChanged="txtCharges_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" Foreground="Black"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="4">
@@ -241,8 +241,8 @@
                                 <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,10,0,0">
                                     <TextBlock Text="Total :" Style="{StaticResource TotalsBoldTextBlockStyle}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsBoldTextBlockStyle}" />
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,5">
+                                    <TextBlock Text="{Binding TotalText}"  Style="{StaticResource TotalsBoldTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="5">
@@ -250,7 +250,7 @@
                                     <TextBlock Text="Amount Paid:" Style="{StaticResource TotalsSectionTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsSectionTextBlockStyle}" />
+                                    <TextBox  x:Name="AmountPaidText"  TextChanged="txtamount_TextChanged" FontSize="14"  IsReadOnly="True" BorderThickness="0" Background="Transparent" IsHitTestVisible="False" Foreground="Black"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Row="6">
@@ -259,7 +259,7 @@
                                     <TextBlock Text="Balance Due:" Style="{StaticResource TotalsBoldTextBlockStyle}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,25,0">
-                                    <TextBlock Text="LKR 0.00" Style="{StaticResource TotalsBoldTextBlockStyle}" />
+                                    <TextBlock Text="{Binding BalanceText}"  Style="{StaticResource TotalsBoldTextBlockStyle}" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -304,7 +304,7 @@
                 <Button HorizontalAlignment="Stretch"  Click="Buttonprint_Click" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#00796B" Width="Auto" Height="Auto">
                     <materialDesign:PackIcon Kind="Printer" Width="35" Height="35"/>
                 </Button>
-                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#00796B" Width="Auto" Height="Auto" Grid.Column="1">
+                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#00796B" Width="Auto" Height="Auto" Grid.Column="1" Click="Buttonhistory_Click">
                     <materialDesign:PackIcon Kind="History" Width="35" Height="35"/>
                 </Button>
             </Grid>

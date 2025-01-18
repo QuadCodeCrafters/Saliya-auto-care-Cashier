@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="/Styles/ScrollViewerStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/BillViewStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/CategoriesStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/CustomButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ToggleButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/InventoryStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/CalStyle.xaml"/>

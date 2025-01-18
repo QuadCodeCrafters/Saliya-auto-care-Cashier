@@ -186,7 +186,8 @@
                     </StackPanel>
                 </StackPanel>
 
-                <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="40" Click="btn_registor" Margin="750,0,0,60"/>
+                <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="120" Height="40" Click="btn_registor" Margin="520,0,0,60" FontSize="18.5"/>
+                <Button Content="Clear" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="120" Height="40" Click="btn_clear" Margin="1000,0,0,60" FontSize="18.5"/>
             </Grid>
         </materialDesign:Card>
     </Grid>

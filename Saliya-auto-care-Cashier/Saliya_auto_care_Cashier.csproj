@@ -97,14 +97,17 @@
     <Compile Include="MVC\Controller\PartsController.cs" />
     <Compile Include="MVC\Controller\RepairsController.cs" />
     <Compile Include="MVC\Controller\ServiceController.cs" />
+    <Compile Include="MVC\Controller\VehicleHistoryController.cs" />
     <Compile Include="MVC\Controller\VehicleRegistrationController.cs" />
     <Compile Include="MVC\Model\CategoryViewModel.cs" />
     <Compile Include="MVC\Model\DatabaseConnection.cs" />
+    <Compile Include="MVC\Model\Invoice.cs" />
     <Compile Include="MVC\Model\PartsModel.cs" />
     <Compile Include="MVC\Model\PassClass.cs" />
     <Compile Include="MVC\Controller\Viewmodel.cs" />
     <Compile Include="MVC\Model\RepairsModel.cs" />
     <Compile Include="MVC\Model\ServicesModel.cs" />
+    <Compile Include="MVC\Model\VehicleHistoryModel.cs" />
     <Compile Include="MVC\Model\VehicleRegistrationModel.cs" />
     <Compile Include="MVC\View\Bill_VIew.xaml.cs">
       <DependentUpon>Bill_VIew.xaml</DependentUpon>
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="MVC\View\Parts.xaml.cs">
       <DependentUpon>Parts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\View\QuantitySelector.xaml.cs">
+      <DependentUpon>QuantitySelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\View\Register_View.xaml.cs">
       <DependentUpon>Register_View.xaml</DependentUpon>
@@ -215,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVC\View\QuantitySelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\View\Register_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\CategoriesStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\CustomButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,11 +339,23 @@
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.2903.40</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.26100.1742</Version>
+    </PackageReference>
     <PackageReference Include="MySql.Data">
       <Version>9.1.0</Version>
     </PackageReference>
     <PackageReference Include="MySqlConnector">
       <Version>2.3.7</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SocketIOClient">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="SocketIOSharp">
+      <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>2.0.2</Version>
@@ -423,6 +449,8 @@
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\shutdown.png" />
+    <Resource Include="Images\Back.png" />
     <Resource Include="Images\noresultfound.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

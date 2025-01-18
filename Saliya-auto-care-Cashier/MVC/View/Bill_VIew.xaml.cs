@@ -11,6 +11,7 @@ using System.Data.Common;
 using Saliya_auto_care_Cashier.Notifications;
 using System.Linq;
 using Saliya_auto_care_Cashier.Styles;
+using Saliya_auto_care_Cashier.MVC.Model;
 
 
 namespace Saliya_auto_care_Cashier.MVC.View
@@ -79,6 +80,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+
+
         }
 
         // Class for Customer Address
@@ -325,6 +328,9 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
             MyCommand = new RelayCommand(Buttonprint_Click);
 
+            AmountPaidText.Text = "Rs 0.00";
+            ChargesText.Text = "Rs 0.00";
+
         }
 
         private void SharedProduct_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -478,8 +484,11 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     descriptionListView.Items.Add(new { Description = item.Name });
                     quantityListView.Items.Add(new { Quantity = 1 }); // qty need to get from the button Version 1.1
                     priceListView.Items.Add(new { Price = item.Price });
-                    taxListView.Items.Add(new { Tax = 220 });
-                    amountListView.Items.Add(new { Amount = item.Price  }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
+                    taxListView.Items.Add(new { Tax = "10%" });//need to change according to admin's choice
+
+
+                    decimal amount = (item.Price * 10) / 100 + item.Price; // Price + 10% tax need to change according to admin's choice
+                    amountListView.Items.Add(new { Amount = amount }); // futer in here the Amount need to be Amount = Price * qty + (qty * tax) need to be add  
 
 
                     // Calculate subtotal after adding the new item
@@ -487,6 +496,13 @@ namespace Saliya_auto_care_Cashier.MVC.View
 
                     // Calculate sales Tax after adding the new item
                     CalculateSalestax();
+
+                    // Calculate the Discount after adding the new item(all)
+                    CalculateDiscount();
+
+                    // Calculate the Total after adding the new item(all)
+                    CalculateTotal();
+
                 }
             }
         }
@@ -504,24 +520,6 @@ namespace Saliya_auto_care_Cashier.MVC.View
             quantityListView.Items.Clear();
             priceListView.Items.Clear();
             taxListView.Items.Clear();
-        }
-
-
-        public void Buttonprint_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.IsEnabled = false;
-                PrintDialog printDialog = new PrintDialog();
-                if (printDialog.ShowDialog() == true)
-                {
-                    printDialog.PrintVisual(Invoice, "invoice");
-                }
-            }
-            finally
-            {
-                this.IsEnabled = true;
-            }
         }
 
         //the methods for calculating the subtotal amount
@@ -542,21 +540,21 @@ namespace Saliya_auto_care_Cashier.MVC.View
         }
         private void CalculateSubtotal()
         {
-            double total = 0;
+            double subtotal = 0;
 
             foreach (var item in amountListView.Items.Cast<dynamic>())
             {
-                total += (double)item.Amount;
+                subtotal += (double)item.Amount;
             }
 
-            SubtotalText = $"Rs {total:N2}";
+            SubtotalText = $"Rs {subtotal:N2}";
         }
 
 
 
 
         //the methods for calculating the sales tax
-
+        //in here i assumed that the tax is like Vat (requirment change)
         private string salesTaxText = "Rs 0.00";
         public string SalesTaxText
         {
@@ -566,21 +564,240 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 if (salesTaxText != value)
                 {
                     salesTaxText = value;
-                    OnPropertyChanged(nameof(SalesTaxText));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SalesTaxText)));
                 }
             }
         }
 
         private void CalculateSalestax()
         {
-            double tax = 0;
-
-            foreach (var item in taxListView.Items.Cast<dynamic>())
+            decimal totalTax = 0;
+            foreach (var item in priceListView.Items.Cast<dynamic>())
             {
-                tax += (double)item.Tax;
+                totalTax += (decimal)(item.Price * 10) / 100; // 10% of the price need to change according to admin's choice
             }
 
-            SalesTaxText = $"Rs {tax:N2}";
+            SalesTaxText = $"Rs {totalTax:N2}";
+        }
+
+
+        //the methods to calculate the discount
+        private string discountText = "Rs 0.00";
+        public string DiscountText
+        {
+            get => discountText;
+            set
+            {
+                if (discountText != value)
+                {
+                    discountText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DiscountText)));
+                }
+            }
+        }
+        private void CalculateDiscount()
+        {
+            double discount = 0;
+            double subtotalValue = Convert.ToDouble(SubtotalText.Replace("Rs", "").Trim());
+
+            if (subtotalValue > 500.00) // need to change according to admin's choice
+            {
+                discount += (subtotalValue * 10) / 100; //need to change according to admin's choice
+                DiscountText = $"Rs {discount:N2}";
+
+            }
+            else
+            {
+
+                DiscountText = "Rs 0.00";
+            }
+
+        }
+
+
+
+        //the methods to calculate the total
+        private string totalText = "Rs 0.00";
+        public string TotalText
+        {
+            get => totalText;
+            set
+            {
+                if (totalText != value)
+                {
+                    totalText = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TotalText)));
+                }
+            }
+        }
+        private void CalculateTotal()
+        {
+            double Total = 0;
+            double subtotalValue = Convert.ToDouble(SubtotalText.Replace("Rs", "").Trim());
+            double discountValue = Convert.ToDouble(DiscountText.Replace("Rs", "").Trim());
+            double chargesValue = Convert.ToDouble(ChargesText.Text.Replace("Rs", "").Trim());
+
+            Total = (subtotalValue - discountValue) + chargesValue;
+
+            TotalText = $"Rs {Total:N2}";
+
+        }
+
+
+
+        //the methods to calculate the difference
+        private void txtamount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalculateBalance();
+        }
+
+        private void txtCharges_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalculateTotal();
+            CalculateBalance();
+        }
+
+        //the methods to calculate the balance Due
+        private string balanceText = "Rs 0.00";
+        public string BalanceText
+        {
+            get => balanceText;
+            set
+            {
+                if (balanceText != value)
+                {
+                    balanceText = value;
+                    OnPropertyChanged(nameof(BalanceText));
+                }
+            }
+        }
+        private void CalculateBalance()
+        {
+            double Balance = 0;
+            double TotalValue = Convert.ToDouble(TotalText.Replace("Rs", "").Trim());
+            double PaidValue = Convert.ToDouble(AmountPaidText.Text.Replace("Rs", "").Trim());
+
+            Balance = PaidValue - TotalValue;
+
+            BalanceText = $"Rs {Balance:N2}";
+
+        }
+
+
+        public void Buttonprint_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+
+                // Scroll the ScrollViewer to the top i added this is the Scroll was in the bottom the above content will not be print
+                var scrollViewer = FindName("BillScrollViewer") as ScrollViewer;
+                scrollViewer?.ScrollToVerticalOffset(0);
+
+                // Collect data
+                var invoiceID = InvoiceNo;
+                var customerName = name.CustomerName;
+                var customerAddress = address.CustomerAddress;
+                var vehicleType = type.VehicleType;
+                var vehicleNumber = number.VehicleNumber;
+                var date = DateTime.Now;
+                var subtotal = Convert.ToDecimal(SubtotalText.Replace("Rs", "").Trim());
+                var salesTax = Convert.ToDecimal(SalesTaxText.Replace("Rs", "").Trim());
+                var discount = Convert.ToDecimal(DiscountText.Replace("Rs", "").Trim());
+                var Charges = Convert.ToDecimal(ChargesText.Text.Replace("Rs", "").Trim());
+                var totalAmount = Convert.ToDecimal(TotalText.Replace("Rs", "").Trim());
+                var paidAmount = Convert.ToDecimal(AmountPaidText.Text.Replace("Rs", "").Trim());
+                var balance = Convert.ToDecimal(BalanceText.Replace("Rs", "").Trim());
+
+
+
+                // Helper function for safe decimal parsing
+                decimal SafeParseDecimal(dynamic value)
+                {
+                    if (value == null) return 0;
+
+                    // If value contains a percentage symbol, parse it correctly
+                    string strValue = value.ToString();
+                    if (strValue.EndsWith("%"))
+                    {
+                        strValue = strValue.TrimEnd('%');
+                        if (decimal.TryParse(strValue, out decimal percentValue))
+                        {
+                            return percentValue / 100; // Convert percentage to decimal (e.g., "10%" => 0.1)
+                        }
+                    }
+
+                    if (decimal.TryParse(strValue, out decimal result))
+                    {
+                        return result;
+                    }
+
+                    return 0;
+                }
+
+
+
+
+                // Collect item details
+                var items = descriptionListView.Items.Cast<dynamic>().Select((item, index) => (
+                    Description: (string)item.Description,
+                    Quantity: (int)((dynamic)quantityListView.Items[index]).Quantity,
+                    Price: SafeParseDecimal(((dynamic)priceListView.Items[index]).Price),
+                    Tax: SafeParseDecimal(((dynamic)taxListView.Items[index]).Tax),
+                    Amount: SafeParseDecimal(((dynamic)amountListView.Items[index]).Amount)
+                )).ToList();
+
+                // Save to database
+                var Bill = new Invoice();
+
+                Bill.SaveInvoice(
+                    invoiceID,
+                    customerName,
+                    customerAddress,
+                    vehicleType,
+                    vehicleNumber,
+                    date,
+                    subtotal,
+                    salesTax,
+                    discount,
+                    totalAmount,
+                    Charges,
+                    paidAmount,
+                    balance,
+                    items
+                );
+
+                // Print the invoice
+                PrintDialog printDialog = new PrintDialog();
+
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(Invoice, "invoice");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while printing the invoice: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                this.IsEnabled = true;
+            }
+        }
+
+
+        public void Buttonhistory_Click(object sender, RoutedEventArgs e)
+        {
+            // Find the Dashboard  and show the dialog
+            var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+            if (dashboardWindow != null)
+            {
+                var dialogHost = dashboardWindow.FindName("HistoryButtonDialogHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
+                }
+            }
         }
     }
 }

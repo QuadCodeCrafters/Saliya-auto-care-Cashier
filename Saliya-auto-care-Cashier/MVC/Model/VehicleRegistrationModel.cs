@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Saliya_auto_care_Cashier.MVC.Model
@@ -57,7 +58,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("An error occurred while registering the vehicle: " + ex.Message);
+                    MessageBox.Show("An error occurred while registering the vehicle: " + ex.Message);
                 }
             }
         }
