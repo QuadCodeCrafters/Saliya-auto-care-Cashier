@@ -279,24 +279,154 @@
                                                             <Grid>
                                                                 <!--Message box for Refund Button-->
                                                                 <materialDesign:DialogHost x:Name="RefundButtonDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                                                                    <materialDesign:DialogHost.DialogContent >
-                                                                        <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                            <StackPanel Orientation="Horizontal" Margin="15">
-                                                                                <materialDesign:PackIcon Kind="InfoCircle" Foreground="{StaticResource PrimaryHueMidBrush}" Width="60" Height="60" Margin="0,10,0,0"/>
-                                                                                <TextBlock Foreground="{DynamicResource MaterialDesignBody}" Width="230" Margin="15,15,0,0" TextWrapping="Wrap" FontSize="18">
-                                                                                              Add the Refund Stuff.
-                                                                                </TextBlock>
-                                                                            </StackPanel>
-                                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-                                                                                <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
-                                                                                    Yes
+                                                                    <materialDesign:DialogHost.DialogContent>
+                                                                        <Grid Width="910" Height="550" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0">
+                                                                            <Grid>
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="Auto"/>
+                                                                                    <RowDefinition Height="*"/>
+                                                                                </Grid.RowDefinitions>
+
+                                                                                <!-- Header Section -->
+                                                                                <Grid Background="LightBlue">
+                                                                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,5">
+                                                                                        <Grid>
+                                                                                            <Grid.RowDefinitions>
+                                                                                                <RowDefinition Height="Auto"/>
+                                                                                            </Grid.RowDefinitions>
+                                                                                            <TextBlock Text="Refund" FontSize="25" Foreground="Black" FontWeight="Bold"/>
+                                                                                        </Grid>
+                                                                                    </StackPanel>
+                                                                                </Grid>
+
+                                                                                <!-- Content Section -->
+                                                                                <materialDesign:Card 
+                                                                                                Grid.Row="1" 
+                                                                                                UniformCornerRadius="15" 
+                                                                                                Background="{DynamicResource MaterialDesignPaper}" 
+                                                                                                Margin="5" 
+                                                                                                materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                                                                                    <Grid>
+                                                                                        <Grid.ColumnDefinitions>
+                                                                                            <ColumnDefinition Width="*"/>
+                                                                                            <ColumnDefinition Width="*"/>
+                                                                                        </Grid.ColumnDefinitions>
+
+                                                                                        <!-- Left Column -->
+                                                                                        <Grid>
+                                                                                            <Grid.RowDefinitions>
+                                                                                                <RowDefinition/>
+                                                                                                <RowDefinition/>
+                                                                                                <RowDefinition/>
+                                                                                            </Grid.RowDefinitions>
+
+                                                                                            <!-- Invoice Number Input -->
+                                                                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="30,30,0,10">
+                                                                                                <TextBlock 
+                                                                                                    Text="Invoice Number:" 
+                                                                                                    FontSize="17" 
+                                                                                                    FontWeight="SemiBold" 
+                                                                                                    VerticalAlignment="Center" 
+                                                                                                    Margin="0,0,10,0"/>
+
+                                                                                               <TextBox  x:Name="txtInvoiceNum" 
+                                                                                                        Width="225" 
+                                                                                                        Height="60" 
+                                                                                                        FontSize="16" 
+                                                                                                        materialDesign:HintAssist.Hint="Enter The Invoice Number" 
+                                                                                                        BorderThickness="2" 
+                                                                                                        BorderBrush="{DynamicResource MaterialDesignDivider}" 
+                                                                                                        Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                                                                                                    <TextBox.Triggers>
+                                                                                                        <EventTrigger RoutedEvent="TextBox.GotFocus">
+                                                                                                            <BeginStoryboard Storyboard="{StaticResource ShakeAnimation}"/>
+                                                                                                        </EventTrigger>
+                                                                                                    </TextBox.Triggers>
+                                                                                               </TextBox>
+                                                                                            </StackPanel>
+
+                                                                                            <!-- Search Button -->
+                                                                                            <Button 
+                                                                                                    Width="100" 
+                                                                                                    Height="40"  
+                                                                                                    Margin="250,100,10,0" 
+                                                                                                    Content="Search" 
+                                                                                                    HorizontalAlignment="Center" 
+                                                                                                    VerticalAlignment="Top" 
+                                                                                                    Click="BtnSearch_Click"/>
+
+                                                                                            <!-- Refund List DataGrid -->
+                                                                                            <Grid Grid.Row="1" x:Name="refundlist">
+                                                                                                <DataGrid  IsReadOnly="True"
+                                                                                                        x:Name="dgRefundList" 
+                                                                                                        AutoGenerateColumns="False" 
+                                                                                                        CanUserAddRows="False" 
+                                                                                                        Margin="10,-15,20,0">
+                                                                                                    <DataGrid.Columns>
+                                                                                                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="Auto"/>
+                                                                                                        <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2}" Width="Auto"/>
+                                                                                                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=C2}" Width="Auto"/>
+                                                                                                    </DataGrid.Columns>
+                                                                                                </DataGrid>
+                                                                                            </Grid>
+
+                                                                                            <!-- Refund Button -->
+                                                                                            <Button 
+                                                                                                    Width="100" 
+                                                                                                    Height="40"  
+                                                                                                    Margin="20,90,10,0" 
+                                                                                                    Content="Refund" 
+                                                                                                    HorizontalAlignment="Left" 
+                                                                                                    VerticalAlignment="Center" 
+                                                                                                    Grid.Row="2"/>
+                                                                                        </Grid>
+
+                                                                                        <!-- Right Column -->
+                                                                                        <Grid Grid.Column="1" x:Name="allbillitems">
+                                                                                            <DataGrid  IsReadOnly="True"
+                                                                                                    x:Name="dgAllBillItems" 
+                                                                                                    AutoGenerateColumns="False" 
+                                                                                                    CanUserAddRows="False" 
+                                                                                                    Margin="15,20,0,0" 
+                                                                                                    SelectionMode="Single" 
+                                                                                                    SelectionChanged="DgAllBillItems_SelectionChanged">
+                                                                                                <DataGrid.Columns>
+                                                                                                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="Auto"/>
+                                                                                                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2}" Width="Auto"/>
+                                                                                                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=C2}" Width="Auto"/>
+                                                                                                </DataGrid.Columns>
+                                                                                            </DataGrid>
+                                                                                            <TextBlock 
+                                                                                                    x:Name="txtTotalRefundAmount" 
+                                                                                                    Text="$0.00" 
+                                                                                                    FontSize="16" 
+                                                                                                    FontWeight="Bold" 
+                                                                                                    VerticalAlignment="Center"/>
+                                                                                        </Grid>
+                                                                                    </Grid>
+                                                                                </materialDesign:Card>
+
+                                                                                <!-- Back Button -->
+                                                                                <Button 
+                                                                                        x:Name="backbutton"  
+                                                                                        Background="Transparent" 
+                                                                                        BorderBrush="Transparent" 
+                                                                                        Height="100" 
+                                                                                        Width="120" 
+                                                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
+                                                                                        Margin="0" 
+                                                                                        Grid.Row="1" 
+                                                                                        HorizontalAlignment="Center" 
+                                                                                        VerticalAlignment="Bottom" 
+                                                                                        Click="BackButton_Click">
+                                                                                    <Image Source="/Images/Back.png" Width="70" Height="70" Cursor="Hand"/>
                                                                                 </Button>
-                                                                                <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
-                                                                                    No
-                                                                                </Button>
-                                                                            </StackPanel>
+                                                                            </Grid>
                                                                         </Grid>
                                                                     </materialDesign:DialogHost.DialogContent>
+
+
+
                                                                     <Grid>
                                                                         <!--Message box for History Button-->
                                                                         <materialDesign:DialogHost x:Name="HistoryButtonDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">

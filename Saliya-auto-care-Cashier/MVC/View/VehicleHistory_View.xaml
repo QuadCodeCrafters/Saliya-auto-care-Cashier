@@ -63,6 +63,7 @@
                                        FontWeight="SemiBold" 
                                        VerticalAlignment="Center" 
                                        Margin="0,20,0,0"/>
+                                
                                 <ComboBox VerticalAlignment="Bottom"
                                       x:Name="cmbdate" 
                                       Margin="45,-25,0,0"

@@ -26,6 +26,10 @@ namespace Saliya_auto_care_Cashier
     {
         private CategoryViewModel CategoryViewModel;
 
+        private ObservableCollection<InvoiceItem> allBillItems;
+        private ObservableCollection<InvoiceItem> refundItems;
+        private string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+
         private Inventory_View Inventory;
         //private PaintJobs_View paintJobs;
         private Register_View Register;
@@ -79,6 +83,16 @@ namespace Saliya_auto_care_Cashier
             refreshTimer = new Timer(RefreshData, null, 0, 5000);
 
             LoadInvoiceData();
+
+            allBillItems = new ObservableCollection<InvoiceItem>();
+            refundItems = new ObservableCollection<InvoiceItem>();
+            dgAllBillItems.ItemsSource = allBillItems;
+            dgRefundList.ItemsSource = refundItems;
+
+            // Check database connection on startup
+            CheckDatabaseConnection();
+
+
         }
 
         private void LoadViews()
@@ -729,5 +743,105 @@ namespace Saliya_auto_care_Cashier
         {
             Application.Current.Shutdown();
         }
+
+        private void CheckDatabaseConnection()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to connect to the database. Error: {ex.Message}", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string invoiceNumber = txtInvoiceNum.Text.Trim();
+            if (string.IsNullOrEmpty(invoiceNumber))
+            {
+                MessageBox.Show("Please enter an invoice number.");
+                return;
+            }
+
+            allBillItems.Clear();
+            refundItems.Clear();
+            UpdateTotalRefundAmount();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT id.Description, id.Price, id.Amount 
+                                     FROM InvoiceDetails id 
+                                     INNER JOIN Invoice i ON id.InvoiceID = i.InvoiceID 
+                                     WHERE i.InvoiceID = @InvoiceID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@InvoiceID", invoiceNumber);
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                allBillItems.Add(new InvoiceItem
+                                {
+                                    Description = reader["Description"].ToString(),
+                                    Price = Convert.ToDecimal(reader["Price"]),
+                                    Amount = Convert.ToDecimal(reader["Amount"])
+                                });
+                            }
+                        }
+                    }
+                }
+
+                if (allBillItems.Count == 0)
+                {
+                    MessageBox.Show("No items found for the given invoice number.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while fetching invoice details: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DgAllBillItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgAllBillItems.SelectedItem is InvoiceItem selectedItem)
+            {
+                allBillItems.Remove(selectedItem);
+                refundItems.Add(selectedItem);
+                UpdateTotalRefundAmount();
+            }
+        }
+
+        private void UpdateTotalRefundAmount()
+        {
+            decimal totalRefund = refundItems.Sum(item => item.Amount);
+            txtTotalRefundAmount.Text = totalRefund.ToString("C2");
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            txtInvoiceNum.Clear();
+            allBillItems.Clear();
+            refundItems.Clear();
+            UpdateTotalRefundAmount();
+        }
     }
+    public class InvoiceItem
+    {
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public decimal Amount { get; set; }
+    }
+
 }
+
