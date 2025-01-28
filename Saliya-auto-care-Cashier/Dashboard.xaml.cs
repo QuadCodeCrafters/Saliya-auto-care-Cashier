@@ -725,7 +725,7 @@ namespace Saliya_auto_care_Cashier
             return false;
         }
 
-        private async void Poweroff(object sender, RoutedEventArgs e)
+        private void Poweroff(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
