@@ -29,6 +29,7 @@ namespace Saliya_auto_care_Cashier
         private ObservableCollection<InvoiceItem> allBillItems;
         private ObservableCollection<InvoiceItem> refundItems;
         private string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+        private string currentInvoiceID;
 
         private Inventory_View Inventory;
         //private PaintJobs_View paintJobs;
@@ -528,7 +529,7 @@ namespace Saliya_auto_care_Cashier
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO SchedulePickup (CarrierName, DriverName, CustomerMobile, CustomerName) "+" VALUES (@CarrierName, @DriverName, @CustomerMobile, @CustomerName)";
+                    string query = "INSERT INTO SchedulePickup (CarrierName, DriverName, CustomerMobile, CustomerName) " + " VALUES (@CarrierName, @DriverName, @CustomerMobile, @CustomerName)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -541,7 +542,7 @@ namespace Saliya_auto_care_Cashier
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-              
+
 
                             // Clear the form
                             cmbcarriername.SelectedIndex = -1;//to clear the selected item
@@ -762,8 +763,8 @@ namespace Saliya_auto_care_Cashier
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            string invoiceNumber = txtInvoiceNum.Text.Trim();
-            if (string.IsNullOrEmpty(invoiceNumber))
+            currentInvoiceID = txtInvoiceNum.Text.Trim();
+            if (string.IsNullOrEmpty(currentInvoiceID))
             {
                 MessageBox.Show("Please enter an invoice number.");
                 return;
@@ -778,14 +779,14 @@ namespace Saliya_auto_care_Cashier
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = @"SELECT id.Description, id.Price, id.Amount 
+                    string query = @"SELECT id.Description, id.Quantity, id.Price, id.Amount 
                                      FROM InvoiceDetails id 
                                      INNER JOIN Invoice i ON id.InvoiceID = i.InvoiceID 
                                      WHERE i.InvoiceID = @InvoiceID";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@InvoiceID", invoiceNumber);
+                        command.Parameters.AddWithValue("@InvoiceID", currentInvoiceID);
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -793,6 +794,7 @@ namespace Saliya_auto_care_Cashier
                                 allBillItems.Add(new InvoiceItem
                                 {
                                     Description = reader["Description"].ToString(),
+                                    Quantity = Convert.ToInt32(reader["Quantity"]),
                                     Price = Convert.ToDecimal(reader["Price"]),
                                     Amount = Convert.ToDecimal(reader["Amount"])
                                 });
@@ -825,20 +827,110 @@ namespace Saliya_auto_care_Cashier
         private void UpdateTotalRefundAmount()
         {
             decimal totalRefund = refundItems.Sum(item => item.Amount);
-            txtTotalRefundAmount.Text = totalRefund.ToString("C2");
+            txtTotalRefundAmount.Text = "Rs " + totalRefund.ToString("N2");
+        }
+
+        private void BtnRefund_Click(object sender, RoutedEventArgs e)
+        {
+            if (refundItems.Count == 0)
+            {
+                MessageBox.Show("Please select items to refund.");
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Insert into Refund table
+                            string insertRefundQuery = @"INSERT INTO Refund (InvoiceID, CustomerName, RefundDate, TotalAmount) 
+                                                         VALUES (@InvoiceID, (SELECT CustomerName FROM Invoice WHERE InvoiceID = @InvoiceID), @RefundDate, @TotalAmount);
+                                                         SELECT LAST_INSERT_ID();";
+                            int refundID;
+                            decimal totalRefundAmount = refundItems.Sum(item => item.Amount);
+
+                            using (MySqlCommand cmd = new MySqlCommand(insertRefundQuery, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@InvoiceID", currentInvoiceID);
+                                cmd.Parameters.AddWithValue("@RefundDate", DateTime.Now);
+                                cmd.Parameters.AddWithValue("@TotalAmount", totalRefundAmount);
+                                refundID = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
+
+                            // Insert into RefundDetails table
+                            string insertRefundDetailsQuery = @"INSERT INTO RefundDetails (RefundID, Description, Quantity, Price, Amount) 
+                                                                VALUES (@RefundID, @Description, @Quantity, @Price, @Amount)";
+                            foreach (var item in refundItems)
+                            {
+                                using (MySqlCommand cmd = new MySqlCommand(insertRefundDetailsQuery, connection, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@RefundID", refundID);
+                                    cmd.Parameters.AddWithValue("@Description", item.Description);
+                                    cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
+                                    cmd.Parameters.AddWithValue("@Price", item.Price);
+                                    cmd.Parameters.AddWithValue("@Amount", item.Amount);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Delete from InvoiceDetails
+                            string deleteInvoiceDetailsQuery = "DELETE FROM InvoiceDetails WHERE InvoiceID = @InvoiceID";
+                            using (MySqlCommand cmd = new MySqlCommand(deleteInvoiceDetailsQuery, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@InvoiceID", currentInvoiceID);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Delete from Invoice
+                            string deleteInvoiceQuery = "DELETE FROM Invoice WHERE InvoiceID = @InvoiceID";
+                            using (MySqlCommand cmd = new MySqlCommand(deleteInvoiceQuery, connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@InvoiceID", currentInvoiceID);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                            MessageBox.Show("Refund processed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ClearAll();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception("An error occurred while processing the refund. The transaction was rolled back.", ex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing refund: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearAll();
+        }
+
+        private void ClearAll()
         {
             txtInvoiceNum.Clear();
             allBillItems.Clear();
             refundItems.Clear();
             UpdateTotalRefundAmount();
+            currentInvoiceID = null;
         }
     }
+
     public class InvoiceItem
     {
         public string Description { get; set; }
+        public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal Amount { get; set; }
     }

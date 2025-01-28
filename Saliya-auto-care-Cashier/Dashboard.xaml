@@ -364,8 +364,8 @@
                                                                                                         Margin="10,-15,20,0">
                                                                                                     <DataGrid.Columns>
                                                                                                         <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="Auto"/>
-                                                                                                        <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2}" Width="Auto"/>
-                                                                                                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=C2}" Width="Auto"/>
+                                                                                                        <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat='Rs {0:N2}'}" Width="Auto"/>
+                                                                                                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat='Rs {0:N2}'}" Width="Auto"/>
                                                                                                     </DataGrid.Columns>
                                                                                                 </DataGrid>
                                                                                             </Grid>
@@ -374,11 +374,12 @@
                                                                                             <Button 
                                                                                                     Width="100" 
                                                                                                     Height="40"  
-                                                                                                    Margin="20,90,10,0" 
+                                                                                                    Margin="50,90,10,10" 
                                                                                                     Content="Refund" 
                                                                                                     HorizontalAlignment="Left" 
                                                                                                     VerticalAlignment="Center" 
-                                                                                                    Grid.Row="2"/>
+                                                                                                    Grid.Row="2"
+                                                                                                    Click="BtnRefund_Click"/>
                                                                                         </Grid>
 
                                                                                         <!-- Right Column -->
@@ -392,16 +393,34 @@
                                                                                                     SelectionChanged="DgAllBillItems_SelectionChanged">
                                                                                                 <DataGrid.Columns>
                                                                                                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="Auto"/>
-                                                                                                    <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C2}" Width="Auto"/>
-                                                                                                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=C2}" Width="Auto"/>
+                                                                                                    <DataGridTextColumn Header="Price" Binding="{Binding Price,StringFormat='Rs {0:N2}'}" Width="Auto"/>
+                                                                                                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat='Rs {0:N2}'}" Width="Auto"/>
                                                                                                 </DataGrid.Columns>
                                                                                             </DataGrid>
-                                                                                            <TextBlock 
-                                                                                                    x:Name="txtTotalRefundAmount" 
-                                                                                                    Text="$0.00" 
-                                                                                                    FontSize="16" 
+                                                                                            <Grid Margin="150,380,0,0">
+                                                                                                <Grid.ColumnDefinitions>
+                                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                                    <ColumnDefinition Width="Auto" />
+                                                                                                </Grid.ColumnDefinitions>
+
+                                                                                                <TextBlock  
+                                                                                                    Text="Refund Amount :" 
+                                                                                                    FontSize="18" 
                                                                                                     FontWeight="Bold" 
-                                                                                                    VerticalAlignment="Center"/>
+                                                                                                    VerticalAlignment="Center" 
+                                                                                                    HorizontalAlignment="Right" 
+                                                                                                    Margin="0,0,10,0"/>
+
+                                                                                                <TextBlock 
+                                                                                                    x:Name="txtTotalRefundAmount" 
+                                                                                                    Text="Rs 0.00" 
+                                                                                                    FontSize="18" 
+                                                                                                    FontWeight="Bold" 
+                                                                                                    Grid.Column="1" 
+                                                                                                    VerticalAlignment="Center" 
+                                                                                                    HorizontalAlignment="Left" />
+                                                                                            </Grid>
+
                                                                                         </Grid>
                                                                                     </Grid>
                                                                                 </materialDesign:Card>
