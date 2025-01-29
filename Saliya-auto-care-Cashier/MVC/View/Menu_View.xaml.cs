@@ -371,6 +371,19 @@ namespace Saliya_auto_care_Cashier.MVVM.View
             }
         }
 
+        private void btncal_click(object sender, RoutedEventArgs e)
+        {
+            // Get the calculatorHost
+            var dashboardWindow = Application.Current.Windows.OfType<Dashboard>().FirstOrDefault();
+            if (dashboardWindow != null)
+            {
+                var dialogHost = dashboardWindow.FindName("calculatorHost") as MaterialDesignThemes.Wpf.DialogHost; //the name of the dialog host in the dashboard
+                if (dialogHost != null)
+                {
+                    dialogHost.IsOpen = true;  // Open the dialog
+                }
+            }
+        }
     }
 }
 

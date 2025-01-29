@@ -131,13 +131,14 @@
                                 <Button Content="Rs 500" Grid.Row="0" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
                                 <Button Content="Rs 1,000" Grid.Row="1" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
                                 <Button Content="Rs 5,000" Grid.Row="2" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
-                                <Button Content="Rs 10,000" Grid.Row="3" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
-
+                                <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource Amount}" Click="btncal_click" Background="#00796B">
+                                    <materialDesign:PackIcon Kind="Calculator" Width="35" Height="35"/>
+                                </Button>
                                 <Button Content="Refund" Grid.Row="0" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="btnRefund_Click"/>
                                 <Button Content="Clear" Grid.Row="1" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="ButtonClear_Click"/>
                                 <Button Content="Charges" Grid.Row="2" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="ButtonCharges_Click"/>
-                                
-                                <Button Grid.Row="3" Grid.Column="4" Style="{StaticResource Action}" Background="#2ecc71" Click="AddButton_Click">
+
+                                <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource Action}" Background="#2ecc71" Click="AddButton_Click">
                                     <TextBlock Text="+" FontSize="55" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-10,0,0"/>
                                 </Button>
 

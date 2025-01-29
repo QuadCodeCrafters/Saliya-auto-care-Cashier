@@ -55,6 +55,10 @@ namespace Saliya_auto_care_Cashier
         private Timer refreshTimer;
         private bool isLoading = false;
 
+        private double lastNumber, result;
+        private SelectedOperator selectedOperator;
+
+
         public Dashboard()
         {
             InitializeComponent();
@@ -925,6 +929,108 @@ namespace Saliya_auto_care_Cashier
             UpdateTotalRefundAmount();
             currentInvoiceID = null;
         }
+
+        private void OnNumberClick(object sender, RoutedEventArgs e)
+        {
+            int selectedValue = int.Parse((sender as Button).Content.ToString());
+
+            if (ResultText.Text == "0")
+                ResultText.Text = $"{selectedValue}";
+            else
+                ResultText.Text += $"{selectedValue}";
+        }
+
+        private void OnOperatorClick(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(ResultText.Text, out lastNumber))
+            {
+                ResultText.Text = "0";
+            }
+
+            if (sender == AdditionButton)
+                selectedOperator = SelectedOperator.Addition;
+            else if (sender == SubtractionButton)
+                selectedOperator = SelectedOperator.Subtraction;
+            else if (sender == MultiplicationButton)
+                selectedOperator = SelectedOperator.Multiplication;
+            else if (sender == DivisionButton)
+                selectedOperator = SelectedOperator.Division;
+        }
+
+        private void OnEqualsClick(object sender, RoutedEventArgs e)
+        {
+            double newNumber;
+            if (double.TryParse(ResultText.Text, out newNumber))
+            {
+                switch (selectedOperator)
+                {
+                    case SelectedOperator.Addition:
+                        result = SimpleMath.Add(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Subtraction:
+                        result = SimpleMath.Subtract(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Multiplication:
+                        result = SimpleMath.Multiply(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Division:
+                        result = SimpleMath.Divide(lastNumber, newNumber);
+                        break;
+                }
+
+                ResultText.Text = result.ToString();
+            }
+        }
+
+        private void OnClearClick(object sender, RoutedEventArgs e)
+        {
+            ResultText.Text = "0";
+            lastNumber = 0;
+            result = 0;
+        }
+
+        private void OnDecimalClick(object sender, RoutedEventArgs e)
+        {
+            if (!ResultText.Text.Contains("."))
+                ResultText.Text += ".";
+        }
+
+        private void OnPercentClick(object sender, RoutedEventArgs e)
+        {
+            double tempNumber;
+            if (double.TryParse(ResultText.Text, out tempNumber))
+            {
+                tempNumber /= 100;
+                if (lastNumber != 0)
+                    tempNumber *= lastNumber;
+                ResultText.Text = tempNumber.ToString();
+            }
+        }
+
+        private void OnSquareRootClick(object sender, RoutedEventArgs e)
+        {
+            double tempNumber;
+            if (double.TryParse(ResultText.Text, out tempNumber))
+            {
+                ResultText.Text = Math.Sqrt(tempNumber).ToString();
+            }
+        }
+    }
+
+    public enum SelectedOperator
+    {
+        Addition,
+        Subtraction,
+        Multiplication,
+        Division
+    }
+
+    public class SimpleMath
+    {
+        public static double Add(double n1, double n2) => n1 + n2;
+        public static double Subtract(double n1, double n2) => n1 - n2;
+        public static double Multiply(double n1, double n2) => n1 * n2;
+        public static double Divide(double n1, double n2) => n2 == 0 ? throw new DivideByZeroException() : n1 / n2;
     }
 
     public class InvoiceItem
