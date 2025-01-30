@@ -6,6 +6,105 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Border CornerRadius="10" Background="LightBlue" Margin="20,5,100,0" Height="40">
+                    <!-- Search Bar -->
+                    <TextBox Width="Auto" Height="Auto" VerticalAlignment="Center" FontSize="20"
+                            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                            Tag="🔎 Search By ID" Margin="15,0,0,0">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Grid>
+                                                <TextBlock Text="{TemplateBinding Tag}"
+                                                          Foreground="Gray"
+                                                          VerticalAlignment="Center"
+                                                          IsHitTestVisible="False"
+                                                          Margin="0,0,0,0">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource TemplatedParent}}" Value="0">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Border>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,-5.5" Background="#009688" BorderBrush="#009688" Width="Auto" Height="Auto" Grid.Column="1">
+                    <materialDesign:PackIcon Kind="QrcodeScan" Width="30" Height="30"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+
+
+            </Grid>
+
+        </Grid>
+
+
+        <Grid Grid.Column="1" Margin="40,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                <TextBlock Text="Product:" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtsub" BorderThickness="0"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="1">
+
+                <TextBlock Text="Qty :" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" BorderThickness="0" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="2">
+
+                <TextBlock Text="Price :" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" BorderThickness="0" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="3">
+
+                <TextBlock Text="Amount:" FontSize="16" VerticalAlignment="Center"/>
+                <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance" BorderThickness="0"/>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
 </UserControl>

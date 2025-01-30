@@ -314,10 +314,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button HorizontalAlignment="Stretch"  Click="Buttonprint_Click" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#00796B" Width="Auto" Height="Auto">
+                <Button HorizontalAlignment="Stretch"  Click="Buttonprint_Click" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#009688" Width="Auto" Height="Auto">
                     <materialDesign:PackIcon Kind="Printer" Width="35" Height="35"/>
                 </Button>
-                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#00796B" Width="Auto" Height="Auto" Grid.Column="1" Click="Buttonhistory_Click">
+                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="70,8,70,5" Background="#009688" BorderBrush="#009688" Width="Auto" Height="Auto" Grid.Column="1" Click="Buttonhistory_Click">
                     <materialDesign:PackIcon Kind="History" Width="35" Height="35"/>
                 </Button>
             </Grid>

@@ -82,27 +82,27 @@
                                 <StackPanel Margin="0,40,0,0">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtownername" />
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtownername" BorderThickness="0"/>
                                         <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtownerphone" />
+                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtownerphone" BorderThickness="0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Email :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" />
+                                        <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" BorderThickness="0"/>
                                         <TextBlock Text="Address :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                        <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtaddress" />
+                                        <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtaddress"  BorderThickness="0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Vehicle Model :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtmodel" />
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtmodel" BorderThickness="0"/>
                                         <TextBlock Text="Vehicle Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                        <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtphone"/>
+                                        <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtphone" BorderThickness="0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Registration Date:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtregistrationdate"/>
+                                        <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtregistrationdate" BorderThickness="0"/>
                                         <TextBlock Text="Last Service Date :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtlastservicedate"/>
+                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtlastservicedate" BorderThickness="0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -135,25 +135,25 @@
                                 <StackPanel Margin="0,40,0,0">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Sub Total:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtsub" />
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtsub" BorderThickness="0"/>
                                         <TextBlock Text="Sales Tax :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttax" />
+                                        <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttax"  BorderThickness="0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Discount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" />
+                                        <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" BorderThickness="0"/>
                                         <TextBlock Text="Total Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                        <TextBox Width="235" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttotal" />
+                                        <TextBox Width="235" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txttotal" BorderThickness="0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Service Charges :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" />
+                                        <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" BorderThickness="0" />
                                         <TextBlock Text="Paid Amount :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
-                                        <TextBox Width="240" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtpaidamount"/>
+                                        <TextBox Width="240" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtpaidamount" BorderThickness="0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
                                         <TextBlock Text="Balance:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance"/>
+                                        <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance" BorderThickness="0" />
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
