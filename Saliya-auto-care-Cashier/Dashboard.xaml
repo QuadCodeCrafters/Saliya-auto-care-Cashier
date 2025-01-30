@@ -11,9 +11,9 @@
         WindowStyle="None"
         ResizeMode="NoResize">
     <Grid>
-        <!--The message box of Go home-->
+        <!--The message box of Go home -->
         <materialDesign:DialogHost x:Name="PermissionDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
-            <materialDesign:DialogHost.DialogContent>
+            <!--  <materialDesign:DialogHost.DialogContent>
 
                 <Grid Width="350" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" Margin="15">
@@ -31,7 +31,7 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-            </materialDesign:DialogHost.DialogContent>
+            </materialDesign:DialogHost.DialogContent>  -->
             <Grid>
                 <!--The message box of Loyality Unlock-->
                 <materialDesign:DialogHost x:Name="MemberDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
@@ -581,7 +581,8 @@
                                                                                             </Border>
                                                                                             <Border Background="LightBlue" Grid.Row="1">
                                                                                             </Border>
-                                                                                            <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left">
+                                                                                                <Button Background="Transparent" BorderBrush="Transparent" Height="70" Width="90"  Margin="0,0,0,0" Grid.Row="2" HorizontalAlignment="Left" Click="Button_Click">
+                                                                                                    <!-- Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" CommandTarget="{Binding ElementName=PermissionDialogHost}" -->
                                                                                                 <Image Source="/Images/Home.png" Width="50" Height="50" Cursor="Hand">
                                                                                                     <Image.ToolTip>
                                                                                                         <ToolTip Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" BorderThickness="1" Margin="15">

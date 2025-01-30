@@ -1056,7 +1056,7 @@ namespace Saliya_auto_care_Cashier
             if (ResultText.Text.Length > 1)
             {
                 ResultText.Text = ResultText.Text.Substring(0, ResultText.Text.Length - 1);
-                ResultText.Text = 0;
+                ResultText.Text = "0";
             }
             else
             {
