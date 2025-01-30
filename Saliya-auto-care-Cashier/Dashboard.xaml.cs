@@ -94,6 +94,8 @@ namespace Saliya_auto_care_Cashier
             dgAllBillItems.ItemsSource = allBillItems;
             dgRefundList.ItemsSource = refundItems;
 
+            this.KeyDown += MainWindow_KeyDown;
+
             // Check database connection on startup
             CheckDatabaseConnection();
 
@@ -1015,31 +1017,149 @@ namespace Saliya_auto_care_Cashier
                 ResultText.Text = Math.Sqrt(tempNumber).ToString();
             }
         }
-    }
 
-    public enum SelectedOperator
-    {
-        Addition,
-        Subtraction,
-        Multiplication,
-        Division
-    }
+        private void OnSquareClick(object sender, RoutedEventArgs e)
+        {
+            double tempNumber;
+            if (double.TryParse(ResultText.Text, out tempNumber))
+            {
+                ResultText.Text = (tempNumber * tempNumber).ToString();
+            }
+        }
 
-    public class SimpleMath
-    {
-        public static double Add(double n1, double n2) => n1 + n2;
-        public static double Subtract(double n1, double n2) => n1 - n2;
-        public static double Multiply(double n1, double n2) => n1 * n2;
-        public static double Divide(double n1, double n2) => n2 == 0 ? throw new DivideByZeroException() : n1 / n2;
-    }
+        private void OnReciprocalClick(object sender, RoutedEventArgs e)
+        {
+            double tempNumber;
+            if (double.TryParse(ResultText.Text, out tempNumber))
+            {
+                if (tempNumber != 0)
+                {
+                    ResultText.Text = (1 / tempNumber).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Cannot divide by zero", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
 
-    public class InvoiceItem
-    {
-        public string Description { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
-        public decimal Amount { get; set; }
-    }
+        private void OnNegateClick(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(ResultText.Text, out double tempNumber))
+            {
+                ResultText.Text = (-tempNumber).ToString();
+            }
+        }
 
+        private void OnBackspaceClick(object sender, RoutedEventArgs e)
+        {
+            if (ResultText.Text.Length > 1)
+            {
+                ResultText.Text = ResultText.Text.Substring(0, ResultText.Text.Length - 1);
+                ResultText.Text = 0;
+            }
+            else
+            {
+                ResultText.Text = "0";
+            }
+        }
+        private void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case System.Windows.Input.Key.NumPad0:
+                case System.Windows.Input.Key.D0:
+                    OnNumberClick(new Button { Content = "0" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad1:
+                case System.Windows.Input.Key.D1:
+                    OnNumberClick(new Button { Content = "1" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad2:
+                case System.Windows.Input.Key.D2:
+                    OnNumberClick(new Button { Content = "2" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad3:
+                case System.Windows.Input.Key.D3:
+                    OnNumberClick(new Button { Content = "3" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad4:
+                case System.Windows.Input.Key.D4:
+                    OnNumberClick(new Button { Content = "4" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad5:
+                case System.Windows.Input.Key.D5:
+                    OnNumberClick(new Button { Content = "5" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad6:
+                case System.Windows.Input.Key.D6:
+                    OnNumberClick(new Button { Content = "6" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad7:
+                case System.Windows.Input.Key.D7:
+                    OnNumberClick(new Button { Content = "7" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad8:
+                case System.Windows.Input.Key.D8:
+                    OnNumberClick(new Button { Content = "8" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.NumPad9:
+                case System.Windows.Input.Key.D9:
+                    OnNumberClick(new Button { Content = "9" }, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Decimal:
+                case System.Windows.Input.Key.OemPeriod:
+                    OnDecimalClick(new Button(), new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Add:
+                    OnOperatorClick(AdditionButton, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Subtract:
+                    OnOperatorClick(SubtractionButton, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Multiply:
+                    OnOperatorClick(MultiplicationButton, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Divide:
+                    OnOperatorClick(DivisionButton, new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Enter:
+                    OnEqualsClick(new Button(), new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Back:
+                    OnBackspaceClick(new Button(), new RoutedEventArgs());
+                    break;
+                case System.Windows.Input.Key.Escape:
+                    OnClearClick(new Button(), new RoutedEventArgs());
+                    break
+                ;
+            }
+
+        }
+
+        public enum SelectedOperator
+        {
+            Addition,
+            Subtraction,
+            Multiplication,
+            Division
+        }
+
+        public class SimpleMath
+        {
+            public static double Add(double n1, double n2) => n1 + n2;
+            public static double Subtract(double n1, double n2) => n1 - n2;
+            public static double Multiply(double n1, double n2) => n1 * n2;
+            public static double Divide(double n1, double n2) => n2 == 0 ? throw new DivideByZeroException() : n1 / n2;
+        }
+
+        public class InvoiceItem
+        {
+            public string Description { get; set; }
+            public int Quantity { get; set; }
+            public decimal Price { get; set; }
+            public decimal Amount { get; set; }
+        }
+    }
 }
 

@@ -515,9 +515,10 @@
                                                                                         <!--Message box for calculator-->
                                                                                         <materialDesign:DialogHost x:Name="calculatorHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                                                                                             <materialDesign:DialogHost.DialogContent >
-                                                                                                <Grid Width="300" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                                                <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"   Width="600" Height="600" >
                                                                                                     <Grid.RowDefinitions>
                                                                                                         <RowDefinition Height="2*"/>
+                                                                                                        <RowDefinition Height="*"/>
                                                                                                         <RowDefinition Height="*"/>
                                                                                                         <RowDefinition Height="*"/>
                                                                                                         <RowDefinition Height="*"/>
@@ -532,32 +533,37 @@
                                                                                                     </Grid.ColumnDefinitions>
 
                                                                                                     <TextBlock x:Name="ResultText" Grid.ColumnSpan="4" Text="0"
-                                                                                                               FontSize="48" FontWeight="Bold" Foreground="#ecf0f1"
+                                                                                                               FontSize="60" FontWeight="Bold" Foreground="#2d3748"
                                                                                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                                                                                    <Button Content="C" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="OnClearClick"/>
-                                                                                                    <Button Content="√" Grid.Row="1" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="OnSquareRootClick"/>
-                                                                                                    <Button Content="%" Grid.Row="1" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="OnPercentClick"/>
-                                                                                                    <Button x:Name="DivisionButton" Content="÷" Grid.Row="1" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="OnOperatorClick"/>
+                                                                                                    <Button Content="C" Grid.Row="1" Grid.Column="0" Style="{StaticResource OperatorButtonStyle}" Click="OnClearClick"/>
+                                                                                                    <Button Content="±" Grid.Row="1" Grid.Column="1" Style="{StaticResource OperatorButtonStyle}" Click="OnNegateClick"/>
+                                                                                                    <Button Content="%" Grid.Row="1" Grid.Column="2" Style="{StaticResource OperatorButtonStyle}" Click="OnPercentClick"/>
+                                                                                                    <Button x:Name="DivisionButton" Content="÷" Grid.Row="1" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnOperatorClick" FontSize="35" />
 
                                                                                                     <Button Content="7" Grid.Row="2" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="8" Grid.Row="2" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="9" Grid.Row="2" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
-                                                                                                    <Button x:Name="MultiplicationButton" Content="×" Grid.Row="2" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="OnOperatorClick"/>
+                                                                                                    <Button x:Name="MultiplicationButton" Content="×" Grid.Row="2" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnOperatorClick" FontSize="40"/>
 
                                                                                                     <Button Content="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="5" Grid.Row="3" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="6" Grid.Row="3" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
-                                                                                                    <Button x:Name="SubtractionButton" Content="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="OnOperatorClick"/>
+                                                                                                    <Button x:Name="SubtractionButton" Content="-" Grid.Row="3" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnOperatorClick" FontSize="40"/>
 
                                                                                                     <Button Content="1" Grid.Row="4" Grid.Column="0" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="2" Grid.Row="4" Grid.Column="1" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="3" Grid.Row="4" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
-                                                                                                    <Button x:Name="AdditionButton" Content="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="OnOperatorClick"/>
+                                                                                                    <Button x:Name="AdditionButton" Content="+" Grid.Row="4" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnOperatorClick" FontSize="35"/>
 
                                                                                                     <Button Content="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource CalcButtonStyle}" Click="OnNumberClick"/>
                                                                                                     <Button Content="." Grid.Row="5" Grid.Column="2" Style="{StaticResource CalcButtonStyle}" Click="OnDecimalClick"/>
-                                                                                                    <Button Content="=" Grid.Row="5" Grid.Column="3" Style="{StaticResource CalcButtonStyle}" Click="OnEqualsClick"/>
+                                                                                                    <Button Content="=" Grid.Row="5" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnEqualsClick" FontSize="40"/>
+
+                                                                                                    <Button Content="√" Grid.Row="6" Grid.Column="0" Style="{StaticResource OperatorButtonStyle}" Click="OnSquareRootClick"/>
+                                                                                                    <Button Content="x²" Grid.Row="6" Grid.Column="1" Style="{StaticResource OperatorButtonStyle}" Click="OnSquareClick"/>
+                                                                                                    <Button Content="1/x" Grid.Row="6" Grid.Column="2" Style="{StaticResource OperatorButtonStyle}" Click="OnReciprocalClick"/>
+                                                                                                    <Button x:Name="BackspaceButton" Content="Back" Grid.Row="6" Grid.Column="3" Style="{StaticResource OperatorButtonStyle}" Click="OnBackspaceClick" Foreground="White" Background="#009688" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
                                                                                                 </Grid>
                                                                                             </materialDesign:DialogHost.DialogContent>
                                                                       
