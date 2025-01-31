@@ -459,7 +459,8 @@
     <Resource Include="Images\emergency.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmailTemplates\CarrierServiceTemplate.html" />
+    <Content Include="EmailTemplates\CarrierServiceCustomerTemplate.html" />
+    <Content Include="EmailTemplates\CarrierServiceDriverTemplate.html" />
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
