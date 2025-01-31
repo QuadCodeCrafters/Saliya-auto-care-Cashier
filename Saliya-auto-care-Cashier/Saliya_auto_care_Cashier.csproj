@@ -313,6 +313,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AForge.Video">
+      <Version>2.2.5</Version>
+    </PackageReference>
+    <PackageReference Include="AForge.Video.DirectShow">
+      <Version>2.2.5</Version>
+    </PackageReference>
     <PackageReference Include="CredentialManagement">
       <Version>1.0.2</Version>
     </PackageReference>
@@ -363,6 +369,9 @@
     </PackageReference>
     <PackageReference Include="WpfAnimatedGif">
       <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.10</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -450,6 +459,7 @@
     <Resource Include="Images\emergency.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EmailTemplates\CarrierServiceTemplate.html" />
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -23,7 +23,7 @@
                     <!-- Search Bar -->
                     <TextBox Width="Auto" Height="Auto" VerticalAlignment="Center" FontSize="20"
                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                            Tag="🔎 Search By ID" Margin="15,0,0,0">
+                            Tag="🔎 Search By ID" Margin="15,0,0,0" x:Name="SearchTextBox">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Foreground" Value="Gray"/>
@@ -56,7 +56,7 @@
                         </TextBox.Style>
                     </TextBox>
                 </Border>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,-5.5" Background="#009688" BorderBrush="#009688" Width="Auto" Height="Auto" Grid.Column="1">
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,-5.5" Background="#009688" BorderBrush="#009688" Width="Auto" Height="Auto" Grid.Column="1" x:Name="barcode" Click="Barcode_Click">
                     <materialDesign:PackIcon Kind="QrcodeScan" Width="30" Height="30"/>
                 </Button>
             </Grid>
@@ -81,28 +81,28 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 
                 <TextBlock Text="Product:" FontSize="16" VerticalAlignment="Center"/>
-                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtsub" BorderThickness="0"/>
+                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtproduct" BorderThickness="0"/>
 
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="1">
 
                 <TextBlock Text="Qty :" FontSize="16" VerticalAlignment="Center"/>
-                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtdiscount" BorderThickness="0" />
+                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtqty" BorderThickness="0" />
 
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="2">
 
                 <TextBlock Text="Price :" FontSize="16" VerticalAlignment="Center"/>
-                <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtcharges" BorderThickness="0" />
+                <TextBox Width="195" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtprice" BorderThickness="0" />
 
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0" Grid.Row="3">
 
                 <TextBlock Text="Amount:" FontSize="16" VerticalAlignment="Center"/>
-                <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtbalance" BorderThickness="0"/>
+                <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtamount" BorderThickness="0"/>
 
             </StackPanel>
         </Grid>

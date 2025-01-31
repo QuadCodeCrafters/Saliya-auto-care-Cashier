@@ -24,5 +24,12 @@ namespace Saliya_auto_care_Cashier.MVC.View
         {
             InitializeComponent();
         }
+
+        private void Barcode_Click(object sender, RoutedEventArgs e)
+        {
+            //Barcode
+        }
     }
+
+    
 }
