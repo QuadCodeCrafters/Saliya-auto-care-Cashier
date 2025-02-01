@@ -152,7 +152,7 @@
                                                             </Border>
 
                                                             <Border Grid.Row="1" Background="#92a1a8">
-                                                                <TextBlock Foreground="White" Text="{Binding Price, StringFormat=Rs. {0:F2}}" FontSize="15" 
+                                                                <TextBlock Foreground="White" Text="{Binding ItemPrice, StringFormat=Rs. {0:F2}}" FontSize="15" 
                                                                    HorizontalAlignment="Center" Margin="0,2,0,0" FontWeight="Bold"/>
                                                             </Border>
                                                         </Grid>
@@ -208,7 +208,7 @@
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="Availability:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Quantity}" FontSize="18" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
@@ -220,49 +220,49 @@
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="SKU:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemName}" FontSize="18" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.SKU}" FontSize="18" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="Item Price:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.ItemPrice, StringFormat=Rs. {0:F2}}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="Category:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Category}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="Description:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Description}" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" MaxWidth="290"/>
                                                     </StackPanel>
 
-                                                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                                         <TextBlock Text="Manufacturer:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Manufacturer}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="Model Number:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.ModelNumber}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                                         <TextBlock Text="Warranty:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.Warranty}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" Margin="0,15,0,20">
                                                         <TextBlock Text="Storage Location:" 
                                                                    Style="{StaticResource TextStyle}"/>
-                                                        <TextBlock Text="{Binding SelectedItemDetails.Price}" FontSize="16" FontWeight="Bold" />
+                                                        <TextBlock Text="{Binding SelectedItemDetails.StorageLocation}" FontSize="16" FontWeight="Bold" />
                                                     </StackPanel>
 
                                                 </StackPanel>

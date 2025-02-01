@@ -2,14 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using MySql.Data.MySqlClient;
-using WpfAnimatedGif;
 
 namespace Saliya_auto_care_Cashier.MVVM.View
 {
@@ -20,7 +17,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         private ObservableCollection<InventoryItem> allInventoryItems;
 
         public ObservableCollection<InventoryItem> FilteredInventoryItems { get; set; }
-        public ObservableCollection<InventoryItem> InventoryItems { get; set; }
 
         public string SearchText
         {
@@ -32,6 +28,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
                 FilterItems();
             }
         }
+
         public InventoryItem SelectedItemDetails
         {
             get => selectedItemDetails;
@@ -47,7 +44,6 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public Inventory_View()
         {
             InitializeComponent();
-            InventoryItems = new ObservableCollection<InventoryItem>();
             FilteredInventoryItems = new ObservableCollection<InventoryItem>();
             allInventoryItems = new ObservableCollection<InventoryItem>();
 
@@ -59,7 +55,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         private void LoadInventoryItems()
         {
             string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
-            string query = "SELECT ItemName, Price, ImagePath FROM Inventory";
+            string query = "SELECT * FROM inventory";
 
             try
             {
@@ -71,20 +67,20 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
                     while (reader.Read())
                     {
-                        string itemName = reader["ItemName"].ToString();
-                        double price = Convert.ToDouble(reader["Price"]);
-                        string imagePath = reader["ImagePath"].ToString();
-
-                        BitmapImage image = new BitmapImage();
-                        image.BeginInit();
-                        image.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
-                        image.EndInit();
-
                         var item = new InventoryItem
                         {
-                            ItemName = itemName,
-                            Price = price,
-                            ImageSource = image
+                            ID = Convert.ToInt32(reader["ID"]),
+                            ItemName = reader["ItemName"].ToString(),
+                            SKU = reader["SKU"].ToString(),
+                            ItemPrice = Convert.ToDecimal(reader["ItemPrice"]),
+                            Category = reader["Category"].ToString(),
+                            Description = reader["Description"].ToString(),
+                            Quantity = Convert.ToDecimal(reader["Quantity"]),
+                            Manufacturer = reader["Manufacturer"].ToString(),
+                            ModelNumber = reader["ModelNumber"].ToString(),
+                            Warranty = reader["Warranty"].ToString(),
+                            StorageLocation = reader["StorageLocation"].ToString(),
+                            ImageSource = new BitmapImage(new Uri(reader["PicLocation"].ToString(), UriKind.RelativeOrAbsolute))
                         };
                         allInventoryItems.Add(item);
                         FilteredInventoryItems.Add(item);
@@ -101,33 +97,7 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             if (sender is FrameworkElement element && element.DataContext is InventoryItem clickedItem)
             {
-                string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
-                string query = "SELECT * FROM Inventory WHERE ItemName = @ItemName";
-
-                try
-                {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    {
-                        MySqlCommand command = new MySqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@ItemName", clickedItem.ItemName);
-                        connection.Open();
-                        MySqlDataReader reader = command.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            SelectedItemDetails = new InventoryItem
-                            {
-                                ItemName = reader["ItemName"].ToString(),
-                                Price = Convert.ToDouble(reader["Price"]),
-                                ImageSource = new BitmapImage(new Uri(reader["ImagePath"].ToString(), UriKind.RelativeOrAbsolute))
-                            };
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error retrieving item details: " + ex.Message);
-                }
+                SelectedItemDetails = clickedItem;
             }
         }
 
@@ -135,7 +105,8 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         {
             FilteredInventoryItems.Clear();
             var filteredItems = allInventoryItems.Where(item =>
-                                item.ItemName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
+                item.ItemName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                item.Category.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0);
             foreach (var item in filteredItems)
             {
                 FilteredInventoryItems.Add(item);
@@ -155,37 +126,43 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
-    public class InventoryItem
+
+    public class InventoryItem : INotifyPropertyChanged
     {
+        public int ID { get; set; }
         public string ItemName { get; set; }
-        public double Price { get; set; }
+        public string SKU { get; set; }
+        public decimal ItemPrice { get; set; }
+        public string Category { get; set; }
+        public string Description { get; set; }
+        public decimal Quantity { get; set; }
+        public string Manufacturer { get; set; }
+        public string ModelNumber { get; set; }
+        public string Warranty { get; set; }
+        public string StorageLocation { get; set; }
         public BitmapImage ImageSource { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
     public class RelayCommand : ICommand
     {
-        private readonly Action executes;
-        private readonly Func<bool> canExecutes;
-        private Action<object, RoutedEventArgs> buttonprint_Click;
+        private readonly Action execute;
+        private readonly Func<bool> canExecute;
 
         public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
-            executes = execute;
-            canExecutes = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
 
-        public RelayCommand(Action<object, RoutedEventArgs> buttonprint_Click)
-        {
-            this.buttonprint_Click = buttonprint_Click;
-        }
+        public bool CanExecute(object parameter) => canExecute == null || canExecute();
 
-        public bool CanExecute(object parameter) => canExecutes == null || canExecutes();
-
-        public void Execute(object parameter) => executes();
+        public void Execute(object parameter) => execute();
 
         public event EventHandler CanExecuteChanged;
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
-
-
 }
+

@@ -326,7 +326,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
             // Subscribe to CustomerName changes
             name.PropertyChanged += Name_PropertyChanged;
 
-            MyCommand = new RelayCommand(Buttonprint_Click);
+            //MyCommand = new RelayCommand(Buttonprint_Click);
 
             AmountPaidText.Text = "Rs 0.00";
             ChargesText.Text = "Rs 0.00";
