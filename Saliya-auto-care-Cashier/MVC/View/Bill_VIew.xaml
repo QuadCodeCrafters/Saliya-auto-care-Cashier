@@ -284,7 +284,7 @@
                                     <TextBlock Text=" * Refunds or exchanges are accepted within 14 days with a valid receipt." Style="{StaticResource TermsAndConditionsTextBlockStyle}" Foreground="Black"/>
                                     <TextBlock Text=" * To Refund Items must be unused, in original packaging, and undamaged." Style="{StaticResource TermsAndConditionsTextBlockStyle}" Foreground="Black"/>
                                     <TextBlock Text=" * Electrical parts, custom orders, and opened fluids are Non-refundable." Style="{StaticResource TermsAndConditionsTextBlockStyle}" Foreground="Black"/>
-                                    <TextBlock Text=" * Refunds will follow the original payment method." Style="{StaticResource TermsAndConditionsTextBlockStyle}"/>
+                                    <TextBlock Text=" * Refunds will follow the original payment method." Style="{StaticResource TermsAndConditionsTextBlockStyle}" Foreground="Black"/>
                                     
                                     <StackPanel HorizontalAlignment="Center" Margin="0,35,0,0">
                                         <TextBlock FontSize="12" FontWeight="Bold" Foreground="Black">

@@ -5,20 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
 
     <Grid>
-        <WrapPanel x:Name="buttonPanel" 
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="buttonPanel" 
                    Orientation="Horizontal"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
                    Margin="1,0,0,0">
 
-            <Button Click="ClearSelections_Click" Visibility="Collapsed">
-                HI
-            </Button>
+                <Button Click="ClearSelections_Click" Visibility="Collapsed">
+                    HI
+                </Button>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
+                <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
 
-        </WrapPanel>
-
+            </WrapPanel>
+        </ScrollViewer>
+        
         <TextBlock x:Name="noButtons"
                    Text="Please Press the @ button to proceed"
                    FontSize="23"

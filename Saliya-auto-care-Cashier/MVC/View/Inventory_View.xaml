@@ -10,7 +10,7 @@
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="{DynamicResource MaterialDesignPaper}"
-                             Margin="-1"
+                             Margin="0,-3,0,-2"
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.ColumnDefinitions>

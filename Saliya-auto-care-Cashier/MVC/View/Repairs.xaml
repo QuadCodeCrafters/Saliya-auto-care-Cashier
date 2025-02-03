@@ -6,20 +6,22 @@
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
     <Grid>
-        <WrapPanel x:Name="buttonPanel" 
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="buttonPanel" 
                    Orientation="Horizontal"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
                    Margin="1,0,0,0">
 
-            <Button Click="ClearSelections_Click" Visibility="Collapsed">
-                HI
-            </Button>
+                <Button Click="ClearSelections_Click" Visibility="Collapsed">
+                    HI
+                </Button>
 
-            <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
-            
-        </WrapPanel>
-        
+                <Button Style="{StaticResource CustomButtonStyle}" Content="Custom" Click="Custombtn_click"/>
+
+            </WrapPanel>
+        </ScrollViewer>
+
         <TextBlock x:Name="noButtons"
                    Text="Please Press the @ button to proceed"
                    FontSize="23"

@@ -9,7 +9,7 @@
     <Grid>
         <materialDesign:Card UniformCornerRadius="15" 
                              Background="#E6E6E6"
-                             Margin="-1"
+                             Margin="0,-3,0,-2"
                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.ColumnDefinitions>

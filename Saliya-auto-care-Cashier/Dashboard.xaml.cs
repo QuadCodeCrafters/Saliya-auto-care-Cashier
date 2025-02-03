@@ -19,6 +19,8 @@ using Windows.Security.Credentials.UI;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Printing;
+using System.Windows.Xps;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -28,7 +30,7 @@ namespace Saliya_auto_care_Cashier
 
         private ObservableCollection<InvoiceItem> allBillItems;
         private ObservableCollection<InvoiceItem> refundItems;
-        private string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+        private readonly DatabaseStringModel conn;  // DatabaseStringModel
         private string currentInvoiceID;
 
         private Inventory_View Inventory;
@@ -49,8 +51,6 @@ namespace Saliya_auto_care_Cashier
         private Sharedtype sharevehicletype;
         private Sharednumber sharevehiclenumber;
 
-        private readonly DatabaseStringModel conn; //DatabaseStringModel
-
         private ObservableCollection<Invoice> invoices;
         private Timer refreshTimer;
         private bool isLoading = false;
@@ -58,12 +58,15 @@ namespace Saliya_auto_care_Cashier
         private double lastNumber, result;
         private SelectedOperator selectedOperator;
 
+        public static string SelectedPrinter { get; private set; }
+
 
         public Dashboard()
         {
             InitializeComponent();
             RequiredFields();
             LoadViews();
+
 
             sharename = new Sharedname();
             Bill_VIew.name = sharename;
@@ -146,6 +149,7 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Content = Register;
+                fContainernotification.Navigate(new System.Uri("MVC/View/EmptyView.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -159,6 +163,7 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Navigate(new System.Uri("MVC/View/Menu_View.xaml", UriKind.RelativeOrAbsolute));
+                fContainernotification.Navigate(new System.Uri("MVC/View/LiveUpdates.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -171,6 +176,7 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Content = History;
+                fContainernotification.Navigate(new System.Uri("MVC/View/EmptyView.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -183,6 +189,7 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Content = Inventory;
+                fContainernotification.Navigate(new System.Uri("MVC/View/EmptyView.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -195,6 +202,7 @@ namespace Saliya_auto_care_Cashier
             try
             {
                 fContainer.Content = Carrier;
+                fContainernotification.Navigate(new System.Uri("MVC/View/EmptyView.xaml", UriKind.RelativeOrAbsolute));
             }
             catch (Exception ex)
             {
@@ -556,9 +564,11 @@ namespace Saliya_auto_care_Cashier
                             txtcusmobile.Clear();
                             txtcusname.Clear();
 
-                            MessageBox.Show(" Success! ,In here when new column added to the DB new notification need to go to the Mobile Appp and need to have a ststus");
+                            MessageBox.Show(" Success! ,In here when new column added to the DB SchedulePickup new notification need to go to the Mobile Appp and need to have a ststus");
 
                             Notificationbox.ShowSuccess();
+
+
                         }
                         else
                         {
@@ -755,10 +765,11 @@ namespace Saliya_auto_care_Cashier
         {
             try
             {
+                string connectionString = conn.ConnectionString;
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                   // MessageBox.Show("Database connection successful!", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -782,6 +793,7 @@ namespace Saliya_auto_care_Cashier
 
             try
             {
+                string connectionString = conn.ConnectionString;
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
@@ -846,6 +858,7 @@ namespace Saliya_auto_care_Cashier
 
             try
             {
+                string connectionString = conn.ConnectionString;
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
@@ -1137,6 +1150,115 @@ namespace Saliya_auto_care_Cashier
 
         }
 
+        private void BtneditSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string vehicleNumber = txtvehiclenum.Text;
+                if (string.IsNullOrWhiteSpace(vehicleNumber))
+                {
+                    MessageBox.Show("Please enter a vehicle number.");
+                    return;
+                }
+                string connectionString = conn.ConnectionString;
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM vehicleregister WHERE VehicleNumber = @VehicleNumber";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleNumber", vehicleNumber);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                txtvehiclecategory.Text = reader["VehicleCategory"].ToString();
+                                txtvehicletype.Text = reader["VehicleType"].ToString();
+                                txtvehiclemodel.Text = reader["VehicleModel"].ToString();
+                                txtcusnameedit.Text = reader["CustomerName"].ToString();
+                                txtcusaddress.Text = reader["CustomerAddress"].ToString();
+                                txtcusNIC.Text = reader["CustomerNIC"].ToString();
+                                txtcusmail.Text = reader["CustomerEmail"].ToString();
+                                txtcusnumber.Text = reader["CustomerPhone"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No vehicle found with the given number.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void Btnupdate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string connectionString = conn.ConnectionString;
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"UPDATE vehicleregister 
+                                     SET VehicleCategory = @VehicleCategory, 
+                                         VehicleType = @VehicleType, 
+                                         VehicleModel = @VehicleModel, 
+                                         CustomerName = @CustomerName, 
+                                         CustomerAddress = @CustomerAddress, 
+                                         CustomerNIC = @CustomerNIC, 
+                                         CustomerEmail = @CustomerEmail, 
+                                         CustomerPhone = @CustomerPhone 
+                                     WHERE VehicleNumber = @VehicleNumber";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@VehicleNumber", txtvehiclenum.Text);
+                        command.Parameters.AddWithValue("@VehicleCategory", txtvehiclecategory.Text);
+                        command.Parameters.AddWithValue("@VehicleType", txtvehicletype.Text);
+                        command.Parameters.AddWithValue("@VehicleModel", txtvehiclemodel.Text);
+                        command.Parameters.AddWithValue("@CustomerName", txtcusnameedit.Text);
+                        command.Parameters.AddWithValue("@CustomerAddress", txtcusaddress.Text);
+                        command.Parameters.AddWithValue("@CustomerNIC", txtcusNIC.Text);
+                        command.Parameters.AddWithValue("@CustomerEmail", txtcusmail.Text);
+                        command.Parameters.AddWithValue("@CustomerPhone", txtcusnumber.Text);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Vehicle registration updated successfully.");
+                            ClearAllFields();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No records were updated. Please check the vehicle number.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating: {ex.Message}");
+            }
+        }
+
+        private void ClearAllFields()
+        {
+            txtvehiclenum.Clear();
+            txtvehiclecategory.Text = string.Empty;
+            txtvehicletype.Text = string.Empty;
+            txtvehiclemodel.Clear();
+            txtcusnameedit.Clear();
+            txtcusaddress.Clear();
+            txtcusNIC.Clear();
+            txtcusmail.Clear();
+            txtcusnumber.Clear();
+        }
+
+
         public enum SelectedOperator
         {
             Addition,
@@ -1159,6 +1281,57 @@ namespace Saliya_auto_care_Cashier
             public int Quantity { get; set; }
             public decimal Price { get; set; }
             public decimal Amount { get; set; }
+        }
+
+        private void btnprinter_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PrinterPopupBox.IsPopupOpen = true;
+                var printers = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
+
+                var popupBox = FindName("PrinterPopupBox") as MaterialDesignThemes.Wpf.PopupBox;
+                if (popupBox != null)
+                {
+                    var stackPanel = popupBox.PopupContent as StackPanel;
+                    if (stackPanel != null)
+                    {
+                        stackPanel.Children.Clear();
+
+                        foreach (string printer in printers)
+                        {
+                            var button = new Button
+                            {
+                                Content = printer,
+                                Style = (Style)FindResource("MaterialDesignFlatButton"),
+                                Width = 250,
+                                Height=40,
+                                FontSize=15,
+                                HorizontalContentAlignment = HorizontalAlignment.Left
+                            };
+
+                            button.Click += (s, args) =>
+                            {
+                                SelectedPrinter = printer;
+                                popupBox.IsPopupOpen = false;
+                                //debugging
+                                MessageBox.Show($"Selected printer: {printer}", "Printer Selection", MessageBoxButton.OK, MessageBoxImage.Information);
+                            };
+
+                            stackPanel.Children.Add(button);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading printers: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btninternet_click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

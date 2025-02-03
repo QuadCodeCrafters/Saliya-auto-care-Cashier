@@ -12,6 +12,8 @@ using Saliya_auto_care_Cashier.Notifications;
 using System.Linq;
 using Saliya_auto_care_Cashier.Styles;
 using Saliya_auto_care_Cashier.MVC.Model;
+using System.Printing;
+using System.Windows.Xps;
 
 
 namespace Saliya_auto_care_Cashier.MVC.View
@@ -33,6 +35,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public static Sharedaddress address { get; set; }
         public static Sharedtype type { get; set; }
         public static Sharednumber number { get; set; }
+
+        private readonly DatabaseStringModel conn;  // DatabaseStringModel
 
         private string invoiceNo;
 
@@ -299,6 +303,8 @@ namespace Saliya_auto_care_Cashier.MVC.View
         public Bill_VIew()
         {
             InitializeComponent();
+
+            conn = new DatabaseStringModel(); // conn
 
             if (name != null && address != null && number != null && type != null && sharedPrice != null && sharedTax != null && sharedProduct != null && sharedTotal != null)
             {
@@ -768,11 +774,29 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 );
 
                 // Print the invoice
-                PrintDialog printDialog = new PrintDialog();
-
-                if (printDialog.ShowDialog() == true)
+                if (!string.IsNullOrEmpty(Dashboard.SelectedPrinter))
                 {
-                    printDialog.PrintVisual(Invoice, "invoice");
+                    try
+                    {
+                        // Create PrintServer and get the print queue
+                        using (PrintServer printServer = new PrintServer())
+                        {
+                            using (PrintQueue printQueue = printServer.GetPrintQueue(Dashboard.SelectedPrinter))
+                            {
+                                XpsDocumentWriter writer = PrintQueue.CreateXpsDocumentWriter(printQueue);
+                                writer.Write(Invoice);
+                            }
+                        }
+                        MessageBox.Show($"Invoice printed successfully on {Dashboard.SelectedPrinter}", "Print Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error printing: {ex.Message}", "Print Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No printer selected. Please select a printer from the dashboard.", "Printer Not Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
