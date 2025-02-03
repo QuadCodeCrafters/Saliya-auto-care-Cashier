@@ -102,6 +102,9 @@ namespace Saliya_auto_care_Cashier
             // Check database connection on startup
             CheckDatabaseConnection();
 
+            // Check database connection on startup
+            CheckDatabaseConnectionMS();
+
 
         }
 
@@ -759,6 +762,20 @@ namespace Saliya_auto_care_Cashier
         private void Poweroff(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+
+        private void CheckDatabaseConnectionMS()
+        {
+            DatabaseConnectionMS dbConnection = new DatabaseConnectionMS(); 
+            if (dbConnection.TestConnection()) // Test the connection
+            {
+                MessageBox.Show("MS SQL Connection: Successful", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("MS SQL Connection: Failed", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CheckDatabaseConnection()
