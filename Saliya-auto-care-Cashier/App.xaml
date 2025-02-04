@@ -25,6 +25,7 @@
                 <ResourceDictionary Source="/Styles/CalStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/Welcomepagestyle.xaml"/>
                 <ResourceDictionary Source="/Styles/CalcButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Animations/ShakeAnimation.xaml" />
                 
 

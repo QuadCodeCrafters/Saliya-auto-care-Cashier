@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\CalcButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -475,11 +479,16 @@
     <Resource Include="Images\emergency.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmailTemplates\CarrierServiceCustomerTemplate.html" />
-    <Content Include="EmailTemplates\CarrierServiceDriverTemplate.html" />
+    <Content Include="EmailTemplates\CarrierServiceCustomerTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EmailTemplates\CarrierServiceDriverTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\truckcarrier.png" />
     <Resource Include="Images\save.png" />
     <Resource Include="Images\search.png" />
     <Resource Include="Images\internet.png" />

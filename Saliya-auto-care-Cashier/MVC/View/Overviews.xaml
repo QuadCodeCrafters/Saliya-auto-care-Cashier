@@ -47,19 +47,35 @@
 
                                                     <StackPanel>
                                                         <Button x:Name="ShipmentButton1"
-                                                                    Padding="0"
-                                                                    Height="80"
-                                                                    Background="White"
-                                                                    BorderThickness="2"
-                                                                    BorderBrush="White"
-                                                                    Margin="0,0,0,10"
-                                                                    Click="Shipment_MouseDown">
-                                                            <Grid>
+                                                                Style="{StaticResource ButtonStyle}" 
+                                                                Height="80"
+                                                                Background="White"
+                                                                BorderThickness="2"
+                                                                BorderBrush="White"
+                                                                Margin="0"
+                                                                Click="Shipment_MouseDown">
 
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                </Grid.ColumnDefinitions>
+
+
+                                                                <Grid Width="Auto" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-90,0,0,0">
+                                                                    <Image Source="/Images/truckcarrier.png" Height="Auto"/>
+                                                                </Grid>
+
+                                                                <Grid Grid.Column="1" HorizontalAlignment="Stretch">
+                                                                    <Label FontSize="20">
+                                                                        hi
+                                                                    </Label>
+                                                                </Grid>
                                                             </Grid>
                                                         </Button>
-                                                        
+
                                                     </StackPanel>
+
                                                 </ScrollViewer>
                                             </Grid>
                                         </StackPanel>
@@ -95,12 +111,37 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <materialDesign:Card UniformCornerRadius="12"
-                             Background="White"
-                             Margin="20,20,15,20"
-                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
-                            
-                            
-                            
+                                             Background="White"
+                                             Margin="20,20,15,20"
+                                             materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            <Grid Margin="10,10,10,0">
+                                <DataGrid x:Name="CarrierServiceDataGrid"
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          CanUserAddRows="False"
+                                          AlternatingRowBackground="LightGray"
+                                          RowHeight="35"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Auto"
+                                          materialDesign:DataGridAssist.CellPadding="8">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Service ID" Binding="{Binding serviceID}" Width="Auto"/>
+                                        <DataGridTextColumn Header="First Name" Binding="{Binding firstName}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Last Name" Binding="{Binding lastName}" Width="Auto"/>
+                                        <DataGridTextColumn Header="NIC" Binding="{Binding NIC}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Phone" Binding="{Binding phone}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Mail" Binding="{Binding mail}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Brand" Binding="{Binding brand}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Plate Number" Binding="{Binding vehiclePlateNumber}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Accident Location" Binding="{Binding accidentLocationAddress}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Employee ID" Binding="{Binding emID}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Billed Status" Binding="{Binding billedStatus}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Price" Binding="{Binding price}" Width="Auto"/>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </Grid>
                         </materialDesign:Card>
                     </Grid>
                 </Grid>
