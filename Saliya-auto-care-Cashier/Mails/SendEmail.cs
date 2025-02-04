@@ -169,14 +169,14 @@ namespace Saliya_auto_care_Cashier.Mails
         //for the SendPickupMail
         public string PickupMailContent(string DriverName, string CustomerName, string CustomerPhoneNumber)
         {
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplates", "CarrierServiceDriverTemplate.html");
+            string PickupMail = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplates", "CarrierServiceDriverTemplate.html");
 
-            if (!File.Exists(templatePath))
+            if (!File.Exists(PickupMail))
             {
-                MessageBox.Show($"Email template not found: {templatePath}");
+                MessageBox.Show($"Email template not found: {PickupMail}");
             }
 
-            string htmlContent = File.ReadAllText(templatePath);
+            string htmlContent = File.ReadAllText(PickupMail);
 
             // Get current date and time
             string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
