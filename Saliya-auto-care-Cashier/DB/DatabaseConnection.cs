@@ -9,12 +9,12 @@ public class DatabaseConnectionMS
     //private string connectionString = "Data Source=RAVEEN_LENOVO;Initial Catalog=webEditorData;User ID=saliyaAdmin001;Password=saliya007#"; //MS SQL serve
 
 
-    private string _connectionString = "Server=SACHITHA\\SQLEXPRESS;Database=webEditorData;Integrated Security=True;";
+    public string connectionString = "Server=SACHITHA\\SQLEXPRESS;Database=webEditorData;Integrated Security=True;";
 
     // Constructor to initialize the connection
     public DatabaseConnectionMS()
     {
-        connection = new SqlConnection(_connectionString);
+        connection = new SqlConnection(connectionString);
     }
 
     // Method to open the connection

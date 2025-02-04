@@ -31,6 +31,9 @@ namespace Saliya_auto_care_Cashier
         private ObservableCollection<InvoiceItem> allBillItems;
         private ObservableCollection<InvoiceItem> refundItems;
         private readonly DatabaseStringModel conn;  // DatabaseStringModel
+
+        private readonly DatabaseConnectionMS connection;  // DatabaseStringModel
+
         private string currentInvoiceID;
 
         private Inventory_View Inventory;
@@ -81,6 +84,8 @@ namespace Saliya_auto_care_Cashier
             Bill_VIew.number = sharevehiclenumber;
 
             conn = new DatabaseStringModel(); // conn
+
+            connection = new DatabaseConnectionMS(); // conn
 
             CategoryViewModel = new CategoryViewModel();
 
@@ -228,108 +233,149 @@ namespace Saliya_auto_care_Cashier
             }
 
             string VHNUM = txtloyalid.Text;
-            string connectionString = conn.ConnectionString;
 
-            using (var connection = new MySqlConnection(connectionString))
+            // MySQL Connection for vehicleregister table
+            string mysqlConnectionString = conn.ConnectionString; // MySQL connection string
+
+            // SQL Server Connection for carrierServiceCustomers table
+            string mssqlConnectionString = connection.connectionString; // MS SQL Server connection string
+
+            // Query for MySQL (vehicleregister table)
+            string mysqlQuery = @"SELECT 
+                                vr.CustomerName, 
+                                vr.CustomerAddress, 
+                                vr.VehicleType, 
+                                vr.VehicleNumber
+                            FROM vehicleregister vr
+                            WHERE vr.VehicleNumber = @VehicleNumber";
+
+            // Query for SQL Server (carrierServiceCustomers table)
+            string mssqlQuery = @"SELECT 
+                                csc.price, 
+                                csc.tax,
+                                csc.vehiclePlateNumber,
+                                csc.billedStatus 
+                            FROM carrierServiceCustomers csc
+                            WHERE csc.vehiclePlateNumber = @VehiclePlateNumber";
+
+            using (var mysqlConnection = new MySqlConnection(mysqlConnectionString))
+            using (var mssqlConnection = new SqlConnection(mssqlConnectionString))
             {
                 try
                 {
-                    connection.Open();
-
-                    string query = @"SELECT 
-                                    vr.CustomerName, 
-                                    vr.CustomerAddress, 
-                                    vr.VehicleType, 
-                                    vr.VehicleNumber, 
-                                    csc.price, 
-                                    csc.tax,
-                                    csc.vehiclePlateNumber,
-                                    csc.billedStatus 
-                                    FROM vehicleregister vr
-                                    LEFT JOIN carrierServiceCustomers csc ON vr.VehicleNumber = csc.vehiclePlateNumber
-                                    WHERE vr.VehicleNumber = @VehicleNumber"
-                    ;
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    // Open MySQL connection and execute query for vehicleregister table
+                    mysqlConnection.Open();
+                    using (MySqlCommand mysqlCmd = new MySqlCommand(mysqlQuery, mysqlConnection))
                     {
-                        cmd.Parameters.AddWithValue("@VehicleNumber", VHNUM);
+                        mysqlCmd.Parameters.AddWithValue("@VehicleNumber", VHNUM);
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (MySqlDataReader mysqlReader = mysqlCmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            if (mysqlReader.Read())
                             {
-                                // Data from vehicleregister
-                                string Name = reader.GetString("CustomerName");
-                                string CustomerAddress = reader.GetString("CustomerAddress");
-                                string VehicleType = reader.GetString("VehicleType");
-                                string VehicleNumber = reader.GetString("VehicleNumber");
+                                // Data from vehicleregister (MySQL)
+                                string Name = mysqlReader.GetString("CustomerName");
+                                string CustomerAddress = mysqlReader.GetString("CustomerAddress");
+                                string VehicleType = mysqlReader.GetString("VehicleType");
+                                string VehicleNumber = mysqlReader.GetString("VehicleNumber");
 
                                 // Assign vehicleregister data to shared properties
                                 sharename.CustomerName = Name;
                                 sharecustomeraddress.CustomerAddress = CustomerAddress;
                                 sharevehicletype.VehicleType = VehicleType;
                                 sharevehiclenumber.VehicleNumber = VehicleNumber;
-
-                                //send the VehicleNumber to the CategoryViewModel
-                                //CategoryViewModel.sendvehicleno(VehicleNumber);
-
-                                // Data from carrierServiceCustomers
-                                if (!reader.IsDBNull(reader.GetOrdinal("vehiclePlateNumber")))
-                                {
-                                    decimal Price = reader.GetDecimal("price");
-                                    decimal Tax = reader.GetDecimal("tax");
-                                    string BilledStatus = reader.GetString("billedStatus");
-                                    string PlateNumber = reader.GetString("vehiclePlateNumber");
-
-                                    decimal Total = Price + Tax;
-                                    decimal Qty = 1;
-
-                                    // Check BilledStatus
-                                    if (BilledStatus == "Billed")
-                                    {
-                                        MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
-                                        return;
-                                    }
-                                    else
-                                    {
-
-                                        // Display Price and Tax for Debugging
-                                        MessageBox.Show(
-                                            $"Price: {Price.ToString("C")}\n Tax: {Tax.ToString("C")}\n PlateNumber: {PlateNumber}\n The Total:{Total}\n The Qty:{Qty}",
-                                            "Price and Tax Details",
-                                            MessageBoxButton.OK,
-                                            MessageBoxImage.Information
-                                        );
-
-
-                                        // Update Bill_View shared properties
-                                        Bill_VIew.sharedPrice.Price = (double)Price;
-                                        Bill_VIew.sharedTax.Tax = (double)Tax;
-                                        Bill_VIew.sharedProduct.Description = ("Carrier Service: " + PlateNumber);
-                                        Bill_VIew.sharedTotal.Amount = (double)Total;
-                                        Bill_VIew.sharedQty.Quantity = (double)Qty;
-
-                                        Cusname.Text = "Owner: " + Name;
-                                        Notificationbox.ShowSuccess();
-                                    }
-                                }
-                                else
-                                {
-                                    // No matching carrier service record found
-                                    MessageBox.Show("No carrier service data found for this vehicle.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                                }
                             }
                             else
                             {
                                 IDError.Text = "No Vehicle Found";
                                 ErrorAnimation();
+                                return;
+                            }
+                        }
+                    }
+
+                    // Open SQL Server connection and execute query for carrierServiceCustomers table
+                    mssqlConnection.Open();
+                    using (SqlCommand mssqlCmd = new SqlCommand(mssqlQuery, mssqlConnection))
+                    {
+                        mssqlCmd.Parameters.AddWithValue("@VehiclePlateNumber", VHNUM);
+
+                        using (SqlDataReader mssqlReader = mssqlCmd.ExecuteReader())
+                        {
+                            if (mssqlReader.Read())
+                            {
+                                // Data from carrierServiceCustomers (SQL Server)
+                                decimal Price = 0;
+                                decimal Tax = 0;
+                                string BilledStatus = "";
+                                string PlateNumber = "";
+
+                                // Ensure correct handling of decimal values from SQL Server
+                                if (!mssqlReader.IsDBNull(mssqlReader.GetOrdinal("price")))
+                                {
+                                    Price = mssqlReader.GetDecimal(mssqlReader.GetOrdinal("price"));
+                                }
+
+                                if (!mssqlReader.IsDBNull(mssqlReader.GetOrdinal("tax")))
+                                {
+                                    Tax = mssqlReader.GetDecimal(mssqlReader.GetOrdinal("tax"));
+                                }
+
+                                if (!mssqlReader.IsDBNull(mssqlReader.GetOrdinal("billedStatus")))
+                                {
+                                    BilledStatus = mssqlReader.GetString(mssqlReader.GetOrdinal("billedStatus"));
+                                }
+
+                                if (!mssqlReader.IsDBNull(mssqlReader.GetOrdinal("vehiclePlateNumber")))
+                                {
+                                    PlateNumber = mssqlReader.GetString(mssqlReader.GetOrdinal("vehiclePlateNumber"));
+                                }
+
+                                decimal Total = Price + Tax;
+                                decimal Qty = 1;
+
+                                // Check BilledStatus
+                                if (BilledStatus == "Billed")
+                                {
+                                    MessageBox.Show("This customer has already been billed for Carrier Service.", "Billed Status", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    return;
+                                }
+                                else
+                                {
+                                    // Display Price and Tax for Debugging
+                                    MessageBox.Show(
+                                        $"Price: {Price.ToString("C")}\nTax: {Tax.ToString("C")}\nPlateNumber: {PlateNumber}\nThe Total: {Total}\nThe Qty: {Qty}",
+                                        "Price and Tax Details",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information
+                                    );
+
+                                    // Update Bill_View shared properties
+                                    Bill_VIew.sharedPrice.Price = (double)Price;
+                                    Bill_VIew.sharedTax.Tax = (double)Tax;
+                                    Bill_VIew.sharedProduct.Description = ("Carrier Service: " + PlateNumber);
+                                    Bill_VIew.sharedTotal.Amount = (double)Total;
+                                    Bill_VIew.sharedQty.Quantity = (double)Qty;
+
+                                    Cusname.Text = "Owner: " + sharename.CustomerName;
+                                    Notificationbox.ShowSuccess();
+                                }
+                            }
+                            else
+                            {
+                                // No matching carrier service record found
+                                MessageBox.Show("No carrier service data found for this vehicle.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                         }
                     }
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Database error: " + ex.Message);
+                    MessageBox.Show("MySQL Database error: " + ex.Message);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("SQL Server Database error: " + ex.Message);
                 }
                 catch (Exception ex)
                 {
@@ -337,14 +383,19 @@ namespace Saliya_auto_care_Cashier
                 }
                 finally
                 {
-                    if (connection.State == System.Data.ConnectionState.Open)
+                    if (mysqlConnection.State == System.Data.ConnectionState.Open)
                     {
-                        connection.Close();
+                        mysqlConnection.Close();
+                    }
+
+                    if (mssqlConnection.State == System.Data.ConnectionState.Open)
+                    {
+                        mssqlConnection.Close();
                     }
                 }
             }
-
         }
+
 
 
 
@@ -767,7 +818,7 @@ namespace Saliya_auto_care_Cashier
 
         private void CheckDatabaseConnectionMS()
         {
-            DatabaseConnectionMS dbConnection = new DatabaseConnectionMS(); 
+            DatabaseConnectionMS dbConnection = new DatabaseConnectionMS(); // Create a new instance
             if (dbConnection.TestConnection()) // Test the connection
             {
                 MessageBox.Show("MS SQL Connection: Successful", "Connection Status", MessageBoxButton.OK, MessageBoxImage.Information);
