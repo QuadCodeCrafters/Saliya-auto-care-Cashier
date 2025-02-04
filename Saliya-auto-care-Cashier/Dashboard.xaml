@@ -94,7 +94,7 @@
                         </Grid>
                     </materialDesign:DialogHost.DialogContent>
                     <Grid>
-                        <!--Schrdule Pickup message box-->
+                        <!--Schedule Pickup message box-->
                         <materialDesign:DialogHost x:Name="SchedulePickupDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                             <materialDesign:DialogHost.DialogContent>
                                 <Grid Width="700" Height="400"  HorizontalAlignment="Center" VerticalAlignment="Center">

@@ -1,11 +1,14 @@
-﻿using Mailjet.Client;
+﻿using GMap.NET.MapProviders;
+using Mailjet.Client;
 using Mailjet.Client.Resources;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Saliya_auto_care_Cashier.Mails
 {
@@ -71,6 +74,7 @@ namespace Saliya_auto_care_Cashier.Mails
         }
 
         // I modified the GetCredential method because the keys had some strange chinese letters
+
         // Windows Credential Manager using raw binary data with UTF-16 array and in here i converted  them in to  windows string values
 
         private string GetCredential(string target, string fieldName)
@@ -162,19 +166,31 @@ namespace Saliya_auto_care_Cashier.Mails
             return htmlContent;
         }
 
-        //for the customer need to be changed
-        public string BillContent(string customerName, string billDetails)
+        //for the SendPickupMail
+        public string PickupMailContent(string DriverName, string CustomerName, string CustomerPhoneNumber)
         {
-            return $@"
-            <html>
-            <body>
-                <h1>Dear {customerName},</h1>
-                <p>Thank you for your purchase!</p>
-                <p>Here are your bill details:</p>
-                <div>{billDetails}</div>
-                <p>We look forward to serving you again.</p>
-            </body>
-            </html>";
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplates", "CarrierServiceDriverTemplate.html");
+
+            if (!File.Exists(templatePath))
+            {
+                MessageBox.Show($"Email template not found: {templatePath}");
+            }
+
+            string htmlContent = File.ReadAllText(templatePath);
+
+            // Get current date and time
+            string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
+            string currentTime = DateTime.Now.ToString("hh:mm tt");
+
+            // Replace placeholders in the template
+            htmlContent = htmlContent.Replace("{Driver Name}", DriverName);
+            htmlContent = htmlContent.Replace("{Pickup Date}", currentDate);
+            htmlContent = htmlContent.Replace("{Pickup Time}", currentTime);
+            htmlContent = htmlContent.Replace("{Customer Name}", CustomerName);
+            htmlContent = htmlContent.Replace("{Customer Phone Number}", CustomerPhoneNumber);
+            htmlContent = htmlContent.Replace("{Your Company Name}", "Saliya Auto Care ®");
+
+            return htmlContent;
         }
     }
 }

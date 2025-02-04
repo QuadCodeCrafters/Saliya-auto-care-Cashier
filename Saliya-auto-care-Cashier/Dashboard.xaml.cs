@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Printing;
 using System.Windows.Xps;
+using Saliya_auto_care_Cashier.Mails;
 
 namespace Saliya_auto_care_Cashier
 {
@@ -504,7 +505,7 @@ namespace Saliya_auto_care_Cashier
 
             else
             {
-                InsertData();
+               SendPickupMailAsync();
             }
         }
 
@@ -519,16 +520,18 @@ namespace Saliya_auto_care_Cashier
 
         private void ComboBoxtext()
         {
-            string connectionString = conn.ConnectionString;
+            string mysqlConnectionString = conn.ConnectionString; // MySQL Connection
+            string mssqlConnectionString = connection.connectionString; // MS SQL Connection
 
-            using (var connection = new MySqlConnection(connectionString))
+            // Fetch drivers from MySQL
+            using (var mysqlConnection = new MySqlConnection(mysqlConnectionString))
             {
                 try
                 {
-                    connection.Open();
-
+                    mysqlConnection.Open();
                     string driverQuery = "SELECT Name FROM Employee WHERE Position = 'Driver'";
-                    using (MySqlCommand cmd = new MySqlCommand(driverQuery, connection))
+
+                    using (MySqlCommand cmd = new MySqlCommand(driverQuery, mysqlConnection))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -538,12 +541,31 @@ namespace Saliya_auto_care_Cashier
                             }
                         }
                     }
-
-
-                    string carrierQuery = "SELECT Model FROM CarrierVehicle"; // need to add the Available status
-                    using (MySqlCommand cmd = new MySqlCommand(carrierQuery, connection))
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("MySQL error: " + ex.Message);
+                }
+                finally
+                {
+                    if (mysqlConnection.State == System.Data.ConnectionState.Open)
                     {
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        mysqlConnection.Close();
+                    }
+                }
+            }
+
+            // Fetch available carrier vehicles from MS SQL Server
+            using (var mssqlConnection = new SqlConnection(mssqlConnectionString))
+            {
+                try
+                {
+                    mssqlConnection.Open();
+                    string carrierQuery = "SELECT Model FROM carrierVehiclesInfo WHERE availabilityStatus = 'Available'"; // Only fetch available vehicles
+
+                    using (SqlCommand cmd = new SqlCommand(carrierQuery, mssqlConnection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
@@ -552,98 +574,109 @@ namespace Saliya_auto_care_Cashier
                         }
                     }
                 }
-                catch (MySqlException ex)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show("Database error: " + ex.Message);
+                    MessageBox.Show("MS SQL Server error: " + ex.Message);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-
                 finally
                 {
-                    if (connection.State == System.Data.ConnectionState.Open)
+                    if (mssqlConnection.State == System.Data.ConnectionState.Open)
                     {
-                        connection.Close();
-                        if (connection.State == System.Data.ConnectionState.Closed)
-                        {
-                            //MessageBox.Show("The connection has been successfully closed.");  //for Debugging
-                        }
+                        mssqlConnection.Close();
                     }
                 }
-
             }
         }
+
 
         private void btn_availability(object sender, RoutedEventArgs e)
         {
             ComboBoxtext();
         }
 
-        public void InsertData()
+
+        public async Task SendPickupMailAsync()
         {
-            string connectionString = conn.ConnectionString;
+            try
+            {
+                EmailService emailService = new EmailService();
+                string driverName = cmbdrivername.SelectedItem?.ToString();
+                string customerName = txtcusname.Text;
+                string customerPhoneNumber = txtcusmobile.Text;
 
-            // Get the data 
-            string carrierName = cmbcarriername.SelectedItem?.ToString();
-            string driverName = cmbdrivername.SelectedItem?.ToString();
-            string customerMobile = txtcusmobile.Text.ToString();
-            string customerName = txtcusname.Text.ToString();
+                if (string.IsNullOrEmpty(driverName) || string.IsNullOrEmpty(customerName) || string.IsNullOrEmpty(customerPhoneNumber))
+                {
+                    MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
 
-            using (var connection = new MySqlConnection(connectionString))
+                // Fetch the driver's email address from your database
+                string driverEmail = await GetDriverEmailAsync(driverName);
+
+                if (string.IsNullOrEmpty(driverEmail))
+                {
+                    MessageBox.Show("Could not find the driver's email address.", "Email Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                string pickupMailContent = emailService.PickupMailContent(driverName, customerName, customerPhoneNumber);
+
+                bool emailSent = await emailService.SendEmailAsync(
+                    driverEmail,
+                    driverName,
+                    "New Pickup Assignment!",
+                    pickupMailContent
+                );
+
+                if (!emailSent)
+                {
+                    MessageBox.Show(
+                        $"Failed to send pickup assignment email to {driverName}. " +
+                        "Please check your network connection and try again.",
+                        "Email Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                    );
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"Pickup assignment email sent successfully to {driverName}.",
+                        "Email Sent",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while sending the email: {ex.Message}",
+                    "Email Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task<string> GetDriverEmailAsync(string driverName)
+        {
+            string mysqlConnectionString = conn.ConnectionString; // MySQL Connection
+
+            using (var mysqlConnection = new MySqlConnection(mysqlConnectionString))
             {
                 try
                 {
-                    connection.Open();
+                    await mysqlConnection.OpenAsync();
+                    string emailQuery = "SELECT Mail FROM Employee WHERE Name = @DriverName AND Position = 'Driver'";
 
-                    string query = "INSERT INTO SchedulePickup (CarrierName, DriverName, CustomerMobile, CustomerName) " + " VALUES (@CarrierName, @DriverName, @CustomerMobile, @CustomerName)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    using (MySqlCommand cmd = new MySqlCommand(emailQuery, mysqlConnection))
                     {
-
-                        cmd.Parameters.AddWithValue("@CarrierName", carrierName);
                         cmd.Parameters.AddWithValue("@DriverName", driverName);
-                        cmd.Parameters.AddWithValue("@CustomerMobile", customerMobile);
-                        cmd.Parameters.AddWithValue("@CustomerName", customerName);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-
-
-                            // Clear the form
-                            cmbcarriername.SelectedIndex = -1;//to clear the selected item
-                            cmbdrivername.SelectedIndex = -1;
-                            txtcusmobile.Clear();
-                            txtcusname.Clear();
-
-                            MessageBox.Show(" Success! ,In here when new column added to the DB SchedulePickup new notification need to go to the Mobile Appp and need to have a ststus");
-
-                            Notificationbox.ShowSuccess();
-
-
-                        }
-                        else
-                        {
-                            Notificationbox.ShowError();
-                        }
+                        object result = await cmd.ExecuteScalarAsync();
+                        return result?.ToString();
                     }
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                finally
-                {
-                    if (connection.State == System.Data.ConnectionState.Open)
-                    {
-                        connection.Close();
-                    }
+                    MessageBox.Show("MySQL error: " + ex.Message);
+                    return null;
                 }
             }
         }

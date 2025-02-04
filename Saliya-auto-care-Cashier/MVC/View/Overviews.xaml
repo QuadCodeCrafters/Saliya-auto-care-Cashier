@@ -40,13 +40,12 @@
 
                                         <TextBlock Text="Ongoing Pickups" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" />
 
-                                        <!-- Shipment List -->
+                                        <!-- Pickup List -->
                                         <StackPanel Grid.Row="1">
                                             <Grid>
                                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                                                     <StackPanel>
-                                                        <!-- Shipment Item 1 -->
                                                         <Button x:Name="ShipmentButton1"
                                                                     Padding="0"
                                                                     Height="80"
@@ -56,75 +55,10 @@
                                                                     Margin="0,0,0,10"
                                                                     Click="Shipment_MouseDown">
                                                             <Grid>
-                                                                <!-- button inside-->
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="60*" />
-                                                                    <ColumnDefinition Width="40*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                                                    <Image Width="50" Height="50" Margin="0,0,10,0" />
-                                                                    <StackPanel>
-                                                                        <TextBlock Text="Shipment Number" FontWeight="Bold" />
-                                                                        <TextBlock Text="#001234ABCD" FontSize="16" />
-                                                                        <TextBlock Text="87 Wern Ddu Lane ➝ 15 Vicar Lane" Foreground="Gray" FontSize="12" />
-                                                                    </StackPanel>
-                                                                </StackPanel>
-                                                                <Ellipse Width="10" Height="10" Fill="Green" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Right" />
+
                                                             </Grid>
                                                         </Button>
-
-                                                        <!-- Shipment Item 2 -->
-                                                        <Button x:Name="ShipmentButton2"
-                                                                    Padding="0"
-                                                                    Background="White"
-                                                                    BorderThickness="2"
-                                                                    Height="80"
-                                                                    BorderBrush="White"
-                                                                    Margin="0,0,0,10"
-                                                                    Click="Shipment_MouseDown">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="60*" />
-                                                                    <ColumnDefinition Width="40*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                                                    <Image Width="50" Height="50" Margin="0,0,10,0" />
-                                                                    <StackPanel>
-                                                                        <TextBlock Text="Shipment Number" FontWeight="Bold" />
-                                                                        <TextBlock Text="#001234EFGH" FontSize="16" />
-                                                                        <TextBlock Text="40 Broomfield Place ➝ 44 Helland Bridge" Foreground="Gray" FontSize="12" />
-                                                                    </StackPanel>
-                                                                </StackPanel>
-                                                                <Ellipse Width="10" Height="10" Fill="Green" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Right" />
-                                                            </Grid>
-                                                        </Button>
-
-                                                        <Button x:Name="ShipmentBhutton2"
-                                                                    Padding="0"
-                                                                    Background="White"
-                                                                    BorderThickness="2"
-                                                                    Height="80"
-                                                                    BorderBrush="White"
-                                                                    Margin="0,0,0,10"
-                                                                    Click="Shipment_MouseDown">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="60*" />
-                                                                    <ColumnDefinition Width="40*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                                                    <Image Width="50" Height="50" Margin="0,0,10,0" />
-                                                                    <StackPanel>
-                                                                        <TextBlock Text="Shipment Number" FontWeight="Bold" />
-                                                                        <TextBlock Text="#001234EFGH" FontSize="16" />
-                                                                        <TextBlock Text="40 Broomfield Place ➝ 44 Helland Bridge" Foreground="Gray" FontSize="12" />
-                                                                    </StackPanel>
-                                                                </StackPanel>
-                                                                <Ellipse Width="10" Height="10" Fill="Green" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Right" />
-                                                            </Grid>
-                                                        </Button>
-
-                                                        <!-- Add more shipment items as needed -->
+                                                        
                                                     </StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
@@ -133,7 +67,6 @@
                                 </StackPanel>
                             </materialDesign:Card>
 
-                            <!-- Right Section -->
                             <materialDesign:Card Grid.Column="1"
                                                  UniformCornerRadius="12"
                                                  Background="White"
@@ -141,7 +74,6 @@
                                                  materialDesign:ShadowAssist.ShadowDepth="Depth2">
                                 <StackPanel Grid.Column="1" Margin="10" Background="White">
                                     <TextBlock Text="On the Way" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" />
-                                    <!-- Map Section -->
                                     <materialDesign:Card UniformCornerRadius="12"
                                                                  Background="White"
                                                                  Margin="5"
@@ -153,48 +85,9 @@
                                         </Border>
                                     </materialDesign:Card>
 
-                                    <!-- Shipment Details -->
                                     <StackPanel Margin="0,20,0,0">
-                                        <Grid Margin="0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Category:" FontWeight="Bold" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <TextBlock Text="Electronic" Grid.Column="1"/>
-                                        </Grid>
-                                        <Grid Margin="0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Distance:" FontWeight="Bold" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <TextBlock Text="60.41 km" Grid.Column="1"/>
-                                        </Grid>
-                                        <Grid Margin="0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Estimation:" FontWeight="Bold" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <TextBlock Text="1d 16h" Grid.Column="1"/>
-                                        </Grid>
-                                        <Grid Margin="0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Weight:" FontWeight="Bold" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <TextBlock Text="25kg" Grid.Column="1"/>
-                                        </Grid>
-                                        <Grid Margin="0,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Fee:" FontWeight="Bold" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <TextBlock Text="$1,050" Grid.Column="1"/>
-                                        </Grid>
+                                        
+                                        
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
@@ -205,6 +98,8 @@
                              Background="White"
                              Margin="20,20,15,20"
                              materialDesign:ShadowAssist.ShadowDepth="Depth2">
+                            
+                            
                             
                         </materialDesign:Card>
                     </Grid>
