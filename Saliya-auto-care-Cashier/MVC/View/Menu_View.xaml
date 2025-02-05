@@ -26,7 +26,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
                     </Grid.RowDefinitions>
-                    <Rectangle Grid.Row="0" Fill="NavajoWhite"/>
+                    <Rectangle Grid.Row="0" Fill="#68a4b3"/>
                     <Border Grid.Row="0" Margin="8" CornerRadius="10" BorderThickness="1">
                         <Frame Name="BillContainer"/>
                     </Border>
@@ -47,55 +47,60 @@
                             </Grid.RowDefinitions>
 
 
-                            <Grid Grid.Row="0" Background="#F0F0F0" Margin="10,0,10,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Content="✕" FontSize="25" Width="40" Height="40"
+                            <Grid Margin="10,0,10,5">
+                                <materialDesign:Card UniformCornerRadius="10" 
+                                                     Background="White"
+                                                     Margin="0,-3,3,-2"
+                                                     materialDesign:ShadowAssist.ShadowDepth="Depth0" >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Content="✕" FontSize="25" Width="40" Height="40"
                                             Background="#a5a8ad" BorderThickness="0" Margin="5,0,10,0"
                                             Click="ClearDisplay_Click">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}" 
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
                                                         BorderThickness="{TemplateBinding BorderThickness}" 
                                                         CornerRadius="100">
-                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                        <ContentPresenter HorizontalAlignment="Center" 
                                                   VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
 
-                                    <TextBox x:Name="Display" Grid.Column="1" 
+                                        <TextBox x:Name="Display" Grid.Column="1" 
                                              Text="" FontSize="25" VerticalAlignment="Center" 
                                              Margin="0,0,20,0" IsReadOnly="True" 
                                              BorderThickness="0" Background="Transparent" 
                                              HorizontalAlignment="Center" TextAlignment="Center"/>
 
 
-                                    <Button Grid.Column="2" Content="&lt;" FontSize="30" Width="40" Height="40"
+                                        <Button Grid.Column="2" Content="&lt;" FontSize="30" Width="40" Height="40"
                                             Background="#abadb0" BorderThickness="0" Margin="5,0,10,0"
                                             Click="Backspace_Click">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}" 
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
                                                         BorderThickness="{TemplateBinding BorderThickness}" 
                                                         CornerRadius="100">
-                                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                        <ContentPresenter HorizontalAlignment="Center" 
                                                   VerticalAlignment="Center" Margin="0,-5,0,0"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                    
-                                    <Button Grid.Column="3"  Click="btncal_click" Background="#00796B" Width="100" Height="Auto" Margin="0,3,3,3" BorderBrush="#00796B">
-                                        <materialDesign:PackIcon Kind="Calculator" Height="35" Width="35"/>
-                                    </Button>
-                                </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+
+                                        <Button Grid.Column="3"  Click="btncal_click" Background="#00796B" Width="100" Height="Auto" Margin="0,0,1,0" BorderBrush="#00796B">
+                                            <materialDesign:PackIcon Kind="Calculator" Height="55" Width="80"/>
+                                        </Button>
+                                    </Grid>
+                                </materialDesign:Card>
                             </Grid>
 
 
@@ -126,18 +131,25 @@
                                 <Button Content="3" Grid.Row="2" Grid.Column="2" Style="{StaticResource Number}" Click="Number_Click"/>
                                 <Button Content="0" Grid.Row="3" Grid.Column="1" Style="{StaticResource Number}" Click="Number_Click"/>
                                 <Button Content="00" Grid.Row="3" Grid.Column="0" Style="{StaticResource Number}" Click="Number_Click"/>
-                                <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource Number}" Click="btn_member"/>
+                                <Button Content="@" Grid.Row="3" Grid.Column="2" Style="{StaticResource Number}" Click="btn_member" Foreground="Blue" FontSize="30"/>
 
                                 <Button Content="Rs 500" Grid.Row="0" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
                                 <Button Content="Rs 1,000" Grid.Row="1" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
                                 <Button Content="Rs 5,000" Grid.Row="2" Grid.Column="3" Style="{StaticResource Amount}" Click="Value_Click"/>
-                                <Button Content="-" Grid.Row="3" Grid.Column="4" 
+                                <Button Grid.Row="3" Grid.Column="4" 
                                         Style="{StaticResource Number}" 
-                                        Click="Number_Click" 
-                                        Background="#207791" Foreground="White" 
-                                        FontWeight="Bold" FontSize="55" 
-                                        Padding="0,-12,0,0" 
-                                        VerticalContentAlignment="Center">
+                                        Click="Numberminus_Click" 
+                                        Background="#207791" 
+                                        Foreground="White" 
+                                        FontWeight="Bold" 
+                                        FontSize="55" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center">
+                                        <TextBlock Text="-" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,10"
+                                        />
                                 </Button>
 
                                 <Button Content="Refund" Grid.Row="0" Grid.Column="4" Style="{StaticResource Action}" Background="#e74c3c" Click="btnRefund_Click"/>

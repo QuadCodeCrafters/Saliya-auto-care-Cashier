@@ -37,7 +37,7 @@
                 <!--The message box of Loyality Unlock-->
                 <materialDesign:DialogHost x:Name="MemberDialogHost" BorderBrush="{DynamicResource MaterialDesignDivider}">
                     <materialDesign:DialogHost.DialogContent>
-                        <Grid Width="500" Height="310" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid Width="550" Height="350" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border BorderBrush="LightBlue" BorderThickness="5,5,5,5">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -45,17 +45,17 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <StackPanel Margin="15,20,0,0" HorizontalAlignment="Left">
-                                            <Image Source="/Images/loyal.PNG" Width="100"/>
+                                        <StackPanel Margin="25,20,0,0" HorizontalAlignment="Left">
+                                            <Image Source="/Images/loyal.PNG" Width="120" />
                                         </StackPanel>
-                                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0">
-                                            <TextBlock Text="Welcome to Loyalty Unlock" FontSize="15" Foreground="Black" FontWeight="Bold"/>
+                                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,35,0">
+                                            <TextBlock Text="Welcome to Loyalty Unlock" FontSize="17" Foreground="Black" FontWeight="Bold"/>
                                         </StackPanel>
-                                        <Rectangle Fill="Red" Height="1.5" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,00,20,0"/>
+                                        <Rectangle Fill="Red" Height="2" Opacity="0.5" VerticalAlignment="Bottom" Margin="20,00,20,0"/>
                                     </Grid>
                                     <Grid Grid.Row="1">
-                                        <StackPanel HorizontalAlignment="Left" Margin="40,25,0,0">
-                                            <TextBlock Text="Example: 1234567 "/>
+                                        <StackPanel HorizontalAlignment="Left" Margin="50,20,0,0">
+                                            <TextBlock Text="Example: 1234567 " FontSize="15"/>
                                         </StackPanel>
                                         <StackPanel HorizontalAlignment="Right" Margin="0,25,-20,0">
                                             <TextBlock x:Name="IDError" TextWrapping="Wrap" Text="" Width="260" Height="27" TextAlignment="Center" Foreground="Red"/>
@@ -63,12 +63,12 @@
                                         <StackPanel HorizontalAlignment="Right" Margin="0,25,0,0">
                                             <TextBlock x:Name="Cusname" TextWrapping="Wrap" Text="" Width="260" Height="40" TextAlignment="Center" Foreground="Green"/>
                                         </StackPanel>
-                                        <StackPanel HorizontalAlignment="Left" Margin="40,70,0,0">
+                                        <StackPanel HorizontalAlignment="Left" Margin="70,70,0,0">
                                             <TextBox x:Name="txtloyalid" 
                                                      TextChanged="txtloyalid_TextChanged" 
-                                                     Width="390" 
-                                                     Height="60"
-                                                     FontSize="17.5" 
+                                                     Width="400" 
+                                                     Height="65"
+                                                     FontSize="19" 
                                                      materialDesign:HintAssist.Hint="Enter The Vehicle Number" 
                                                      BorderThickness="2" 
                                                      BorderBrush="{DynamicResource MaterialDesignDivider}" 
@@ -81,10 +81,10 @@
                                             </TextBox>
                                         </StackPanel>
                                         <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,15" Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button Foreground="{DynamicResource MaterialDesignBody}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,0,140,0" Click="addbtn_click">
+                                            <Button Foreground="Green" Style="{DynamicResource MaterialDesignFlatButton}" Margin="0,0,135,0" Click="addbtn_click" FontSize="18" >
                                                 Add
                                             </Button>
-                                            <Button Foreground="{DynamicResource MaterialDesignBody}"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Click="addbtn_cancel">
+                                            <Button Foreground="Red"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Click="addbtn_cancel" FontSize="18">
                                                 Go Back
                                             </Button>
                                         </StackPanel>
@@ -775,7 +775,7 @@
                                                                                                             <RowDefinition Height="*"/>
                                                                                                             <RowDefinition Height="Auto"/>
                                                                                                         </Grid.RowDefinitions>
-                                                                                                        <Grid Background="#66918d" Height="40">
+                                                                                                        <Grid Background="#08635b" Height="40">
                                                                                                             <Grid.ColumnDefinitions>
                                                                                                                 <ColumnDefinition Width="*"/>
                                                                                                                 <ColumnDefinition Width="*"/>

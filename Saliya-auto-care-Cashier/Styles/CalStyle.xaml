@@ -8,16 +8,48 @@
         <Setter Property="Margin" Value="1"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="#CCCCCC"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="BorderBrush" Value="LightBlue"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="Amount" TargetType="Button" BasedOn="{StaticResource Number}">
         <Setter Property="Background" Value="#666666"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="Action" TargetType="Button" BasedOn="{StaticResource Number}">
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="White"/>
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#EEEEEE"/>
+                <Setter Property="BorderBrush" Value="#999999"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

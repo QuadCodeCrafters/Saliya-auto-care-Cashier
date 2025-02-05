@@ -184,6 +184,17 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
             }
         }
+        private void Numberminus_Click(object sender, RoutedEventArgs e)  
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+  
+                Display.Text = "-";
+
+            }
+        }
+
 
         private void Value_Click(object sender, RoutedEventArgs e) //  500 , 1000 , 5000
         {

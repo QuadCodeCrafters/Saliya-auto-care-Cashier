@@ -6,9 +6,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d"
-             Background="White"
              x:Name="BillViewControl">
-    <Grid>
+    <materialDesign:Card UniformCornerRadius="10"
+                             Background="White"
+                             Margin="-2.5"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth1">
+            <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
@@ -308,7 +311,7 @@
                 </Grid>
             </Grid>
        </ScrollViewer>
-        <Grid Height="53" VerticalAlignment="Bottom" Background="White">
+        <Grid Height="53" VerticalAlignment="Bottom" Background="White" Margin="0,0,1,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -323,5 +326,6 @@
             </Grid>
         </Grid>
     </Grid>
+    </materialDesign:Card>
 </UserControl>
 

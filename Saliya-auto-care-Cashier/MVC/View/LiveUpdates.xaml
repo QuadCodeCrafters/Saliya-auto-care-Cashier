@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Saliya_auto_care_Cashier.MVC.View"
              mc:Ignorable="d">
     <Grid>
-        <Border Background="White" CornerRadius="15" Margin="5,4,150,4">
+        <Border Background="#F8F8F8" CornerRadius="12" Margin="5,4,150,4">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
