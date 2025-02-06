@@ -56,17 +56,17 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             }
         }
 
-        // Method to retrieve all usernames from the database
+        // Method to retrieve all usernames from the Cashier table
         public List<string> GetUsernames()
         {
             var usernames = new List<string>();
-            string query = "SELECT adminUName FROM UserDetails"; // Adjust the table name and column as necessary
+            string query = "SELECT Username FROM Cashier"; // Adjusted table and column name
 
             DataTable dataTable = GetData(query);
 
             foreach (DataRow row in dataTable.Rows)
             {
-                usernames.Add(row["adminUName"].ToString()); // Change "username" to "adminUName"
+                usernames.Add(row["Username"].ToString()); // Adjusted column name
             }
 
             return usernames;
@@ -78,7 +78,7 @@ namespace Saliya_auto_care_Cashier.MVC.Model
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT COUNT(1) FROM UserDetails WHERE adminUName = @username AND adminpass = @password"; // Adjust for hashed password
+                string query = "SELECT COUNT(1) FROM Cashier WHERE Username = @username AND PasswordHash = @password"; // Adjusted table and column names
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -90,5 +90,6 @@ namespace Saliya_auto_care_Cashier.MVC.Model
                 }
             }
         }
+
     }
 }

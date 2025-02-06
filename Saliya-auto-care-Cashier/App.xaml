@@ -6,7 +6,7 @@
              xmlns:View="clr-namespace:Saliya_auto_care_Cashier.MVVM.View"
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="Dashboard.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
