@@ -55,6 +55,9 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         private void LoadInventoryItems()
         {
             string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+
+            //string mysqlConnstring = "server=localhost;uid=root;pwd=raveen007;database=posdb";
+
             string query = "SELECT * FROM inventory";
 
             try
