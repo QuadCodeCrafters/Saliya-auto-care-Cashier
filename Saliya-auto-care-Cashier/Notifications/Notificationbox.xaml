@@ -15,7 +15,6 @@
     mc:Ignorable="d"
     Loaded="Window_Loaded">
     <Window.Resources>
-        <!-- Keep existing animations -->
         <Storyboard x:Key="CloseButtonFadeInAnimation">
             <DoubleAnimation
                 AutoReverse="False"
@@ -63,16 +62,7 @@
                 Duration="0:0:3" />
         </Storyboard>
     </Window.Resources>
-    <Border CornerRadius="10" BorderThickness="1" x:Name="Border">
-        <Border.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{Binding GradientStart}" Offset="0.0"/>
-                <GradientStop Color="{Binding GradientEnd}" Offset="1.0"/>
-            </LinearGradientBrush>
-        </Border.Background>
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="15" ShadowDepth="5" Opacity="0.2"/>
-        </Border.Effect>
+    <Border CornerRadius="10" BorderThickness="1" Background="White" x:Name="Border" >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*" />
@@ -84,30 +74,29 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" Background="#22FFFFFF" CornerRadius="10,0,0,10">
-                <Image
-                    Width="70"
-                    Height="70"
-                    gif:ImageBehavior.AnimatedSource="{Binding ImagePath}"
-                    Stretch="Fill"
-                />
-            </Border>
+            <Image
+                Grid.Column="0"
+                Width="70"
+                Height="70"
+                gif:ImageBehavior.AnimatedSource="{Binding ImagePath}"
+                Stretch="Fill"
+            />
 
             <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,10,0,0">
                 <TextBlock
                     FontFamily="Poppins"
                     FontSize="22"
                     FontWeight="Medium"
-                    Foreground="White"
+                    Foreground="Black"
                     Text="{Binding Header}"
-                    d:Text="" />
+                    d:Text="Error!" />
                 <TextBlock
                     FontFamily="Poppins"
                     FontSize="15"
                     FontWeight="Light"
-                    Foreground="#EEFFFFFF"
+                    Foreground="Black"
                     Text="{Binding Message}"
-                    d:Text=""
+                    d:Text="An Unexpected Problem has occurred."
                     Margin="0,5,0,0"
                 />
             </StackPanel>
@@ -130,10 +119,10 @@
                         HorizontalAlignment="Left"
                         CornerRadius="5"
                         BorderThickness="1"
-                        BorderBrush="#22FFFFFF">
+                        BorderBrush="White">
                     <Rectangle x:Name="Rectangle"
-                             Fill="#AAFFFFFF"
-                             Margin="1,0,0,0"
+                                Fill="{Binding RecFill}"
+                                Margin="1,0,0,0"
                     />
                 </Border>
             </StackPanel>

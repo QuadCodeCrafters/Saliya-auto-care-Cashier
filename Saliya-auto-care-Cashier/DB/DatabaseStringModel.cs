@@ -13,10 +13,10 @@ namespace Saliya_auto_care_Cashier.MVC.Model
         public DatabaseStringModel()
         {
             // Define the connection string 
-          //ConnectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+            ConnectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
 
 
-           ConnectionString = "server=localhost;uid=root;pwd=raveen007;database=posdb";
+          // ConnectionString = "server=localhost;uid=root;pwd=raveen007;database=posdb";
         }
     }
 }
