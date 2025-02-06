@@ -488,6 +488,7 @@
     <Content Include="EmailTemplates\RegistrationTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\success1.gif" />
     <Resource Include="Images\truckcarrier.png" />
     <Resource Include="Images\save.png" />
     <Resource Include="Images\search.png" />

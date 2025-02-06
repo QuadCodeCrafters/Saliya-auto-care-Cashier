@@ -1,24 +1,13 @@
 ﻿using Saliya_auto_care_Cashier.MVVM.View;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Saliya_auto_care_Cashier.Notifications
 {
-    /// <summary>
-    /// Interaction logic for Notificationbox.xaml
-    /// </summary>
     public partial class Notificationbox : Window
     {
         Rect ScreenArea = SystemParameters.WorkArea;
@@ -27,7 +16,6 @@ namespace Saliya_auto_care_Cashier.Notifications
         public string Message { get; set; }
         public string ImagePath { get; set; }
         public SolidColorBrush RecFill { get; set; }
-
 
         public Notificationbox()
         {
@@ -48,8 +36,8 @@ namespace Saliya_auto_care_Cashier.Notifications
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            Storyboard fadeOUt = (Storyboard)this.Resources["CloseButtonFadeOutAnimation"];
-            fadeOUt.Begin();
+            Storyboard fadeOut = (Storyboard)this.Resources["CloseButtonFadeOutAnimation"];
+            fadeOut.Begin();
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
@@ -74,11 +62,8 @@ namespace Saliya_auto_care_Cashier.Notifications
             slidein.Begin();
         }
 
-
-
         private void WindowSlideInAnimation_Completed(object sender, EventArgs e)
         {
-            // Slide in Complete then decrease rectangle length
             this.Left = ScreenArea.Right - this.Width - 10;
             Storyboard decreaseWidth = (Storyboard)this.Resources["RectangleWidthDecreaseAnimation"];
             decreaseWidth.Begin();
@@ -86,7 +71,6 @@ namespace Saliya_auto_care_Cashier.Notifications
 
         private void Storyboard_Completed(object sender, EventArgs e)
         {
-            // after decrease width of rectangle slide out window
             Storyboard SlideOut = (Storyboard)this.Resources["WindowSlideOutAnimation"];
             this.Left = ScreenArea.Right - this.Width;
             SlideOut.Begin();
@@ -94,12 +78,7 @@ namespace Saliya_auto_care_Cashier.Notifications
 
         private void WindowSlideOutAnimation_Completed(object sender, EventArgs e)
         {
-            // after slide out close the window
             this.Close();
-        }
-        private SolidColorBrush HextoSolidBrush(string Hex)
-        {
-            return new SolidColorBrush((Color)ColorConverter.ConvertFromString(Hex));
         }
 
         public static void ShowError()
@@ -108,17 +87,18 @@ namespace Saliya_auto_care_Cashier.Notifications
                 "Error !!",
                 "You entered wrong credentials.",
                 "/Images/Error_Icon.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F24A50"))
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5A5A"))
             );
             error.Show();
         }
+
         public static void ShowInfo()
         {
             Notificationbox info = new Notificationbox(
                 "Warning !!",
                 "Please review your input and try again.",
                 "/Images/info.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E7BC06"))
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFCC00"))
             );
             info.Show();
         }
@@ -128,8 +108,8 @@ namespace Saliya_auto_care_Cashier.Notifications
             Notificationbox success = new Notificationbox(
                 "Success !!",
                 "Operation was completed successfully!",
-                "/Images/success.gif",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+                "/Images/success1.gif",
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4CAF50"))
             );
             success.Show();
         }
@@ -137,37 +117,45 @@ namespace Saliya_auto_care_Cashier.Notifications
         public static void carrierservice()
         {
             Notificationbox delivery = new Notificationbox(
-                "",
+                "Carrier Service",
                 "Carrier Service Requested !!",
                 "/Images/emergency.png",
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#36AE3B"))
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFCC00"))
             );
 
-            // For click
-            delivery.MouseDown += (sender, e) =>
+            delivery.MouseDown += async (sender, e) =>
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
-                    // go to the carrier service view
                     if (Application.Current.MainWindow is Dashboard dashboard)
                     {
                         try
                         {
-                            var deliveryServiceView = new DelivaryService_View();
+                            // Close the notification first
+                            delivery.Close();
+
+                            // Navigate to the delivery service view
                             dashboard.fContainer.Navigate(new System.Uri("MVC/View/DelivaryService_View.xaml", UriKind.RelativeOrAbsolute));
-                            deliveryServiceView.MessageButton_Click(deliveryServiceView.OverviewButton, null);
+
+                            // Wait for the navigation to complete
+                            await Task.Delay(100);
+
+                            // Get the navigated page content
+                            if (dashboard.fContainer.Content is DelivaryService_View deliveryServiceView)
+                            {
+                                // Now we can safely call the method
+                                deliveryServiceView.MessageButton_Click(deliveryServiceView.OverviewButton, null);
+                            }
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Error navigating to page: {ex.Message}");
                         }
                     }
-                    delivery.Close(); // Close the notification 
                 }
             };
 
             delivery.Show();
         }
-
     }
 }

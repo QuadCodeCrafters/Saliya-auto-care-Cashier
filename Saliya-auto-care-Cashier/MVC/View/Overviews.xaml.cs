@@ -64,7 +64,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
                     MessageBox.Show("Connection Successful!", "Database Connection", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     string query = @"
-                        SELECT serviceID, firstName, lastName, NIC, phone, mail, brand, vehiclePlateNumber, accidentLocationAddress, emID, billedStatus, price
+                        SELECT serviceID, firstName, lastName, NIC, phone, mail, brand, vehiclePlateNumber, type, emID, billedStatus, price
                         FROM carrierServiceCustomers
                         WHERE Date = CAST(GETDATE() AS DATE)";
 

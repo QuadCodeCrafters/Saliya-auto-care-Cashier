@@ -61,17 +61,23 @@
                                                                     <ColumnDefinition Width="*"/>
                                                                 </Grid.ColumnDefinitions>
 
+                                                                <Image Source="/Images/truckcarrier.png" Height="Auto" Grid.Column="0" Margin="-200,0,0,0"/>
 
-                                                                <Grid Width="Auto" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-90,0,0,0">
-                                                                    <Image Source="/Images/truckcarrier.png" Height="Auto"/>
-                                                                </Grid>
-
-                                                                <Grid Grid.Column="1" HorizontalAlignment="Stretch">
-                                                                    <Label FontSize="20">
-                                                                        hi
-                                                                    </Label>
-                                                                </Grid>
+                                                                <TextBlock Text="Driver :" 
+                                                                           FontSize="17" 
+                                                                           FontWeight="SemiBold" 
+                                                                           VerticalAlignment="Center" 
+                                                                           HorizontalAlignment="Left" 
+                                                                           Grid.Column="1" Margin="0,0,50,35"/>
+                                                                <TextBlock Text="Vehicle :" 
+                                                                           FontSize="17" 
+                                                                           FontWeight="SemiBold" 
+                                                                           VerticalAlignment="Center" 
+                                                                           HorizontalAlignment="Left" 
+                                                                           Grid.Column="1" Margin="0,40,50,0"/> 
+                                                                
                                                             </Grid>
+
                                                         </Button>
 
                                                     </StackPanel>
@@ -101,9 +107,34 @@
                                         </Border>
                                     </materialDesign:Card>
 
-                                    <StackPanel Margin="0,20,0,0">
-                                        
-                                        
+                                    <StackPanel Margin="0,0,0,0">
+                                        <StackPanel Margin="20,10,0,0">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Owner's Name :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,38,0"  x:Name="txtname" BorderThickness="0"/>
+                                                <TextBlock Text="Phone Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBox Width="270" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtphone" BorderThickness="0" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                                <TextBlock Text="Email :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBox Width="320" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtemail" BorderThickness="0"/>
+                                                <TextBlock Text="Plate Number :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="38,0,0,0"/>
+                                                <TextBox Width="325" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtplate"  BorderThickness="0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                                <TextBlock Text="Brand :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBox Width="250" IsReadOnly="True" FontSize="16" Margin="13,0,0,0"  x:Name="txtbrand" BorderThickness="0"/>
+                                                <TextBlock Text="Type :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="102,0,0,0"/>
+                                                <TextBox Width="295" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtpype" BorderThickness="0"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,25,0,0">
+                                                <TextBlock Text="Price:" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBox Width="230" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txtprice" BorderThickness="0"/>
+                                                <TextBlock Text="Tax :" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center" Margin="135,0,0,0"/>
+                                                <TextBox Width="260" IsReadOnly="True" FontSize="16" Margin="13,0,0,0" x:Name="txttax" BorderThickness="0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
