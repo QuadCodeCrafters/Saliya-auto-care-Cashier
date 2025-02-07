@@ -41,44 +41,12 @@
                                         <TextBlock Text="Ongoing Pickups" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" />
 
                                         <!-- Pickup List -->
-                                        <StackPanel Grid.Row="1">
+                                        <StackPanel Grid.Row="1" >
                                             <Grid>
                                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                                                    <StackPanel>
-                                                        <Button x:Name="ShipmentButton1"
-                                                                Style="{StaticResource ButtonStyle}" 
-                                                                Height="80"
-                                                                Background="White"
-                                                                BorderThickness="2"
-                                                                BorderBrush="White"
-                                                                Margin="0"
-                                                                Click="Shipment_MouseDown">
-
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="Auto"/>
-                                                                    <ColumnDefinition Width="*"/>
-                                                                </Grid.ColumnDefinitions>
-
-                                                                <Image Source="/Images/truckcarrier.png" Height="Auto" Grid.Column="0" Margin="-200,0,0,0"/>
-
-                                                                <TextBlock Text="Driver :" 
-                                                                           FontSize="17" 
-                                                                           FontWeight="SemiBold" 
-                                                                           VerticalAlignment="Center" 
-                                                                           HorizontalAlignment="Left" 
-                                                                           Grid.Column="1" Margin="0,0,50,35"/>
-                                                                <TextBlock Text="Vehicle :" 
-                                                                           FontSize="17" 
-                                                                           FontWeight="SemiBold" 
-                                                                           VerticalAlignment="Center" 
-                                                                           HorizontalAlignment="Left" 
-                                                                           Grid.Column="1" Margin="0,40,50,0"/> 
-                                                                
-                                                            </Grid>
-
-                                                        </Button>
+                                                    <StackPanel x:Name="DriverButtonsPanel">
+                                                  
 
                                                     </StackPanel>
 
@@ -165,7 +133,7 @@
                                         <DataGridTextColumn Header="Mail" Binding="{Binding mail}" Width="Auto"/>
                                         <DataGridTextColumn Header="Brand" Binding="{Binding brand}" Width="Auto"/>
                                         <DataGridTextColumn Header="Plate Number" Binding="{Binding vehiclePlateNumber}" Width="Auto"/>
-                                        <DataGridTextColumn Header="Accident Location" Binding="{Binding accidentLocationAddress}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Type" Binding="{Binding type}" Width="Auto"/>
                                         <DataGridTextColumn Header="Employee ID" Binding="{Binding emID}" Width="Auto"/>
                                         <DataGridTextColumn Header="Billed Status" Binding="{Binding billedStatus}" Width="Auto"/>
                                         <DataGridTextColumn Header="Price" Binding="{Binding price}" Width="Auto"/>

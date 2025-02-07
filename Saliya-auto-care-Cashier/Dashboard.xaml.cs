@@ -1434,6 +1434,11 @@ namespace Saliya_auto_care_Cashier
         {
 
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
