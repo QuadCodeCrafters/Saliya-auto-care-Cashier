@@ -66,7 +66,7 @@ namespace Saliya_auto_care_Cashier.MVC.View
                 using (SqlConnection conn = connection.GetConnection()) // Get connection from DatabaseConnectionMS
                 {
                     //for debuging
-                    MessageBox.Show("Connection Successful!", "Database Connection", MessageBoxButton.OK, MessageBoxImage.Information);
+                   // MessageBox.Show("Connection Successful!", "Database Connection", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     string query = @"
                                     SELECT serviceID, firstName, lastName, NIC, phone, mail, brand, vehiclePlateNumber, type, emID, billedStatus, price

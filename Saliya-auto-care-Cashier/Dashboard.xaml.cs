@@ -1331,6 +1331,7 @@ namespace Saliya_auto_care_Cashier
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Vehicle registration updated successfully.");
+                            Notificationbox.ShowSuccess();
                             ClearAllFields();
                         }
                         else

@@ -53,7 +53,7 @@ namespace Saliya_auto_care_Cashier
 
         public void ShowSuccessMessage(string message)
         {
-            MessageBox.Show(message);
+           // MessageBox.Show(message);
         }
 
         public void ShowErrorMessage(string message)
@@ -92,7 +92,7 @@ namespace Saliya_auto_care_Cashier
             string pass = pclass.getPassword();
 
 
-            MessageBox.Show("Password sent "+pass);
+          //  MessageBox.Show("Password sent "+pass);
 
             Welcomepage welcomePage = new Welcomepage();
             welcomePage.Show();
