@@ -6,9 +6,9 @@ public class DatabaseConnectionMS
 {
     private readonly SqlConnection connection;
 
-    //public string connectionString = "Data Source=RAVEEN_LENOVO;Initial Catalog=webEditorData;User ID=saliyaAdmin001;Password=saliya007#"; //MS SQL serve
+    //public string connectionString = "your MS SQL connectionString";
 
-    public string connectionString = "Server=SACHITHA\\SQLEXPRESS;Database=webEditorData;Integrated Security=True;";
+    public string connectionString = "your MYSQL WORKBENCH connectionString";
 
     public DatabaseConnectionMS()
     {

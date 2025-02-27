@@ -54,9 +54,9 @@ namespace Saliya_auto_care_Cashier.MVVM.View
 
         private void LoadInventoryItems()
         {
-            string connectionString = "Server=localhost;Database=POSDB;User ID=root;Password=19216811;";
+            string connectionString = "Your Connection string";
 
-            // string connectionString = "server=localhost;uid=root;pwd=raveen007;database=posdb";
+            string connectionString = "Your Connection string";
 
             string query = "SELECT * FROM inventory";
 
@@ -168,4 +168,3 @@ namespace Saliya_auto_care_Cashier.MVVM.View
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }
-
