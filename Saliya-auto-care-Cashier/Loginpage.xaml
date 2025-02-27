@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Saliya_auto_care_Cashier"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
@@ -39,7 +40,7 @@
             <!-- Right side (Password box and keypad) -->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,90,0,0" Height="631" Width="406">
                 <!-- Pin Code Label -->
-                <TextBlock FontWeight="Bold" Foreground="White" TextAlignment="Center" Text="Enter your Pin Code" FontSize="30" FontFamily="Arial" Height="61" Margin="0,0,0,20" />
+                <TextBlock FontWeight="Bold" Foreground="White" TextAlignment="Center" Text="Enter your Pin" FontSize="30" FontFamily="Arial" Height="61" Margin="0,0,0,20" />
 
                 <!-- Password Box -->
                 <Border CornerRadius="10" Background="White" BorderBrush="LightGray" BorderThickness="2" Height="70" Width="240" HorizontalAlignment="Center" Margin="0,0,0,20">
@@ -229,23 +230,42 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <TextBlock Text="Select user" FontSize="30" FontWeight="DemiBold" Foreground="White" Margin="50,132,321,557"/>
-        <DataGrid x:Name="UserDisplay" 
-          AutoGenerateColumns="False" 
-          Margin="50,220,179,200" 
-          Opacity="0.9" 
-          SelectionMode="Single" 
-          SelectionChanged="UsernamesDataGrid_SelectionChanged" Grid.ColumnSpan="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Username" Binding="{Binding Mode=OneWay }" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <TextBlock Text="Welcome To SaliyaAutoCare" FontSize="30" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right" Margin="130,80,0,0"/>
+        <TextBlock Text="Select user" FontSize="30" FontWeight="DemiBold" Foreground="White" Margin="50,190,321,500"/>
+        <Grid Margin="50,270,60,220">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <materialDesign:Card UniformCornerRadius="10" 
+                             Background="{DynamicResource MaterialDesignPaper}"
+                             Margin="0,10,0,10"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="27" FontWeight="Bold">
+                    Ryan Carter
+                </TextBlock>
+            </materialDesign:Card>
 
+            <materialDesign:Card UniformCornerRadius="10" 
+                             Background="{DynamicResource MaterialDesignPaper}"
+                             Margin="0,10,0,10"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Grid.Row="1">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="27" FontWeight="Bold">
+                    Emma Blake
+                </TextBlock>
+            </materialDesign:Card>
 
+            <materialDesign:Card UniformCornerRadius="10" 
+                             Background="{DynamicResource MaterialDesignPaper}"
+                             Margin="0,10,0,10"
+                             materialDesign:ShadowAssist.ShadowDepth="Depth3" Grid.Row="2">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="27" FontWeight="Bold">
+                    Logan Reed
+                </TextBlock>
+            </materialDesign:Card>
 
-
-
-
+        </Grid>
     </Grid>
 </Window>
 
