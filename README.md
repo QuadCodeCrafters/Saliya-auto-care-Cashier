@@ -6,11 +6,11 @@ This project is the updated version of a Point-of-Sale (POS) system, created by 
 ## Technology Stack
 
 ### Frontend:
-- **Language**: XAML
+- **Language**: XAML , HTML
 - **Framework**: Windows Presentation Foundation (WPF)
 
 ### Backend:
-- **Language**: C#, HTML
+- **Language**: C#
 
 ### Database:
 - (Edit the database used here, e.g., SQL Server, MySQL, etc.)
