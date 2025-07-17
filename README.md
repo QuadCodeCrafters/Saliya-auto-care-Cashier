@@ -23,6 +23,28 @@ This project is the updated version of a Point-of-Sale (POS) system, created by 
 - **Sales Reports**: Generate detailed reports to analyze performance over time.
 - **User Roles and Permissions**: Admins can manage roles and restrict access based on user types.
 
+### Cashier 
+
+<img width="1366" height="768" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/ed7bc068-7654-436a-8ac6-1cd15f725298" />
+
+<img width="1366" height="768" alt="Screenshot (16)" src="https://github.com/user-attachments/assets/5552caad-1602-48b3-854c-39ee4ab1a43d" />
+
+<img width="1366" height="768" alt="Screenshot (11)" src="https://github.com/user-attachments/assets/925e6c16-64eb-4588-b73f-c57a9084b982" />
+
+<img width="1366" height="768" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/1a142712-80d9-46da-aed1-6541e46585e2" />
+
+![IMG-20241203-WA0003](https://github.com/user-attachments/assets/091868f4-477e-4296-be2c-c2a79baa983d)
+
+![IMG-20241203-WA0005](https://github.com/user-attachments/assets/a2435b79-aec7-423d-9744-f462b2fb7035)
+
+
+
+
+
+
+
+
+
 ## Next Steps
 - Continue adding features within this unified project structure.
 - Refactor and optimize existing code as needed to accommodate additional functionality.
